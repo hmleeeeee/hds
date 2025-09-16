@@ -1,0 +1,24 @@
+/* 웹폰트 */
+
+$url-fonts: "../../assets/fonts";
+
+$font-weights1: (
+	Light: 300,
+	Regular: 400,
+	Medium: 500,
+	SemiBold: 600,
+	Bold: 700
+);
+
+$font-family: "PretendardGOV";
+$font-file-name: "PretendardGOV";
+
+@each $weight-name, $weight-size in $font-weights1 {
+	@font-face {
+		font-family: $font-family;
+		font-style: normal;
+		font-weight: $weight-size;
+		src: url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff2") format("woff2"),
+			url("#{$url-fonts}/#{$font-file-name}-#{$weight-name}.woff") format("woff");
+	}
+}

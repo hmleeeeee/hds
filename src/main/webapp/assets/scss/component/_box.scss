@@ -1,0 +1,290 @@
+/* 카드 */
+// 카드 크기 정의 (기본값: medium)
+@mixin box-size($size: medium) {
+	padding: var(--krds-box--padding-#{$size});
+	border-radius: var(--krds-box--radius-#{$size});
+}
+
+//사이즈 정의
+@mixin box-size-variable() {
+	--krds-box-padding-medium: var(--krds-number-7);
+	--krds-box-radius-medium: var(--krds-number-5);
+
+	//변수 배열 설정
+	$box-size: (
+		small: (
+			padding: var(--krds-box-padding-small),
+			radius: var(--krds-box-radius-small)
+		),
+		medium: (
+			padding: var(--krds-box-padding-medium),
+			radius: var(--krds-box-radius-medium)
+		),
+		large: (
+			padding: var(--krds-box-padding-large),
+			radius: var(--krds-box-radius-large)
+		)
+	) !default;
+
+	//css variable 생성
+	@each $size, $types in $box-size {
+		@each $type, $value in $types {
+			//css variable 생성
+			--krds-box--#{$type}-#{$size}: #{$value};
+		}
+	}
+
+	//class 정의
+	& {
+		@include box-size(medium);
+
+		@each $size, $types in $box-size {
+			&.#{$size} {
+				@include box-size(#{$size});
+			}
+		}
+	}
+}
+
+//컬러 정의
+@mixin box-color-variable($mode) {
+	background-color: var(--krds-#{$mode}-color-background-hs-searchfilterbg-gray-subtle);
+	color: var(--krds-#{$mode}-color-text-subtle);
+}
+
+//모드 설정
+$mode-setting: light;
+
+.box {
+	@include box-size-variable();
+	flex: 1 1 auto;
+	width: 100%;
+
+	.box-header {
+		// @include clearfix;
+		@include flex-layout(flex, center, start, row);
+		gap: 8px;
+		color: var(--krds-modal--color-text);
+
+		&-underline {
+			border-bottom: 1px solid red;
+		}
+
+		.box-title {
+			flex: 1 1 auto;
+		}
+
+		.box-toolbar {
+			flex: 0 0 auto;
+		}
+	}
+
+	.box-conts {
+		margin-top: 12px;
+	}
+
+	&.box-summary {
+		background-color: #e7f4fe;
+	}
+}
+
+.box {
+	// @include box-color-variable(#{$mode-setting});
+}
+
+//고대비모드
+// @include color-mode($mode: high-contrast) {
+// 	//모드 설정
+// 	$mode-setting: high-contrast;
+
+// 	.box {
+// 		@include box-color-variable(#{$mode-setting});
+// 	}
+// }
+
+/* 기본 카드 스타일 mixin */
+// @mixin box-style($size) {
+// 	padding: var(--krds-box--padding-#{$size});
+// 	border-radius: var(--krds-box--radius-#{$size});
+// 	box-shadow: var(--krds-box--shadow-#{$size});
+// }
+
+/* 카드 스타일 적용 */
+// .box {
+// 	@include box-size-variable();
+// 	// display: flex;
+// 	// flex-direction: column;
+// 	// align-items: flex-start;
+// 	// background-color: #fff; // 기본 배경색 지정
+// 	// border: 1px solid #ddd; // 기본 테두리 지정
+// }
+
+// .box {
+// 	// @include box;
+// 	background-color: #fff;
+// 	border-radius: 24px;
+// }
+
+// .box-header {
+// 	// @include clearfix;
+// 	line-height: 24px;
+
+// 	&-underline {
+// 		padding: 20px;
+// 		// border-bottom: 1px solid $border-base;
+// 	}
+
+// 	.box-title {
+// 		float: left;
+// 	}
+
+// 	.box-toolbar {
+// 		float: right;
+// 		display: flex;
+// 		align-items: center;
+// 		min-height: 24px;
+// 	}
+// }
+
+// .box-title {
+// 	.title1 {
+// 		display: inline-block;
+// 		vertical-align: middle;
+// 	}
+// }
+
+// .box-body {
+// 	padding: 16px;
+// }
+
+/* box case 스타일 커스텀 */
+.box-search {
+	align-items: center;
+	font-size: 1.4rem;
+	.fieldset {
+		display: block;
+		width: 100%;
+	}
+	.form-group {
+		@include flex-layout(flex, center, center, row);
+		gap: 8px;
+		width: 100%;
+
+		.form-tit {
+			flex: 0 0 auto;
+			width: auto;
+			min-width: 73px;
+		}
+		.form-conts {
+			flex: 1 1 auto;
+
+			.text-col {
+				font-weight: bold;
+			}
+		}
+
+		&.search {
+			text-align: left;
+			// justify-content: start;
+			justify-content: end;
+
+			&:has(.krds-form-check-wrap) {
+				justify-content: space-between;
+			}
+
+			.krds-form-select {
+				max-width: 160px;
+			}
+		}
+	}
+
+	.grid-layout {
+		align-items: center;
+
+		&.drop {
+			@include flex-layout(flex, center, start);
+			gap: 0.8rem;
+			flex-wrap: wrap;
+		}
+	}
+	@include media-breakpoint-down(md) {
+		padding: 0;
+		background: transparent;
+		border-radius: 0;
+		.form-group {
+			gap: 4px;
+
+			&.search {
+				flex-direction: column;
+
+				.krds-form-select,
+				.form-search {
+					width: 100% !important;
+					max-width: 100%;
+				}
+			}
+		}
+		.form-tit {
+			font-size: var(--krds-mobile-font-size-label-xsmall);
+		}
+		.grid-layout {
+			&.drop {
+				.krds-form-select,
+				.form-search {
+					width: 100% !important;
+					max-width: 100%;
+				}
+				.grid-item {
+					width: 100%;
+				}
+			}
+		}
+	}
+
+	&.total-search {
+		// max-width: 900px;
+		margin: 0 auto;
+
+		.form-search {
+			width: 100%;
+		}
+
+		.krds-input,
+		.krds-btn,
+		.krds-form-select {
+			&.small {
+				height: 38px;
+			}
+		}
+	}
+}
+
+//고대비모드
+@include color-mode($mode: high-contrast) {
+	//모드 설정
+	$mode-setting: high-contrast;
+
+	// .box-search {
+	// 	& + .btn-group-center {
+	// 		.krds-btn {
+	// 			&.tertiary {
+	// 				background: var(--krds-mode-color-high-contrast-gray-70);
+	// 				border-color: var(--krds-color-high-contrast-gray-60);
+	// 				color: var(--krds-high-contrast-color-icon-inverse-static);
+
+	// 				&:hover {
+	// 					background: var(--krds-mode-color-high-contrast-gray-80);
+	// 				}
+	// 				&:active,
+	// 				&:focus {
+	// 					background: var(--krds-mode-color-high-contrast-gray95);
+	// 				}
+	// 			}
+	// 		}
+	// 	}
+
+	// 	@include media-breakpoint-down(md) {
+	// 		background: transparent;
+	// 	}
+	// }
+}

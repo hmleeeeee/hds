@@ -1,0 +1,79 @@
+/* 텍스트 색상 유틸 */
+
+@mixin text-color-utilities($mode) {
+	$colors: ();
+
+	@if $mode == "light" {
+		$colors: (
+			"bolder": var(--krds-light-color-text-bolder),
+			"subtle": var(--krds-light-color-text-subtle),
+			"disabled": var(--krds-light-color-text-disabled),
+			"disabled-on": var(--krds-light-color-text-disabled-on),
+			"primary": var(--krds-light-color-text-primary),
+			"secondary": var(--krds-light-color-text-secondary),
+			"danger": var(--krds-light-color-text-danger),
+			"warning": var(--krds-light-color-text-warning),
+			"success": var(--krds-light-color-text-success),
+			"information": var(--krds-light-color-text-information),
+			"basic": var(--krds-light-color-text-basic),
+			"point": var(--krds-light-color-text-point),
+			"bolder-inverse": var(--krds-light-color-text-bolder-inverse),
+			"basic-inverse": var(--krds-light-color-text-basic-inverse),
+			"subtle-inverse": var(--krds-light-color-text-subtle-inverse),
+			"inverse-static": var(--krds-light-color-text-inverse-static),
+			"static": var(--krds-light-color-text-static),
+			"subtler": var(--krds-light-color-text-subtler)
+		);
+	} @else if $mode == "high-contrast" {
+		$colors: (
+			"bolder": var(--krds-high-contrast-color-text-bolder),
+			"subtle": var(--krds-high-contrast-color-text-subtle),
+			"disabled": var(--krds-high-contrast-color-text-disabled),
+			"disabled-on": var(--krds-high-contrast-color-text-disabled-on),
+			"primary": var(--krds-high-contrast-text-basic-inverse),
+			"secondary": var(--krds-high-contrast-color-text-secondary),
+			"danger": var(--krds-high-contrast-color-text-danger),
+			"warning": var(--krds-high-contrast-color-text-warning),
+			"success": var(--krds-high-contrast-color-text-success),
+			"information": var(--krds-high-contrast-color-text-information),
+			"basic": var(--krds-high-contrast-color-text-basic),
+			"point": var(--krds-high-contrast-color-text-point),
+			"bolder-inverse": var(--krds-high-contrast-color-text-bolder-inverse),
+			"basic-inverse": var(--krds-high-contrast-color-text-basic-inverse),
+			"subtle-inverse": var(--krds-high-contrast-color-text-subtle-inverse),
+			"inverse-static": var(--krds-high-contrast-color-text-inverse-static),
+			"static": var(--krds-high-contrast-color-text-static),
+			"subtler": var(--krds-high-contrast-color-text-subtler)
+		);
+	}
+
+	@each $color, $value in $colors {
+		.text-#{$color} {
+			color: $value !important;
+		}
+	}
+}
+
+//모드 설정
+$mode-setting: light;
+@include text-color-utilities("light");
+
+//고대비모드
+@include color-mode($mode: high-contrast) {
+	//모드 설정
+	$mode-setting: high-contrast;
+	@include text-color-utilities(#{$mode-setting});
+}
+
+// @each $bg-color, $value in $dark-bg-colors {
+// 	.#{$bg-color} {
+// 		background-color: $value !important;
+// 		color: #fff;
+// 	}
+// }
+
+// @each $bg-color, $value in $light-bg-colors {
+// 	.#{$bg-color} {
+// 		background-color: $value !important;
+// 	}
+// }

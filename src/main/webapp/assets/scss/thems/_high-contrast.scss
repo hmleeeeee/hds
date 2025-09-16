@@ -1,0 +1,1673 @@
+@import "../../../assets/css/token/krds_tokens.css"; //디자인 토큰
+
+//*** path setting
+$url: "../.." !default;
+$url-img: "../img" !default; //img
+
+//svg img
+@mixin svg-icon($size: var(--krds-icon--size-large), $mode: light, $effect: null) {
+	display: inline-flex;
+	@include square($size);
+	background-color: var(--krds-#{$mode}-color-text-basic);
+	@if ($effect == "pure") {
+		//mask 효과 없이 디자인된 svg 그대로 사용
+		background-color: transparent !important;
+	}
+	forced-color-adjust: none;
+	// @media (forced-colors: active) {
+	// }
+}
+
+//svg icon setting
+@mixin icon-set($name, $effect: null) {
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center center;
+	-webkit-mask-size: contain;
+	mask-repeat: no-repeat;
+	mask-position: center center;
+	mask-size: contain;
+	-webkit-mask-image: url(#{$url-img}/component/icon/#{$name}.svg);
+	mask-image: url(#{$url-img}/component/icon/#{$name}.svg);
+	@if ($effect == "pure") {
+		//mask 효과 없이 디자인된 svg 그대로 사용
+		-webkit-mask-image: none;
+		mask-image: none;
+		background-image: url(#{$url-img}/component/icon/#{$name}.svg);
+		background-color: transparent !important;
+		background-size: contain;
+		background-repeat: no-repeat;
+		-webkit-mask: none;
+		mask: none;
+	}
+}
+
+/* content */
+#container {
+	background-color: var(--krds-high-contrast-color-background-gray-subtler);
+	color: var(--krds-high-contrast-color-text-subtle);
+}
+
+.system-page {
+	color: var(--krds-high-contrast-color-text-subtle);
+}
+
+body {
+	background-color: var(--krds-high-contrast-color-background-gray-subtler);
+}
+
+/* sidebar */
+#sidebar {
+	background-color: #1f2125;
+	&::before {
+		background-image: url(#{$url-img}/_common/bg-sidebar-high-contrast@2x.png);
+		background-size: 620px auto;
+	}
+	.tab-conts-wrap {
+		background: url(#{$url-img}/_common/bg-sidebar-visual-high-contrast.png),
+			linear-gradient(173.53deg, #373c42 4.47%, #1a1d1f 100%);
+		background-repeat: no-repeat;
+		background-position: right 0px bottom 0px;
+		overflow-y: auto;
+
+		@include media-breakpoint-down(md) {
+			background-image: url(#{$url-img}/_common/bg-sidebar-visual-high-contrast-mob.png),
+				linear-gradient(173.53deg, #373c42 4.47%, #1a1d1f 100%);
+		}
+	}
+
+	.sidebar-area,
+	.favorit-menu {
+		color: var(--krds-high-contrast-color-text-inverse-static);
+	}
+
+	.snb-list {
+		.svg-icon {
+			background-color: var(--krds-light-color-background-white);
+		}
+
+		.active {
+			> a {
+				background: rgba(255, 255, 255, 0.2);
+			}
+		}
+
+		> li {
+			// 1뎁스
+			> a {
+				.text {
+					opacity: 0.6;
+					line-height: 1.6;
+				}
+			}
+
+			&.collapse {
+				> a {
+					&:after {
+						background-image: url(#{$url-img}/component/icon/ico_arrow_down.svg);
+					}
+				}
+			}
+
+			&.on {
+				> a {
+					background: rgba(255, 255, 255, 0.2);
+				}
+			}
+
+			> ul {
+				// 2뎁스
+				> li {
+					&.active {
+						> a {
+							&::before {
+								background-color: rgba(255, 255, 255, 1);
+							}
+						}
+					}
+					> a {
+						&::before {
+							background-color: rgba(255, 255, 255, 0.5);
+						}
+					}
+
+					&.collapse {
+						> a {
+							&:after {
+								background-image: url(#{$url-img}/component/icon/ico_arrow_down.svg);
+							}
+						}
+
+						&.on {
+							> a {
+								background: rgba(255, 255, 255, 0.2);
+
+								.text {
+									opacity: 1;
+								}
+								&::before {
+									background-color: rgba(255, 255, 255, 1);
+								}
+							}
+						}
+					}
+				}
+
+				ul {
+					// 3뎁스
+					> li {
+						a {
+							&:before {
+								background-color: rgba(255, 255, 255, 0.5);
+							}
+						}
+
+						&.active {
+							> a {
+								&::before {
+									background-color: rgba(255, 255, 255, 1);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.krds-tab-area {
+		.tab {
+			.btn-tab {
+				&:hover,
+				&:active {
+					background: transparent;
+				}
+			}
+			li {
+				&.active {
+					.btn-tab {
+						background: #373c42;
+					}
+				}
+			}
+		}
+	}
+
+	.gnb-area {
+		color: rgba(255, 255, 255, 0.6);
+	}
+	// @include media-breakpoint-down(md) {
+	// 	display: none;
+	// }
+
+	.user-info-area {
+		background: rgba(255, 255, 255, 0.15);
+
+		.profile-thumb {
+			background: #dfefff;
+
+			.ico-admin-user {
+				background-color: var(--krds-high-contrast-color-icon-secondary);
+			}
+		}
+	}
+
+	.sidebar-body {
+		.tab {
+			.active {
+				.btn-tab {
+					&::before {
+						background: #373c42;
+					}
+					&:after {
+						background: #373c42;
+					}
+				}
+			}
+		}
+	}
+}
+
+/* content-header */
+.content-header {
+	background-color: var(--krds-high-contrast-color-background-white);
+	border-bottom: 1px solid var(--krds-high-contrast-color-border-gray-light);
+
+	.inner {
+		+ .inner {
+			&::before {
+				background-color: var(--krds-high-contrast-color-border-gray-light);
+			}
+		}
+	}
+
+	.sub-nav {
+		.btn-tab {
+			background: var(--krds-high-contrast-color-background-gray-subtler);
+			color: var(--krds-high-contrast-color-text-subtle);
+
+			.btn-close {
+				background: var(--krds-color-high-contrast-alpha-white25);
+
+				.ico-subtab-close {
+					background: var(--krds-high-contrast-color-surface-white-static);
+					opacity: 0.5;
+				}
+			}
+			&:hover {
+				background: var(--krds-high-contrast-color-background-gray-subtle);
+			}
+
+			&.active {
+				background: var(--krds-color-high-contrast-alpha-white25);
+				color: var(--krds-high-contrast-color-surface-white-static);
+
+				.btn-close {
+					background: var(--krds-high-contrast-color-alpha-base25);
+					.ico-subtab-close {
+						background: var(--krds-high-contrast-color-surface-white-static);
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+}
+
+.top-nav {
+	.tab {
+		.btn-tab {
+			color: var(--krds-high-contrast-color-text-subtler);
+		}
+
+		li {
+			&.active {
+				.btn-tab {
+					color: var(--krds-high-contrast-color-surface-white-static);
+
+					&::before {
+						background-color: var(--krds-high-contrast-color-button-primary-fill);
+					}
+				}
+			}
+		}
+
+		.noti-area {
+			background-color: var(--krds-color-high-contrast-gray-80);
+			color: var(--krds-color-high-contrast-gray-10);
+		}
+	}
+}
+
+/* box */
+.box {
+	background-color: var(--krds-high-contrast-color-background-hs-searchfilterbg-gray-subtle);
+	color: var(--krds-high-contrast-color-text-subtle);
+}
+
+.box-search {
+	& + .btn-group-center {
+		.krds-btn {
+			&.tertiary {
+				background: var(--krds-mode-color-high-contrast-gray-70);
+				border-color: var(--krds-color-high-contrast-gray-60);
+				color: var(--krds-high-contrast-color-icon-inverse-static);
+
+				&:hover {
+					background: var(--krds-mode-color-high-contrast-gray-80);
+				}
+				&:active,
+				&:focus {
+					background: var(--krds-mode-color-high-contrast-gray95);
+				}
+			}
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		background: transparent;
+	}
+}
+
+/* badge */
+//컬러 정의
+@mixin badge-color-variable($mode) {
+	//컬러 변수 배열 생성
+	$badge-color-variable: (
+		primary: (
+			element: var(--krds-#{$mode}-color-element-primary),
+			element-lighter: var(--krds-#{$mode}-color-element-primary-lighter),
+			border-light: var(--krds-#{$mode}-color-border-primary-light),
+			text: var(--krds-#{$mode}-color-text-primary)
+		),
+		secondary: (
+			element: var(--krds-#{$mode}-color-element-secondary),
+			element-lighter: var(--krds-#{$mode}-color-element-secondary-lighter),
+			border-light: var(--krds-#{$mode}-color-border-secondary-light),
+			text: var(--krds-#{$mode}-color-text-secondary)
+		),
+		gray: (
+			element: var(--krds-#{$mode}-color-element-gray),
+			element-lighter: var(--krds-#{$mode}-color-element-gray-light),
+			border-light: var(--krds-#{$mode}-color-border-gray-light),
+			text: var(--krds-#{$mode}-color-text-subtle)
+		),
+		point: (
+			element: var(--krds-#{$mode}-color-element-point),
+			element-lighter: var(--krds-#{$mode}-color-element-point-lighter),
+			border-light: var(--krds-#{$mode}-color-border-point-light),
+			text: var(--krds-#{$mode}-color-text-point)
+		),
+		danger: (
+			element: var(--krds-#{$mode}-color-element-danger),
+			element-lighter: var(--krds-#{$mode}-color-element-danger-lighter),
+			border-light: var(--krds-#{$mode}-color-border-danger-light),
+			text: var(--krds-#{$mode}-color-text-danger)
+		),
+		warning: (
+			element: var(--krds-#{$mode}-color-element-warning),
+			element-lighter: var(--krds-#{$mode}-color-element-warning-lighter),
+			border-light: var(--krds-#{$mode}-color-border-warning-light),
+			text: var(--krds-#{$mode}-color-text-warning)
+		),
+		success: (
+			element: var(--krds-#{$mode}-color-element-success),
+			element-lighter: var(--krds-#{$mode}-color-element-success-lighter),
+			border-light: var(--krds-#{$mode}-color-border-success-light),
+			text: var(--krds-#{$mode}-color-text-success)
+		),
+		information: (
+			element: var(--krds-#{$mode}-color-element-information),
+			element-lighter: var(--krds-#{$mode}-color-element-information-lighter),
+			border-light: var(--krds-#{$mode}-color-border-information-light),
+			text: var(--krds-#{$mode}-color-text-information)
+		),
+		disabled: (
+			element: var(--krds-#{$mode}-color-element-disabled-dark),
+			element-lighter: var(--krds-#{$mode}-color-element-disabled-light),
+			border-light: var(--krds-#{$mode}-color-border-disabled-light),
+			text: var(--krds-#{$mode}-color-text-disabled-on)
+		)
+	) !default;
+
+	//css variable 생성
+	@each $color, $types in $badge-color-variable {
+		@each $type, $value in $types {
+			--krds-badge--color-#{"#{$color}"}-#{$type}: #{$value};
+		}
+	}
+	--krds-badge--color-background-basic: var(--krds-#{$mode}-color-background-white);
+	--krds-badge--color-text-basic: var(--krds-#{$mode}-color-text-inverse-static);
+
+	//class 정의
+	& {
+		@each $color, $types in $badge-color-variable {
+			&.outline-#{"#{$color}"} {
+				@include color-border(#{$color});
+				@include color-text(#{$color});
+			}
+
+			&.bg-#{"#{$color}"} {
+				@include color-background(#{$color});
+				color: var(--krds-badge--color-text-basic);
+			}
+
+			&.bg-light-#{"#{$color}"} {
+				@include color-background-light(#{$color});
+				@include color-border-light(#{$color});
+				@include color-text(#{$color});
+			}
+		}
+	}
+}
+
+//badge color border
+@mixin color-border($color, $mode: light) {
+	@include border-size-mode(#{$mode});
+	border-style: solid;
+
+	@if ($color == "primary") {
+		border-color: var(--krds-badge--color-primary-element);
+	} @else {
+		border-color: var(--krds-badge--#{$mode}-color-#{$color}-element);
+	}
+}
+
+//badge color border light
+@mixin color-border-light($color, $mode: light) {
+	@include border-size-mode(#{$mode});
+	border-style: solid;
+
+	@if ($color == "primary") {
+		border-color: var(--krds-badge--color-primary-border-light);
+	} @else {
+		border-color: var(--krds-badge--color-#{$color}-border-light);
+	}
+}
+
+//badge color text
+@mixin color-text($color) {
+	color: var(--krds-badge--color-#{$color}-text);
+}
+
+//badge color background
+@mixin color-background($color) {
+	background-color: var(--krds-badge--color-#{$color}-element);
+}
+
+//badge color background light
+@mixin color-background-light($color) {
+	background-color: var(--krds-badge--color-#{$color}-element-lighter);
+}
+
+$mode-setting: high-contrast;
+.krds-badge {
+	@include badge-color-variable(#{$mode-setting});
+}
+
+/* card */
+@mixin card-color-variable($mode) {
+	background-color: var(--krds-#{$mode}-color-background-white);
+	color: var(--krds-#{$mode}-color-text-subtle);
+
+	.card-title {
+		color: var(--krds-#{$mode}-color-text-bolder);
+	}
+
+	@include media-breakpoint-up(lg) {
+		.card-header {
+			&.line {
+				&:after {
+					background-color: var(--krds-#{$mode}-color-divider-gray-light);
+				}
+			}
+		}
+	}
+}
+
+.card {
+	@include card-color-variable(high-contrast);
+
+	.table-header {
+		color: var(--krds-high-contrast-color-text-basic);
+	}
+}
+
+/* button */
+
+//컬러 정의
+@mixin button-color-variable($mode) {
+	//변수 배열 정의
+	$button-color-variable: (
+		primary: (
+			fill: var(--krds-high-contrast-color-button-primary-fill),
+			fill-hover: var(--krds-high-contrast-color-button-primary-fill-hover),
+			fill-pressed: var(--krds-high-contrast-color-button-primary-fill-pressed),
+			fill-disabled: var(--krds-high-contrast-color-button-disabled-fill),
+			border: var(--krds-high-contrast-color-button-primary-fill),
+			border-disabled: var(--krds-high-contrast-color-button-disabled-border),
+			// [퍼블] mode 별 다른 색상코드 사용 커스텀
+			text:
+				if(
+					$mode == high-contrast,
+					var(--krds-high-contrast-color-text-bolder-inverse),
+					var(--krds-high-contrast-color-text-inverse-static)
+				),
+			text-disabled: var(--krds-high-contrast-color-text-disabled-on)
+		),
+		secondary: (
+			fill: var(--krds-high-contrast-color-button-secondary-fill),
+			fill-hover: var(--krds-high-contrast-color-button-secondary-fill-hover),
+			fill-pressed: var(--krds-high-contrast-color-button-secondary-fill-pressed),
+			fill-disabled: var(--krds-high-contrast-color-button-disabled-fill),
+			border: var(--krds-high-contrast-color-button-secondary-border),
+			border-disabled: var(--krds-high-contrast-color-button-disabled-border),
+			text: var(--krds-high-contrast-color-text-primary),
+			text-disabled: var(--krds-high-contrast-color-text-disabled-on)
+		),
+		tertiary: (
+			fill: var(--krds-high-contrast-color-button-tertiary-fill),
+			fill-hover: var(--krds-high-contrast-color-button-tertiary-fill-hover),
+			fill-pressed: var(--krds-high-contrast-color-button-tertiary-fill-pressed),
+			fill-disabled: var(--krds-high-contrast-color-button-disabled-fill),
+			border: var(--krds-high-contrast-color-button-tertiary-border),
+			border-disabled: var(--krds-high-contrast-color-button-disabled-border),
+			text: var(--krds-high-contrast-color-text-subtle),
+			text-disabled: var(--krds-high-contrast-color-text-disabled-on)
+		),
+		text: (
+			fill: var(--krds-high-contrast-color-button-text-fill),
+			fill-hover: var(--krds-high-contrast-color-button-text-fill-hover),
+			fill-pressed: var(--krds-high-contrast-color-button-text-fill-pressed),
+			fill-disabled: var(--krds-high-contrast-color-button-text-fill),
+			border: var(--krds-high-contrast-color-button-text-border),
+			border-disabled: var(--krds-high-contrast-color-border-transparency),
+			text: var(--krds-high-contrast-color-text-basic),
+			text-disabled: var(--krds-high-contrast-color-text-disabled)
+		),
+		link: (
+			fill: var(--krds-high-contrast-color-button-text-fill),
+			fill-hover: var(--krds-high-contrast-color-button-text-fill),
+			fill-pressed: var(--krds-high-contrast-color-button-text-fill),
+			fill-disabled: var(--krds-high-contrast-color-button-text-fill),
+			border: var(--krds-high-contrast-color-button-text-border),
+			border-disabled: var(--krds-high-contrast-color-border-transparency),
+			text: var(--krds-high-contrast-color-link-default),
+			text-disabled: var(--krds-high-contrast-color-text-disabled)
+		)
+	) !default;
+
+	//css variable 생성
+	@each $color, $types in $button-color-variable {
+		@each $type, $value in $types {
+			--krds-button--color-#{$color}-#{$type}: #{$value};
+		}
+	}
+
+	//class 생성
+	& {
+		background-color: var(--krds-button--color-primary-fill);
+		border-color: #16181a;
+		color: var(--krds-button--color-primary-text);
+
+		& {
+			//컬러 별 class
+			@each $color, $types in $button-color-variable {
+				&.#{$color} {
+					@include btn-color(#{$color});
+					&:not(.icon) {
+						.svg-icon {
+							@include btn-color-icon(#{$color});
+						}
+					}
+
+					&:hover {
+						@include btn-color-hover(#{$color});
+					}
+
+					&:active,
+					&:focus {
+						@include btn-color-pressed(#{$color});
+					}
+
+					&[disabled],
+					&.disabled {
+						@include btn-color-disabled(#{$color});
+						&:not(.icon) {
+							.svg-icon {
+								background-color: var(--krds-button--color-#{$color}-text-disabled);
+							}
+						}
+						&:hover {
+							@include btn-color-disabled(#{$color});
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+//컬러별 variable
+@mixin btn-color($color) {
+	background-color: var(--krds-button--color-#{$color}-fill);
+	border-color: var(--krds-button--color-#{$color}-border);
+	color: var(--krds-button--color-#{$color}-text);
+}
+@mixin btn-color-hover($color) {
+	background-color: var(--krds-button--color-#{$color}-fill-hover);
+}
+@mixin btn-color-pressed($color) {
+	background-color: var(--krds-button--color-#{$color}-fill-pressed);
+}
+@mixin btn-color-disabled($color) {
+	background-color: var(--krds-button--color-#{$color}-fill-disabled);
+	border-color: var(--krds-button--color-#{$color}-border-disabled);
+	color: var(--krds-button--color-#{$color}-text-disabled);
+}
+@mixin btn-color-icon($color) {
+	background-color: var(--krds-button--color-#{$color}-text);
+}
+
+.krds-btn {
+	@include border-size-mode(high-contrast);
+	@include button-color-variable(high-contrast);
+
+	&:hover {
+		background: var(--krds-mode-color-high-contrast-gray-5);
+	}
+	&:active,
+	&:focus {
+		background: var(--krds-mode-color-high-contrast-gray-10);
+	}
+
+	&.text {
+		//class명 검토
+		&.ico-filter {
+			.num {
+				color: var(--krds-high-contrast-color-text-basic-inverse);
+				background-color: var(--krds-high-contrast-color-element-primary);
+			}
+		}
+	}
+	&.link {
+		&.basic {
+			$color: var(--krds-high-contrast-color-text-basic);
+			color: $color;
+			&:not(.icon) {
+				.svg-icon {
+					background-color: $color;
+				}
+			}
+		}
+		&:hover {
+			$color: var(--krds-high-contrast-color-link-hover);
+			color: $color;
+			&:not(.icon) {
+				.svg-icon {
+					background-color: $color;
+				}
+			}
+		}
+		&:active,
+		&:focus {
+			$color: var(--krds-high-contrast-color-link-pressed);
+			color: $color;
+			&:not(.icon) {
+				.svg-icon {
+					background-color: $color;
+				}
+			}
+		}
+		&:visited {
+			$color: var(--krds-high-contrast-color-link-visited);
+			color: $color;
+			&:not(.icon) {
+				.svg-icon {
+					background-color: $color;
+				}
+			}
+		}
+	}
+	/* icon 버튼 (텍스트 없음) */
+	&.icon {
+		background-color: transparent;
+		border-color: var(--krds-high-contrast-color-border-transparency);
+
+		.svg-icon {
+			background-color: var(--krds-high-contrast-color-text-basic);
+		}
+		//새로고침, 토글 등 보더 아이콘 버튼 형태
+		&.border {
+			background-color: var(--krds-high-contrast-color-background-white);
+			border-color: var(--krds-high-contrast-color-border-gray);
+
+			&[disabled],
+			&.disabled {
+				background-color: var(--krds-high-contrast-color-button-disabled-fill);
+			}
+		}
+	}
+	&:hover {
+		background: var(--krds-mode-color-high-contrast-gray-5);
+	}
+	&:active,
+	&:focus {
+		background: var(--krds-mode-color-high-contrast-gray-10);
+	}
+
+	&.text {
+		//class명 검토
+		&.ico-filter {
+			.num {
+				color: var(--krds-#{$mode-setting}-color-text-basic-inverse);
+				background-color: var(--krds-#{$mode-setting}-color-element-primary);
+			}
+		}
+	}
+	&.link {
+		&.basic {
+			$color: var(--krds-#{$mode-setting}-color-text-basic);
+			color: $color;
+			&:not(.icon) {
+				.svg-icon {
+					background-color: $color;
+				}
+			}
+		}
+		&:hover {
+			$color: var(--krds-#{$mode-setting}-color-link-hover);
+			color: $color;
+			&:not(.icon) {
+				.svg-icon {
+					background-color: $color;
+				}
+			}
+		}
+		&:active,
+		&:focus {
+			$color: var(--krds-#{$mode-setting}-color-link-pressed);
+			color: $color;
+			&:not(.icon) {
+				.svg-icon {
+					background-color: $color;
+				}
+			}
+		}
+		&:visited {
+			$color: var(--krds-#{$mode-setting}-color-link-visited);
+			color: $color;
+			&:not(.icon) {
+				.svg-icon {
+					background-color: $color;
+				}
+			}
+		}
+	}
+	/* icon 버튼 (텍스트 없음) */
+	&.icon {
+		background-color: transparent;
+		border-color: var(--krds-#{$mode-setting}-color-border-transparency);
+
+		.svg-icon {
+			background-color: var(--krds-#{$mode-setting}-color-text-basic);
+		}
+		//새로고침, 토글 등 보더 아이콘 버튼 형태
+		&.border {
+			background-color: var(--krds-#{$mode-setting}-color-background-white);
+			border-color: var(--krds-#{$mode-setting}-color-border-gray);
+
+			&[disabled],
+			&.disabled {
+				background-color: var(--krds-#{$mode-setting}-color-button-disabled-fill);
+			}
+		}
+	}
+
+	&.primary {
+		&:hover {
+			background: var(--krds-mode-color-high-contrast-gray-5);
+		}
+		&:active,
+		&:focus {
+			background: var(--krds-mode-color-high-contrast-gray-10);
+		}
+	}
+
+	&.secondary {
+		background: var(--krds-mode-color-high-contrast-gray-70);
+		border-color: var(--krds-color-high-contrast-gray-60);
+		color: var(--krds-high-contrast-color-icon-inverse-static);
+
+		&:hover {
+			background: var(--krds-mode-color-high-contrast-gray-80);
+		}
+		&:active,
+		&:focus {
+			background: var(--krds-mode-color-high-contrast-gray95);
+		}
+
+		.svg-icon {
+			&.ico-edit {
+				background-color: var(--krds-color-high-contrast-gray-0);
+			}
+		}
+	}
+
+	&.tertiary {
+		background: transparent;
+		border-color: var(--krds-mode-color-high-contrast-gray-50);
+		color: var(--krds-high-contrast-color-icon-inverse-static);
+	}
+	&.gray {
+		color: var(--krds-mode-color-high-contrast-gray-10);
+		background-color: var(--krds-color-light-gray-80);
+		border-color: var(--krds-color-light-gray-60);
+
+		.svg-icon {
+			background-color: var(--krds-mode-color-high-contrast-gray-0);
+		}
+	}
+}
+
+/* 인풋 */
+//컬러 정의
+@mixin input-color-variable($mode: high-contrast) {
+	--krds-input--color-surface: var(--krds-#{$mode}-color-input-surface);
+	--krds-input--color-surface-readonly: var(--krds-#{$mode}-color-input-surface-disabled);
+	--krds-input--color-surface-disabled: var(--krds-#{$mode}-color-input-surface-disabled);
+	--krds-input--color-surface-error: var(--krds-#{$mode}-color-input-surface);
+	--krds-input--color-border: var(--krds-#{$mode}-color-input-border);
+	--krds-input--color-border-active: var(--krds-#{$mode}-color-input-border-active);
+	--krds-input--color-border-readonly: var(--krds-#{$mode}-color-input-border-disabled);
+	--krds-input--color-border-disabled: var(--krds-#{$mode}-color-input-border-disabled);
+	--krds-input--color-border-error: var(--krds-#{$mode}-color-input-border-error);
+	--krds-input--color-text: var(--krds-#{$mode}-color-text-subtle);
+	--krds-input--color-text-active: var(--krds-#{$mode}-color-text-basic);
+	--krds-input--color-text-readonly: var(--krds-#{$mode}-color-text-subtle);
+	--krds-input--color-text-disabled: var(--krds-#{$mode}-color-text-disabled-on);
+	--krds-input--color-text-placeholder: var(--krds-#{$mode}-color-text-disabled);
+	--krds-input--color-text-error: var(--krds-#{$mode}-color-text-subtle);
+}
+
+.krds-input {
+	@include input-color-variable(high-contrast);
+
+	& {
+		color: var(--krds-input--color-text);
+		background-color: var(--krds-input--color-surface);
+		border: 0.1rem solid var(--krds-input--color-border);
+	}
+
+	&:focus,
+	&.focus {
+		border-color: var(--krds-input--color-border-active);
+	}
+
+	&[readonly] {
+		background-color: var(--krds-input--color-surface-readonly);
+		border-color: var(--krds-input--color-border-readonly);
+		color: var(--krds-input--color-text-readonly);
+		&.datepicker {
+			background-color: var(--krds-input--color-surface);
+			border-color: var(--krds-input--color-border);
+			color: var(--krds-input--color-text);
+		}
+		&:focus {
+			border-color: var(--krds-input--color-border-active);
+		}
+	}
+
+	&::after {
+		background-color: var(--krds-color-light-point-40);
+	}
+
+	&[required] {
+		background-image: url(#{$url-img}/_common/bg-asterisk.png);
+	}
+
+	&[disabled] {
+		background-color: var(--krds-input--color-surface-disabled);
+		border-color: var(--krds-input--color-border-disabled);
+		color: var(--krds-input--color-text-disabled);
+	}
+	&::-webkit-input-placeholder {
+		color: var(--krds-input--color-text-placeholder);
+	}
+	&::-moz-placeholder {
+		color: var(--krds-input--color-text-placeholder);
+	}
+	&:-ms-input-placeholder {
+		color: var(--krds-input--color-text-placeholder);
+	}
+	&::-ms-input-placeholder {
+		color: var(--krds-input--color-text-placeholder);
+	}
+}
+.textarea-count {
+	--krds-input--count-number-color-text: var(--krds-high-contrast-color-text-subtle);
+	--krds-input--count-number-color-text-active: var(--krds-high-contrast-color-text-primary);
+}
+
+/* 날짜선택 */
+.calendar-input {
+	--krds-input--color-surface: var(--krds-high-contrast-color-input-surface);
+}
+
+textarea {
+	&.krds-textarea {
+		background-color: var(--krds-high-contrast-color-input-surface);
+		border: 0.1rem solid var(--krds-high-contrast-color-input-border);
+
+		&:focus {
+			outline: none;
+			border-width: 1px;
+			box-shadow: none;
+			border-color: var(--krds-high-contrast-color-input-border-active);
+		}
+	}
+}
+
+/* 아이콘 */
+.datepicker {
+	.btn-datepicker {
+		.ico-datepicker {
+			background-color: var(--krds-high-contrast-color-text-basic);
+		}
+	}
+}
+
+/* 테이블 */
+
+@mixin table-color-variable($mode: high-contrast) {
+	--krds-table--data-border-width: var(--krds-#{$mode}-border-width-variable-regular);
+	--krds-table--data-thead-border: var(--krds-#{$mode}-color-border-secondary-light);
+	--krds-table--data-thead-surface: var(--krds-#{$mode}-color-surface-secondary-subtler);
+	--krds-table--data-thead-color-text: var(--krds-#{$mode}-color-text-basic);
+	--krds-table--data-tbody-color-surface: var(--krds-#{$mode}-color-surface-white-subtle);
+	--krds-table--data-tbody-color-divider: var(--krds-#{$mode}-color-divider-gray-light);
+	--krds-table--data-tbody-color-text: var(--krds-#{$mode}-color-text-subtle);
+}
+
+$mode-setting: high-contrast;
+.krds-table-wrap {
+	@include table-color-variable(#{$mode-setting});
+
+	.tbl {
+		&.data {
+			thead {
+				th {
+					border-top: 1px solid var(--krds-high-contrast-color-divider-gray-light);
+					border-bottom: 1px solid var(--krds-high-contrast-color-divider-gray-light);
+					background: var(--krds-high-contrast-color-surface-gray-subtler);
+					color: var(--krds-high-contrast-color-text-basic);
+					&:not(:first-child) {
+						border-left: 1px solid var(--krds-table--data-tbody-color-divider);
+					}
+				}
+			}
+			tbody {
+				th,
+				td {
+					border-bottom: 1px solid var(--krds-high-contrast-color-divider-gray-light);
+					background: transparent;
+					color: var(--krds-table--data-tbody-color-text);
+
+					&:not(:first-child) {
+						border-left: 1px solid var(--krds-table--data-tbody-color-divider);
+					}
+				}
+			}
+		}
+
+		&.row {
+			border-top: 1px solid var(--krds-high-contrast-color-divider-gray-light);
+			tbody {
+				th {
+					background: var(--krds-high-contrast-color-surface-gray-subtler);
+					color: var(--krds-high-contrast-color-text-basic);
+				}
+			}
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		tbody {
+			tr {
+				td {
+					.krds-form-check {
+						&:has(input[type="checkbox"]) {
+							opacity: 0;
+						}
+					}
+				}
+				&:hover {
+					td {
+						background-color: rgba(255, 255, 255, 0.05) !important;
+					}
+					.krds-form-check {
+						&:has(input[type="checkbox"]) {
+							opacity: 1;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.cell-cont-wrap {
+	.cell-cont-mid {
+		border-color: var(--krds-color-light-gray-70);
+	}
+
+	.cell-cont-bot {
+		border-color: var(--krds-color-light-gray-70);
+	}
+}
+
+/*tab*/
+
+.card-tab {
+	.tab {
+		li {
+			&.active {
+				.btn-tab {
+					background-color: var(--krds-high-contrast-color-background-white);
+					color: var(--krds-high-contrast-color-text-inverse-static);
+				}
+			}
+		}
+		.btn-tab {
+			background-color: #16181a;
+		}
+	}
+}
+
+/* 테이블 리스트 */
+
+.list-control {
+	.list-tit {
+		.ico-document-fill {
+			background-color: #62686f;
+			// @include svg-icon($size: var(--krds-icon--size-small), $mode: #{$mode-setting});
+		}
+
+		+ .total {
+			&::before {
+				background-color: #d9d9d9;
+			}
+		}
+	}
+}
+
+/*라디오 버튼*/
+input[type="radio"] {
+	&:checked {
+		~ label {
+			&:before {
+				border-color: #16181a;
+			}
+			&:after {
+				background-color: #16181a;
+			}
+		}
+		&:disabled {
+			~ label {
+				&:after {
+					background-color: #36383a;
+				}
+			}
+		}
+	}
+}
+
+/*브레드크럼*/
+//모드 설정
+$mode-setting: high-contrast;
+.krds-breadcrumb-wrap {
+	// @include breadcrumb-color-variable(#{$mode-setting});
+
+	.breadcrumb {
+		li {
+			&:not(:last-child) {
+				//마지막 뎁스가 아니면 화살표 아이콘 표시
+				&::after {
+					@include svg-icon($size: var(--krds-icon--size-xxsmall), $mode: high-contrast);
+				}
+			}
+		}
+		.home {
+			gap: 0;
+			.txt {
+				&::before {
+					@include svg-icon($size: var(--krds-icon--size-xxsmall), $mode: high-contrast);
+				}
+			}
+		}
+	}
+}
+
+//모바일 전용 속성
+@include media-breakpoint-down(md) {
+	.krds-breadcrumb-wrap {
+		.breadcrumb {
+			li {
+				&:not(:nth-child(2)) {
+					&:last-child {
+						&::before,
+						&::after {
+							@include svg-icon($size: var(--krds-icon--size-small), $mode: high-contrast);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+/*아이콘*/
+.svg-icon {
+	&.ico-help {
+		background-image: url(#{$url-img}/component/icon/ico_help_fill.svg);
+	}
+
+	&.ico-profile {
+		@include icon-set(ico_profile_dark, pure);
+	}
+
+	&.ico-manager {
+		@include icon-set(ico_manager_dark, pure);
+	}
+
+	&.ico-sch {
+		background-color: var(--krds-color-high-contrast-gray-90);
+	}
+
+	&.ico-edit {
+		background-color: var(--krds-color-high-contrast-gray-0);
+	}
+
+	&.ico-noti {
+		background-color: var(--krds-color-high-contrast-gray-0);
+	}
+}
+
+/*셀렉트 박스*/
+//컬러 정의
+@mixin form-select-color-variable($mode: light) {
+	--krds-form-select--color-background: var(--krds-#{$mode}-color-input-surface);
+	--krds-form-select--color-background-readonly: var(--krds-#{$mode}-color-input-surface-disabled);
+	--krds-form-select--color-background-disabled: var(--krds-#{$mode}-color-input-surface-disabled);
+	--krds-form-select--color-background-error: var(--krds-#{$mode}-color-input-surface);
+	--krds-form-select--icon-color-background: var(--krds-#{$mode}-color-icon-gray);
+	--krds-form-select--icon-color-background-readonly: var(--krds-#{$mode}-color-icon-disabled-on);
+	--krds-form-select--icon-color-background-disabled: var(--krds-#{$mode}-color-icon-disabled-on);
+	--krds-form-select--color-border: var(--krds-light-color-input-border);
+	--krds-form-select--color-border-active: var(--krds-#{$mode}-color-input-border-active);
+	--krds-form-select--color-border-readonly: var(--krds-#{$mode}-color-input-border-disabled);
+	--krds-form-select--color-border-disabled: var(--krds-#{$mode}-color-input-border-disabled);
+	--krds-form-select--color-border-error: var(--krds-#{$mode}-color-input-border-error);
+	--krds-form-select--color-text: var(--krds-#{$mode}-color-text-disabled);
+	--krds-form-select--color-text-active: var(--krds-#{$mode}-color-text-basic);
+	--krds-form-select--color-text-completed: var(--krds-#{$mode}-color-text-subtle);
+	--krds-form-select--color-text-disabled: var(--krds-#{$mode}-color-text-disabled-on);
+	--krds-form-select--color-text-error: var(--krds-#{$mode}-color-text-subtle);
+}
+
+$mode-setting: hige-contrast;
+
+.krds-form-select {
+	@include form-select-color-variable(#{$mode-setting});
+
+	background-color: #16181a !important;
+	border-color: #464c53;
+	color: var(--krds-form-select-sorting--color-text);
+
+	&:hover {
+		background-color: #16181a !important;
+	}
+	&:focus {
+		background-color: #16181a !important;
+		border-color: #005bc1;
+	}
+
+	background-image: url(#{$url-img}/component/icon/ico_angle_inverse.svg);
+
+	option {
+		background-color: #16181a !important;
+	}
+
+	&[required] {
+		background-image: url(#{$url-img}/component/icon/ico_angle_inverse_req.png);
+	}
+}
+
+/*jq 그리드*/
+
+.grid-area {
+	.ui-jqgrid-htable th.ui-th-column + th.ui-th-column {
+		border-color: #33363d;
+	}
+	.ui-jqgrid-htable th.ui-th-column {
+		background: var(--krds-high-contrast-color-surface-gray-subtler);
+		color: var(--krds-high-contrast-color-text-basic);
+	}
+	.ui-jqgrid-bdiv .ui-row-ltr td {
+		color: #cdd1d5;
+		border-color: #33363d;
+	}
+	.ui-jqgrid-bdiv .ui-row-ltr td + td {
+		border-color: #33363d;
+	}
+	.ui-jqgrid .ui-jqgrid-pager {
+		background: var(--krds-high-contrast-color-surface-gray-subtler);
+		border: 1px solid var(--krds-high-contrast-color-divider-gray-light);
+	}
+	.ui-jqgrid .ui-pg-table .ui-icon {
+		background-color: #cdd1d5;
+	}
+	.ui-jqgrid .ui-jqgrid-bdiv {
+		border-color: #33363d;
+	}
+	.ui-jqgrid .ui-jqgrid-hdiv {
+		background: var(--krds-high-contrast-color-surface-gray-subtler);
+		border-color: #33363d;
+	}
+
+	tr.ui-state-hover {
+		td {
+			background-color: rgba(255, 255, 255, 0.05);
+		}
+	}
+	.ui-jqgrid .ui-jqgrid-pager .ui-paging-info {
+		color: #e6e8ea;
+	}
+}
+
+@media (min-width: 1024px) {
+	.tree-menu-area {
+		background-color: #1e2124;
+		.ztree {
+			li {
+				.node_name {
+					color: #fff;
+				}
+
+				a.disabled {
+					.node_name {
+						color: #fff;
+					}
+				}
+			}
+		}
+		.tree-header {
+			button {
+				background-color: #2a2d2f;
+				color: #c6c8ca;
+				border-color: #cacdcf;
+			}
+		}
+	}
+}
+
+//레이어팝업
+
+.layer-popup {
+	.popup-inner {
+		border-color: var(--krds-high-contrast-color-border-gray);
+		background: var(--krds-high-contrast-color-surface-white-subtler);
+	}
+
+	.popup-header {
+		.popup-title {
+			color: var(--krds-high-contrast-color-text-bolder);
+		}
+		~ .close-popup {
+			.ico-popup-close {
+				background-color: var(--krds-high-contrast-color-icon-gray);
+			}
+		}
+	}
+}
+
+//모달팝업
+
+//컬러 정의
+@mixin modal-color-variable($mode: high-contrast) {
+	--krds-modal--border-width: var(--krds-#{$mode}-border-width-variable-regular);
+	--krds-modal--color-text: var(--krds-#{$mode}-color-text-basic);
+	--krds-modal--wrap-color-surface: var(--krds-#{$mode}-color-surface-white-subtler);
+	--krds-modal--wrap-color-border: var(--krds-#{$mode}-color-border-gray);
+	--krds-modal--wrap-shadow: 0 0 0.2rem 0 var(--krds-#{$mode}-color-alpha-shadow2),
+		0 1.6rem 2.4rem 0 var(--krds-#{$mode}-color-alpha-shadow3);
+	--krds-modal--color-dim: var(--krds-#{$mode}-color-background-dim);
+	--krds-modal--full-popup-surface: var(--krds-#{$mode}-color-surface-secondary-subtler);
+}
+
+$mode-setting: high-contrast;
+.krds-modal {
+	@include modal-color-variable(#{$mode-setting});
+	.modal-dialog {
+		.modal-conts {
+			@include scrollbar(#{$mode-setting});
+		}
+	}
+	.modal-header {
+		border-bottom: 1px solid var(--krds-mode-color-high-contrast-gray-80);
+	}
+	.modal-btn {
+		border-top: 1px solid var(--krds-mode-color-high-contrast-gray-80);
+	}
+
+	.box-info-modal {
+		background-color: var(--krds-mode-color-light-gray-100);
+
+		strong {
+			color: var(--krds-color-light-gray-0);
+		}
+	}
+
+	.step-wrap {
+		span {
+			border-color: var(--krds-mode-color-high-contrast-gray-70);
+			color: var(--krds-mode-color-high-contrast-gray-50);
+			&.on {
+				border-color: var(--krds-color-light-gray-0);
+				color: var(--krds-color-light-gray-0);
+			}
+		}
+	}
+
+	.disagree {
+		color: var(--krds-color-light-gray-20);
+	}
+
+	.sign-modal {
+		.krds-table-wrap {
+			.tbl {
+				tbody {
+					.yet-state {
+						td {
+							color: var(--krds-color-light-primary-30);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&.modal-drag {
+		&.ui-draggable-dragging {
+			.modal-header {
+				background: var(--krds-high-contrast-color-surface-gray-subtler);
+			}
+		}
+	}
+
+	.nodata-area {
+		color: var(--krds-light-color-text-subtler);
+		background-color: var(--krds-color-high-contrast-gray-95);
+		border-color: var(--krds-mode-color-high-contrast-gray-70);
+	}
+
+	.list-info-text {
+		color: var(--krds-high-contrast-color-text-subtle);
+	}
+}
+
+//알럿, 컨펌 팝업
+
+.swal2-container .swal2-title {
+	color: #e6e8ea;
+	border-color: #58616a;
+}
+
+.swal2-container .swal2-popup {
+	background-color: #2e3134;
+}
+
+.swal2-container .swal2-close {
+	color: #cdd1d5;
+}
+
+.swal2-container .swal2-html-container {
+	color: #f3f6f9;
+}
+
+.swal2-container .swal2-cancel {
+	border: 1px solid #6d7882;
+	color: #f3f6f9;
+	background-color: #1e2124;
+}
+
+.swal2-container .swal2-confirm {
+	background-color: #fff;
+	color: #16181a;
+	> div {
+		color: #16181a !important;
+	}
+}
+
+//데이트피커
+
+#inseq-datepicker {
+	border-color: var(--krds-high-contrast-color-border-gray);
+	background: var(--krds-high-contrast-color-surface-white-subtler);
+
+	#tableCalendarTitle {
+		a {
+			color: var(--krds-high-contrast-color-text-basic);
+		}
+		.next,
+		.prev {
+			background-color: var(--krds-high-contrast-color-icon-gray);
+		}
+	}
+	.btn-cal-close {
+		a {
+			background-color: var(--krds-high-contrast-color-icon-gray);
+		}
+	}
+	table {
+		thead {
+			tr {
+				color: var(--krds-mode-color-high-contrast-gray-0) !important;
+			}
+		}
+		tbody {
+			tr {
+				color: var(--krds-mode-color-high-contrast-gray-0) !important;
+				td {
+					a {
+						&.today {
+							color: var(--krds-mode-color-high-contrast-gray-95) !important;
+							background-color: var(--krds-mode-color-high-contrast-gray-0);
+						}
+					}
+				}
+			}
+		}
+	}
+	#tableMonthTitle {
+		a {
+			color: var(--krds-mode-color-high-contrast-gray-0);
+			&.prev,
+			&.next {
+				background-color: var(--krds-mode-color-high-contrast-gray-0);
+			}
+		}
+	}
+	#tableMonth {
+		a {
+			color: var(--krds-mode-color-high-contrast-gray-0);
+		}
+
+		td {
+			a {
+				&:active {
+					color: var(--krds-mode-color-high-contrast-gray-95) !important;
+					background-color: var(--krds-mode-color-high-contrast-gray-0);
+				}
+			}
+		}
+	}
+}
+.datepicker {
+	.btn-datepicker {
+		.ico-datepicker {
+			background-color: var(--krds-high-contrast-color-text-basic);
+		}
+	}
+}
+
+//인풋 자동완성
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+	-webkit-text-fill-color: #cdd1d5;
+	-webkit-box-shadow: 0 0 0px 1000px #16181a inset;
+	box-shadow: 0 0 0px 1000px #16181a inset;
+	transition: background-color 5000s ease-in-out 0s;
+}
+
+input:autofill,
+input:autofill:hover,
+input:autofill:focus,
+input:autofill:active {
+	-webkit-text-fill-color: #cdd1d5;
+	-webkit-box-shadow: 0 0 0px 1000px #16181a inset;
+	box-shadow: 0 0 0px 1000px #16181a inset;
+	transition: background-color 5000s ease-in-out 0s;
+}
+
+//타임피커
+
+.flatpickr-calendar {
+	background-color: var(--krds-input--color-surface);
+	.flatpickr-time {
+		.numInputWrapper {
+			&:hover {
+				background: var(--krds-color-light-gray-80);
+			}
+		}
+
+		input {
+			color: #fff;
+			background: var(--krds-high-contrast-color-surface-white-subtler);
+			&:hover,
+			&:focus {
+				background: var(--krds-color-light-gray-80);
+			}
+		}
+
+		span {
+			&:hover {
+				background: var(--krds-color-light-gray-80);
+
+				input {
+					background: var(--krds-color-light-gray-80);
+				}
+			}
+		}
+	}
+}
+
+.krds-table-wrap {
+	.tbl.data {
+		td {
+			.krds-input {
+				&.time-picker {
+					background-image: url(#{$url-img}/_common/ico_time_white.png);
+
+					&[readonly] {
+						background-color: var(--krds-input--color-surface);
+						border: 0.1rem solid var(--krds-input--color-border);
+					}
+				}
+			}
+		}
+	}
+}
+
+//페이지네이션
+@mixin pagination-color-variable($mode: light) {
+	--krds-pagination--color-text: var(--krds-#{$mode}-color-text-subtle);
+	--krds-pagination--color-text-active: var(--krds-#{$mode}-color-text-basic);
+	--krds-pagination--color-text-disabled: var(--krds-#{$mode}-color-text-disabled);
+	--krds-pagination--color-action: var(--krds-#{$mode}-color-action-secondary);
+	--krds-pagination--color-action-hover: var(--krds-#{$mode}-color-action-secondary-hover);
+	--krds-pagination--color-action-pressed: var(--krds-#{$mode}-color-action-secondary-pressed);
+	--krds-pagination--color-action-active: var(--krds-#{$mode}-color-background-gray-subtler);
+}
+
+$mode-setting: high-contrast;
+.krds-pagination {
+	@include pagination-color-variable(#{$mode-setting});
+
+	.page-navi {
+		&.prev {
+			&::before {
+				@include svg-icon($size: var(--krds-icon--size-medium), $mode: #{$mode-setting});
+			}
+		}
+		&.next {
+			&::after {
+				@include svg-icon($size: var(--krds-icon--size-medium), $mode: #{$mode-setting});
+			}
+		}
+
+		&.disabled {
+			color: var(--krds-pagination--color-text-disabled);
+			&.prev,
+			&.next {
+				&::before,
+				&::after {
+					background-color: var(--krds-pagination--color-text-disabled);
+				}
+			}
+		}
+	}
+	.page-links {
+		.page-link {
+			&.link-dot {
+				@include svg-icon($mode: #{$mode-setting});
+			}
+
+			&.active {
+				background-color: var(--krds-#{$mode-setting}-color-background-gray-subtle);
+			}
+		}
+	}
+}
+
+//로딩바
+
+#loading-overlay {
+	background: rgba(0, 0, 0, 0.4);
+}
+
+.loading-spin {
+	border: 4px solid rgba(255, 255, 255, 0.4);
+	border-top-color: #fff;
+}
+
+/*컬러*/
+
+@mixin text-color-utilities($mode) {
+	$colors: ();
+
+	@if $mode == "light" {
+		$colors: (
+			"bolder": var(--krds-light-color-text-bolder),
+			"subtle": var(--krds-light-color-text-subtle),
+			"disabled": var(--krds-light-color-text-disabled),
+			"disabled-on": var(--krds-light-color-text-disabled-on),
+			"primary": var(--krds-light-color-text-primary),
+			"secondary": var(--krds-light-color-text-secondary),
+			"danger": var(--krds-light-color-text-danger),
+			"warning": var(--krds-light-color-text-warning),
+			"success": var(--krds-light-color-text-success),
+			"information": var(--krds-light-color-text-information),
+			"basic": var(--krds-light-color-text-basic),
+			"point": var(--krds-light-color-text-point),
+			"bolder-inverse": var(--krds-light-color-text-bolder-inverse),
+			"basic-inverse": var(--krds-light-color-text-basic-inverse),
+			"subtle-inverse": var(--krds-light-color-text-subtle-inverse),
+			"inverse-static": var(--krds-light-color-text-inverse-static),
+			"static": var(--krds-light-color-text-static),
+			"subtler": var(--krds-light-color-text-subtler)
+		);
+	} @else if $mode == "high-contrast" {
+		$colors: (
+			"bolder": var(--krds-high-contrast-color-text-bolder),
+			"subtle": var(--krds-high-contrast-color-text-subtle),
+			"disabled": var(--krds-high-contrast-color-text-disabled),
+			"disabled-on": var(--krds-high-contrast-color-text-disabled-on),
+			"primary": var(--krds-high-contrast-text-basic-inverse),
+			"secondary": var(--krds-high-contrast-color-text-secondary),
+			"danger": var(--krds-high-contrast-color-text-danger),
+			"warning": var(--krds-high-contrast-color-text-warning),
+			"success": var(--krds-high-contrast-color-text-success),
+			"information": var(--krds-high-contrast-color-text-information),
+			"basic": var(--krds-high-contrast-color-text-basic),
+			"point": var(--krds-high-contrast-color-text-point),
+			"bolder-inverse": var(--krds-high-contrast-color-text-bolder-inverse),
+			"basic-inverse": var(--krds-high-contrast-color-text-basic-inverse),
+			"subtle-inverse": var(--krds-high-contrast-color-text-subtle-inverse),
+			"inverse-static": var(--krds-high-contrast-color-text-inverse-static),
+			"static": var(--krds-high-contrast-color-text-static),
+			"subtler": var(--krds-high-contrast-color-text-subtler)
+		);
+	}
+
+	@each $color, $value in $colors {
+		.text-#{$color} {
+			color: $value !important;
+		}
+	}
+}
+
+$mode-setting: high-contrast;
+@include text-color-utilities(#{$mode-setting});

@@ -1,0 +1,489 @@
+/* 카드 */
+// 카드 크기 정의 (기본값: medium)
+@mixin card-size($size: medium) {
+	padding: var(--krds-card--padding-#{$size});
+	border-radius: var(--krds-card--radius-#{$size});
+
+	@include media-breakpoint-down(md) {
+		padding: var(--krds-card--padding-#{$size}-mobile, var(--krds-card--padding-#{$size}-mobile));
+	}
+}
+
+@mixin card-style($size: medium) {
+	border-radius: var(--krds-card--radius-#{$size});
+}
+
+// cardheader line 스타일
+@mixin card-header-line($size: medium) {
+	@include media-breakpoint-up(lg) {
+		.card-header {
+			position: relative;
+			&.line {
+				padding-bottom: var(--krds-card-padding-x-#{$size});
+				&:after {
+					@include position(absolute, null, 0, 0, 0);
+					@include pseudo;
+					width: calc(100% + var(--krds-card-padding-y-#{$size}) * 2);
+					height: 1px;
+					margin-left: calc(-1 * var(--krds-card-padding-y-#{$size}));
+				}
+			}
+		}
+	}
+}
+
+// 카드 크기 변수 정의
+@mixin card-size-variable() {
+	--krds-card-padding-x-small: var(--krds-number-8);
+	--krds-card-padding-y-small: var(--krds-number-7);
+	--krds-card-radius-small: var(--krds-number-7);
+	--krds-card-padding-x-small-mobile: var(--krds-number-8);
+	--krds-card-padding-y-small-mobile: var(--krds-number-12);
+
+	--krds-card-padding-x-medium: var(--krds-number-6);
+	--krds-card-padding-y-medium: var(--krds-number-6);
+	--krds-card-radius-medium: 0.8rem;
+	--krds-card-padding-x-medium-mobile: var(--krds-number-8);
+	--krds-card-padding-y-medium-mobile: var(--krds-number-12);
+
+	--krds-card-padding-x-large: var(--krds-number-14);
+	--krds-card-padding-y-large: var(--krds-number-12);
+	--krds-card-radius-large: var(--krds-number-12);
+	--krds-card-padding-x-large-mobile: var(--krds-number-8);
+	--krds-card-padding-y-large-mobile: var(--krds-number-12);
+
+	// 카드 크기별 변수 설정
+	$card-size: (
+		small: (
+			padding: var(--krds-card-padding-y-small) var(--krds-card-padding-x-small),
+			padding-mobile: var(--krds-card-padding-y-small-mobile) var(--krds-card-padding-x-small-mobile),
+			radius: var(--krds-card-radius-small),
+			margin-bottom: var(--krds-card-padding-y-small)
+		),
+		medium: (
+			padding: var(--krds-card-padding-y-medium) var(--krds-card-padding-x-medium),
+			padding-mobile: var(--krds-card-padding-y-medium-mobile) var(--krds-card-padding-x-medium-mobile),
+			radius: var(--krds-card-radius-medium),
+			margin-bottom: var(--krds-card-padding-y-medium)
+		),
+		large: (
+			padding: var(--krds-card-padding-y-large) var(--krds-card-padding-x-large),
+			padding-mobile: var(--krds-card-padding-y-large-mobile) var(--krds-card-padding-x-large-mobile),
+			radius: var(--krds-card-radius-large),
+			margin-bottom: var(--krds-card-padding-y-large)
+		)
+	) !default;
+
+	// CSS 변수 생성
+	@each $size, $types in $card-size {
+		@each $type, $value in $types {
+			--krds-card--#{$type}-#{$size}: #{$value};
+		}
+
+		--krds-card--padding-#{$size}-mobile: #{map-get($types, padding-mobile)};
+	}
+
+	// 기본 medium 크기 적용
+	& {
+		@include card-size(); // medium이 기본값
+		@include card-header-line(medium);
+		.card-header {
+			margin-bottom: var(--krds-card-padding-y-medium);
+		}
+	}
+
+	// small, large 크기 적용
+	@each $size, $types in $card-size {
+		@if $size != medium {
+			&.#{$size} {
+				@include card-size($size);
+				@include card-header-line($size);
+				.card-header {
+					margin-bottom: var(--krds-card-padding-y-#{$size});
+				}
+			}
+		}
+	}
+}
+
+@mixin card-tab-style($size: medium) {
+	.btn-tab {
+		border-radius: var(--krds-card-tab--radius-#{$size});
+		padding: var(--krds-card-tab--padding-#{$size});
+
+		&::before {
+			height: var(--krds-card-tab--height-#{$size});
+		}
+	}
+	+ .card {
+		margin-top: var(--krds-card-tab--height-#{$size});
+	}
+}
+
+// 카드 TAB 스타일 설정
+@mixin card-tab-variable() {
+	// TAB 크기 변수 정의
+	--krds-tab-padding-x-small: var(--krds-number-8);
+	--krds-tab-padding-y-small: var(--krds-number-7);
+	--krds-tab-radius-small: var(--krds-number-7);
+
+	--krds-tab-padding-x-medium: var(--krds-number-11);
+	--krds-tab-padding-y-medium: var(--krds-number-10);
+	--krds-tab-radius-medium: var(--krds-number-10);
+
+	--krds-tab-padding-x-large: var(--krds-number-14);
+	--krds-tab-padding-y-large: var(--krds-number-12);
+	--krds-tab-radius-large: var(--krds-number-12);
+
+	// TAB 크기별 변수 설정
+	$tab-style: (
+		small: (
+			radius: var(--krds-tab-radius-small) var(--krds-tab-radius-small) 0 0,
+			padding: 0 var(--krds-tab-padding-x-small),
+			height: var(--krds-tab-radius-small)
+		),
+		medium: (
+			radius: var(--krds-tab-radius-medium) var(--krds-tab-radius-medium) 0 0,
+			padding: 0 var(--krds-tab-padding-x-medium),
+			height: var(--krds-tab-radius-medium)
+		),
+		large: (
+			radius: var(--krds-tab-radius-large) var(--krds-tab-radius-large) 0 0,
+			padding: 0 var(--krds-tab-padding-x-large),
+			height: var(--krds-tab-radius-large)
+		)
+	) !default;
+
+	// CSS 변수 생성
+	@each $size, $types in $tab-style {
+		@each $type, $value in $types {
+			--krds-card-tab--#{$type}-#{$size}: #{$value};
+		}
+	}
+
+	// 기본 medium 크기 적용
+	& {
+		@include card-tab-style(); // medium이 기본값
+		.btn-tab {
+			min-width: 180px;
+		}
+	}
+
+	// small, large 크기 적용
+	@each $size, $types in $tab-style {
+		@if $size != medium {
+			&.#{$size} {
+				@include card-tab-style($size);
+				.btn-tab {
+					min-width: 180px;
+				}
+			}
+		}
+	}
+}
+
+//컬러 정의
+@mixin card-color-variable($mode) {
+	background-color: var(--krds-#{$mode}-color-background-white);
+	color: var(--krds-#{$mode}-color-text-subtle);
+
+	.card-title {
+		color: var(--krds-#{$mode}-color-text-bolder);
+	}
+
+	@include media-breakpoint-up(lg) {
+		.card-header {
+			&.line {
+				&:after {
+					background-color: var(--krds-#{$mode}-color-divider-gray-light);
+				}
+			}
+		}
+	}
+}
+
+//모드 설정
+$mode-setting: light;
+
+.card {
+	@include card-size-variable();
+	flex: 1 1 auto;
+	width: 100%;
+
+	.card-body {
+		+ .card-header {
+			position: relative;
+			margin-top: 16px;
+			padding-top: 16px;
+
+			&::before {
+				position: absolute;
+				top: 20px;
+				left: 0;
+				content: "";
+				width: calc(100% + var(--krds-card-padding-y-medium) * 2);
+				height: 1px;
+				margin-left: calc(-1 * var(--krds-card-padding-y-medium));
+				// background-color: #efefef;
+			}
+		}
+	}
+
+	.card-header {
+		@include flex-layout(flex, center, center, row);
+		gap: 1.6rem;
+
+		.card-title {
+			flex: 1 1 auto;
+		}
+
+		.card-toolbar {
+			flex: 0 0 auto;
+			display: flex;
+			gap: 0.4rem;
+
+			.card-tooltext {
+				font-size: 14px;
+			}
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		min-height: 100%;
+
+		.card-header {
+			flex-wrap: wrap;
+			justify-content: space-between;
+			min-height: 3.2rem;
+
+			.card-title {
+				@include flex-layout(flex, center, flex-start, row);
+				min-height: 3.2rem;
+				line-height: 1.2;
+				font-size: 1.6rem;
+			}
+
+			&:not(:has(.card-title)) {
+				.card-toolbar {
+					width: 100%;
+				}
+			}
+
+			.card-toolbar {
+				max-width: 100%;
+				justify-content: flex-end;
+				flex-wrap: wrap;
+			}
+		}
+
+		.table-header {
+			@include flex-layout(flex, center, space-between);
+			padding: 4px 0px 4px 4px;
+			font-size: 15px;
+			color: var(--krds-light-color-text-bolder);
+		}
+
+		.krds-table-wrap {
+			+ .table-header {
+				margin-top: 12px;
+			}
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		border-radius: 0;
+
+		.card-header {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 1.6rem;
+			margin-bottom: var(--krds-number-8);
+
+			&:has(.card-toolbar) {
+				margin-bottom: var(--krds-number-12);
+			}
+		}
+		.card-title {
+			padding: 0;
+		}
+
+		.card-toolbar {
+			flex-wrap: wrap;
+			width: 100%;
+			.krds-btn {
+				flex: 1 1 auto;
+				min-width: calc(33.3% - 6px);
+			}
+
+			&:only-child .krds-btn {
+				width: 100%;
+			}
+
+			// 버튼이 2개일 때
+			&:has(.krds-btn:nth-child(2)):not(:has(.btn:nth-child(3))) .krds-btn {
+				width: calc(50% - 4px);
+			}
+
+			// 버튼이 3개일 때
+			&:has(.krds-btn:nth-child(3)):not(:has(.btn:nth-child(4))) .krds-btn {
+				width: calc(33.333% - 5.333px);
+			}
+
+			// 버튼이 4개 이상일 때
+			&:has(.krds-btn:nth-child(4)) {
+				flex-wrap: wrap;
+				.krds-btn {
+					max-width: calc(33.333% - 5.333px);
+				}
+			}
+		}
+
+		.table-header {
+			@include flex-layout(flex, center, space-between);
+			padding: 8px 0px 8px 4px;
+			font-size: 15px;
+			color: var(--krds-light-color-text-bolder);
+		}
+	}
+}
+
+.card {
+	@include card-color-variable(#{$mode-setting});
+}
+
+//고대비모드
+@include color-mode($mode: high-contrast) {
+	//모드 설정
+	$mode-setting: high-contrast;
+
+	.card {
+		@include card-color-variable(#{$mode-setting});
+
+		.table-header {
+			color: var(--krds-high-contrast-color-text-basic);
+		}
+	}
+}
+
+/* 카드 영역 스타일*/
+.card {
+	+ .card,
+	+ .card-wrap {
+		margin-top: var(--krds-number-9);
+	}
+
+	@include media-breakpoint-down(md) {
+		+ .card,
+		+ .card-wrap {
+			margin-top: var(--krds-number-5);
+		}
+	}
+}
+
+.card-wrap {
+	@include flex-layout(flex, stretch, start, row);
+	gap: var(--krds-number-6);
+
+	.card {
+		+ .card {
+			margin-top: var(--krds-number-0);
+		}
+	}
+
+	+ .card,
+	+ .card-wrap {
+		margin-top: var(--krds-number-9);
+	}
+
+	&:has(.card-tab) {
+		padding-top: var(--krds-number-14);
+	}
+
+	@include media-breakpoint-up(lg) {
+		min-height: 100%;
+
+		> .card,
+		> .card-tab {
+			flex: 1 1 auto;
+			width: 50%;
+		}
+	}
+	@include media-breakpoint-down(md) {
+		flex-direction: column;
+		gap: var(--krds-number-5);
+
+		+ .card {
+			margin-top: var(--krds-number-5);
+		}
+
+		&:has(.card-tab) {
+			padding-top: var(--krds-number-0);
+		}
+		.card-tab {
+			margin-top: var(--krds-number-16);
+		}
+		.card {
+			+ .card-tab {
+				margin-top: var(--krds-number-0);
+				padding-top: var(--krds-number-16);
+			}
+		}
+	}
+}
+
+.card-tab {
+	@include card-tab-style();
+	@include card-tab-variable();
+	flex: 1 1 auto;
+	width: 100%;
+	background: transparent;
+
+	.krds-tab-area {
+		position: relative;
+		gap: 0;
+	}
+
+	.tab-conts-wrap {
+		z-index: 1;
+	}
+	.tab {
+		position: absolute;
+		top: calc(-1 * var(--krds-number-14));
+	}
+}
+
+.card {
+	@include media-breakpoint-up(lg) {
+		&.card-sm {
+			max-width: calc(275px + (var(--krds-card-padding-x-medium) * 2));
+		}
+		&:has(.tree-menu-area) {
+			max-width: calc(275px + (var(--krds-card-padding-x-medium) * 2));
+		}
+		&.card-w600 {
+			min-width: 600px;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		&.card-sm {
+			max-width: 100%;
+		}
+		&:has(.tree-menu-area) {
+			max-width: 100%;
+		}
+	}
+}
+
+.card-wrap {
+	&.col {
+		flex-direction: column;
+		width: 100%;
+		margin-top: 0;
+
+		.card {
+			width: 100%;
+			min-height: 0;
+		}
+	}
+}

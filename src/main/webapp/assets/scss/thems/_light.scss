@@ -1,0 +1,1082 @@
+@import "../../../assets/css/token/krds_tokens.css"; //디자인 토큰
+
+//*** path setting
+$url: "../.." !default;
+$url-img: "../img" !default; //img
+
+//svg img
+@mixin svg-icon($size: var(--krds-icon--size-large), $mode: light, $effect: null) {
+	display: inline-flex;
+	@include square($size);
+	background-color: var(--krds-#{$mode}-color-text-basic);
+	@if ($effect == "pure") {
+		//mask 효과 없이 디자인된 svg 그대로 사용
+		background-color: transparent !important;
+	}
+	forced-color-adjust: none;
+	// @media (forced-colors: active) {
+	// }
+}
+
+/* content */
+#container {
+	background-color: var(--krds-light-color-background-gray-subtler);
+	color: var(--krds-light-color-text-subtle);
+}
+
+/* sidebar */
+#sidebar {
+	background-color: #002c5c;
+	&::before {
+		background-image: url(#{$url-img}/_common/bg-sidebar@2x.png);
+		background-size: 360px auto;
+	}
+	&::after {
+		background-image: url(#{$url-img}/_common/bg-texture.png);
+		background-size: 360px auto;
+	}
+
+	.sidebar-body {
+		.tab {
+			.active {
+				.btn-tab {
+					&::before,
+					&:after {
+					}
+					&::before {
+						background: #0075f8;
+					}
+					&:after {
+						background: #0075f8;
+					}
+				}
+			}
+		}
+	}
+	.sidebar-area,
+	.favorit-menu {
+		color: var(--krds-light-color-text-inverse-static);
+	}
+
+	.snb-list {
+		.svg-icon {
+			background-color: var(--krds-light-color-background-white);
+		}
+
+		.active {
+			> a {
+				background: rgba(255, 255, 255, 0.2);
+			}
+		}
+
+		> li {
+			// 1뎁스
+
+			&.collapse {
+				> a {
+					&:after {
+						background-image: url(#{$url-img}/component/icon/ico_arrow_down.svg);
+					}
+				}
+			}
+
+			&.on {
+				> a {
+					background: rgba(255, 255, 255, 0.2);
+				}
+			}
+
+			> ul {
+				// 2뎁스
+				> li {
+					&.active {
+						> a {
+							&::before {
+								background-color: rgba(255, 255, 255, 1);
+							}
+						}
+					}
+					> a {
+						&::before {
+							background-color: rgba(255, 255, 255, 0.5);
+						}
+					}
+
+					&.collapse {
+						> a {
+							&:after {
+								background-image: url(#{$url-img}/component/icon/ico_arrow_down.svg);
+							}
+						}
+
+						&.on {
+							> a {
+								background: rgba(255, 255, 255, 0.2);
+
+								&::before {
+									background-color: rgba(255, 255, 255, 1);
+								}
+							}
+						}
+					}
+				}
+
+				ul {
+					// 3뎁스
+					> li {
+						a {
+							&:before {
+								background-color: rgba(255, 255, 255, 0.5);
+							}
+						}
+
+						&.active {
+							> a {
+								&::before {
+									background-color: rgba(255, 255, 255, 1);
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.krds-tab-area {
+		.tab {
+			.btn-tab {
+				&:hover,
+				&:active {
+					background: transparent;
+				}
+			}
+			li {
+				&.active {
+					.btn-tab {
+						background: #0075f8;
+					}
+				}
+			}
+		}
+	}
+
+	.tab-conts-wrap {
+		background: url(#{$url-img}/_common/bg-sidebar-visual.png),
+			linear-gradient(173.14deg, #0075f8 12.27%, #003f86 99.61%);
+		background-repeat: no-repeat;
+		background-position: right 0px bottom 0px;
+		overflow-y: auto;
+
+		@include media-breakpoint-down(md) {
+			background-image: url(#{$url-img}/_common/bg-sidebar-visual-mob.png),
+				linear-gradient(173.14deg, #0075f8 12.27%, #003f86 99.61%);
+		}
+	}
+
+	.gnb-area {
+		color: rgba(255, 255, 255, 0.6);
+	}
+	// @include media-breakpoint-down(md) {
+	// 	display: none;
+	// }
+
+	.user-info-area {
+		background: rgba(255, 255, 255, 0.15);
+
+		.profile-thumb {
+			background: #dfefff;
+
+			.ico-admin-user {
+				background-color: var(--krds-light-color-icon-secondary);
+			}
+		}
+	}
+}
+
+/* content-header */
+.content-header {
+	background-color: var(--krds-light-color-background-white);
+	border-bottom: 1px solid var(--krds-light-color-border-gray-light);
+
+	.inner {
+		+ .inner {
+			&::before {
+				background-color: var(--krds-light-color-border-gray-light);
+			}
+		}
+	}
+
+	.sub-nav {
+		.tab {
+			.btn-tab {
+				background: var(--krds-light-color-background-gray-subtler);
+				color: var(--krds-light-color-text-subtle);
+
+				.btn-close {
+					background: var(--krds-color-light-alpha-black10);
+
+					.ico-subtab-close {
+						background: var(--krds-mode-color-light-gray-70);
+					}
+				}
+
+				&:hover {
+					background: var(--krds-light-color-background-gray-subtle);
+				}
+
+				&.active {
+					background: var(--krds-light-color-background-hs-gnb);
+					color: var(--krds-mode-color-light-gray-0);
+
+					.btn-close {
+						background: var(--krds-light-color-alpha-base25);
+						.ico-subtab-close {
+							background: var(--krds-mode-color-light-gray-0);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+.top-nav {
+	.tab {
+		.btn-tab {
+			color: var(--krds-light-color-text-subtler);
+		}
+
+		li {
+			&.active {
+				.btn-tab {
+					color: var(--krds-light-color-tab-primary);
+
+					&::before {
+						background-color: var(--krds-light-color-tab-primary);
+					}
+				}
+			}
+		}
+		.noti-area {
+			background-color: var(--krds-color-light-primary-5);
+			color: var(--krds-color-light-gray-90);
+		}
+	}
+}
+
+// 화면 세팅 팝업
+.setting-popup {
+	.setting-group {
+		.set-tit {
+			color: var(--krds-light-color-text-bolder);
+		}
+
+		.chk-label {
+			color: var(--krds-light-color-text-bolder);
+		}
+	}
+}
+
+/* box */
+.box {
+	background-color: var(--krds-light-color-background-hs-searchfilterbg-gray-subtle);
+	color: var(--krds-light-color-text-subtle);
+
+	@include media-breakpoint-down(md) {
+		background: transparent;
+	}
+}
+
+/* badge */
+//컬러 정의
+@mixin badge-color-variable($mode) {
+	//컬러 변수 배열 생성
+	$badge-color-variable: (
+		primary: (
+			element: var(--krds-#{$mode}-color-element-primary),
+			element-lighter: var(--krds-#{$mode}-color-element-primary-lighter),
+			border-light: var(--krds-#{$mode}-color-border-primary-light),
+			text: var(--krds-#{$mode}-color-text-primary)
+		),
+		secondary: (
+			element: var(--krds-#{$mode}-color-element-secondary),
+			element-lighter: var(--krds-#{$mode}-color-element-secondary-lighter),
+			border-light: var(--krds-#{$mode}-color-border-secondary-light),
+			text: var(--krds-#{$mode}-color-text-secondary)
+		),
+		gray: (
+			element: var(--krds-#{$mode}-color-element-gray),
+			element-lighter: var(--krds-#{$mode}-color-element-gray-light),
+			border-light: var(--krds-#{$mode}-color-border-gray-light),
+			text: var(--krds-#{$mode}-color-text-subtle)
+		),
+		point: (
+			element: var(--krds-#{$mode}-color-element-point),
+			element-lighter: var(--krds-#{$mode}-color-element-point-lighter),
+			border-light: var(--krds-#{$mode}-color-border-point-light),
+			text: var(--krds-#{$mode}-color-text-point)
+		),
+		danger: (
+			element: var(--krds-#{$mode}-color-element-danger),
+			element-lighter: var(--krds-#{$mode}-color-element-danger-lighter),
+			border-light: var(--krds-#{$mode}-color-border-danger-light),
+			text: var(--krds-#{$mode}-color-text-danger)
+		),
+		warning: (
+			element: var(--krds-#{$mode}-color-element-warning),
+			element-lighter: var(--krds-#{$mode}-color-element-warning-lighter),
+			border-light: var(--krds-#{$mode}-color-border-warning-light),
+			text: var(--krds-#{$mode}-color-text-warning)
+		),
+		success: (
+			element: var(--krds-#{$mode}-color-element-success),
+			element-lighter: var(--krds-#{$mode}-color-element-success-lighter),
+			border-light: var(--krds-#{$mode}-color-border-success-light),
+			text: var(--krds-#{$mode}-color-text-success)
+		),
+		information: (
+			element: var(--krds-#{$mode}-color-element-information),
+			element-lighter: var(--krds-#{$mode}-color-element-information-lighter),
+			border-light: var(--krds-#{$mode}-color-border-information-light),
+			text: var(--krds-#{$mode}-color-text-information)
+		),
+		disabled: (
+			element: var(--krds-#{$mode}-color-element-disabled-dark),
+			element-lighter: var(--krds-#{$mode}-color-element-disabled-light),
+			border-light: var(--krds-#{$mode}-color-border-disabled-light),
+			text: var(--krds-#{$mode}-color-text-disabled-on)
+		)
+	) !default;
+
+	//css variable 생성
+	@each $color, $types in $badge-color-variable {
+		@each $type, $value in $types {
+			--krds-badge--color-#{"#{$color}"}-#{$type}: #{$value};
+		}
+	}
+	--krds-badge--color-background-basic: var(--krds-#{$mode}-color-background-white);
+	--krds-badge--color-text-basic: var(--krds-#{$mode}-color-text-inverse-static);
+
+	//class 정의
+	& {
+		@each $color, $types in $badge-color-variable {
+			&.outline-#{"#{$color}"} {
+				@include color-border(#{$color});
+				@include color-text(#{$color});
+			}
+
+			&.bg-#{"#{$color}"} {
+				@include color-background(#{$color});
+				color: var(--krds-badge--color-text-basic);
+			}
+
+			&.bg-light-#{"#{$color}"} {
+				@include color-background-light(#{$color});
+				@include color-border-light(#{$color});
+				@include color-text(#{$color});
+			}
+		}
+	}
+}
+
+//badge color border
+@mixin color-border($color, $mode: light) {
+	@include border-size-mode(#{$mode});
+	border-style: solid;
+
+	@if ($color == "primary") {
+		border-color: var(--krds-badge--color-primary-element);
+	} @else {
+		border-color: var(--krds-badge--#{$mode}-color-#{$color}-element);
+	}
+}
+
+//badge color border light
+@mixin color-border-light($color, $mode: light) {
+	@include border-size-mode(#{$mode});
+	border-style: solid;
+
+	@if ($color == "primary") {
+		border-color: var(--krds-badge--color-primary-border-light);
+	} @else {
+		border-color: var(--krds-badge--color-#{$color}-border-light);
+	}
+}
+
+//badge color text
+@mixin color-text($color) {
+	color: var(--krds-badge--color-#{$color}-text);
+}
+
+//badge color background
+@mixin color-background($color) {
+	background-color: var(--krds-badge--color-#{$color}-element);
+}
+
+//badge color background light
+@mixin color-background-light($color) {
+	background-color: var(--krds-badge--color-#{$color}-element-lighter);
+}
+
+$mode-setting: light;
+.krds-badge {
+	@include badge-color-variable(#{$mode-setting});
+}
+
+/* card */
+@mixin card-color-variable($mode) {
+	background-color: var(--krds-#{$mode}-color-background-white);
+	color: var(--krds-#{$mode}-color-text-subtle);
+
+	.card-title {
+		color: var(--krds-#{$mode}-color-text-bolder);
+	}
+
+	@include media-breakpoint-up(lg) {
+		.card-header {
+			&.line {
+				&:after {
+					background-color: var(--krds-#{$mode}-color-divider-gray-light);
+				}
+			}
+		}
+	}
+}
+
+.card {
+	@include card-color-variable(light);
+
+	.table-header {
+		color: var(--krds-light-color-text-bolder);
+	}
+}
+
+/* button */
+//컬러 정의
+@mixin button-color-variable($mode) {
+	//변수 배열 정의
+	$button-color-variable: (
+		primary: (
+			fill: var(--krds-#{$mode}-color-button-primary-fill),
+			fill-hover: var(--krds-#{$mode}-color-button-primary-fill-hover),
+			fill-pressed: var(--krds-#{$mode}-color-button-primary-fill-pressed),
+			fill-disabled: var(--krds-#{$mode}-color-button-disabled-fill),
+			border: var(--krds-#{$mode}-color-button-primary-fill),
+			border-disabled: var(--krds-#{$mode}-color-button-disabled-border),
+			// [퍼블] mode 별 다른 색상코드 사용 커스텀
+			text:
+				if(
+					$mode == high-contrast,
+					var(--krds-#{$mode}-color-text-bolder-inverse),
+					var(--krds-#{$mode}-color-text-inverse-static)
+				),
+			text-disabled: var(--krds-#{$mode}-color-text-disabled-on)
+		),
+		secondary: (
+			fill: var(--krds-#{$mode}-color-button-secondary-fill),
+			fill-hover: var(--krds-#{$mode}-color-button-secondary-fill-hover),
+			fill-pressed: var(--krds-#{$mode}-color-button-secondary-fill-pressed),
+			fill-disabled: var(--krds-#{$mode}-color-button-disabled-fill),
+			border: var(--krds-#{$mode}-color-button-secondary-border),
+			border-disabled: var(--krds-#{$mode}-color-button-disabled-border),
+			text: var(--krds-#{$mode}-color-text-primary),
+			text-disabled: var(--krds-#{$mode}-color-text-disabled-on)
+		),
+		tertiary: (
+			fill: var(--krds-#{$mode}-color-button-tertiary-fill),
+			fill-hover: var(--krds-#{$mode}-color-button-tertiary-fill-hover),
+			fill-pressed: var(--krds-#{$mode}-color-button-tertiary-fill-pressed),
+			fill-disabled: var(--krds-#{$mode}-color-button-disabled-fill),
+			border: var(--krds-#{$mode}-color-button-tertiary-border),
+			border-disabled: var(--krds-#{$mode}-color-button-disabled-border),
+			text: var(--krds-#{$mode}-color-text-subtle),
+			text-disabled: var(--krds-#{$mode}-color-text-disabled-on)
+		),
+		text: (
+			fill: var(--krds-#{$mode}-color-button-text-fill),
+			fill-hover: var(--krds-#{$mode}-color-button-text-fill-hover),
+			fill-pressed: var(--krds-#{$mode}-color-button-text-fill-pressed),
+			fill-disabled: var(--krds-#{$mode}-color-button-text-fill),
+			border: var(--krds-#{$mode}-color-button-text-border),
+			border-disabled: var(--krds-#{$mode}-color-border-transparency),
+			text: var(--krds-#{$mode}-color-text-basic),
+			text-disabled: var(--krds-#{$mode}-color-text-disabled)
+		),
+		link: (
+			fill: var(--krds-#{$mode}-color-button-text-fill),
+			fill-hover: var(--krds-#{$mode}-color-button-text-fill),
+			fill-pressed: var(--krds-#{$mode}-color-button-text-fill),
+			fill-disabled: var(--krds-#{$mode}-color-button-text-fill),
+			border: var(--krds-#{$mode}-color-button-text-border),
+			border-disabled: var(--krds-#{$mode}-color-border-transparency),
+			text: var(--krds-#{$mode}-color-link-default),
+			text-disabled: var(--krds-#{$mode}-color-text-disabled)
+		)
+	) !default;
+
+	//css variable 생성
+	@each $color, $types in $button-color-variable {
+		@each $type, $value in $types {
+			--krds-button--color-#{$color}-#{$type}: #{$value};
+		}
+	}
+
+	//class 생성
+	& {
+		@include btn-color(primary);
+
+		& {
+			//컬러 별 class
+			@each $color, $types in $button-color-variable {
+				&.#{$color} {
+					@include btn-color(#{$color});
+					&:not(.icon) {
+						.svg-icon {
+							@include btn-color-icon(#{$color});
+						}
+					}
+
+					&:hover {
+						@include btn-color-hover(#{$color});
+					}
+					&:active,
+					&:focus {
+						@include btn-color-pressed(#{$color});
+					}
+
+					&[disabled],
+					&.disabled {
+						@include btn-color-disabled(#{$color});
+						&:not(.icon) {
+							.svg-icon {
+								background-color: var(--krds-button--color-#{$color}-text-disabled);
+							}
+						}
+						&:hover {
+							@include btn-color-disabled(#{$color});
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+//컬러별 variable
+@mixin btn-color($color) {
+	background-color: var(--krds-button--color-#{$color}-fill);
+	border-color: var(--krds-button--color-#{$color}-border);
+	color: var(--krds-button--color-#{$color}-text);
+}
+@mixin btn-color-hover($color) {
+	background-color: var(--krds-button--color-#{$color}-fill-hover);
+}
+@mixin btn-color-pressed($color) {
+	background-color: var(--krds-button--color-#{$color}-fill-pressed);
+}
+@mixin btn-color-disabled($color) {
+	background-color: var(--krds-button--color-#{$color}-fill-disabled);
+	border-color: var(--krds-button--color-#{$color}-border-disabled);
+	color: var(--krds-button--color-#{$color}-text-disabled);
+}
+@mixin btn-color-icon($color) {
+	background-color: var(--krds-button--color-#{$color}-text);
+}
+
+.krds-btn {
+	@include button-color-variable(light);
+
+	.svg-icon {
+		@include btn-color-icon(primary);
+	}
+	&:hover {
+		@include btn-color-hover(primary);
+	}
+	// &:active,
+	// &:focus {
+	// 	@include btn-color-pressed(primary);
+	// }
+	&[disabled],
+	&.disabled {
+		@include btn-color-disabled(primary);
+		cursor: default;
+		&:hover {
+			@include btn-color-disabled(primary);
+		}
+	}
+	/* icon 버튼 (텍스트 없음) */
+	&.icon {
+		//기본 세팅
+		border-color: var(--krds-light-color-border-transparency);
+
+		.svg-icon {
+			background-color: var(--krds-light-color-text-basic);
+		}
+		//새로고침, 토글 등 보더 아이콘 버튼 형태
+		&.border {
+			background-color: var(--krds-light-color-background-white);
+			border: 0.1rem solid var(--krds-light-color-border-gray);
+
+			&[disabled],
+			&.disabled {
+				background-color: var(--krds-light-color-button-disabled-fill);
+			}
+		}
+	}
+
+	&.gray {
+		color: var(--krds-mode-color-high-contrast-gray-0);
+		background-color: var(--krds-color-light-gray-40);
+		border-color: var(--krds-color-light-gray-50);
+	}
+}
+
+/*input*/
+//컬러 정의
+@mixin input-color-variable($mode: light) {
+	--krds-input--color-surface: var(--krds-#{$mode}-color-input-surface);
+	--krds-input--color-surface-readonly: var(--krds-#{$mode}-color-input-surface-disabled);
+	--krds-input--color-surface-disabled: var(--krds-#{$mode}-color-input-surface-disabled);
+	--krds-input--color-surface-error: var(--krds-#{$mode}-color-input-surface);
+	--krds-input--color-border: var(--krds-#{$mode}-color-input-border);
+	--krds-input--color-border-active: var(--krds-#{$mode}-color-input-border-active);
+	--krds-input--color-border-readonly: var(--krds-#{$mode}-color-input-border-disabled);
+	--krds-input--color-border-disabled: var(--krds-#{$mode}-color-input-border-disabled);
+	--krds-input--color-border-error: var(--krds-#{$mode}-color-input-border-error);
+	--krds-input--color-text: var(--krds-#{$mode}-color-text-subtle);
+	--krds-input--color-text-active: var(--krds-#{$mode}-color-text-basic);
+	--krds-input--color-text-readonly: var(--krds-#{$mode}-color-text-subtle);
+	--krds-input--color-text-disabled: var(--krds-#{$mode}-color-text-disabled-on);
+	--krds-input--color-text-placeholder: var(--krds-#{$mode}-color-text-disabled);
+	--krds-input--color-text-error: var(--krds-#{$mode}-color-text-subtle);
+}
+
+.krds-input {
+	@include input-color-variable($mode: light);
+
+	& {
+		color: var(--krds-input--color-text);
+		background-color: #fff;
+		border: 0.1rem solid var(--krds-input--color-border);
+	}
+
+	&:focus,
+	&.focus {
+		border-color: var(--krds-input--color-border-active);
+	}
+
+	&[readonly] {
+		background-color: var(--krds-input--color-surface-readonly);
+		border-color: var(--krds-input--color-border-readonly);
+		color: var(--krds-input--color-text-readonly);
+		&.datepicker {
+			background-color: var(--krds-input--color-surface);
+			border-color: var(--krds-input--color-border);
+			color: var(--krds-input--color-text);
+		}
+		&:focus {
+			border-color: var(--krds-input--color-border-active);
+		}
+	}
+
+	&::after {
+		background-color: var(--krds-color-light-point-40);
+	}
+
+	&[required] {
+		background-image: url(#{$url-img}/_common/bg-asterisk.png);
+	}
+
+	&[disabled] {
+		background-color: var(--krds-input--color-surface-disabled);
+		border-color: var(--krds-input--color-border-disabled);
+		color: var(--krds-input--color-text-disabled);
+	}
+	&::-webkit-input-placeholder {
+		color: var(--krds-input--color-text-placeholder);
+	}
+	&::-moz-placeholder {
+		color: var(--krds-input--color-text-placeholder);
+	}
+	&:-ms-input-placeholder {
+		color: var(--krds-input--color-text-placeholder);
+	}
+	&::-ms-input-placeholder {
+		color: var(--krds-input--color-text-placeholder);
+	}
+}
+
+textarea {
+	&.krds-input {
+		&[required] {
+			background-image: url(#{$url-img}/_common/bg-asterisk.png);
+		}
+	}
+
+	&.krds-textarea {
+		background-color: var(--krds-input--color-surface);
+		border: 0.1rem solid var(--krds-color-light-gray-20);
+		color: var(--krds-input--color-text);
+
+		&[required] {
+			background-image: url(#{$url-img}/_common/bg-asterisk.png);
+		}
+
+		&:focus {
+			border-color: var(--krds-high-contrast-color-input-border-active);
+		}
+	}
+}
+.is-error {
+	.krds-input {
+		background-color: var(--krds-input--color-surface-error);
+		border-color: var(--krds-input--color-border-error);
+		color: var(--krds-input--color-text-error);
+		&:focus {
+			border-color: var(--krds-input--color-border-active);
+		}
+	}
+}
+
+.textarea-count {
+	--krds-input--count-number-color-text: var(--krds-#{$mode-setting}-color-text-subtle);
+	--krds-input--count-number-color-text-active: var(--krds-#{$mode-setting}-color-text-primary);
+	--krds-input--count-number-color-text-error: var(--krds-#{$mode-setting}-color-text-danger);
+
+	color: var(--krds-input--count-number-color-text);
+	@include media-breakpoint-down(md) {
+	}
+	.count-now {
+		color: var(--krds-input--count-number-color-text-active);
+	}
+}
+.is-error {
+	.textarea-count {
+		.count-now {
+			color: var(--krds-input--count-number-color-text-error);
+		}
+	}
+}
+
+/* 날짜선택 */
+.calendar-input {
+	--krds-input--color-surface: var(--krds-#{$mode-setting}-color-input-surface);
+}
+
+/* 테이블 */
+
+@mixin table-color-variable($mode: light) {
+	--krds-table--data-border-width: var(--krds-#{$mode}-border-width-variable-regular);
+	--krds-table--data-thead-border: var(--krds-#{$mode}-color-border-secondary-light);
+	--krds-table--data-thead-surface: var(--krds-#{$mode}-color-surface-secondary-subtler);
+	--krds-table--data-thead-color-text: var(--krds-#{$mode}-color-text-basic);
+	--krds-table--data-tbody-color-surface: var(--krds-#{$mode}-color-surface-white-subtle);
+	--krds-table--data-tbody-color-divider: var(--krds-#{$mode}-color-divider-gray-light);
+	--krds-table--data-tbody-color-text: var(--krds-#{$mode}-color-text-subtle);
+}
+
+.krds-table-wrap {
+	$mode-setting: light;
+	@include table-color-variable(#{$mode-setting});
+
+	.tbl {
+		@include media-breakpoint-up(lg) {
+			tbody {
+				tr {
+					td {
+						.krds-form-check {
+							&:has(input[type="checkbox"]) {
+								opacity: 0;
+							}
+						}
+					}
+					&:hover {
+						td {
+							background-color: var(--krds-light-color-surface-primary-subtler);
+						}
+						.krds-form-check {
+							&:has(input[type="checkbox"]) {
+								opacity: 1;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		&.data {
+			thead {
+				th {
+					background-color: var(--krds-table--data-thead-surface);
+					border-top: var(--krds-table--data-border-width) solid var(--krds-table--data-thead-border);
+					border-bottom: var(--krds-table--data-border-width) solid var(--krds-table--data-thead-border);
+
+					color: var(--krds-table--data-thead-color-text);
+
+					&:not(:first-child) {
+						border-left: 1px solid var(--krds-table--data-tbody-color-divider);
+					}
+				}
+			}
+			tbody {
+				th,
+				td {
+					background-color: var(--krds-table--data-tbody-color-surface);
+					border-bottom: var(--krds-table--data-border-width) solid var(--krds-table--data-tbody-color-divider);
+
+					color: var(--krds-table--data-tbody-color-text);
+
+					&:not(:first-child) {
+						border-left: 1px solid var(--krds-table--data-tbody-color-divider);
+					}
+				}
+			}
+		}
+
+		&.row {
+			border-top: var(--krds-table--data-border-width) solid var(--krds-table--data-thead-border);
+			tbody {
+				th {
+					background-color: var(--krds-table--data-thead-surface);
+					color: var(--krds-table--data-thead-color-text);
+				}
+			}
+		}
+	}
+}
+
+.cell-cont-wrap {
+	.cell-cont-mid {
+		border-top: 1px solid var(--krds-color-light-gray-10);
+	}
+
+	.cell-cont-bot {
+		border-top: 1px solid var(--krds-color-light-gray-10);
+	}
+}
+
+/* 테이블 상단 리스트 컨트롤 */
+
+.list-control {
+	.list-tit {
+		.ico-document-fill {
+			background-color: #62686f;
+		}
+
+		+ .total {
+			&::before {
+				background-color: #d9d9d9;
+			}
+		}
+	}
+}
+
+/*tab*/
+//컬러 정의
+@mixin tab-color-variable($mode: light) {
+	--krds-tab--button-color-action: var(--krds-#{$mode}-color-action-secondary);
+	--krds-tab--button-color-action-hover: var(--krds-#{$mode}-color-action-secondary-hover);
+	--krds-tab--button-color-action-pressed: var(--krds-#{$mode}-color-action-secondary-pressed);
+	--krds-tab--button-color-border: var(--krds-#{$mode}-color-action-secondary);
+	--krds-tab--button-color-text: var(--krds-#{$mode}-color-text-subtler);
+	--krds-tab--button-color-text-active: var(--krds-#{$mode}-color-text-primary);
+	--krds-tab--button-color-text-disabled: var(--krds-#{$mode}-color-text-disabled);
+	--krds-tab--fill-button-color-action-active: var(--krds-#{$mode}-color-action-secondary-active);
+	--krds-tab--fill-button-color-border: var(--krds-#{$mode}-color-border-gray);
+	--krds-tab--fill-button-color-border-active: var(--krds-#{$mode}-color-action-secondary-active);
+	--krds-tab--fill-button-color-text: var(--krds-#{$mode}-color-text-inverse-static);
+	--krds-tab--line-button-colotextr-border: var(--krds-#{$mode}-color-border-gray);
+	--krds-tab--line-button-color-line-active: var(--krds-#{$mode}-color-action-secondary-active);
+	--krds-tab--line-button-color--active: var(--krds-#{$mode}-color-text-secondary);
+	--krds-tab--mobile-button-trigger-color-text: var(--krds-#{$mode}-color-text-inverse-static);
+	--krds-tab--mobile-button-trigger-color-action: var(--krds-#{$mode}-color-action-secondary-active);
+}
+
+$mode-setting: light;
+.tab {
+	@include tab-color-variable(#{$mode-setting});
+
+	.btn-tab {
+		background-color: var(--krds-tab--button-color-action);
+		border: 1px solid var(--krds-tab--button-color-border);
+		color: var(--krds-tab--button-color-text);
+
+		&:not(:disabled):hover {
+			background-color: var(--krds-tab--button-color-action-hover);
+		}
+		&:not(:disabled):active {
+			background-color: var(--krds-tab--button-color-action-pressed);
+		}
+
+		&[disabled] {
+			color: var(--krds-tab--button-color-text-disabled);
+		}
+	}
+
+	.active {
+		.btn-tab {
+			color: var(--krds-tab--button-color-text-active);
+		}
+	}
+
+	&.fill {
+		//bg 타입
+
+		.active {
+			.btn-tab {
+				background-color: var(--krds-tab--fill-button-color-action-active);
+				border-color: var(--krds-tab--fill-button-color-border-active) !important;
+				color: var(--krds-tab--fill-button-color-text);
+			}
+		}
+
+		&.full {
+			.btn-tab {
+				border-color: var(--krds-tab--fill-button-color-border);
+			}
+		}
+	}
+	&.line {
+		//line 타입
+		.btn-tab {
+			&:before {
+				background-color: var(--krds-tab--line-button-color-line-active);
+			}
+		}
+		.active {
+			.btn-tab {
+				color: var(--krds-tab--line-button-color-text-active);
+			}
+		}
+		&.full {
+			.btn-tab {
+				border-bottom: 2px solid var(--krds-tab--line-button-color-border);
+			}
+		}
+	}
+}
+
+//mobile only
+@include media-breakpoint-down(md) {
+	.tab {
+		&.fill {
+			&.full {
+				.btn-tab {
+					border-color: var(--krds-tab--fill-button-color-border);
+				}
+			}
+		}
+	}
+}
+
+/*셀렉트 박스*/
+//컬러 정의
+@mixin form-select-color-variable($mode: light) {
+	--krds-form-select--color-background: var(--krds-#{$mode}-color-input-surface);
+	--krds-form-select--color-background-readonly: var(--krds-#{$mode}-color-input-surface-disabled);
+	--krds-form-select--color-background-disabled: var(--krds-#{$mode}-color-input-surface-disabled);
+	--krds-form-select--color-background-error: var(--krds-#{$mode}-color-input-surface);
+	--krds-form-select--icon-color-background: var(--krds-#{$mode}-color-icon-gray);
+	--krds-form-select--icon-color-background-readonly: var(--krds-#{$mode}-color-icon-disabled-on);
+	--krds-form-select--icon-color-background-disabled: var(--krds-#{$mode}-color-icon-disabled-on);
+	--krds-form-select--color-border: var(--krds-light-color-input-border);
+	--krds-form-select--color-border-active: var(--krds-#{$mode}-color-input-border-active);
+	--krds-form-select--color-border-readonly: var(--krds-#{$mode}-color-input-border-disabled);
+	--krds-form-select--color-border-disabled: var(--krds-#{$mode}-color-input-border-disabled);
+	--krds-form-select--color-border-error: var(--krds-#{$mode}-color-input-border-error);
+	--krds-form-select--color-text: var(--krds-#{$mode}-color-text-disabled);
+	--krds-form-select--color-text-active: var(--krds-#{$mode}-color-text-basic);
+	--krds-form-select--color-text-completed: var(--krds-#{$mode}-color-text-subtle);
+	--krds-form-select--color-text-disabled: var(--krds-#{$mode}-color-text-disabled-on);
+	--krds-form-select--color-text-error: var(--krds-#{$mode}-color-text-subtle);
+}
+
+$mode-setting: light;
+
+.krds-form-select {
+	--krds-form-select-sorting--color-background: var(--krds-light-color-input-surface);
+	--krds-form-select-sorting--color-background-hover: var(--krds-light-color-input-surface);
+	--krds-form-select-sorting--color-background-pressed: var(--krds-light-color-input-surface);
+	--krds-form-select-sorting--color-text: var(--krds-light-color-text-basic);
+
+	@include form-select-color-variable(#{$mode-setting});
+
+	background-color: var(--krds-form-select-sorting--color-background) !important;
+	border-color: #cdd1d5;
+	color: var(--krds-form-select-sorting--color-text);
+
+	&:hover {
+		background-color: var(--krds-form-select-sorting--color-background-hover) !important;
+	}
+	&:focus {
+		background-color: var(--krds-form-select-sorting--color-background-pressed) !important;
+	}
+}
+
+/*라디오 버튼*/
+input[type="radio"] {
+	&:checked {
+		~ label {
+			&:before {
+				border-color: var(--krds-form-check--button-color-border-checked);
+			}
+			&:after {
+				background-color: var(--krds-form-check--radio-check-color-element-checked);
+			}
+		}
+		&:disabled {
+			~ label {
+				&:after {
+					background-color: var(--krds-form-check--radio-check-color-element-disabled);
+				}
+			}
+		}
+	}
+}
+
+/*브레드크럼*/
+//컬러 정의
+@mixin breadcrumb-color-variable($mode: light) {
+	--krds-breadcrumb--color-action: var(--krds-#{$mode}-color-action-secondary);
+	--krds-breadcrumb--color-action-hover: var(--krds-#{$mode}-color-action-secondary-hover);
+	--krds-breadcrumb--color-action-pressed: var(--krds-#{$mode}-color-action-secondary-pressed);
+	--krds-breadcrumb--color-text: var(--krds-#{$mode}-color-text-basic);
+	--krds-breadcrumb--color-text-disabled: var(--krds-#{$mode}-color-text-disabled);
+}
+.krds-breadcrumb-wrap {
+	$mode-setting: light;
+
+	@include breadcrumb-color-variable(#{$mode-setting});
+
+	.breadcrumb {
+		li {
+			.txt {
+				@include flex-layout($d: inline-flex, $ai: center);
+				gap: var(--krds-gap-2);
+				padding: 0;
+				background-color: var(--krds-breadcrumb--color-action);
+				border-radius: var(--krds-breadcrumb--radius);
+			}
+			a {
+				&.txt {
+					// @include underline();
+					// @include text-ellipsis(1);
+					&:not(.disabled):hover {
+						background-color: var(--krds-breadcrumb--color-action-hover);
+					}
+					&:not(.disabled):active {
+						background-color: var(--krds-breadcrumb--color-action-pressed);
+					}
+
+					&.disabled,
+					&:disabled {
+						color: var(--krds-breadcrumb--color-text-disabled);
+					}
+				}
+			}
+		}
+	}
+}
+
+/*셀렉트*/

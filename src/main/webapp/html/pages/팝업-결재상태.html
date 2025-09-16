@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>현재화면명 | 메뉴명 | 사이트명</title>
+		<link rel="shortcut icon" href="../../assets/img/_common/favicon.png" />
+
+		<!-- style -->
+		<link rel="stylesheet" href="../../assets/plugins/jqGrid-4.7.0/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="../../assets/plugins/ztree/zTreeStyle.css" />
+		<link rel="stylesheet" href="../../assets/plugins/sweetalert/custom-swal.css" />
+		<link rel="stylesheet" href="../../assets/css/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+		<!-- JavaScript -->
+		<script src="../../assets/js/_common/jquery-1.12.4.min.js"></script>
+		<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+		<!-- jqGrid Plugins -->
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/i18n/grid.locale-kr.js"></script>
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/minified/jquery.jqGrid.min.js"></script>
+
+		<!-- ztree Plugins -->
+		<script src="../../assets/plugins/ztree/jquery.ztree.core.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.excheck.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.exedit.js"></script>
+		<script src="../../assets/plugins/ztree/zTreeCustom.js"></script>
+
+		<!-- Plugins -->
+		<script src="../../assets/plugins/slick/slick.min.js"></script>
+		<script src="../../assets/js/_common/datepicker.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="../../assets/js/component/ui-script.js"></script>
+		<script src="../../assets/js/_common/ui-global.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+		<!-- TODO : 개발시 반드시 삭제, 레이아웃 세팅 JS -->
+		<script src="../../assets/_guide/js/ui-layout-setting.js"></script>
+
+		<!-- 페이지 개별 스크립트 -->
+		<script>
+			$(document).ready(function () {});
+
+			// z-tree : zNodes 추가 옵션
+			// open: true : 기본 view가 오픈상태로 노출
+			// disabled: true : 비활성화 메뉴의 경우
+			// isParent: true : 하위 메뉴가 없는 상태에서 폴더형식의 경우
+
+			// iconskin 변경
+			// ico_docu, ico-page-md : 일반페이지 (기본), 지정되지 않은 종류의 페이지
+			// ico_open, ico_close, ico-folder-md : 폴더 (기본)
+			// ico-site-md : 사용자사이트 페이지
+			// ico-editpage-md :웹콘텐츠 관리 페이지
+			// ico-pagepgm-md : pgm 페이지
+			// ico-pagebbs-md : bbs 페이지
+			// ico-newwindow-md : 새창 (target: "_blank" 속성 추가 필요)
+			// ico-code-md : 코드 페이지
+
+			var zNodes = [
+				{ id: 1, pId: 0, name: "사이트 메뉴명1", open: true },
+				{ id: 11, pId: 1, name: "사이트 메뉴명1", open: true, disabled: true },
+				{ id: 111, pId: 11, name: "사이트 메뉴명1", disabled: true },
+				{ id: 112, pId: 11, name: "사이트 메뉴명1" },
+				{ id: 113, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md" },
+				{ id: 114, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md" },
+				{ id: 115, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md" },
+				{ id: 116, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md" },
+				{ id: 117, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md" },
+				{ id: 118, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md", disabled: true },
+				{ id: 119, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md", disabled: true },
+				{ id: 1110, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md", disabled: true },
+				{ id: 1111, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md", disabled: true },
+				{ id: 1112, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md", disabled: true },
+				{ id: 12, pId: 1, name: "길어질 경우 가로 스크롤이 생성됩니다. 길어질 경우 가로 스크롤이 생성됩니다." },
+				{ id: 121, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 122, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 2, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 21, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 211, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 212, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 22, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 221, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 222, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 23, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 231, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 232, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 3, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 4, pId: 0, name: "사이트 메뉴명1" }
+			];
+
+			// zTree onClick 이벤트
+			window.zTreeOnClick = function (event, treeId, treeNode) {
+				// zTree 노드 클릭시 이벤트 사용자 정의
+				alert(treeNode ? treeNode.tId : "root");
+			};
+
+			window.zTreeBeforeRename = function (treeId, treeNode, newName, isCancel) {
+				// zTree 노드 네이밍 변경 시 기존 네임
+				console.log(treeId, treeNode, newName, isCancel);
+			};
+
+			window.zTreeRename = function (e, treeId, treeNode, isCancel) {
+				// zTree 노드 네이밍 변경 시 사용자 정의
+				console.log(e, treeId, treeNode, isCancel);
+			};
+
+			// [노드 생성시 필수] zTree 노드 생성시 기준 네이밍 변경
+			window.zTreeCreateNewNode = function (zTree, treeNode, isParent) {
+				const nameFunc = function () {
+					return "이름을 입력해주세요.";
+				};
+				return createNewNode(zTree, treeNode, isParent, nameFunc);
+			};
+
+			function removeNodeId(treeNode) {
+				// zTree 삭제된 노드 확인
+				console.log("삭제된 노드 확인: ", treeNode);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div id="container" class="system-page">
+				<aside id="sidebar"></aside>
+				<article id="content">
+					<div class="content-header">
+						<!-- <h2 class="content-title">화면명</h2> -->
+						<header class="content-header"></header>
+					</div>
+					<div class="content-body">
+						<!-- 본문 영역 -->
+						<nav class="krds-breadcrumb-wrap" aria-label="현재 경로" id="breadcrumb"></nav>
+
+						<div class="container">
+							<div class="card">
+								<div class="btn-group-left">
+									<button type="button" class="krds-btn medium open-modal" data-target="modal_sample_01">
+										결재 상태
+									</button>
+								</div>
+							</div>
+						</div>
+						<!-- modal -->
+						<!-- modal-drag : 드래그 가능 -->
+						<div
+							id="modal_sample_01"
+							class="krds-modal modal-drag fade auto-open"
+							role="dialog"
+							aria-labelledby="tit_modal_sample_01"
+						>
+							<!-- modal-size : sm, md, lg, xl -->
+							<div class="modal-dialog modal-lg">
+								<div class="modal-content">
+									<!-- modal title -->
+									<div class="modal-header">
+										<h2 id="tit_modal_sample_01" class="modal-title">결재 상태</h2>
+									</div>
+									<!-- //modal title -->
+									<!-- modal contents -->
+									<div class="modal-conts">
+										<div class="conts-area">
+											<div class="sign-modal">
+												<div class="box">
+													<div class="box-header">
+														<h3>결재 상황</h3>
+														<span class="krds-badge bg-light-primary">진행중</span>
+														<span class="krds-badge bg-light-success">결재 완료</span>
+														<span class="krds-badge bg-light-danger">반려</span>
+													</div>
+													<div class="box-conts">
+														<!-- table -->
+														<div class="krds-table-wrap scroll">
+															<div class="scroll-container">
+																<table class="tbl col data">
+																	<caption>
+																		000에 대한 표로 제목1,제목2에 대한 내용으로 구성되어 있으며 제목1은
+																		제목1-1,제목1-2,제목1-3으로 구성되어있다.
+																	</caption>
+																	<colgroup>
+																		<col style="width: 55px" />
+																		<col style="width: 10%" />
+																		<col style="width: 10%" />
+																		<col />
+																		<col style="width: 15%" />
+																	</colgroup>
+																	<thead>
+																		<tr>
+																			<th scope="col">순번</th>
+																			<th scope="col">구분</th>
+																			<th scope="col">설명</th>
+																			<th scope="col">부서/회사명</th>
+																			<th scope="col">처리일시</th>
+																		</tr>
+																	</thead>
+																	<tbody>
+																		<tr>
+																			<td><span class="order-text">0</span></td>
+																			<td><strong>기안</strong></td>
+																			<td>홍길동</td>
+																			<td>경영혁신팀/해성DS</td>
+																			<td>2025.01.10 16:30:24</td>
+																		</tr>
+																		<tr class="yet-state">
+																			<td><span class="order-text">1</span></td>
+																			<td><strong>결재</strong></td>
+																			<td>김철수</td>
+																			<td>XX케미칼</td>
+																			<td>미결</td>
+																		</tr>
+																	</tbody>
+																</table>
+															</div>
+														</div>
+														<!-- //table -->
+
+														<div class="text-area">
+															<p>
+																결재에 대한 내용이 작성됩니다. 결재에 대한 내용이 작성됩니다. 결재에 대한 내용이
+																작성됩니다. 결재에 대한 내용이 작성됩니다. 결재에 대한 내용이 작성됩니다. 결재에 대한
+																내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에
+																대한 내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에 대한 내용이
+																작성됩니다.결재에 대한 내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에 대한
+																내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에
+																대한 내용이 작성됩니다.
+															</p>
+															<p>
+																결재에 대한 내용이 작성됩니다. 결재에 대한 내용이 작성됩니다. 결재에 대한 내용이
+																작성됩니다. 결재에 대한 내용이 작성됩니다. 결재에 대한 내용이 작성됩니다. 결재에 대한
+																내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에
+																대한 내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에 대한 내용이
+																작성됩니다.결재에 대한 내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에 대한
+																내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에 대한 내용이 작성됩니다.결재에
+																대한 내용이 작성됩니다.
+															</p>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- //modal contents -->
+									<!-- modal btn -->
+									<div class="modal-btn btn-wrap">
+										<button type="button" class="krds-btn medium tertiary close-modal">닫기</button>
+									</div>
+									<!-- //modal btn -->
+									<!-- close button -->
+									<button type="button" class="krds-btn medium icon btn-close close-modal">
+										<span class="sr-only">닫기</span>
+										<i class="svg-icon ico-popup-close"></i>
+									</button>
+									<!-- //close button -->
+								</div>
+							</div>
+							<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+							<!-- <div class="modal-back"></div> -->
+						</div>
+						<!-- //modal -->
+						<!-- // 본문 영역 -->
+					</div>
+				</article>
+			</div>
+			<!-- <footer id="footer"></footer> -->
+		</div>
+	</body>
+</html>

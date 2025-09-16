@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>현재화면명 | 메뉴명 | 사이트명</title>
+		<link rel="shortcut icon" href="../../assets/img/_common/favicon.png" />
+
+		<!-- style -->
+		<link rel="stylesheet" href="../../assets/plugins/jqGrid-4.7.0/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="../../assets/plugins/ztree/zTreeStyle.css" />
+		<link rel="stylesheet" href="../../assets/plugins/sweetalert/custom-swal.css" />
+		<link rel="stylesheet" href="../../assets/css/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+		<!-- JavaScript -->
+		<script src="../../assets/js/_common/jquery-1.12.4.min.js"></script>
+		<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+		<!-- jqGrid Plugins -->
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/i18n/grid.locale-kr.js"></script>
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/minified/jquery.jqGrid.min.js"></script>
+
+		<!-- ztree Plugins -->
+		<script src="../../assets/plugins/ztree/jquery.ztree.core.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.excheck.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.exedit.js"></script>
+		<script src="../../assets/plugins/ztree/zTreeCustom.js"></script>
+
+		<!-- Plugins -->
+		<script src="../../assets/plugins/slick/slick.min.js"></script>
+		<script src="../../assets/js/_common/datepicker.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="../../assets/js/component/ui-script.js"></script>
+		<script src="../../assets/js/_common/ui-global.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+		<!-- TODO : 개발시 반드시 삭제, 레이아웃 세팅 JS -->
+		<script src="../../assets/_guide/js/ui-layout-setting.js"></script>
+
+		<!-- 페이지 개별 스크립트 -->
+		<script>
+			$(document).ready(function () {
+				function createChart(chartId, textId, labelsId, data) {
+					const ctx = document.getElementById(chartId).getContext("2d");
+
+					// 총 합계 계산
+					const total = data.datasets[0].data.reduce((a, b) => a + b, 0);
+
+					// 도넛 차트
+					new Chart(ctx, {
+						type: "doughnut",
+						data: data,
+						options: {
+							responsive: true,
+							maintainAspectRatio: false,
+							cutout: "78%",
+							plugins: {
+								legend: { display: false },
+								tooltip: { enabled: false }
+							}
+						}
+					});
+
+					// 중앙 텍스트 설정
+					document.getElementById(textId).innerHTML = `<span class="chart-text-kr">총</span> ${total}`;
+
+					// 사용자 지정 레이블 추가
+					const labelsContainer = document.getElementById(labelsId);
+					labelsContainer.innerHTML = ""; // 기존 내용 초기화
+					data.labels.forEach((label, index) => {
+						const labelItem = document.createElement("div");
+						labelItem.classList.add("chart-label");
+
+						const labelWrapper = document.createElement("span");
+						labelWrapper.classList.add("label-wrapper");
+
+						const colorBox = document.createElement("span");
+						colorBox.classList.add("color-label");
+						colorBox.style.backgroundColor = data.datasets[0].backgroundColor[index];
+
+						const labelText = document.createElement("span");
+						labelText.textContent = `${label}`;
+
+						const labelNumber = document.createElement("span");
+						labelNumber.classList.add("label-number");
+						labelNumber.textContent = data.datasets[0].data[index];
+
+						labelWrapper.appendChild(colorBox);
+						labelWrapper.appendChild(labelText);
+
+						labelItem.appendChild(labelWrapper);
+						labelItem.appendChild(labelNumber);
+
+						labelsContainer.appendChild(labelItem);
+					});
+				}
+
+				const data1 = {
+					labels: ["제 1공장", "연구소", "사무동"],
+					datasets: [
+						{
+							data: [96, 45, 28],
+							backgroundColor: ["#4BA3FA", "#1976D2", "#0A47A9"],
+							hoverOffset: 0,
+							borderWidth: 0
+						}
+					]
+				};
+
+				const data2 = {
+					labels: ["제 1공장", "연구소", "사무동"],
+					datasets: [
+						{
+							data: [32, 12, 11],
+							backgroundColor: ["#4BA3FA", "#1976D2", "#0A47A9"],
+							hoverOffset: 0,
+							borderWidth: 0
+						}
+					]
+				};
+
+				const data3 = {
+					labels: ["방문", "미방문"],
+					datasets: [
+						{
+							data: [68, 28],
+							backgroundColor: ["#32B496", "#FB8E52"],
+							hoverOffset: 0,
+							borderWidth: 0
+						}
+					]
+				};
+
+				createChart("entryChart1", "chartText1", "chartLabels1", data1);
+				createChart("entryChart2", "chartText2", "chartLabels2", data2);
+				createChart("entryChart3", "chartText3", "chartLabels3", data3);
+
+				function createLineChart(chartId, labels, data) {
+					const ctx = document.getElementById(chartId).getContext("2d");
+
+					new Chart(ctx, {
+						type: "line",
+						data: {
+							labels: labels,
+							datasets: [
+								{
+									label: "방문자 수", // 범례 추가
+									data: data,
+									borderColor: "blue",
+									backgroundColor: "rgba(0, 0, 255, 0.2)",
+									pointBackgroundColor: "#fff",
+									pointBorderColor: "#005BC1",
+									pointRadius: 5, // 점 크기 조정
+									pointBorderWidth: 4,
+									pointHoverRadius: 6,
+									fill: false,
+									tension: 0,
+									borderColor: "#005BC1",
+									fontColor: "#fff"
+								}
+							]
+						},
+						options: {
+							responsive: true,
+							maintainAspectRatio: false,
+							plugins: {
+								legend: { display: false },
+								tooltip: { enabled: true },
+								padding: 10
+							},
+							scales: {
+								x: {
+									ticks: { beginAtZero: true, font: { size: 12 }, color: "#6D7882", padding: 10 },
+									grid: { display: false }
+								},
+								y: {
+									min: 0,
+									ticks: { maxTicksLimit: 7, font: { size: 10 }, color: "#6D7882" },
+									grid: { color: "#cccfc4" },
+									border: {
+										display: false
+									}
+								}
+							}
+						}
+					});
+				}
+
+				// 시간대별 방문자 수 데이터 추가
+				const timeLabels = ["00:00", "04:00", "08:00", "12:00", "16:00", "20:00", "24:00"];
+				const visitorData = [32, 57, 45, 62, 78, 69, 52, 68, 54, 87, 51, 64, 46];
+
+				createLineChart("visitorChart", timeLabels, visitorData);
+			});
+
+			// z-tree : zNodes 추가 옵션
+			// open: true : 기본 view가 오픈상태로 노출
+			// disabled: true : 비활성화 메뉴의 경우
+			// isParent: true : 하위 메뉴가 없는 상태에서 폴더형식의 경우
+
+			// iconskin 변경
+			// ico_docu, ico-page-md : 일반페이지 (기본), 지정되지 않은 종류의 페이지
+			// ico_open, ico_close, ico-folder-md : 폴더 (기본)
+			// ico-site-md : 사용자사이트 페이지
+			// ico-editpage-md :웹콘텐츠 관리 페이지
+			// ico-pagepgm-md : pgm 페이지
+			// ico-pagebbs-md : bbs 페이지
+			// ico-newwindow-md : 새창 (target: "_blank" 속성 추가 필요)
+			// ico-code-md : 코드 페이지
+
+			var zNodes = [
+				{ id: 1, pId: 0, name: "사이트 메뉴명1", open: true },
+				{ id: 11, pId: 1, name: "사이트 메뉴명1", open: true, disabled: true },
+				{ id: 111, pId: 11, name: "사이트 메뉴명1", disabled: true },
+				{ id: 112, pId: 11, name: "사이트 메뉴명1" },
+				{ id: 113, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md" },
+				{ id: 114, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md" },
+				{ id: 115, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md" },
+				{ id: 116, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md" },
+				{ id: 117, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md" },
+				{ id: 118, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md", disabled: true },
+				{ id: 119, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md", disabled: true },
+				{ id: 1110, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md", disabled: true },
+				{ id: 1111, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md", disabled: true },
+				{ id: 1112, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md", disabled: true },
+				{ id: 12, pId: 1, name: "길어질 경우 가로 스크롤이 생성됩니다. 길어질 경우 가로 스크롤이 생성됩니다." },
+				{ id: 121, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 122, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 2, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 21, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 211, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 212, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 22, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 221, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 222, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 23, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 231, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 232, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 3, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 4, pId: 0, name: "사이트 메뉴명1" }
+			];
+
+			// zTree onClick 이벤트
+			window.zTreeOnClick = function (event, treeId, treeNode) {
+				// zTree 노드 클릭시 이벤트 사용자 정의
+				alert(treeNode ? treeNode.tId : "root");
+			};
+
+			window.zTreeBeforeRename = function (treeId, treeNode, newName, isCancel) {
+				// zTree 노드 네이밍 변경 시 기존 네임
+				console.log(treeId, treeNode, newName, isCancel);
+			};
+
+			window.zTreeRename = function (e, treeId, treeNode, isCancel) {
+				// zTree 노드 네이밍 변경 시 사용자 정의
+				console.log(e, treeId, treeNode, isCancel);
+			};
+
+			// [노드 생성시 필수] zTree 노드 생성시 기준 네이밍 변경
+			window.zTreeCreateNewNode = function (zTree, treeNode, isParent) {
+				const nameFunc = function () {
+					return "이름을 입력해주세요.";
+				};
+				return createNewNode(zTree, treeNode, isParent, nameFunc);
+			};
+
+			function removeNodeId(treeNode) {
+				// zTree 삭제된 노드 확인
+				console.log("삭제된 노드 확인: ", treeNode);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="loading-overlay">
+			<div class="loading-spin"></div>
+			<p>Loading...</p>
+		</div>
+		<div class="wrapper">
+			<div id="container">
+				<aside id="sidebar"></aside>
+				<article id="content">
+					<div class="content-header">
+						<!-- <h2 class="content-title">화면명</h2> -->
+						<header class="content-header"></header>
+					</div>
+					<div class="content-body">
+						<!-- 본문 영역 -->
+						<nav class="krds-breadcrumb-wrap" aria-label="현재 경로" id="breadcrumb"></nav>
+
+						<div class="container dashboard-page">
+							<div class="dashboard-wrap">
+								<div class="card-wrap grid-1">
+									<div class="card">
+										<div class="card-header">
+											<h3 class="card-title">인원 출입 현황</h3>
+										</div>
+										<div class="chart-wrap type02">
+											<div class="chart-container">
+												<canvas id="entryChart1"></canvas>
+												<div id="chartText1" class="chart-text"></div>
+											</div>
+											<div id="chartLabels1" class="chart-labels"></div>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-header">
+											<h3 class="card-title">주차현황</h3>
+										</div>
+
+										<div class="chart-wrap">
+											<div class="chart-container">
+												<canvas id="entryChart2"></canvas>
+												<div id="chartText2" class="chart-text"></div>
+											</div>
+											<div id="chartLabels2" class="chart-labels"></div>
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-header">
+											<h3 class="card-title">방문현황</h3>
+										</div>
+										<div class="chart-wrap">
+											<div class="chart-container">
+												<canvas id="entryChart3"></canvas>
+												<div id="chartText3" class="chart-text"></div>
+											</div>
+											<div id="chartLabels3" class="chart-labels"></div>
+										</div>
+									</div>
+								</div>
+								<div class="card-wrap grid-2 col">
+									<div class="card primary">
+										<div class="card-back"></div>
+										<div class="card-header">
+											<span class="icon-box"> <i class="svg-icon ico-user-group"></i></span>
+
+											<h3 class="card-title">현재 출입 중인 인원수</h3>
+										</div>
+										<div class="card-body">
+											<div class="card-text">730<span>명</span></div>
+										</div>
+									</div>
+									<div class="card primary">
+										<div class="card-back"></div>
+										<div class="card-header">
+											<span class="icon-box"> <i class="svg-icon ico-car"></i></span>
+
+											<h3 class="card-title">현재 주차장 사용률</h3>
+										</div>
+										<div class="card-body">
+											<div class="card-text">55<span>%</span></div>
+										</div>
+									</div>
+								</div>
+
+								<div class="card-wrap grid-4">
+									<div class="card">
+										<div class="card-header">
+											<h3 class="card-title">
+												시간대별 방문자
+												<span class="card-title-sub">동기화 시간<span>2024.07.30 18:00</span></span>
+											</h3>
+											<select id="select_name" class="krds-form-select small fixed completed" title="선택">
+												<option value="">2024년 7월</option>
+												<option value="">2024년 6월</option>
+												<option value="">2024년 5월</option>
+												<option value="">2024년 4월</option>
+											</select>
+										</div>
+										<div class="card-body">
+											<div class="chart-container-line">
+												<canvas id="visitorChart"></canvas>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="card-wrap grid-5">
+									<div class="card">
+										<div class="card-header">
+											<h3 class="card-title">실시간 방문내역</h3>
+										</div>
+										<div class="card-body">
+											<ul class="visit-list">
+												<li>
+													<i class="svg-icon ico-user-lg"></i>
+													<span class="visit-tit">
+														<span class="name"
+															>김다희
+															<span class="company">해성뮤직</span>
+														</span>
+														<span class="place">제 1 회의실</span>
+													</span>
+													<span class="date">25.01.13</span>
+												</li>
+												<li>
+													<i class="svg-icon ico-user-lg"></i>
+													<span class="visit-tit">
+														<span class="name"
+															>김다희
+															<span class="company">해성뮤직</span>
+														</span>
+														<span class="place">제 1 회의실</span>
+													</span>
+													<span class="date">25.01.13</span>
+												</li>
+												<li>
+													<i class="svg-icon ico-user-lg"></i>
+													<span class="visit-tit">
+														<span class="name"
+															>김다희
+															<span class="company">해성뮤직</span>
+														</span>
+														<span class="place">제 1 회의실</span>
+													</span>
+													<span class="date">25.01.13</span>
+												</li>
+											</ul>
+										</div>
+										<button type="button" class="btn-card-link">
+											<span class="sr-only">메뉴 이동</span>
+											<i class="svg-icon ico-arrow-right-sm"></i>
+										</button>
+									</div>
+								</div>
+								<div class="card-wrap grid-3">
+									<div class="card-tab">
+										<div class="krds-tab-area layer">
+											<!-- tab list -->
+											<div class="tab">
+												<ul role="tablist">
+													<li aria-selected="true" aria-controls="panel_01" class="active">
+														<button type="button" class="btn-tab">
+															공지사항 <i class="sr-only created"> 선택됨</i>
+														</button>
+													</li>
+													<li aria-selected="false" aria-controls="panel_02">
+														<button type="button" class="btn-tab">블랙리스트</button>
+													</li>
+												</ul>
+											</div>
+											<!-- //tab list -->
+											<div class="tab-conts-wrap">
+												<section id="panel_01" class="tab-conts active">
+													<h3 class="sr-only">탭 영역 타이틀</h3>
+													<div class="card">
+														<div class="card-body">
+															<ul class="post-list">
+																<li>
+																	<span class="krds-badge type02 bg-fill-info">공사</span>
+																	<a href="#;" class="post-tit"
+																		>신축공장 통합 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선
+																		배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선</a
+																	>
+																	<span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<span class="krds-badge type02 bg-fill-primary">교육</span>
+																	<a href="#;" class="post-tit"
+																		>신축공장 통합 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선
+																		배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선</a
+																	>
+																	<span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<span class="krds-badge type02 bg-fill-point">출입</span>
+																	<a href="#;" class="post-tit">중대재해처벌법 강화</a>
+																	<span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<span class="krds-badge type02 bg-fill-gray">기타</span>
+																	<a href="#;" class="post-tit">중대재해처벌법 강화</a>
+																	<span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<span class="krds-badge type02 bg-fill-success">식수</span>
+																	<a href="#;" class="post-tit">중대재해처벌법 강화</a
+																	><span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<span class="krds-badge type02 bg-fill-success">식수</span>
+																	<a href="#;" class="post-tit">중대재해처벌법 강화</a>
+																	<span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<span class="krds-badge type02 bg-fill-success">식수</span>
+																	<a href="#;" class="post-tit">중대재해처벌법 강화</a>
+																	<span class="post-date">25.01.13</span>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</section>
+												<section id="panel_02" class="tab-conts">
+													<h3 class="sr-only">탭 영역 타이틀</h3>
+													<div class="card">
+														<div class="card-body">
+															<ul class="post-list">
+																<li>
+																	<a href="#;" class="post-tit"
+																		>신축공장 통합 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선
+																		배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선</a
+																	>
+																	<span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<a href="#;" class="post-tit"
+																		>신축공장 통합 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선
+																		배관 개선 배관 개선 배관 개선 배관 개선 배관 개선 배관 개선</a
+																	>
+																	<span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<a href="#;" class="post-tit">중대재해처벌법 강화</a>
+																	<span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<a href="#;" class="post-tit">중대재해처벌법 강화</a>
+																	<span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<a href="#;" class="post-tit">중대재해처벌법 강화</a>
+																	<span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<a href="#;" class="post-tit">중대재해처벌법 강화</a>
+																	<span class="post-date">25.01.13</span>
+																</li>
+																<li>
+																	<a href="#;" class="post-tit">중대재해처벌법 강화</a>
+																	<span class="post-date">25.01.13</span>
+																</li>
+															</ul>
+														</div>
+													</div>
+												</section>
+											</div>
+										</div>
+										<button type="button" class="btn-card-link">
+											<span class="sr-only">메뉴 이동</span>
+											<i class="svg-icon ico-arrow-right-sm"></i>
+										</button>
+									</div>
+								</div>
+								<div class="card-wrap grid-6">
+									<div class="card-tab">
+										<div class="krds-tab-area layer">
+											<div class="card">
+												<div class="card-header">
+													<h3 class="card-title">결재 진행 상태</h3>
+												</div>
+												<div class="card-body">
+													<ul class="post-list type02">
+														<li>
+															<span class="krds-badge bg-light-secondary">상신중</span>
+															<a href="#;" class="post-tit">인사담당자가 출입 신청 요청을 확인하고 있습니다.</a>
+															<span class="post-date">25.01.13</span>
+														</li>
+														<li>
+															<span class="krds-badge bg-light-warning">승인대기</span>
+															<a href="#;" class="post-tit">인사담당자가 출입 신청 요청을 확인하고 있습니다.</a>
+															<span class="post-date">25.01.13</span>
+														</li>
+														<li>
+															<span class="krds-badge bg-light-danger">반려</span>
+															<a href="#;" class="post-tit">인사담당자가 출입 신청 요청을 확인하고 있습니다.</a>
+															<span class="post-date">25.01.13</span>
+														</li>
+														<li>
+															<span class="krds-badge bg-light-success">완료</span>
+															<a href="#;" class="post-tit">인사담당자가 출입 신청 요청을 확인하고 있습니다.</a>
+															<span class="post-date">25.01.13</span>
+														</li>
+														<li>
+															<span class="krds-badge bg-light-success">완료</span>
+															<a href="#;" class="post-tit">인사담당자가 출입 신청 요청을 확인하고 있습니다.</a>
+															<span class="post-date">25.01.13</span>
+														</li>
+														<li>
+															<span class="krds-badge bg-light-success">완료</span>
+															<a href="#;" class="post-tit">인사담당자가 출입 신청 요청을 확인하고 있습니다.</a>
+															<span class="post-date">25.01.13</span>
+														</li>
+													</ul>
+												</div>
+											</div>
+										</div>
+										<button type="button" class="btn-card-link">
+											<span class="sr-only">메뉴 이동</span>
+											<i class="svg-icon ico-arrow-right-sm"></i>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- // 본문 영역 -->
+					</div>
+				</article>
+			</div>
+			<!-- <footer id="footer"></footer> -->
+		</div>
+	</body>
+</html>

@@ -1,0 +1,101 @@
+//컬러 정의
+@mixin container-color-variable($mode) {
+	background-color: var(--krds-#{$mode}-color-background-gray-subtler);
+	color: var(--krds-#{$mode}-color-text-subtle);
+}
+
+//모드 설정
+$mode-setting: light;
+
+#container {
+	// background-color: var(--krds-color-light-gray-5);
+	// display: flex;
+	// flex-direction: row;
+	// height: 100%;
+	// 	@include media-breakpoint-up(lg) {
+	// 		min-height: calc(100vh - #{$header-height + $footer-height + $breadcrumb-height});
+	// 	}
+	// }
+	// #breadcrumb.d-down-sm + #container {
+	// 	@include media-breakpoint-up(lg) {
+	// 		min-height: calc(100vh - #{$header-height + $footer-height});
+	// 	}
+}
+
+#container {
+	// @include container-color-variable(#{$mode-setting});
+}
+
+//고대비모드
+@include color-mode($mode: high-contrast) {
+	//모드 설정
+	$mode-setting: high-contrast;
+
+	// #container {
+	// 	@include container-color-variable(#{$mode-setting});
+	// }
+}
+
+#content {
+	display: flex;
+	flex-direction: column;
+	margin-left: $sidebar-width;
+	min-height: 100vh;
+
+	// 	// @include media-breakpoint-down(md) {
+	// 	// 	margin-left: 0;
+	// 	// }
+	// }
+
+	// #content {
+	// 	@include media-breakpoint-up(lg) {
+	// 		// 메인형 레이아웃
+	// 		min-height: calc(100vh - #{$header-height + $footer-height});
+
+	// 		.fixed-header & {
+	// 			min-height: calc(100vh - #{$header-height-closed + $footer-height});
+	// 		}
+
+	// 		#container & {
+	// 			@include media-breakpoint-up(lg) {
+	// 				min-height: auto;
+	// 			}
+	// 		}
+	// 	}
+
+	// 	@include media-breakpoint-down(md) {
+	// 		min-height: calc(100vh - #{$mobile-header-height + $mobile-footer-height});
+	// 	}
+	@include media-breakpoint-up(lg) {
+		.content-header {
+			flex: 0 0 auto;
+		}
+	}
+}
+
+.content-body {
+	flex: 1 1 auto;
+
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	// overflow-y: auto;
+
+	.container {
+		flex: 1 1 auto;
+	}
+	@include media-breakpoint-up(lg) {
+		.container {
+			padding: 0 20px 16px;
+		}
+	}
+}
+
+// // IE에서 탭메뉴 호버시 콘텐츠 영역 너비 커지는 오류 수정
+// #sidebar + #content {
+// 	.content-body {
+// 		.container {
+// 			max-width: 920px;
+// 		}
+// 	}
+// }

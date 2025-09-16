@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="format-detection" content="telephone=no">
+	<title>마크업 가이드 | ${프로젝트명}</title>
+	<link rel="shortcut icon" href="../../asset/_common/images/favicon.png">
+	<link rel="stylesheet" href="../../asset/_guide/css/style.css">
+
+	<!-- TODO : 개발시 반드시 삭제 source highlighter -->
+	<link rel="stylesheet" href="../../asset/plugins/syntaxhighlighter/shCoreDefault.css">
+
+	<!-- JavaScript -->
+	<script src="../../asset/_common/js/jquery-1.12.4.min.js"></script>
+
+	<!-- Plugins -->
+	<script src="../../asset/plugins/slick/slick.min.js"></script>
+	<script src="../../asset/plugins/rwdImageMaps/jquery.rwdImageMaps.min.js"></script>
+	<script src="../../asset/plugins/easypiechart/jquery.easypiechart.min.js"></script>
+	<script src="../../asset/plugins/chart/chart-2.9.3.min.js"></script>
+	<script src="../../asset/plugins/chart/chartjs-plugin-datalabels.min.js"></script>
+
+	<!-- I.N.UIX Components -->
+	<script src="../../asset/_common/js/datepicker.js"></script>
+	<script src="../../asset/_common/js/ui-global.js"></script>
+
+	<!-- TODO : SyntaxHighlighter - 개발시 반드시 삭제 -->
+	<script src="../../asset/plugins/syntaxhighlighter/shCore.js"></script>
+	<script src="../../asset/plugins/syntaxhighlighter/shBrushXml.js"></script>
+	<script src="../../asset/plugins/syntaxhighlighter/shBrushCss.js"></script>
+	<script src="../../asset/plugins/syntaxhighlighter/shBrushJScript.js"></script>
+
+	<!-- 사이트 개별 스크립트 -->
+	<script src="../../asset/_guide/js/ui-html-guide.js"></script>
+
+	<script>
+		$(document).ready(function () {
+
+			// slick.js
+			$('.default-image-slider').not('.slick-initialized').slick({
+				// variableWidth: true,
+				autoplay: true,
+				autoplaySpeed: 2000,
+				speed: 1000,
+				slidesToShow: 3,
+				slidesToScroll: 1,
+				infinite: true,
+				arrows: true,
+				dots: true,
+				accessibility: false,
+				adaptiveHeight: true,
+				responsive: [{
+					breakpoint: 768,
+					settings: {
+						slidesToShow: 1,
+						arrows: false,
+					}
+				}],
+			});
+
+			// easy-pie-chart.js
+			$('.easy-pie-chart').each(function () {
+				// [응용] 80% 초과시 컬러 별도 지정
+				if (Math.round($(this).data('percent')) > 80) {
+					$(this).children('.percent').addClass('text-primary');
+					$(this).data('barColor', '#0094fb');
+				}
+			});
+
+			$('.easy-pie-chart').easyPieChart({
+				barColor: '#999',
+				trackColor: '#e7e7e7',
+				scaleColor: false,
+				lineCap: 'round',
+				lineWidth: 5,
+				size: 60,
+				animate: 1000,
+				onStep: function (from, to, percent) {
+					$(this.el).find('.percent').text(Math.round(percent));
+				},
+			});
+
+			// chart.js
+			Chart.defaults.global.defaultFontSize = 14;
+			Chart.defaults.global.defaultFontFamily =
+				'"Noto Sans KR", "Noto Sans CJK KR", "NotoSansKR", "malgun gothic", Arial, "sans-serif"';
+
+			var ctx = document.getElementById('myChart1');
+			var myChart1 = new Chart(ctx, {
+				type: 'bar',
+				data: {
+					labels: ['옵션1', '옵션2', '옵션3', 'Green', 'Purple', 'Orange'],
+					datasets: [{
+						label: '# of Votes',
+						data: [12, 19, 3, 5, 2, 3],
+						backgroundColor: [
+							'rgba(255, 99, 132, 0.2)',
+							'rgba(54, 162, 235, 0.2)',
+							'rgba(255, 206, 86, 0.2)',
+							'rgba(75, 192, 192, 0.2)',
+							'rgba(153, 102, 255, 0.2)',
+							'rgba(255, 159, 64, 0.2)'
+						],
+						borderColor: [
+							'rgba(255, 99, 132, 1)',
+							'rgba(54, 162, 235, 1)',
+							'rgba(255, 206, 86, 1)',
+							'rgba(75, 192, 192, 1)',
+							'rgba(153, 102, 255, 1)',
+							'rgba(255, 159, 64, 1)'
+						],
+						borderWidth: 1
+					}]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false, // https://ncube.net/fix-chartjs-graph-display-error-in-ie11/
+					scales: {
+						yAxes: [{
+							ticks: {
+								beginAtZero: true
+							}
+						}]
+					},
+					plugins: {
+						datalabels: {
+							display: false,
+						}
+					}
+				}
+			});
+
+			var ctx = document.getElementById('myChart2').getContext('2d');
+			var labels = ['옵션1', '옵션2', '옵션3', '옵션4'];
+			var chart = new Chart(ctx, {
+				// The type of chart we want to create
+				type: 'pie',
+
+				// The data for our dataset
+				data: {
+					labels: labels,
+					datasets: [{
+						data: [17.7, 11.5, 63.6, 7.2],
+						backgroundColor: [
+							'rgb(234, 103, 103)',
+							'rgb(255, 138, 0)',
+							'rgb(75, 128, 235)',
+							'rgb(60, 182, 146)'
+						]
+					}], // first dataset
+				},
+
+				// Configuration options go here
+				options: {
+
+					responsive: true,
+					maintainAspectRatio: false, // https://ncube.net/fix-chartjs-graph-display-error-in-ie11/
+					legend: {
+						position: (window.innerWidth >= 767) ? 'left' : 'top',
+						align: (window.innerWidth >= 767) ? 'left' : 'center',
+						labels: {
+							boxWidth: 20,
+						},
+
+					},
+					plugins: {
+						datalabels: {
+							color: '#ffffff',
+							anchor: 'center',
+							align: 'end',
+							formatter: function (value) {
+								return value + '%';
+							},
+						}
+					}
+				}
+			});
+
+		});
+	</script>
+</head>
+
+<body>
+	<div class="wrapper wrapper-html-guide">
+		<aside id="guide-nav">
+			<h1 class="sidebar-title text-title">
+				<a href="index.html">${프로젝트명} UI</a>
+				<a href="#;" class="btn btn-collaspe d-down-md">
+					<span class="open">
+						<i class="ico ico-xs-menu">열기</i>
+					</span>
+					<span class="close">
+						<i class="ico ico-times-white">닫기</i>
+					</span>
+				</a>
+			</h1>
+			<h2 class="nav-title">플러그인</h2>
+			<nav class="component-list"></nav>
+			<div>
+				<ul class="etc-link">
+					<li>
+						<a href="index.html">
+							<i class="ico ico-chevron-left-sm-gray"></i>
+							<span>컴포넌트</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+		<article id="content">
+			<div class="content-header">
+				<h3 class="content-title">${프로젝트명} UI 플러그인</h3>
+			</div>
+			<div class="content-body">
+				<div class="container">
+					<div class="guide-section">
+						<h3 class="title-guide" id="slick">
+							슬라이더
+							<small>slick.js</small>
+						</h3>
+						<a href="https://kenwheeler.github.io/slick/" target="_blank" title="새창">
+							https://kenwheeler.github.io/slick/
+							<i class="ico ico-external-link ml-1"></i>
+						</a>
+
+						<div class="default-image-slider mt-md">
+							<div class="item">
+								<img src="../../asset/_common/images/_sample.jpg" alt="">
+							</div>
+							<div class="item">
+								<img src="../../asset/_common/images/_sample.jpg" alt="">
+							</div>
+							<div class="item">
+								<img src="../../asset/_common/images/_sample.jpg" alt="">
+							</div>
+							<div class="item">
+								<img src="../../asset/_common/images/_sample.jpg" alt="">
+							</div>
+							<div class="item">
+								<img src="../../asset/_common/images/_sample.jpg" alt="">
+							</div>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="imagemap">
+							반응형 이미지 맵
+							<small>rwdImageMaps.js</small>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list1">
+								<li>마크업에 usemap 속성 사용시 이미지 비율에 따라 자동 반응형 적용됨 (별도의 추가적인 class는 불필요)</li>
+								<li>
+									온라인 이미지맵 생성기 -
+									<a href="https://www.image-map.net/" target="_blank" title="새창"
+										class="text-primary link">https://www.image-map.net/</a>
+								</li>
+							</ul>
+						</div>
+						<div class="mt-md text-center">
+							<img src="../../asset/_common/images/_imagemap.png" alt="" usemap="#image-map">
+							<map name="image-map">
+								<area alt="1" title="1" href="#;" coords="164,187,309,247" shape="rect" onclick="alert('버튼1');">
+								<area alt="2" title="2" href="#;" coords="365,260,510,318" shape="rect" onclick="alert('버튼2');">
+								<area alt="3" title="3" href="#;" coords="291,365,436,423" shape="rect" onclick="alert('버튼3');">
+							</map>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="easy-pie-chart">easy pie chart</h3>
+						<a href="https://github.com/rendro/easy-pie-chart#easy-pie-chart" target="_blank" title="새창" class="link">
+							https://github.com/rendro/easy-pie-chart#easy-pie-chart
+							<i class="ico ico-external-link ml-1"></i>
+						</a>
+						<ul class="score-list">
+							<li>
+								<strong>차트1</strong>
+								<div class="easy-pie-chart" data-percent="85">
+									<span class="percent"></span>
+								</div>
+							</li>
+							<li>
+								<strong>차트2</strong>
+								<div class="easy-pie-chart" data-percent="85">
+									<span class="percent"></span>
+								</div>
+							</li>
+							<li>
+								<strong>차트3</strong>
+								<div class="easy-pie-chart" data-percent="70">
+									<span class="percent"></span>
+								</div>
+							</li>
+							<li>
+								<strong>차트4</strong>
+								<div class="easy-pie-chart" data-percent="70">
+									<span class="percent"></span>
+								</div>
+							</li>
+						</ul>
+						<pre class="brush:html" title="HTML">
+						&lt;div class="chart" data-percent="85"&gt;
+							&lt;span class="percent"&gt;&lt;/span&gt;
+						&lt;/div&gt;</pre>
+						<pre class="brush:js" title="js">
+						&lt;script src="../../asset/plugins/easypiechart/jquery.easypiechart.min.js"&gt;&lt;/script&gt;
+						&lt;script&gt;					
+							$('.easy-pie-chart').easyPieChart({
+								barColor: '#999',
+								trackColor: '#e7e7e7',
+								scaleColor: false,
+								lineCap: 'round',
+								lineWidth: 5,
+								size: 60,
+								animate: 1000,
+								onStep: function (from, to, percent) {
+									$(this.el).find('.percent').text(Math.round(percent));
+								},
+							});
+						&lt;/script&gt;</pre>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="chartjs">
+							Chart.js
+						</h3>
+						<div class="box-html-guide mb-3">
+							<ul class="list list1 mt-sm">
+								<li>
+									<a href="https://www.chartjs.org/docs/2.9.3/charts/" title="새창" target="_blank">
+										https://www.chartjs.org/docs/2.9.3/charts/
+										<i class="ico ico-external-link ml-1"></i>
+									</a>
+								</li>
+								<li>Chart.js 3.x 버전부터 IE를 지원하지 않아 2.9.3 버전 사용</li>
+								<li>canvas 기반이므로 별도의 CSS 파일이 존재하지 않으며 스크립트만으로 스타일 제어</li>
+							</ul>
+						</div>
+
+						<div class="box" style="height: 300px;">
+							<canvas id="myChart1">
+								<!-- [웹접근성] 대체콘텐츠 -->
+								<ul class="sr-only">
+									<li>옵션1 : 12</li>
+									<li>옵션2 : 19</li>
+									<li>옵션3 : 3</li>
+									<li>옵션4 : 5</li>
+									<li>옵션5 : 2</li>
+								</ul>
+							</canvas>
+						</div>
+
+						<pre class="brush:html" title="HTML">
+							&lt;!-- 사이즈 지정시 IE 호환성 이슈 발생하지 않도록 감싸는 컨테이너에 크기지정 사용 권장 --&gt;
+							&lt;div style="width: 100%; height: 300px;"&gt;
+								&lt;canvas id="myChart1"&gt;
+									&lt;!-- [웹 접근성] canvas 내부에 마크업으로 대체콘텐츠 마크업 필수 --&gt;
+									&lt;div class="sr-only"&gt;대체콘텐츠&lt;/div&gt;
+								&lt;/canvas&gt;
+							&lt;/div&gt;</pre>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="chart.js-plugin-datalabels">
+							Chart.js-plugin
+						</h3>
+						<div class="box-html-guide mb-3">
+							<ul class="list list1 mt-sm">
+								<li>
+									<a href="https://v0_7_0--chartjs-plugin-datalabels.netlify.app" title="새창" target="_blank">
+										https://v0_7_0--chartjs-plugin-datalabels.netlify.app
+										<i class="ico ico-external-link ml-1"></i>
+									</a>
+								</li>
+								<li>Chart.js 데이터 값 노출 옵션 사용하기 위한 추가 플러그인</li>
+								<li>Chart.js 2.9.3 버전의 호환성으로 chartjs-plugin-datalabels v0.7.0 사용</li>
+							</ul>
+						</div>
+
+						<div class="box" style="height: 300px;">
+							<canvas id="myChart2">
+								<!-- [웹접근성] 대체콘텐츠 -->
+								<ul class="sr-only">
+									<li>옵션1 : 17.7</li>
+									<li>옵션2 : 11.5</li>
+									<li>옵션3 : 63.6</li>
+									<li>옵션4 : 7.2</li>
+								</ul>
+							</canvas>
+						</div>
+
+						<pre class="brush:html" title="js">
+							&lt;script src="../../asset/plugins/chart/chartjs-plugin-datalabels.min.js"&gt;&lt;/script&gt;
+							&lt;script&gt;
+								...
+									option {
+										// 반응형 조건 예시
+										legend: {
+											position: (window.innerWidth >= 767) ? 'left' : 'top', // 삼항연산자 좌측 Desktop&Tablet , 우측 Mobile
+											align: (window.innerWidth >= 767) ? 'left' : 'center',
+										}
+
+										// 플러그인 옵션 예시
+										plugins: {
+											datalabels: {
+												color: '#ffffff', // 컬러 지정
+												anchor: 'center', // 차트 내부 데이터 위치 지정
+												align: 'end', // 데이터 위치 지정
+												formatter: function (value) {
+													return value + '%';
+												}, // 데이터 + 수식값 지정
+											}
+										}
+									}
+								...
+							&lt;/script&gt;</pre>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+</body>
+
+</html>

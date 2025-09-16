@@ -1,0 +1,280 @@
+/* Slider */
+
+.slick-slider {
+	position: relative;
+	display: block;
+	box-sizing: border-box;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	// -ms-touch-action: pan-y; // 모바일 pinch zoom 막힘 현상 제거
+	// touch-action: pan-y;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.slick-list {
+	position: relative;
+	overflow: hidden;
+	display: block;
+	margin: 0;
+	padding: 0;
+
+	&:focus {
+		outline: none;
+	}
+
+	&.dragging {
+		cursor: pointer;
+		cursor: hand;
+	}
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+	-webkit-transform: translate3d(0, 0, 0);
+	-moz-transform: translate3d(0, 0, 0);
+	-ms-transform: translate3d(0, 0, 0);
+	-o-transform: translate3d(0, 0, 0);
+	transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+	position: relative;
+	left: 0;
+	top: 0;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+
+	&:before,
+	&:after {
+		content: "";
+		display: table;
+	}
+
+	&:after {
+		clear: both;
+	}
+
+	.slick-loading & {
+		visibility: hidden;
+	}
+}
+
+.slick-slide {
+	float: left;
+	height: 100%;
+	min-height: 1px;
+
+	[dir="rtl"] & {
+		float: right;
+	}
+
+	img {
+		display: block;
+	}
+
+	&.slick-loading img {
+		display: none;
+	}
+
+	display: none;
+
+	&.dragging img {
+		pointer-events: none;
+	}
+
+	.slick-initialized & {
+		display: block;
+	}
+
+	.slick-loading & {
+		visibility: hidden;
+	}
+
+	.slick-vertical & {
+		display: block;
+		height: auto;
+		border: 1px solid transparent;
+	}
+}
+
+.slick-arrow.slick-hidden {
+	display: none;
+}
+
+.default-image-slider {
+	&:not(.slick-slider) {
+		display: flex;
+		margin: -10px;
+		overflow: hidden;
+
+		.item {
+			flex: 0 0 auto;
+			width: calc(33.33333% - 20px);
+			margin: 10px;
+		}
+	}
+
+	.slick-list {
+		margin: 0 -10px;
+	}
+
+	.slick-slide {
+		margin: 0 10px;
+	}
+
+	.slick-arrow {
+		position: absolute;
+		@include ir;
+		z-index: 10;
+		top: 50%;
+		width: 50px;
+		height: 50px;
+		margin: -57px -25px 0;
+		box-shadow: 0 5px 9px rgba(#000, 0.17);
+		transition-duration: 0.2s;
+		background-color: #949494;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-size: auto 18px;
+		border-radius: 50%;
+
+		&:hover,
+		&:focus {
+			background-color: $darkprimary;
+		}
+	}
+
+	.slick-prev {
+		left: 0;
+		background-image: url(#{$url-img-common}/ico-chevron-left-sm-white.png);
+	}
+
+	.slick-next {
+		right: 0;
+		background-image: url(#{$url-img-common}/ico-chevron-right-sm-white.png);
+	}
+
+	.slick-dots {
+		margin-top: 23px;
+		display: flex !important;
+		align-content: center;
+		justify-content: center;
+
+		$size: 10px;
+		$gutter: 10px;
+
+		.slick-active {
+			button {
+				// width: $size * 2 + $gutter;
+
+				&:before {
+					// width: $size * 2;
+					border-color: $primary;
+					background-color: $primary;
+				}
+			}
+		}
+
+		button {
+			position: relative;
+			display: block;
+			text-indent: -9999px;
+			width: $size + $gutter;
+			height: $size + $gutter;
+			margin-top: -3px;
+			margin-bottom: -3px;
+
+			&:before {
+				content: "";
+				display: block;
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				width: $size;
+				height: $size;
+				border: 2px solid #c1c1c1;
+				// margin: -0.5 * $size 0 0 -0.5 * $size;
+				border-radius: 0.5 * $size;
+				border-radius: 50%;
+				background-color: $white;
+				transform: translate3d(-50%, -50%, 0);
+			}
+		}
+	}
+
+	.item {
+		vertical-align: top;
+
+		a {
+			display: block;
+
+			&:hover,
+			&:focus {
+				.subject {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		img {
+			width: 100%;
+			height: auto;
+			vertical-align: top;
+		}
+	}
+
+	.thumb {
+		display: block;
+		position: relative;
+		padding-top: 78.86178%;
+		border-radius: 10px;
+		overflow: hidden;
+
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			max-width: none;
+			height: 100%;
+			width: 100%;
+			object-fit: cover;
+		}
+	}
+
+	.subject {
+		@include text-ellipsis(2, 18px);
+		display: block;
+		margin-top: 13px;
+		padding: 0 10px;
+		font-size: $font-size-lg;
+		letter-spacing: -0.5px;
+	}
+
+	&.card-news-slider {
+		max-width: 600px;
+		margin: $spacing-md auto;
+	}
+
+	@include media-breakpoint-up(lg) {
+		&.slick-slider {
+			.slick-list {
+				margin: -10px;
+			}
+
+			.slick-slide {
+				margin: 10px;
+			}
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		.subject {
+			height: 36px;
+		}
+	}
+}

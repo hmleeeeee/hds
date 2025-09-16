@@ -1,0 +1,43 @@
+body {
+	min-width: 360px;
+	background-color: var(--krds-light-color-background-gray-subtler);
+
+	@include media-breakpoint-up(lg) {
+		// overflow-y: hidden;
+	}
+}
+
+@include color-mode($mode: high-contrast) {
+	//모드 설정
+	$mode-setting: high-contrast;
+
+	body {
+		background-color: var(--krds-high-contrast-color-background-gray-subtler);
+	}
+}
+.wrapper {
+	position: relative;
+	overflow: hidden;
+	min-height: 100vh;
+
+	@include media-breakpoint-up(lg) {
+		// min-width: calc(map-get($grid-breakpoints, xl) + 228px);
+		#content {
+			overflow-x: auto;
+			// overflow-y: hidden;
+			// max-height: 100vh;
+		}
+	}
+	@include media-breakpoint-down(md) {
+		width: 100%;
+
+		overflow-x: auto;
+		min-width: 100%;
+
+		#content {
+			margin-top: 64px;
+			margin-left: 0;
+		}
+		// min-width: map-get($grid-breakpoints, xl);
+	}
+}

@@ -1,0 +1,111 @@
+//svg img
+@mixin svg-icon($size: var(--krds-icon--size-large), $mode: light, $effect: null) {
+	display: inline-flex;
+	@include square($size);
+	background-color: var(--krds-#{$mode}-color-text-basic);
+	@if ($effect == "pure") {
+		//mask 효과 없이 디자인된 svg 그대로 사용
+		background-color: transparent !important;
+	}
+	forced-color-adjust: none;
+	// @media (forced-colors: active) {
+	// }
+}
+
+//svg icon setting
+@mixin icon-set($name, $effect: null) {
+	-webkit-mask-repeat: no-repeat;
+	-webkit-mask-position: center center;
+	-webkit-mask-size: contain;
+	mask-repeat: no-repeat;
+	mask-position: center center;
+	mask-size: contain;
+	-webkit-mask-image: url(#{$url}/assets/img/component/icon/#{$name}.svg);
+	mask-image: url(#{$url}/assets/img/component/icon/#{$name}.svg);
+	@if ($effect == "pure") {
+		//mask 효과 없이 디자인된 svg 그대로 사용
+		-webkit-mask-image: none;
+		mask-image: none;
+		background-image: url(#{$url}/assets/img/component/icon/#{$name}.svg);
+		background-color: transparent !important;
+		background-size: contain;
+		background-repeat: no-repeat;
+		-webkit-mask: none;
+		mask: none;
+	}
+}
+
+// PNG/JPG 이미지 기반
+@mixin ir {
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover;
+	vertical-align: middle;
+	overflow: hidden;
+
+	text-indent: -9999px;
+	overflow: hidden;
+	text-align: left;
+}
+
+// 1:1 사이즈 아이콘 : PC 전용
+@mixin ico($name, $w: 25px, $h: 25px, $url: #{$url-img-common}) {
+	.ico-#{$name} {
+		width: $w;
+		height: $h;
+		line-height: $h;
+		background-image: url("#{$url}/ico-#{$name}.png");
+	}
+}
+
+// PC 모바일 겸용 아이콘 : 이미지 2배수 저장 @2x
+@mixin ico2x($name, $w: 25px, $h: 25px, $url: #{$url-img-common}) {
+	.ico-#{$name} {
+		width: $w;
+		height: $h;
+		line-height: $h;
+		background-image: url("#{$url}/ico-#{$name}@2x.png");
+	}
+}
+
+// PC 모바일 이미지 별도 저장시 : 모바일 이미지만 @2x
+@mixin ico2($name, $w: 25px, $h: 25px, $w-m: $w, $h-m: $h, $url: #{$url-img-common}) {
+	@include media-breakpoint-up(lg) {
+		.ico-#{$name} {
+			width: $w;
+			height: $h;
+			line-height: $h;
+			background-image: url("#{$url}/ico-#{$name}.png");
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		.ico-#{$name} {
+			width: $w-m;
+			height: $h-m;
+			line-height: $h-m;
+			background-image: url("#{$url}/ico-#{$name}@2x.png");
+		}
+	}
+}
+
+@mixin ico-lg($name) {
+	@include media-breakpoint-up(lg) {
+		.ico-#{$name} {
+			width: 60px;
+			height: 60px;
+			line-height: 60px;
+			background-image: url("#{$url}/ico-lg-#{$name}.png");
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		.ico-#{$name} {
+			width: 40px;
+			height: 40px;
+			line-height: 40px;
+			background-image: url("#{$url}/ico-lg-#{$name}@2x.png");
+		}
+	}
+}

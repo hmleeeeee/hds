@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>현재화면명 | 메뉴명 | 사이트명</title>
+		<link rel="shortcut icon" href="../../assets/img/_common/favicon.png" />
+
+		<!-- style -->
+		<link rel="stylesheet" href="../../assets/plugins/jqGrid-4.7.0/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="../../assets/plugins/ztree/zTreeStyle.css" />
+		<link rel="stylesheet" href="../../assets/plugins/sweetalert/custom-swal.css" />
+		<link rel="stylesheet" href="../../assets/css/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+		<!-- JavaScript -->
+		<script src="../../assets/js/_common/jquery-1.12.4.min.js"></script>
+		<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+		<!-- jqGrid Plugins -->
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/i18n/grid.locale-kr.js"></script>
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/minified/jquery.jqGrid.min.js"></script>
+
+		<!-- ztree Plugins -->
+		<script src="../../assets/plugins/ztree/jquery.ztree.core.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.excheck.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.exedit.js"></script>
+		<script src="../../assets/plugins/ztree/zTreeCustom.js"></script>
+
+		<!-- Plugins -->
+		<script src="../../assets/plugins/slick/slick.min.js"></script>
+		<script src="../../assets/js/_common/datepicker.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="../../assets/js/component/ui-script.js"></script>
+		<script src="../../assets/js/_common/ui-global.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+		<!-- TODO : 개발시 반드시 삭제, 레이아웃 세팅 JS -->
+		<script src="../../assets/_guide/js/ui-layout-setting.js"></script>
+
+		<!-- 페이지 개별 스크립트 -->
+		<script>
+			$(document).ready(function () {
+				const boxUsers = document.querySelectorAll(".box-user");
+
+				// 각 box-user 요소에 클릭 이벤트 리스너 추가
+				boxUsers.forEach(function (box) {
+					box.addEventListener("click", function () {
+						// open 클래스 토글 (있으면 제거, 없으면 추가)
+						this.classList.toggle("open");
+					});
+				});
+
+				$(".slick-slider").slick({
+					dots: true,
+					infinite: true,
+					speed: 500,
+					slidesToShow: 1,
+					slidesToScroll: 1,
+					autoplay: true,
+					autoplaySpeed: 3500,
+					vertical: false,
+					accessibility: false,
+					arrows: true,
+					focusOnSelect: false,
+					adaptiveHeight: true,
+					responsive: [
+						{
+							breakpoint: 768,
+							settings: {
+								arrows: false // 모바일에서 화살표 숨기기
+							}
+						}
+					]
+				});
+			});
+
+			// z-tree : zNodes 추가 옵션
+			// open: true : 기본 view가 오픈상태로 노출
+			// disabled: true : 비활성화 메뉴의 경우
+			// isParent: true : 하위 메뉴가 없는 상태에서 폴더형식의 경우
+
+			// iconskin 변경
+			// ico_docu, ico-page-md : 일반페이지 (기본), 지정되지 않은 종류의 페이지
+			// ico_open, ico_close, ico-folder-md : 폴더 (기본)
+			// ico-site-md : 사용자사이트 페이지
+			// ico-editpage-md :웹콘텐츠 관리 페이지
+			// ico-pagepgm-md : pgm 페이지
+			// ico-pagebbs-md : bbs 페이지
+			// ico-newwindow-md : 새창 (target: "_blank" 속성 추가 필요)
+			// ico-code-md : 코드 페이지
+
+			var zNodes = [
+				{ id: 1, pId: 0, name: "사이트 메뉴명1", open: true },
+				{ id: 11, pId: 1, name: "사이트 메뉴명1", open: true, disabled: true },
+				{ id: 111, pId: 11, name: "사이트 메뉴명1", disabled: true },
+				{ id: 112, pId: 11, name: "사이트 메뉴명1" },
+				{ id: 113, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md" },
+				{ id: 114, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md" },
+				{ id: 115, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md" },
+				{ id: 116, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md" },
+				{ id: 117, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md" },
+				{ id: 118, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md", disabled: true },
+				{ id: 119, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md", disabled: true },
+				{ id: 1110, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md", disabled: true },
+				{ id: 1111, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md", disabled: true },
+				{ id: 1112, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md", disabled: true },
+				{ id: 12, pId: 1, name: "길어질 경우 가로 스크롤이 생성됩니다. 길어질 경우 가로 스크롤이 생성됩니다." },
+				{ id: 121, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 122, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 2, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 21, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 211, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 212, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 22, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 221, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 222, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 23, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 231, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 232, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 3, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 4, pId: 0, name: "사이트 메뉴명1" }
+			];
+
+			// zTree onClick 이벤트
+			window.zTreeOnClick = function (event, treeId, treeNode) {
+				// zTree 노드 클릭시 이벤트 사용자 정의
+				alert(treeNode ? treeNode.tId : "root");
+			};
+
+			window.zTreeBeforeRename = function (treeId, treeNode, newName, isCancel) {
+				// zTree 노드 네이밍 변경 시 기존 네임
+				console.log(treeId, treeNode, newName, isCancel);
+			};
+
+			window.zTreeRename = function (e, treeId, treeNode, isCancel) {
+				// zTree 노드 네이밍 변경 시 사용자 정의
+				console.log(e, treeId, treeNode, isCancel);
+			};
+
+			// [노드 생성시 필수] zTree 노드 생성시 기준 네이밍 변경
+			window.zTreeCreateNewNode = function (zTree, treeNode, isParent) {
+				const nameFunc = function () {
+					return "이름을 입력해주세요.";
+				};
+				return createNewNode(zTree, treeNode, isParent, nameFunc);
+			};
+
+			function removeNodeId(treeNode) {
+				// zTree 삭제된 노드 확인
+				console.log("삭제된 노드 확인: ", treeNode);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="loading-overlay">
+			<div class="loading-spin"></div>
+			<p>Loading...</p>
+		</div>
+		<div class="wrapper">
+			<div id="container" class="user-page">
+				<aside id="sidebar"></aside>
+				<article id="content">
+					<div class="content-header">
+						<!-- <h2 class="content-title">화면명</h2> -->
+						<header class="content-header"></header>
+					</div>
+					<div class="content-body">
+						<!-- 본문 영역 -->
+						<nav class="krds-breadcrumb-wrap" aria-label="현재 경로" id="breadcrumb"></nav>
+
+						<div class="container">
+							<div class="card card-user">
+								<div class="card-body">
+									<div class="box-area-top">
+										<!-- .box-user에 .open 클래스 추가시 박스 늘어남 
+										 			현재 간단한 스크립트로 .box-user 클릭 이벤트로 .open 클래스 제어-->
+
+										<div class="box box-user _open">
+											<div class="box-title">
+												<span class="icon-box">
+													<i class="svg-icon ico-map"></i>
+												</span>
+												<span>
+													<strong>어디를</strong>
+													<span>방문하십니까?</span>
+												</span>
+											</div>
+											<div class="search-wrap">
+												<input
+													id="searchlocation"
+													name="searchlocation"
+													type="text"
+													class="krds-input form-search"
+													title="방문장소 검색창"
+													placeholder="방문장소를 검색하세요"
+												/>
+												<button type="button" class="btn btn-box-search">
+													<i class="svg-icon ico-box-sch"></i>
+													<span class="sr-only">검색</span>
+												</button>
+											</div>
+
+											<div class="box-content">
+												<ul class="result-list">
+													<li><i class="svg-icon ico-location"></i><span>방문동</span></li>
+													<li><i class="svg-icon ico-location"></i><span>방문장소명 </span></li>
+													<li><i class="svg-icon ico-location"></i><span>방문동</span></li>
+													<li><i class="svg-icon ico-location"></i><span>방문동</span></li>
+													<li><i class="svg-icon ico-location"></i><span>방문동</span></li>
+													<li><i class="svg-icon ico-location"></i><span>방문동</span></li>
+													<li><i class="svg-icon ico-location"></i><span>방문동</span></li>
+												</ul>
+											</div>
+											<span class="box-arrow">
+												<i class="svg-icon ico-box-arrow-right"></i>
+											</span>
+										</div>
+										<div class="box box-user open">
+											<div class="box-title">
+												<span class="icon-box">
+													<i class="svg-icon ico-human"></i>
+												</span>
+												<span>
+													<strong>누구를</strong>
+													<span>방문하십니까?</span>
+												</span>
+											</div>
+											<div class="search-wrap">
+												<input
+													id="text_05"
+													name="text_05"
+													type="text"
+													class="krds-input form-search"
+													title="임직원 검색창"
+													placeholder="임직원 명"
+												/>
+												<button type="button" class="btn btn-box-search">
+													<i class="svg-icon ico-box-sch"></i>
+													<span class="sr-only">검색</span>
+												</button>
+											</div>
+
+											<div class="box-content">
+												<ul class="result-list">
+													<li>
+														<i class="svg-icon ico-user-sm"></i>
+														<div class="info-wrap">
+															<span>홍길동</span>
+															<span>010-1234-1234</span>
+															<span>경영지원팀</span>
+														</div>
+													</li>
+													<li>
+														<i class="svg-icon ico-user-sm"></i>
+														<div class="info-wrap">
+															<span>홍길동</span>
+															<span>010-1234-1234</span>
+															<span>경영지원팀</span>
+														</div>
+													</li>
+													<li>
+														<i class="svg-icon ico-user-sm"></i>
+														<div class="info-wrap">
+															<span>홍길동</span>
+															<span>010-1234-1234</span>
+															<span>경영지원팀</span>
+														</div>
+													</li>
+													<li>
+														<i class="svg-icon ico-user-sm"></i>
+														<div class="info-wrap">
+															<span>가나다길동</span>
+															<span>010-1234-1234</span>
+															<span>길어질 경우 열드롭 됩니다.길어질 경우 열드롭 됩니다.</span>
+														</div>
+													</li>
+												</ul>
+											</div>
+											<span class="box-arrow">
+												<i class="svg-icon ico-box-arrow-right"></i>
+											</span>
+										</div>
+										<div class="box box-user">
+											<div class="box-title">
+												<span class="icon-box">
+													<i class="svg-icon ico-alarm"></i>
+												</span>
+												<span>
+													<strong>언제</strong>
+													<span>방문하십니까?</span>
+												</span>
+											</div>
+											<input
+												type="text"
+												class="krds-input small form-datepicker"
+												title="날짜선택"
+												placeholder="날짜를 선택하세요"
+											/>
+
+											<span class="box-arrow">
+												<i class="svg-icon ico-box-arrow-right"></i>
+											</span>
+										</div>
+									</div>
+
+									<div class="box-area-mid">
+										<div class="left">
+											<div class="card-header">
+												<p class="card-title">방문자 정보를 입력해주세요.</p>
+											</div>
+											<!-- table -->
+											<div class="krds-table-wrap">
+												<table class="tbl row type02 data">
+													<caption>
+														방문자 정보 입력에 대한 표이며 방문신청, 이름, 회사, 휴대폰, 직책 정보 입력
+													</caption>
+													<tbody>
+														<tr>
+															<th scope="row">방문신청</th>
+															<td colspan="3">
+																<button
+																	type="button"
+																	class="krds-btn small secondary open-modal"
+																	data-target="modal_sample_02"
+																>
+																	주차/반입물품 입력
+																</button>
+															</td>
+														</tr>
+
+														<tr>
+															<th scope="row">이름</th>
+															<td>
+																<input type="text" id="text_01" class="krds-input small" value="홍길동" />
+															</td>
+															<th scope="row">회사</th>
+															<td>
+																<input type="text" id="text_02" class="krds-input small" value="해성DS" />
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">휴대폰</th>
+															<td><input type="text" id="text_03" class="krds-input small" value="010-1111-2222" /></td>
+															<th scope="row">직책</th>
+															<td><input type="text" id="text_04" class="krds-input small" value="대리" /></td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<!-- //table -->
+											<div class="card-header">
+												<p class="card-title">방문 목적은 무엇입니까?</p>
+											</div>
+											<div class="purpose-wrap">
+												<ul class="purpose-list">
+													<li>
+														<input type="checkbox" id="meeting-checkbox" class="check-btn" checked />
+														<label for="meeting-checkbox" class="krds-btn small gray">회의</label>
+													</li>
+													<li>
+														<input type="checkbox" id="meeting-checkbox1" class="check-btn" />
+														<label for="meeting-checkbox1" class="krds-btn small gray">세미나</label>
+													</li>
+													<li>
+														<input type="checkbox" id="meeting-checkbox2" class="check-btn" />
+														<label for="meeting-checkbox2" class="krds-btn small gray">A/S</label>
+													</li>
+													<li>
+														<input type="checkbox" id="meeting-checkbox3" class="check-btn" />
+														<label for="meeting-checkbox3" class="krds-btn small gray">납품</label>
+													</li>
+													<li>
+														<input type="checkbox" id="meeting-checkbox4" class="check-btn" />
+														<label for="meeting-checkbox4" class="krds-btn small gray">공사</label>
+													</li>
+													<li>
+														<input type="checkbox" id="meeting-checkbox5" class="check-btn" />
+														<label for="meeting-checkbox5" class="krds-btn small gray">출하</label>
+													</li>
+													<li>
+														<input type="checkbox" id="meeting-checkbox6" class="check-btn" />
+														<label for="meeting-checkbox6" class="krds-btn small gray">반출</label>
+													</li>
+													<li>
+														<input type="checkbox" id="meeting-checkbox7" class="check-btn" />
+														<label for="meeting-checkbox7" class="krds-btn small gray">교육</label>
+													</li>
+													<li>
+														<input type="checkbox" id="meeting-checkbox8" class="check-btn" />
+														<label for="meeting-checkbox8" class="krds-btn small gray">VIP</label>
+													</li>
+													<li>
+														<input type="checkbox" id="meeting-checkbox9" class="check-btn" />
+														<label for="meeting-checkbox9" class="krds-btn small gray">전산실자업</label>
+													</li>
+													<li>
+														<input type="checkbox" id="meeting-checkbox10" class="check-btn" />
+														<label for="meeting-checkbox10" class="krds-btn small gray">기타</label>
+													</li>
+													<li>
+														<button type="button" class="btn-link">상세입력</button>
+													</li>
+												</ul>
+												<input
+													type="text"
+													id="text_06"
+													class="krds-input small"
+													placeholder="200자 이하로 입력해주세요"
+												/>
+												<div class="promise-wrap">
+													<button
+														type="button"
+														class="krds-btn small essential open-modal"
+														data-target="modal_sample_01"
+													>
+														[필수] 방문교육 및 서약 안내 <i class="svg-icon ico-arrow-right-danger"></i>
+													</button>
+													<span class="incomplete"> <i class="svg-icon ico-danger"></i>미완료</span>
+												</div>
+											</div>
+											<div class="btn-group-center">
+												<button type="submit" class="krds-btn large btn-appli">
+													신청하기<i class="svg-icon ico-arrow-right"></i>
+												</button>
+											</div>
+										</div>
+										<div class="right">
+											<div class="box box-notice">
+												<div class="box-title"><i class="svg-icon ico-notice-square"></i>공지사항</div>
+												<div class="box-text">
+													<strong>서비스 대상 사업장</strong>
+													<p>
+														현재 방문포탈을 통하여 신청이 가능한 사업장은 아래와 같습니다. 추후 방문 가능한 사업장은
+														지속 확대할 예정입니다.
+													</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- modal -->
+							<!-- modal-drag : 드래그 가능 -->
+							<div
+								id="modal_sample_01"
+								class="krds-modal modal-drag fade"
+								role="dialog"
+								aria-labelledby="tit_modal_sample_01"
+							>
+								<!-- modal-size : sm, md, lg, xl -->
+								<div class="modal-dialog">
+									<div class="modal-content">
+										<!-- modal title -->
+										<div class="modal-header">
+											<h2 id="tit_modal_sample_01" class="modal-title">[필수] 방문교육 및 서약 안내</h2>
+										</div>
+										<!-- //modal title -->
+										<!-- modal contents -->
+										<div class="modal-conts">
+											<div class="conts-area">
+												<div class="step-wrap">
+													<div>
+														<span class="on">1</span>
+														보안교육
+													</div>
+													<div>
+														<span>2</span>
+														보안교육
+													</div>
+												</div>
+												<div class="box box-info-modal">
+													<p>
+														당사는 개인정보보호법 제15조 등 관련법령에 따라 정보주체로부터 개인정보를 수집함에 있어,
+														아래의 내용을 안내하고 있습니다. 정보주체가 되는 이용자께서는 아래 내용을 자세히 읽어
+														보시고, 모든 내용을 이해하신 후에 동의여부를 결정하여 주시기 바랍니다.
+													</p>
+													<ol>
+														<li>
+															<strong>1. 개인정보의 수집 및 이용목적 </strong>
+															<p>관련 법 및 당사 규정에 따라 시행되는 공사, 용역의 수행을 위한 제반 관련서류 확인</p>
+														</li>
+														<li>
+															<strong>2. 수집하는 개인정보의 항목 </strong>
+															<dl>
+																<dt>ο 수집항목</dt>
+																<dd>
+																	- 개인정보 : 이름, 주소, 전화번호(휴대폰 포함), 소속 및 직위, 자동차등록번호,
+																	자동차종합보험 등
+																</dd>
+																<dd>- 고유식별정보 : 주민등록번호, 운전면허번호</dd>
+															</dl>
+														</li>
+														<li>
+															<strong>3. 개인정보 보유 및 이용기간 </strong>
+															<p>ο 개인정보 제공 후 5년간</p>
+														</li>
+													</ol>
+												</div>
+												<div class="agree-wrap">
+													<label class="krds-form-check" for="chk">
+														<input type="checkbox" name="chk" id="chk" />
+														<span class="label">선택</span>
+														<span class="descript"
+															>본인은 보안 교육의 모든 내용을 인지하였으며, 사업장 방문시 위 사항을 성실히
+															준수하겠습니다.</span
+														>
+													</label>
+												</div>
+												<button type="button" class="disagree close-modal">
+													본 교육 및 서약 내용에 동의하지 않습니다.
+												</button>
+											</div>
+										</div>
+										<!-- //modal contents -->
+										<!-- modal btn -->
+										<div class="modal-btn btn-wrap">
+											<button type="button" class="krds-btn medium primary close-modal">
+												다음 <i class="svg-icon ico-arrow-right"></i>
+											</button>
+										</div>
+										<!-- //modal btn -->
+										<!-- close button -->
+										<button type="button" class="krds-btn medium icon btn-close close-modal">
+											<span class="sr-only">닫기</span>
+											<i class="svg-icon ico-popup-close"></i>
+										</button>
+										<!-- //close button -->
+									</div>
+								</div>
+								<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+								<!-- <div class="modal-back"></div> -->
+							</div>
+							<!-- //modal -->
+
+							<!-- modal -->
+							<!-- modal-drag : 드래그 가능 -->
+							<div
+								id="modal_sample_02"
+								class="krds-modal modal-drag fade"
+								role="dialog"
+								aria-labelledby="tit_modal_sample_02"
+							>
+								<!-- modal-size : sm, md, lg, xl -->
+								<div class="modal-dialog modal-md">
+									<div class="modal-content">
+										<!-- modal title -->
+										<div class="modal-header">
+											<h2 id="tit_modal_sample_02" class="modal-title">주차 또는 반입하는 물품이 있습니까?</h2>
+										</div>
+										<!-- //modal title -->
+										<!-- modal contents -->
+										<div class="modal-conts">
+											<div class="conts-area">
+												<strong> 주차장 이용시 차량 번호를 입력하세요</strong>
+												<div>
+													<input
+														type="text"
+														id="text_07"
+														class="krds-input medium"
+														placeholder="12가1234 / 123가1234 / 지역123가1234"
+													/>
+													<p class="text-info">
+														외교 차량의 경우 번호 인식이 불가하니 12가1234 형식에 맞춰 임의 작성해 주세요.
+													</p>
+												</div>
+
+												<!-- table -->
+												<div class="krds-table-wrap">
+													<table class="tbl row type02 data">
+														<caption>
+															방문자 정보 입력에 대한 표이며 방문신청, 이름, 회사, 휴대폰, 직책 정보 입력
+														</caption>
+														<tbody>
+															<tr>
+																<th scope="row">반입물품</th>
+																<td>
+																	<input
+																		type="text"
+																		class="krds-input small form-datepicker"
+																		title="날짜선택"
+																		placeholder="날짜를 선택하세요"
+																	/>
+																</td>
+															</tr>
+															<tr>
+																<th scope="row">용도</th>
+																<td>
+																	<input
+																		type="text"
+																		id="text_09"
+																		class="krds-input full small"
+																		placeholder="용도를 입력해주세요"
+																	/>
+																</td>
+															</tr>
+															<tr>
+																<th scope="row">설명</th>
+																<td>
+																	<input
+																		type="text"
+																		id="text_10"
+																		class="krds-input full small"
+																		placeholder="설명을 입력해주세요"
+																	/>
+																</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+												<!-- //table -->
+											</div>
+										</div>
+										<!-- //modal contents -->
+										<!-- modal btn -->
+										<div class="modal-btn btn-wrap">
+											<button type="button" class="krds-btn medium primary close-modal">확인</button>
+										</div>
+										<!-- //modal btn -->
+										<!-- close button -->
+										<button type="button" class="krds-btn medium icon btn-close close-modal">
+											<span class="sr-only">닫기</span>
+											<i class="svg-icon ico-popup-close"></i>
+										</button>
+										<!-- //close button -->
+									</div>
+								</div>
+								<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+								<!-- <div class="modal-back"></div> -->
+							</div>
+							<!-- //modal -->
+
+							<!-- modal - 공지사항-->
+							<!-- modal-drag : 드래그 가능 -->
+							<div
+								id="tit_modal_sample_07"
+								class="krds-modal modal-drag fade auto-open"
+								role="dialog"
+								aria-labelledby="tit_modal_sample_07"
+							>
+								<!-- modal-size : sm, md, lg, xl -->
+								<div class="modal-dialog modal-md">
+									<div class="modal-content">
+										<!-- modal title -->
+										<div class="modal-header">
+											<h2 id="tit_modal_sample_06" class="modal-title">공지사항</h2>
+										</div>
+										<!-- //modal title -->
+										<!-- modal contents -->
+										<div class="modal-conts">
+											<div class="conts-area">
+												<div class="slick-container">
+													<div class="slick-slider">
+														<div>
+															<img src="../../assets/img/_common/test-2.jpg" alt="안전 공지사항 2" />
+														</div>
+														<div>
+															<img src="../../assets/img/_common/test-1.jpg" alt="안전 공지사항 1" />
+														</div>
+														<div>
+															<img src="../../assets/img/_common/bg-login.jpg" alt="안전 공지사항 3" />
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+										<!-- //modal contents -->
+										<!-- modal btn -->
+										<div class="modal-btn btn-wrap">
+											<button type="button" class="krds-btn medium tertiary close-modal today-close">
+												오늘 하루 닫기
+											</button>
+											<button type="button" class="krds-btn medium primary close-modal">닫기</button>
+										</div>
+										<!-- //modal btn -->
+										<!-- close button -->
+										<button type="button" class="krds-btn medium icon btn-close close-modal">
+											<span class="sr-only">닫기</span>
+											<i class="svg-icon ico-popup-close"></i>
+										</button>
+										<!-- //close button -->
+									</div>
+								</div>
+								<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+								<!-- <div class="modal-back"></div> -->
+							</div>
+							<!-- //modal -->
+						</div>
+
+						<!-- // 본문 영역 -->
+					</div>
+				</article>
+			</div>
+			<!-- <footer id="footer"></footer> -->
+		</div>
+	</body>
+</html>

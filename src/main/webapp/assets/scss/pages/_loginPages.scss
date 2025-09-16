@@ -1,0 +1,869 @@
+// /* 화면명1 */
+// .page-name-sample1 {
+// 	// TODO : 데스크탑 및 디바이스 전체 공통스타일 정의
+
+// 	@include media-breakpoint-up(lg) {
+// 		// TODO : 데스크탑 스타일 정의
+// 	}
+
+// 	@include media-breakpoint-down(md) {
+// 		// TODO : 태블릿 + 모바일 스타일 정의
+// 	}
+// }
+
+#container.login-page {
+	background-color: #000;
+	background-image: url(../img/_common/bg-login-full.png);
+	background-size: 1200px;
+	background-position: top 50% right -20px;
+	background-repeat: no-repeat;
+	@include media-breakpoint-down(md) {
+		background-image: url(../img/_common/bg-login.jpg);
+		background-size: 135%;
+		background-position: top 94px right -28px;
+	}
+}
+
+.login-page {
+	#content {
+		margin-left: 0;
+		margin-top: 0;
+	}
+
+	.login-area {
+		position: absolute;
+		top: 50%;
+		left: 960px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 80px;
+		transform: translateY(-50%) translateX(-82%);
+		text-align: center;
+		color: #fff;
+	}
+
+	.login-wrap {
+		width: 470px;
+	}
+
+	.login-card-tab {
+		margin-top: 24px;
+	}
+
+	.card {
+		padding: 22px;
+		border-top-left-radius: 0;
+		border-top-right-radius: 0;
+		background-color: #1e2124;
+		color: #e6e8ea;
+		padding-top: 16px;
+		min-height: 0;
+	}
+
+	.krds-tab-area {
+		gap: 0;
+	}
+
+	.tab-conts {
+		min-height: 0;
+	}
+
+	.text-wrap {
+		> strong {
+			display: block;
+			color: #f3f6f9;
+			font-size: 18px;
+			font-weight: 600;
+		}
+		> span {
+			color: #cdd1d5;
+			font-size: 13px;
+			font-weight: 400;
+		}
+	}
+
+	.login-title {
+		font-size: 36px;
+		font-weight: 600;
+		letter-spacing: 0.01em;
+		color: #f3f6f9;
+	}
+
+	.login-subtitle {
+		font-size: 16px;
+		font-weight: 400;
+		color: #cdd1d5;
+	}
+
+	.btn-login {
+		width: 100%;
+		margin-top: 26px;
+		font-weight: 600;
+		height: 44px;
+	}
+
+	.krds-btn {
+		&.btn-foot {
+			width: calc(50% - 6px);
+			gap: 4px;
+			background: var(--krds-mode-color-high-contrast-gray-70);
+			border-color: var(--krds-color-high-contrast-gray-60);
+			color: var(-krds-color-high-contrast-gray-20);
+			+ .btn-foot {
+				margin-left: 6px;
+			}
+		}
+	}
+
+	.ico-login-safe {
+		background-color: var(--krds-color-high-contrast-gray-40);
+	}
+	.ico-login-common {
+		background-color: var(--krds-color-high-contrast-gray-40);
+	}
+
+	.tab {
+		transform: translateY(1px);
+		width: 100%;
+		border-top-left-radius: 8px;
+		border-top-right-radius: 8px;
+		overflow: hidden;
+
+		> ul {
+			gap: 0;
+		}
+
+		li {
+			width: 50%;
+		}
+
+		.btn-tab {
+			display: flex;
+			align-items: center;
+			justify-content: start;
+			gap: 12px;
+			width: 100%;
+			height: auto;
+			text-align: left;
+			padding: 12px 16px;
+			background-color: #16181a;
+			border: none;
+			min-height: 75px;
+
+			&:not(:disabled):hover {
+				background-color: #2d2f30;
+				.ico-login-safe {
+					background-color: var(--krds-color-high-contrast-gray-0);
+					transition: var(--krds-transition-base);
+				}
+				.ico-login-common {
+					background-color: var(--krds-color-high-contrast-gray-0);
+					transition: var(--krds-transition-base);
+				}
+				.icon-box {
+					background-color: var(--krds-color-high-contrast-primary-50);
+					transition: var(--krds-transition-base);
+				}
+			}
+		}
+
+		.icon-box {
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			background-color: #1e2124;
+			border-radius: 3px;
+			padding: 8px;
+		}
+
+		.active {
+			.btn-tab {
+				background-color: #1e2124;
+			}
+			.icon-box {
+				background-color: var(--krds-color-high-contrast-primary-50);
+			}
+			.ico-login-safe {
+				background-color: var(--krds-color-high-contrast-gray-0);
+			}
+			.ico-login-common {
+				background-color: var(--krds-color-high-contrast-gray-0);
+			}
+		}
+	}
+
+	.copy {
+		width: 100%;
+		padding-top: 16px;
+		font-size: 12px;
+		letter-spacing: -0.01em;
+		line-height: 1.3;
+		color: #b1b8be;
+		text-align: center;
+		> span {
+			color: #b1cefb;
+		}
+	}
+
+	.login-form {
+		.form-group {
+			label {
+				font-size: 15px;
+				color: #e6e8ea;
+			}
+
+			+ .form-group {
+				margin-top: 12px;
+				gap: 6px;
+			}
+		}
+
+		.krds-input {
+			background: #16181a;
+			border-color: #464c53;
+			color: #e6e8ea;
+			font-size: 16px;
+			height: 44px;
+
+			&:focus {
+				border-color: var(--krds-input--color-border-active);
+			}
+		}
+	}
+
+	.login-options {
+		font-size: 13px;
+		color: #cdd1d5;
+		margin-top: 12px;
+
+		.login-link {
+			+ .login-link {
+				position: relative;
+				padding-left: 32px;
+
+				&::before {
+					position: relative;
+					top: 2px;
+					left: -18px;
+					display: inline-block;
+					content: "";
+					width: 1px;
+					height: 14px;
+					background-color: #33363d;
+				}
+			}
+		}
+	}
+
+	.login-footer {
+		margin-top: 24px;
+		padding-top: 24px;
+		border-top: 1px solid #33363d;
+	}
+
+	.title-wrap {
+		margin-bottom: 30px;
+		text-align: left;
+
+		.logo {
+			width: 124px;
+			height: 30px;
+		}
+
+		> p {
+			font-size: 46px;
+			font-weight: 600;
+			line-height: 1.3;
+			margin-top: 26px;
+			min-width: 308px;
+		}
+
+		> span {
+			margin-top: 8px;
+			font-size: 15px;
+			font-weight: 100;
+			line-height: 1.3;
+			letter-spacing: -0.02em;
+			color: rgba($color: #fff, $alpha: 0.65);
+		}
+	}
+
+	//본인인증 페이지
+	.identity-area {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 100%;
+		// height: calc(100vh - 16px);
+		margin-top: 10%;
+
+		.identity-card {
+			background-color: #1e2124;
+			border-radius: 8px;
+			max-width: 880px;
+			padding-right: 28px;
+			padding-left: 28px;
+		}
+
+		.identity-wrap {
+			display: flex;
+			align-items: start;
+			justify-content: center;
+			gap: 60px;
+
+			.left {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: 20px;
+				width: calc(50% - 20px);
+			}
+			.right {
+				width: calc(50% - 20px);
+			}
+
+			.login-form {
+				.form-group {
+					margin-top: 8px;
+					gap: 4px;
+				}
+
+				.krds-input {
+					height: 38px;
+				}
+			}
+
+			.box {
+				max-width: 500px;
+			}
+		}
+
+		.identity-title {
+			text-align: center;
+			font-size: 30px;
+			font-weight: 500;
+			color: #85c6ff;
+			padding-bottom: 20px;
+			padding-top: 8px;
+		}
+
+		.form-header {
+			text-align: center;
+			color: #f3f6f9;
+			font-size: 20px;
+		}
+
+		.krds-btn {
+			&.pass {
+				background-color: #fa3646;
+				border-color: #fa3646;
+			}
+			&.fixed {
+				min-width: 120px;
+			}
+		}
+
+		.login-footer {
+			margin-top: 14px;
+			padding-top: 14px;
+		}
+
+		.box {
+			background-color: #33363d;
+			border: 1px solid #58616a;
+
+			&.nice-box {
+				background-color: #1a1d21;
+				border: 1px solid #58616a;
+			}
+
+			.btn-group-center {
+				margin-top: 8px;
+			}
+
+			.box-cont {
+				margin-top: 10px;
+				padding-top: 10px;
+				border-top: 1px solid #6d7882;
+				padding-bottom: 4px;
+				p {
+					color: #f3f6f9;
+					font-size: 15px;
+				}
+
+				strong {
+					color: #f48771;
+					&.point-blue {
+						color: #e7f4fe;
+					}
+				}
+			}
+		}
+
+		.agree-wrap {
+			> .krds-form-check {
+				align-items: center;
+				justify-content: start;
+				gap: 14px;
+				font-size: 15px;
+			}
+
+			+ .agree-wrap {
+				margin-top: 8px;
+			}
+
+			.descript {
+				button {
+					color: #9ed2fa;
+					text-decoration: underline;
+					text-underline-offset: 3px;
+				}
+			}
+		}
+
+		.btn-group-center {
+			margin-top: 22px;
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		//[임시]
+		.d-up-lg {
+			display: none;
+		}
+
+		.login-area {
+			flex-direction: column-reverse;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 133px;
+			position: relative;
+			top: 0;
+			left: 0;
+			transform: translateY(0);
+			// max-width: 600px;
+			height: 100vh;
+			gap: 20px;
+			margin: 0;
+			justify-content: space-between;
+		}
+
+		.login-card-tab {
+			margin-top: 0;
+		}
+
+		.login-wrap {
+			// max-width: 600px;
+			width: 100%;
+		}
+
+		.text-wrap {
+			> strong {
+				font-size: 15px;
+			}
+		}
+
+		.login-form {
+			.krds-input {
+				height: 48px;
+				font-size: 16px;
+			}
+
+			.form-group {
+				+ .form-group {
+					margin-top: 16px;
+				}
+			}
+		}
+
+		.btn-login {
+			margin-top: 16px;
+			font-size: 16px;
+			font-weight: 500;
+			height: 48px;
+		}
+
+		.btn-foot {
+			height: 32px;
+		}
+
+		.tab {
+			.btn-tab {
+				padding: 14px 30px;
+				min-height: 52px;
+
+				&:not(:disabled):hover {
+					background-color: #1e2124;
+				}
+			}
+
+			.icon-box {
+				width: 24px;
+				height: 24px;
+				padding: 1px 6px;
+
+				.ico-login-common {
+					width: 12px;
+					height: 12px;
+				}
+				.ico-login-safe {
+					width: 12px;
+					height: 12px;
+				}
+			}
+		}
+
+		.card {
+			padding: 24px 20px 0px;
+		}
+
+		.copy {
+			background-color: #1e2124;
+			padding-bottom: 12px;
+			font-size: 10px;
+		}
+
+		.login-footer {
+			margin-top: 20px;
+			padding-top: 20px;
+		}
+
+		.title-wrap {
+			margin-left: 30px;
+			margin-bottom: 0;
+			padding-top: 40px;
+
+			.logo {
+				width: 120px;
+				height: 30px;
+			}
+
+			> p {
+				font-size: 28px;
+				line-height: 1.2;
+				margin-top: 22px;
+			}
+
+			> span {
+				font-size: 10px;
+				letter-spacing: -0.05em;
+				margin-top: 2px;
+			}
+		}
+
+		.identity-area {
+			background-color: #1e2124;
+			align-items: start;
+			margin-top: 0;
+
+			.identity-card {
+				max-width: none;
+			}
+
+			.identity-wrap {
+				flex-direction: column;
+				align-items: center;
+
+				.box {
+					max-width: none;
+				}
+				.left {
+					width: 100%;
+				}
+				.right {
+					width: 100%;
+				}
+				.login-form {
+					.krds-input {
+						height: 48px;
+					}
+				}
+			}
+
+			.identity-title {
+				border-bottom: 1px solid #6d7882;
+				margin-bottom: 20px;
+			}
+
+			.identity-card {
+				padding-bottom: 40px;
+			}
+
+			.btn-group-center {
+				margin-top: 44px;
+			}
+
+			.agree-wrap {
+				+ .agree-wrap {
+					margin-top: 18px;
+				}
+			}
+
+			.login-footer {
+				margin-top: 20px;
+				padding-top: 20px;
+			}
+		}
+	}
+
+	/* 인풋 */
+	//컬러 정의
+	@mixin input-color-variable($mode: high-contrast) {
+		--krds-input--color-surface: var(--krds-#{$mode}-color-input-surface);
+		--krds-input--color-surface-readonly: var(--krds-#{$mode}-color-input-surface-disabled);
+		--krds-input--color-surface-disabled: var(--krds-#{$mode}-color-input-surface-disabled);
+		--krds-input--color-surface-error: var(--krds-#{$mode}-color-input-surface);
+		--krds-input--color-border: var(--krds-#{$mode}-color-input-border);
+		--krds-input--color-border-active: var(--krds-#{$mode}-color-input-border-active);
+		--krds-input--color-border-readonly: var(--krds-#{$mode}-color-input-border-disabled);
+		--krds-input--color-border-disabled: var(--krds-#{$mode}-color-input-border-disabled);
+		--krds-input--color-border-error: var(--krds-#{$mode}-color-input-border-error);
+		--krds-input--color-text: var(--krds-#{$mode}-color-text-subtle);
+		--krds-input--color-text-active: var(--krds-#{$mode}-color-text-basic);
+		--krds-input--color-text-readonly: var(--krds-#{$mode}-color-text-subtle);
+		--krds-input--color-text-disabled: var(--krds-#{$mode}-color-text-disabled-on);
+		--krds-input--color-text-placeholder: var(--krds-#{$mode}-color-text-disabled);
+		--krds-input--color-text-error: var(--krds-#{$mode}-color-text-subtle);
+	}
+
+	.krds-input {
+		@include input-color-variable(high-contrast);
+
+		& {
+			color: var(--krds-input--color-text);
+			background-color: var(--krds-input--color-surface);
+			border: 0.1rem solid var(--krds-input--color-border);
+		}
+
+		&:focus,
+		&.focus {
+			border-color: var(--krds-input--color-border-active);
+		}
+
+		&[readonly] {
+			background-color: var(--krds-input--color-surface-readonly);
+			border-color: var(--krds-input--color-border-readonly);
+			color: var(--krds-input--color-text-readonly);
+			&.datepicker {
+				background-color: var(--krds-input--color-surface);
+				border-color: var(--krds-input--color-border);
+				color: var(--krds-input--color-text);
+			}
+			&:focus {
+				border-color: var(--krds-input--color-border-active);
+			}
+		}
+
+		&::after {
+			background-color: var(--krds-color-light-point-40);
+		}
+
+		&[required] {
+			background-image: url(../../assets/img/_common/bg-asterisk.png);
+		}
+
+		&[disabled] {
+			background-color: var(--krds-input--color-surface-disabled);
+			border-color: var(--krds-input--color-border-disabled);
+			color: var(--krds-input--color-text-disabled);
+		}
+		&::-webkit-input-placeholder {
+			color: var(--krds-input--color-text-placeholder);
+		}
+		&::-moz-placeholder {
+			color: var(--krds-input--color-text-placeholder);
+		}
+		&:-ms-input-placeholder {
+			color: var(--krds-input--color-text-placeholder);
+		}
+		&::-ms-input-placeholder {
+			color: var(--krds-input--color-text-placeholder);
+		}
+	}
+	.textarea-count {
+		--krds-input--count-number-color-text: var(--krds-high-contrast-color-text-subtle);
+		--krds-input--count-number-color-text-active: var(--krds-high-contrast-color-text-primary);
+	}
+
+	/* button */
+	//컬러 정의
+	@mixin button-color-variable($mode) {
+		//변수 배열 정의
+		$button-color-variable: (
+			primary: (
+				fill: var(--krds-#{$mode}-color-button-primary-fill),
+				fill-hover: var(--krds-#{$mode}-color-button-primary-fill-hover),
+				fill-pressed: var(--krds-#{$mode}-color-button-primary-fill-pressed),
+				fill-disabled: var(--krds-#{$mode}-color-button-disabled-fill),
+				border: var(--krds-#{$mode}-color-button-primary-fill),
+				border-disabled: var(--krds-#{$mode}-color-button-disabled-border),
+				// [퍼블] mode 별 다른 색상코드 사용 커스텀
+				text:
+					if(
+						$mode == high-contrast,
+						var(--krds-#{$mode}-color-text-bolder-inverse),
+						var(--krds-#{$mode}-color-text-inverse-static)
+					),
+				text-disabled: var(--krds-#{$mode}-color-text-disabled-on)
+			),
+			secondary: (
+				fill: var(--krds-#{$mode}-color-button-secondary-fill),
+				fill-hover: var(--krds-#{$mode}-color-button-secondary-fill-hover),
+				fill-pressed: var(--krds-#{$mode}-color-button-secondary-fill-pressed),
+				fill-disabled: var(--krds-#{$mode}-color-button-disabled-fill),
+				border: var(--krds-#{$mode}-color-button-secondary-border),
+				border-disabled: var(--krds-#{$mode}-color-button-disabled-border),
+				text: var(--krds-#{$mode}-color-text-primary),
+				text-disabled: var(--krds-#{$mode}-color-text-disabled-on)
+			),
+			tertiary: (
+				fill: var(--krds-#{$mode}-color-button-tertiary-fill),
+				fill-hover: var(--krds-#{$mode}-color-button-tertiary-fill-hover),
+				fill-pressed: var(--krds-#{$mode}-color-button-tertiary-fill-pressed),
+				fill-disabled: var(--krds-#{$mode}-color-button-disabled-fill),
+				border: var(--krds-#{$mode}-color-button-tertiary-border),
+				border-disabled: var(--krds-#{$mode}-color-button-disabled-border),
+				text: var(--krds-#{$mode}-color-text-subtle),
+				text-disabled: var(--krds-#{$mode}-color-text-disabled-on)
+			),
+			text: (
+				fill: var(--krds-#{$mode}-color-button-text-fill),
+				fill-hover: var(--krds-#{$mode}-color-button-text-fill-hover),
+				fill-pressed: var(--krds-#{$mode}-color-button-text-fill-pressed),
+				fill-disabled: var(--krds-#{$mode}-color-button-text-fill),
+				border: var(--krds-#{$mode}-color-button-text-border),
+				border-disabled: var(--krds-#{$mode}-color-border-transparency),
+				text: var(--krds-#{$mode}-color-text-basic),
+				text-disabled: var(--krds-#{$mode}-color-text-disabled)
+			),
+			link: (
+				fill: var(--krds-#{$mode}-color-button-text-fill),
+				fill-hover: var(--krds-#{$mode}-color-button-text-fill),
+				fill-pressed: var(--krds-#{$mode}-color-button-text-fill),
+				fill-disabled: var(--krds-#{$mode}-color-button-text-fill),
+				border: var(--krds-#{$mode}-color-button-text-border),
+				border-disabled: var(--krds-#{$mode}-color-border-transparency),
+				text: var(--krds-#{$mode}-color-link-default),
+				text-disabled: var(--krds-#{$mode}-color-text-disabled)
+			)
+		) !default;
+
+		//css variable 생성
+		@each $color, $types in $button-color-variable {
+			@each $type, $value in $types {
+				--krds-button--color-#{$color}-#{$type}: #{$value};
+			}
+		}
+
+		//class 생성
+		& {
+			@include btn-color(primary);
+
+			& {
+				//컬러 별 class
+				@each $color, $types in $button-color-variable {
+					&.#{$color} {
+						@include btn-color(#{$color});
+						&:not(.icon) {
+							.svg-icon {
+								@include btn-color-icon(#{$color});
+							}
+						}
+
+						&:hover {
+							@include btn-color-hover(#{$color});
+						}
+						&:active,
+						&:focus {
+							@include btn-color-pressed(#{$color});
+						}
+
+						&[disabled],
+						&.disabled {
+							@include btn-color-disabled(#{$color});
+							&:not(.icon) {
+								.svg-icon {
+									background-color: var(--krds-button--color-#{$color}-text-disabled);
+								}
+							}
+							&:hover {
+								@include btn-color-disabled(#{$color});
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	//컬러별 variable
+	@mixin btn-color($color) {
+		background-color: var(--krds-button--color-#{$color}-fill);
+		border-color: var(--krds-button--color-#{$color}-border);
+		color: var(--krds-button--color-#{$color}-text);
+	}
+	@mixin btn-color-hover($color) {
+		background-color: var(--krds-button--color-#{$color}-fill-hover);
+	}
+	@mixin btn-color-pressed($color) {
+		background-color: var(--krds-button--color-#{$color}-fill-pressed);
+	}
+	@mixin btn-color-disabled($color) {
+		background-color: var(--krds-button--color-#{$color}-fill-disabled);
+		border-color: var(--krds-button--color-#{$color}-border-disabled);
+		color: var(--krds-button--color-#{$color}-text-disabled);
+	}
+	@mixin btn-color-icon($color) {
+		background-color: var(--krds-button--color-#{$color}-text);
+	}
+
+	.krds-btn {
+		@include button-color-variable(light);
+
+		.svg-icon {
+			@include btn-color-icon(primary);
+		}
+		&:hover {
+			@include btn-color-hover(primary);
+		}
+		// &:active,
+		// &:focus {
+		// 	@include btn-color-pressed(primary);
+		// }
+		&[disabled],
+		&.disabled {
+			@include btn-color-disabled(primary);
+			cursor: default;
+			&:hover {
+				@include btn-color-disabled(primary);
+			}
+		}
+		/* icon 버튼 (텍스트 없음) */
+		&.icon {
+			//기본 세팅
+			border-color: var(--krds-light-color-border-transparency);
+
+			.svg-icon {
+				background-color: var(--krds-light-color-text-basic);
+			}
+			//새로고침, 토글 등 보더 아이콘 버튼 형태
+			&.border {
+				background-color: var(--krds-light-color-background-white);
+				border: 0.1rem solid var(--krds-light-color-border-gray);
+
+				&[disabled],
+				&.disabled {
+					background-color: var(--krds-light-color-button-disabled-fill);
+				}
+			}
+		}
+
+		&.gray {
+			color: var(--krds-mode-color-high-contrast-gray-0);
+			background-color: var(--krds-color-light-gray-40);
+			border-color: var(--krds-color-light-gray-50);
+		}
+	}
+}

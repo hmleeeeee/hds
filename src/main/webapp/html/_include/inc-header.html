@@ -1,0 +1,3303 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>현재화면명 | 메뉴명 | 사이트명</title>
+		<link rel="shortcut icon" href="../../../asset/_common/images/favicon.png" />
+		<link rel="stylesheet" href="../../../asset/sitecode-kr/css/style.css" />
+
+		<!-- JavaScript -->
+		<script src="../../../asset/_common/js/jquery-1.12.4.min.js"></script>
+		<script src="../../../asset/_common/js/ui-global.js"></script>
+	</head>
+
+	<body class="site-www">
+		<!-- 
+		[개발] 사이트별 헤더 클래스 옵션
+		1. 대표홈 사이트 헤더에는 클래스 추가 : <header id="header" class="header-www">
+		2. 메뉴명이 긴 사이트 class="header-type2" 추가 : <header id="header" class="header-type2">
+		   적용 대상 사이트 : 평생교육포털, 보건소 (GNB 영역이 확장됨)
+	-->
+		<header id="header">
+			<nav id="top-nav">
+				<div class="container">
+					<ul class="top-nav-list">
+						<!-- [개발] 활성화 탭 li class="on" -->
+						<li class="www on">
+							<a href="../../sitecode-kr/메인.html">대메뉴</a>
+						</li>
+						<li class="news">
+							<a href="../../sitecode-kr/메인.html">대메뉴</a>
+						</li>
+						<li class="tour">
+							<a href="../../sitecode-kr/메인.html">대메뉴</a>
+						</li>
+						<li class="mayor">
+							<a href="../../sitecode-kr/메인.html">대메뉴</a>
+						</li>
+						<li class="council">
+							<a href="#" target="_blank" title="새창">대메뉴</a>
+						</li>
+					</ul>
+					<ul class="member-menu">
+						<!-- [개발] 로그인 전 -->
+						<li>
+							<a href="#;" class="btn">
+								<i class="ico ico-login-white"></i>
+								<span class="text">로그인</span>
+							</a>
+						</li>
+						<li>
+							<a href="#;" class="btn">
+								<i class="ico ico-join-white"></i>
+								<span class="text">회원가입</span>
+							</a>
+						</li>
+						<!-- [개발] 로그인 후 -->
+						<!-- 
+					<li>
+						<a href="#;" class="btn">
+							<i class="ico ico-logout-white"></i>
+							<span class="text">로그아웃</span>
+						</a>
+					</li>
+					-->
+					</ul>
+				</div>
+			</nav>
+			<div class="container util-container">
+				<h1 id="logo">
+					<a href="#;">
+						<img src="../../../asset/sitecode-kr/images/layout/logo@2x.png" alt="${사이트명}" />
+						<!-- 
+						[개발] 각 사이트별로 디렉토리 'sitecode-kr' 부분 및 alt 값 변경 지정
+						사이트1 : sitecode-kr1
+						사이트2 : sitecode-kr2
+					-->
+					</a>
+				</h1>
+				<a href="#global-search" class="btn btn-search-open">
+					<i class="ico ico-search-primary"></i>
+					<span class="sr-only">통합검색 열기</span>
+				</a>
+				<div id="global-search">
+					<form action="/html/_guide/_template/global-search.html">
+						<fieldset>
+							<legend class="sr-only">통합검색</legend>
+							<div class="form-group">
+								<select class="form-control form-control-option" title="구분">
+									<option value="">통합검색</option>
+									<option value="">옵션1</option>
+								</select>
+								<input
+									type="text"
+									class="form-control form-control-keyword"
+									title="검색어"
+									placeholder="검색어를 입력하세요"
+								/>
+								<button type="submit" class="btn btn-global-search">
+									<i class="ico ico-search-primary"></i>
+									<span class="sr-only">검색</span>
+								</button>
+							</div>
+						</fieldset>
+					</form>
+					<button type="button" class="btn btn-search-close">
+						<i class="ico ico-close-primary"></i>
+						<span class="sr-only">통합검색 닫기</span>
+					</button>
+				</div>
+				<div class="util-menu">
+					<div class="screen-scale">
+						<button type="button" class="btn btn-icon btn-scale-up">
+							<i class="ico ico-plus"></i>
+							<span class="sr-only">확대</span>
+						</button>
+						<button type="button" class="btn btn-icon btn-scale-default">가</button>
+						<button type="button" class="btn btn-icon btn-scale-down">
+							<i class="ico ico-minus"></i>
+							<span class="sr-only">축소</span>
+						</button>
+					</div>
+					<dl class="dropdown-list">
+						<dt><a href="#;">SNS</a></dt>
+						<dd>
+							<ul>
+								<li><a href="#;">SNS1</a></li>
+								<li><a href="#;">SNS2 SNS2</a></li>
+								<li><a href="#;">SNS3</a></li>
+							</ul>
+						</dd>
+					</dl>
+					<dl class="dropdown-list">
+						<dt><a href="#;">언어선택</a></dt>
+						<dd>
+							<ul>
+								<li><a href="#;">Korean</a></li>
+								<li><a href="#;">English</a></li>
+								<li><a href="#;">Chinese</a></li>
+								<li><a href="#;">Japanese</a></li>
+							</ul>
+						</dd>
+					</dl>
+					<div class="wheather">
+						<span class="desc">3.7˚C 맑음 미세먼지(보통)·초미세먼지(보통)</span>
+						<strong class="title">건조주의보</strong>
+					</div>
+				</div>
+			</div>
+			<div class="container nav-container">
+				<nav id="gnb">
+					<ul class="gnb-list">
+						<!-- 대메뉴 개수에 따라 자동 균등분할, 메뉴명 최대 두줄까지 노출 -->
+						<!-- [개발] 활성화 메뉴 li class="on" -->
+						<li>
+							<a href="#;"><span>메뉴1</span></a>
+							<div class="lnb">
+								<div class="container">
+									<div class="lnb-title">
+										<h3>대메뉴</h3>
+										<p>
+											대메뉴<br />
+											설명
+										</p>
+										<div class="artwork">
+											<img src="../../../asset/_common/images/artwork-gnb1.png" alt="" />
+										</div>
+									</div>
+									<ul class="lnb-list">
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">메뉴명이 매우 긴 메뉴 메뉴명이 매우 긴 메뉴</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="#;"><span>메뉴2</span></a>
+							<div class="lnb">
+								<div class="container">
+									<div class="lnb-title">
+										<h3>대메뉴</h3>
+										<p>
+											대메뉴<br />
+											설명
+										</p>
+										<div class="artwork">
+											<img src="../../../asset/_common/images/artwork-gnb2.png" alt="" />
+										</div>
+									</div>
+									<ul class="lnb-list">
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">메뉴명이 매우 긴 메뉴 메뉴명이 매우 긴 메뉴</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="#;"><span>메뉴3</span></a>
+							<div class="lnb">
+								<div class="container">
+									<div class="lnb-title">
+										<h3>대메뉴</h3>
+										<p>
+											대메뉴<br />
+											설명
+										</p>
+										<div class="artwork">
+											<img src="../../../asset/_common/images/artwork-gnb3.png" alt="" />
+										</div>
+									</div>
+									<ul class="lnb-list">
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">메뉴명이 매우 긴 메뉴 메뉴명이 매우 긴 메뉴</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="#;"><span>메뉴4</span></a>
+							<div class="lnb">
+								<div class="container">
+									<div class="lnb-title">
+										<h3>대메뉴</h3>
+										<p>
+											대메뉴<br />
+											설명
+										</p>
+										<div class="artwork">
+											<img src="../../../asset/_common/images/artwork-gnb4.png" alt="" />
+										</div>
+									</div>
+									<ul class="lnb-list">
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">메뉴명이 매우 긴 메뉴 메뉴명이 매우 긴 메뉴</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="#;"><span>메뉴5</span></a>
+							<div class="lnb">
+								<div class="container">
+									<div class="lnb-title">
+										<h3>대메뉴</h3>
+										<p>
+											대메뉴<br />
+											설명
+										</p>
+										<div class="artwork">
+											<img src="../../../asset/_common/images/artwork-gnb5.png" alt="" />
+										</div>
+									</div>
+									<ul class="lnb-list">
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="#;"><span>메뉴6</span></a>
+							<div class="lnb">
+								<div class="container">
+									<div class="lnb-title">
+										<h3>메뉴</h3>
+										<p>
+											대메뉴<br />
+											설명
+										</p>
+										<div class="artwork">
+											<img src="../../../asset/_common/images/artwork-gnb6.png" alt="" />
+										</div>
+									</div>
+									<div class="part-menu-wrap">
+										<ul class="part-list">
+											<li class="on">
+												<a href="#">메뉴</a>
+											</li>
+
+											<li>
+												<a href="#">메뉴</a>
+											</li>
+											<li>
+												<a href="#">메뉴</a>
+											</li>
+											<li>
+												<a href="#">메뉴</a>
+											</li>
+											<li>
+												<a href="#">메뉴</a>
+											</li>
+											<li>
+												<a href="#">메뉴</a>
+											</li>
+											<li>
+												<a href="#">메뉴</a>
+											</li>
+											<li>
+												<a href="#">메뉴</a>
+											</li>
+										</ul>
+
+										<!-- 탭 링크와 아이디 매칭 -->
+										<div class="part-content" id="part-content1">
+											<h4 class="sr-only">대메뉴</h4>
+											<ul class="lnb-list">
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+															<ul>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+															</ul>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+															<ul>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+															</ul>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+															<ul>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+																<li>
+																	<a href="#">메뉴</a>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#" target="_blank" title="새창">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#;" target="_blank" title="새창">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+
+										<!-- 탭 링크와 아이디 매칭 -->
+										<div class="part-content" id="part-content2">
+											<h4 class="sr-only">대메뉴</h4>
+											<ul class="lnb-list">
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#" target="_blank" title="새창">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#" target="_blank" title="새창">메뉴</a>
+														</li>
+														<li>
+															<a href="#" target="_blank" title="새창">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+													<ul>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+														<li>
+															<a href="#">메뉴</a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+
+										<div class="part-content" id="part-content3">
+											<h4 class="sr-only">메뉴</h4>
+											<ul class="lnb-list">
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+															<ul>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+
+										<div class="part-content" id="part-content4">
+											<h4 class="sr-only">메뉴</h4>
+											<ul class="lnb-list">
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+															<ul>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+
+										<div class="part-content" id="part-content5">
+											<h4 class="sr-only">메뉴</h4>
+											<ul class="lnb-list">
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+															<ul>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+
+										<div class="part-content" id="part-content6">
+											<h4 class="sr-only">메뉴</h4>
+											<ul class="lnb-list">
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+															<ul>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+
+										<div class="part-content" id="part-content7">
+											<h4 class="sr-only">메뉴</h4>
+											<ul class="lnb-list">
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+															<ul>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+
+										<div class="part-content" id="part-content8">
+											<h4 class="sr-only">메뉴</h4>
+											<ul class="lnb-list">
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+															<ul>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+																<li>
+																	<a href="#;">메뉴</a>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#;">메뉴</a>
+													<ul>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+														<li>
+															<a href="#;">메뉴</a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</li>
+					</ul>
+				</nav>
+
+				<!-- 
+				[개발] 뉴스 사이트는 Desktop 모드 전체메뉴 버튼 미사용, 멀티클래스 .d-down-md 추가 필요 
+				<a href="#;" class="btn btn-allmenu-open d-down-md"> 
+			-->
+				<a href="#;" class="btn btn-allmenu-open">
+					<span class="text">전체메뉴</span>
+					<i class="ico ico-allmenu"></i>
+				</a>
+			</div>
+			<nav id="allmenu">
+				<!-- PC용 모달 팝업 -->
+				<div class="modal-popup modal-xl hide" id="desktop-allmenu">
+					<div class="dimed"></div>
+					<div class="popup-inner">
+						<div class="popup-header">
+							<h2 class="popup-title">전체메뉴</h2>
+						</div>
+						<div class="popup-body">
+							<ul class="allmenu-list">
+								<!-- 메뉴 균등분할 처리되며 .lnb 항목과 아이디 1:1 매칭 처리 -->
+								<li class="on">
+									<a href="#lnb1">메뉴1</a>
+								</li>
+								<li><a href="#lnb2">메뉴2</a></li>
+								<li><a href="#lnb3">메뉴3</a></li>
+								<li><a href="#lnb4">메뉴4</a></li>
+								<li><a href="#lnb5">메뉴5</a></li>
+								<li><a href="#lnb6">메뉴6</a></li>
+							</ul>
+							<div class="allmenu-body">
+								<div class="lnb-wrap" id="lnb1">
+									<div class="lnb-title">
+										<h3>대메뉴</h3>
+										<p>대메뉴 설명 문구 노출 영역</p>
+									</div>
+									<ul class="lnb-list">
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+								<div class="lnb-wrap" id="lnb2">
+									<div class="lnb-title">
+										<h3>대메뉴</h3>
+										<p>대메뉴 소개</p>
+									</div>
+									<ul class="lnb-list">
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#" target="_blank" title="새창">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+								<div class="lnb-wrap" id="lnb3">
+									<div class="lnb-title">
+										<h3>대메뉴</h3>
+										<p>대메뉴 소개</p>
+									</div>
+									<ul class="lnb-list">
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;" target="_blank" title="새창">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+								<div class="lnb-wrap" id="lnb4">
+									<div class="lnb-title">
+										<h3>대메뉴</h3>
+										<p>대메뉴 소개</p>
+									</div>
+									<ul class="lnb-list">
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#;" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;" target="_blank" title="새창">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+										</li>
+									</ul>
+								</div>
+								<div class="lnb-wrap" id="lnb5">
+									<div class="lnb-title">
+										<h3>대메뉴</h3>
+										<p>메뉴 설명</p>
+									</div>
+									<ul class="lnb-list">
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li><a href="#">메뉴</a></li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#" target="_blank" title="새창">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴</a>
+											<ul>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+												<li>
+													<a href="#">메뉴</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#" target="_blank" title="새창">메뉴</a>
+										</li>
+									</ul>
+								</div>
+								<div class="lnb-wrap" id="lnb6">
+									<div class="lnb-title">
+										<h3>대메뉴</h3>
+										<p>대메뉴 설명 문구 노출 영역</p>
+									</div>
+									<div class="site-link-area">
+										<ul class="site-link">
+											<li>
+												<a href="#;" target="_blank" title="새창">
+													<img src="../../../asset/_common/images/ico-allmenu-field1.png" alt="" />
+													<span class="text">메뉴</span>
+												</a>
+											</li>
+											<li>
+												<a href="#;" target="_blank" title="새창">
+													<img src="../../../asset/_common/images/ico-allmenu-field2.png" alt="" />
+													<span class="text">메뉴</span>
+												</a>
+											</li>
+											<li>
+												<a href="#;" target="_blank" title="새창">
+													<img src="../../../asset/_common/images/ico-allmenu-field3.png" alt="" />
+													<span class="text">메뉴</span>
+												</a>
+											</li>
+											<li>
+												<a href="#;" target="_blank" title="새창">
+													<img src="../../../asset/_common/images/ico-allmenu-field4.png" alt="" />
+													<span class="text">메뉴</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<ul class="lnb-list lnb-list-dropdown">
+										<li>
+											<a href="#">메뉴0</a>
+											<ul>
+												<li>
+													<a href="#">메뉴1</a>
+												</li>
+												<li>
+													<a href="#">메뉴1</a>
+													<ul>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2 메뉴2 메뉴2 메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+													</ul>
+												</li>
+												<li><a href="#">메뉴1</a></li>
+												<li><a href="#">메뉴1</a></li>
+												<li>
+													<a href="#">메뉴1</a>
+													<ul>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴1</a>
+												</li>
+												<li><a href="#">메뉴1</a></li>
+												<li>
+													<a href="#">메뉴1</a>
+													<ul>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴1</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴1</a>
+											<ul>
+												<li><a href="#">메뉴2</a></li>
+												<li>
+													<a href="#">메뉴2 메뉴2 메뉴2 메뉴2</a>
+													<ul>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+														<li>
+															<a href="#">메뉴3 메뉴3 메뉴3 메뉴3 메뉴3 메뉴3 메뉴3 메뉴3 메뉴3 </a>
+														</li>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+													</ul>
+												</li>
+												<li><a href="#">메뉴2</a></li>
+												<li><a href="#">메뉴2</a></li>
+												<li>
+													<a href="#">메뉴2</a>
+													<ul>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+													</ul>
+												</li>
+												<li><a href="#">메뉴2</a></li>
+												<li><a href="#">메뉴2</a></li>
+												<li>
+													<a href="#">메뉴2</a>
+													<ul>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+														<li>
+															<a href="#">메뉴3</a>
+														</li>
+													</ul>
+												</li>
+												<li><a href="#">메뉴2</a></li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<button type="button" class="btn btn-close-popup">닫기</button>
+					</div>
+				</div>
+
+				<!-- 모바일모드 전체메뉴 -->
+				<div id="mobile-allmenu">
+					<div class="allmenu-inner">
+						<div class="top-bar">
+							<!-- [개발] 다국어 없을 때 -->
+							<!-- <h2 class="allmenu-title">전체메뉴</h2> -->
+
+							<!-- [개발] 다국어 있을 때 -->
+							<h2 class="sr-only">전체메뉴</h2>
+							<ul class="language-list">
+								<li class="on"><a href="#;">KOR</a></li>
+								<li><a href="#;">ENG</a></li>
+								<li><a href="#;">CHN</a></li>
+								<li><a href="#;">JPN</a></li>
+							</ul>
+						</div>
+
+						<!-- [개발] 로그인 기능 사용시 노출 (불필요시 영역 통째로 제거) -->
+						<ul class="user-menu">
+							<!-- [개발] 로그인 전 -->
+							<li>
+								<a href="#" class="btn">
+									<i class="ico ico-login-gray"></i>
+									<span class="text">로그인</span>
+								</a>
+							</li>
+							<li>
+								<a href="#" class="btn">
+									<i class="ico ico-join-gray"></i>
+									<span class="text">회원가입</span>
+								</a>
+							</li>
+
+							<!-- [개발] 로그인 후 -->
+							<!-- <li>
+															<a href="#" class="btn">
+																<i class="ico ico-logout-gray"></i>
+																<span class="text">로그아웃</span>
+															</a>
+														</li> -->
+						</ul>
+
+						<div class="menu-area">
+							<ul class="allmenu-list">
+								<li class="on">
+									<a href="#allmenu-lnb1">메뉴1</a>
+								</li>
+								<li><a href="#allmenu-lnb2">메뉴2</a></li>
+								<li><a href="#allmenu-lnb3">메뉴3</a></li>
+								<li><a href="#allmenu-lnb4">메뉴4</a></li>
+								<li><a href="#allmenu-lnb5">메뉴5</a></li>
+								<li><a href="#allmenu-lnb6">메뉴6</a></li>
+								<li><a href="#allmenu-lnb7">메뉴7</a></li>
+							</ul>
+							<div class="allmenu-lnb">
+								<div id="allmenu-lnb1" class="lnb-item">
+									<h3><a href="#">메뉴1</a></h3>
+									<ul>
+										<!-- [개발] 활성화 메뉴 li class="on" -->
+										<li><a href="#">메뉴1</a></li>
+										<li>
+											<a href="#">메뉴1</a>
+											<ul>
+												<li><a href="#">메뉴1</a></li>
+												<li>
+													<a href="#">메뉴1</a>
+													<ul>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+														<li>
+															<a href="#">메뉴2</a>
+														</li>
+													</ul>
+												</li>
+												<li>
+													<a href="#">메뉴1</a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#">메뉴1</a>
+											<ul>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li><a href="#">메뉴1</a></li>
+									</ul>
+								</div>
+								<div id="allmenu-lnb2" class="lnb-item">
+									<h3><a href="#">메뉴2</a></h3>
+									<ul>
+										<li><a href="#">메뉴1</a></li>
+										<li>
+											<a href="#">메뉴1</a>
+											<ul>
+												<li><a href="#">메뉴2</a></li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li class="collapse">
+											<a href="#">메뉴1</a>
+											<ul>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li><a href="#">메뉴1</a></li>
+									</ul>
+								</div>
+								<div id="allmenu-lnb3" class="lnb-item">
+									<h3><a href="#">메뉴3</a></h3>
+									<ul>
+										<li><a href="#">메뉴1</a></li>
+										<li>
+											<a href="#">메뉴1</a>
+											<ul>
+												<li><a href="#">메뉴2</a></li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li class="collapse">
+											<a href="#">메뉴1</a>
+											<ul>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li><a href="#">메뉴1</a></li>
+									</ul>
+								</div>
+								<div id="allmenu-lnb4" class="lnb-item">
+									<h3><a href="#">메뉴4</a></h3>
+									<ul>
+										<li><a href="#">메뉴1</a></li>
+										<li>
+											<a href="#">메뉴1</a>
+											<ul>
+												<li><a href="#">메뉴2</a></li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li class="collapse">
+											<a href="#">메뉴1</a>
+											<ul>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li><a href="#">메뉴1</a></li>
+									</ul>
+								</div>
+								<div id="allmenu-lnb5" class="lnb-item">
+									<h3><a href="#">메뉴5</a></h3>
+									<ul>
+										<li><a href="#">메뉴1</a></li>
+										<li>
+											<a href="#">메뉴1</a>
+											<ul>
+												<li><a href="#">메뉴2</a></li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li class="collapse">
+											<a href="#">메뉴1</a>
+											<ul>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li><a href="#">메뉴1</a></li>
+									</ul>
+								</div>
+								<div id="allmenu-lnb6" class="lnb-item">
+									<h3><a href="#">메뉴6</a></h3>
+									<ul>
+										<li><a href="#">메뉴1</a></li>
+										<li>
+											<a href="#">메뉴1</a>
+											<ul>
+												<li><a href="#">메뉴2</a></li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li class="collapse">
+											<a href="#">메뉴1</a>
+											<ul>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li><a href="#">메뉴1</a></li>
+									</ul>
+								</div>
+								<div id="allmenu-lnb7" class="lnb-item">
+									<h3><a href="#">메뉴7</a></h3>
+									<ul>
+										<li><a href="#">메뉴1</a></li>
+										<li>
+											<a href="#">메뉴1</a>
+											<ul>
+												<li><a href="#">메뉴2</a></li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li class="collapse">
+											<a href="#">메뉴1</a>
+											<ul>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+												<li>
+													<a href="#">메뉴2</a>
+												</li>
+											</ul>
+										</li>
+										<li><a href="#">메뉴1</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<button type="button" class="btn btn-allmenu-close">
+							<i class="ico ico-times-white"></i>
+							<span class="sr-only">전체메뉴 닫기</span>
+						</button>
+					</div>
+					메뉴2
+				</div>
+			</nav>
+		</header>
+	</body>
+</html>

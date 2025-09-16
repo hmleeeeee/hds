@@ -1,0 +1,63 @@
+// 기본 그리드 스타일 적용
+.grid-layout {
+	@include grid-layout(3, 8px);
+	column-gap: 12px;
+
+	@for $i from 1 through 4 {
+		&.cols-#{$i} {
+			@include grid-layout($i, 20px);
+		}
+	}
+	@include media-breakpoint-down(md) {
+		@include grid-layout(1, 12px);
+	}
+
+	&.type02 {
+		@include grid-layout(2, 20px);
+
+		.grid-item:first-child {
+			grid-column: span 2;
+		}
+
+		@include media-breakpoint-down(md) {
+			.grid-item:first-child {
+				grid-column: span 1;
+			}
+			@include grid-layout(1, 12px);
+		}
+	}
+
+	&.type03 {
+		.form-group {
+			.form-tit {
+				min-width: 83px;
+			}
+		}
+	}
+}
+
+.grid-item {
+	&:has(.krds-btn) {
+		.form-conts {
+			@include flex-layout(flex, center, start);
+
+			button {
+				flex: 0 0 auto;
+			}
+		}
+	}
+
+	@include media-breakpoint-down(md) {
+		.form-group {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		.form-conts {
+			.krds-input,
+			.krds-form-select {
+				width: 100% !important;
+			}
+		}
+	}
+}

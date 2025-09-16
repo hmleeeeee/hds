@@ -1,0 +1,367 @@
+$datepicker-border-color: red;
+$datepicker-width: 32rem;
+$datepicker-title-size: 1.8rem;
+$datepicker-day-height: 3.6rem;
+$datepicker-title-height: $datepicker-day-height;
+
+.form-control {
+	max-width: 100%;
+	appearance: none;
+	text-align: left;
+	transition-duration: 0.2s;
+	transition-property: color, border-color, box-shadow;
+	will-change: color, border-color, box-shadow;
+	&::-ms-clear {
+		display: none;
+	}
+
+	&.inline {
+		width: auto !important;
+	}
+}
+
+.form-datepicker {
+	padding-right: 3.4rem;
+	width: 100%;
+}
+
+td {
+	.datepicker {
+		width: auto;
+	}
+}
+
+.datepicker {
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+
+	width: 100%;
+
+	.btn-datepicker {
+		position: absolute;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		padding: 0 10px;
+		box-shadow: none;
+
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		vertical-align: middle;
+		white-space: nowrap;
+		overflow: hidden;
+		transition-duration: 0.2s;
+		transition-property: background-color, box-shadow;
+		will-change: background-color, box-shadow;
+		border: 1px solid transparent;
+		max-width: 100%;
+
+		.ico-datepicker {
+			@include svg-icon(var(--krds-icon--size-small));
+		}
+	}
+}
+
+#inseq-datepicker {
+	position: absolute;
+	width: $datepicker-width;
+	padding: 1.6rem;
+
+	border: 1px solid var(--krds-light-color-border-gray);
+	background: var(--krds-light-color-surface-white-subtle);
+
+	box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.08), 0px 16px 24px 0px rgba(0, 0, 0, 0.12);
+	border-radius: 0.4rem;
+	z-index: 1110;
+
+	&.right {
+		left: auto !important;
+		right: 0 !important;
+	}
+
+	caption {
+		height: 0;
+		font-size: 0;
+		line-height: 0;
+		overflow: hidden;
+	}
+
+	table {
+		table-layout: auto;
+		margin-top: 0;
+		width: 100%;
+		text-align: center;
+		line-height: 2;
+
+		a {
+			line-height: 2;
+		}
+
+		th {
+			height: auto;
+			background: none;
+			border: 0;
+			margin: 0;
+			text-align: center;
+			line-height: $datepicker-title-height;
+			font-weight: 500;
+		}
+
+		td {
+			padding: 0 !important;
+			margin: 0;
+			height: auto;
+			text-align: center;
+			border: 0;
+			line-height: 1;
+		}
+
+		tbody {
+			td {
+				height: $datepicker-day-height;
+				color: var(--krds-input--color-surface-disabled);
+
+				a {
+					width: $datepicker-day-height;
+					height: $datepicker-day-height;
+					line-height: $datepicker-day-height;
+					border-radius: 50%;
+
+					display: block;
+					text-decoration: none;
+
+					transition-duration: 0.3s;
+					transition-property: background-color;
+					will-change: background-color;
+
+					&.today {
+						color: var(--krds-light-color-text-inverse-static) !important;
+						background-color: var(--krds-mode-color-high-contrast-primary-50);
+					}
+				}
+			}
+		}
+	}
+
+	#tableCalendarTitle {
+		td {
+			font-size: $datepicker-title-size;
+
+			a {
+				font-size: inherit;
+			}
+		}
+	}
+
+	#tableMonthTitle td {
+		a {
+			font-size: $datepicker-title-size;
+		}
+	}
+
+	#tableYearTitle {
+		height: 4rem;
+
+		td {
+			font-size: $datepicker-title-size;
+			font-weight: bold;
+
+			a {
+				&.prev {
+					margin-left: 30px;
+				}
+
+				&.next {
+					margin-right: 30px;
+				}
+			}
+		}
+	}
+
+	#tableCalendarTitle,
+	#tableYear,
+	#tableMonthTitle,
+	#tableMonth {
+		a {
+			font-weight: bold;
+			color: #484e57;
+		}
+	}
+
+	#tableCalendarTitle,
+	#tableMonthTitle {
+		margin-bottom: 0.8rem;
+	}
+
+	#tableMonth,
+	#tableYear {
+		margin: 0 -6px -2px;
+		width: calc(100% + 12px);
+	}
+
+	#tableMonth td,
+	#tableYear td {
+		padding: 4px !important;
+
+		a {
+			display: block;
+			height: 52px;
+			line-height: 52px;
+			border-radius: 8px;
+			font-weight: 400;
+			&:active {
+				color: var(--krds-light-color-text-inverse-static) !important;
+				background-color: var(--krds-mode-color-high-contrast-primary-50);
+			}
+		}
+	}
+
+	#tableCalendar {
+		th,
+		td {
+			&:first-child {
+				color: #ff4d6d;
+
+				a {
+					color: inherit;
+				}
+			}
+
+			&:last-child {
+				a {
+					color: inherit;
+				}
+			}
+		}
+	}
+
+	.prev,
+	.next {
+		display: block;
+		width: 20px;
+		height: 20px;
+		line-height: 20px;
+		border: 0;
+		padding: 0;
+		// background-size: 20px;
+		text-indent: -9999px;
+		text-align: left;
+		overflow: hidden;
+		@include icon-set(ico_angle);
+		background-color: var(--krds-light-color-icon-gray);
+	}
+
+	.prev {
+		float: left;
+		margin-left: 40px;
+		background-position: right center;
+		transform: rotate(90deg);
+	}
+
+	.next {
+		float: right;
+		margin-right: 40px;
+		background-position: left center;
+		transform: rotate(-90deg);
+	}
+
+	.btn-cal-close {
+		position: absolute;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+
+		top: 10px;
+		right: 10px;
+		width: 20px;
+		height: 20px;
+
+		a {
+			display: block;
+			width: 20px;
+			height: 20px;
+			color: transparent;
+			@include icon-set(ico_close);
+			background-color: var(--krds-light-color-icon-gray);
+		}
+	}
+
+	@include media-breakpoint-up(lg) {
+		font-size: 1.5rem;
+	}
+	@include media-breakpoint-down(sm) {
+		left: 50% !important;
+		margin-left: -$datepicker-width * 0.5 !important;
+	}
+}
+
+//고대비모드
+@include color-mode($mode: high-contrast) {
+	//모드 설정
+	$mode-setting: high-contrast;
+
+	#inseq-datepicker {
+		border-color: var(--krds-high-contrast-color-border-gray);
+		background: var(--krds-high-contrast-color-surface-white-subtler);
+
+		#tableCalendarTitle {
+			a {
+				color: var(--krds-high-contrast-color-text-basic);
+			}
+			.next,
+			.prev {
+				background-color: var(--krds-high-contrast-color-icon-gray);
+			}
+		}
+		.btn-cal-close {
+			a {
+				background-color: var(--krds-high-contrast-color-icon-gray);
+			}
+		}
+		table {
+			tbody {
+				td {
+					a {
+						&.today {
+							color: var(--krds-mode-color-high-contrast-gray-95) !important;
+							background-color: var(--krds-mode-color-high-contrast-gray-0);
+						}
+					}
+				}
+			}
+		}
+		#tableMonthTitle {
+			a {
+				color: var(--krds-mode-color-high-contrast-gray-0);
+				&.prev,
+				&.next {
+					background-color: var(--krds-mode-color-high-contrast-gray-0);
+				}
+			}
+		}
+		#tableMonth {
+			a {
+				color: var(--krds-mode-color-high-contrast-gray-0);
+			}
+
+			td {
+				a {
+					&:active {
+						color: var(--krds-mode-color-high-contrast-gray-95) !important;
+						background-color: var(--krds-mode-color-high-contrast-gray-0);
+					}
+				}
+			}
+		}
+	}
+	.datepicker {
+		.btn-datepicker {
+			.ico-datepicker {
+				background-color: var(--krds-high-contrast-color-text-basic);
+			}
+		}
+	}
+}

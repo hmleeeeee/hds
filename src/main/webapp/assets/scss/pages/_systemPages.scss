@@ -1,0 +1,229 @@
+// /* 화면명1 */
+// .page-name-sample1 {
+// 	// TODO : 데스크탑 및 디바이스 전체 공통스타일 정의
+
+// 	@include media-breakpoint-up(lg) {
+// 		// TODO : 데스크탑 스타일 정의
+// 	}
+
+// 	@include media-breakpoint-down(md) {
+// 		// TODO : 태블릿 + 모바일 스타일 정의
+// 	}
+// }
+.system-page {
+	.grid-area {
+		margin-top: var(--krds-padding-5);
+		width: 100%;
+		min-height: 200px;
+	}
+
+	.card {
+		&.edit {
+			width: auto;
+			.krds-table-wrap {
+				.krds-input {
+					&.short {
+						width: 140px;
+					}
+				}
+			}
+		}
+	}
+
+	.function-list {
+		@include flex-layout(flex, center, start);
+		gap: 4px;
+		flex-wrap: wrap;
+
+		> li {
+			+ li {
+				position: relative;
+				padding-left: 12px;
+
+				&::before {
+					position: absolute;
+					left: 4px;
+					top: 0;
+					display: inline-block;
+					content: "";
+					width: 1px;
+					height: 100%;
+					background-color: var(--krds-color-light-gray-20);
+				}
+			}
+		}
+	}
+
+	.function-detail-list {
+		@include flex-layout(flex, center, start);
+		gap: 4px;
+
+		> li {
+			span {
+				font-size: 15px;
+			}
+		}
+	}
+
+	.draft-list {
+		@include flex-layout(flex, center, start);
+		gap: 8px;
+		flex-wrap: wrap;
+
+		& + .draft-list {
+			margin-top: 6px;
+		}
+
+		> li {
+			> ul {
+				@include flex-layout(flex, center, start);
+				flex-wrap: wrap;
+
+				li {
+					+ li {
+						position: relative;
+						// padding-left: 8px;
+						&::before {
+							display: inline-block;
+							content: "/";
+							padding: 0 6px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.file-list {
+		@include flex-layout(flex, start, start);
+		width: 100%;
+		gap: 6px;
+
+		button {
+			flex: 0 0 auto;
+		}
+
+		.file-detail-list {
+			width: 100%;
+
+			> li {
+				@include flex-layout(flex, center, space-between);
+				min-height: 24px;
+			}
+		}
+	}
+
+	.editer-area {
+		margin-top: 14px;
+	}
+
+	//통합검색
+	.list-search-summary {
+		padding: 0 8px;
+		margin-top: 20px;
+	}
+
+	.list-search-result {
+		padding: 0 8px;
+		margin-top: 20px;
+		li {
+			+ li {
+				margin-top: 20px;
+			}
+		}
+	}
+
+	.summary-list {
+		padding: 16px 8px;
+		@include flex-layout(flex, center, start);
+		flex-wrap: wrap;
+		gap: 16px;
+
+		> li {
+			font-size: 1.8rem;
+			&::before {
+				content: "";
+				display: inline-block;
+				width: 4px;
+				height: 4px;
+				margin-bottom: 3px;
+				margin-right: 5px;
+				border-radius: 100px;
+				background-color: var(--krds-mode-color-high-contrast-gray-70);
+			}
+		}
+
+		.text-num {
+			font-weight: 700;
+			color: var(--krds-mode-color-light-information-60);
+		}
+	}
+
+	.search-title {
+		color: var(--krds-color-light-gray-80);
+		.search-title-sub {
+			font-weight: 500;
+		}
+		.count {
+			color: var(--krds-mode-color-light-information-60);
+		}
+	}
+
+	.nodata-area {
+		@include flex-layout(flex, center, center);
+		flex-direction: column;
+		gap: 8px;
+		font-size: 14px;
+		width: 100%;
+		min-height: 200px;
+		color: var(--krds-light-color-text-subtler);
+		// background-color: var(--krds-color-light-gray-5);
+		// border-top: 1px solid var(--krds-color-light-gray-10);
+		// border-bottom: 1px solid var(--krds-color-light-gray-10);
+
+		&::before {
+			content: "";
+			display: inline-block;
+			width: 40px;
+			height: 40px;
+			background: url(../../assets/img/_common/bg-nodata-light.png) no-repeat center/cover;
+		}
+	}
+
+	.list-info-text {
+		padding: 4px 10px 12px;
+		font-size: var(--krds-pc-font-size-body-small);
+	}
+
+	// :root[class~="light"] div:where(.swal2-container) div:where(.swal2-popup) {
+	// 	background-color: #353434;
+	// 	z-index: 1;
+	// 	border: 1px solid #666666;
+	// }
+
+	@include media-breakpoint-down(md) {
+		.cell-cont-top {
+			flex-wrap: wrap;
+		}
+
+		.list-info-text {
+			padding: 0;
+			padding-top: 8px;
+		}
+	}
+}
+
+//고대비모드
+@include color-mode($mode: high-contrast) {
+	.system-page {
+		.nodata-area {
+			color: var(--krds-light-color-text-subtler);
+			// background-color: var(--krds-color-high-contrast-gray-95);
+			// border-color: var(--krds-mode-color-high-contrast-gray-70);
+		}
+
+		.search-title {
+			color: var(--krds-high-contrast-color-text-border);
+		}
+	}
+}

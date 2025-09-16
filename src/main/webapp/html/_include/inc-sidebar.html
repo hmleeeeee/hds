@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>현재화면명 | 메뉴명 | 사이트명</title>
+		<link rel="shortcut icon" href="../../assets/img/_common/favicon.png" />
+		<link rel="stylesheet" href="../../assets/css/style.css" />
+
+		<!-- JavaScript -->
+		<script src="../../assets/js/_common/jquery-1.12.4.min.js"></script>
+		<script src="../../assets/js/component/ui-script.js"></script>
+		<script src="../../assets/js/_common/ui-global.js"></script>
+		<script>
+			$(document).ready(function () {
+				sidebarSetting(); // 사이드바 기본설정
+				favoritSetting(); // 즐겨찾기 기본설정
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<aside id="sidebar" class="_active">
+				<div class="sidebar-header">
+					<h1 class="sidebar-title">
+						<a href="#;" class="logo"><img src="../../assets/img/_common/logo@2x.png" alt="통합출입관리시스템" /> </a>
+					</h1>
+					<div class="toolbar">
+						<button type="button" class="btn btn-icon btn-collapse">
+							<i class="svg-icon ico-chevrondouble-left"></i>
+							<span class="sr-only">메뉴 접기펼치기</span>
+						</button>
+					</div>
+
+					<a href="#;" class="btn-tile btn-allmenu-open">
+						<i class="svg-icon ico-allmenu"></i>
+						<span class="sr-only">전체메뉴</span>
+					</a>
+
+					<div class="util-area">
+						<div class="time-wrap">
+							<dl class="time-item">
+								<dt class="time-title">
+									<i class="svg-icon ico-clock-sidebar"></i><span class="sr-only">남은 시간</span>
+								</dt>
+								<dd><span>59:54</span>남음</dd>
+							</dl>
+							<button type="button" class="krds-btn xxsmall secondary">연장</button>
+						</div>
+						<button type="button" class="krds-btn xxsmall tertiary"><i class="svg-icon ico-logout"></i>로그아웃</button>
+					</div>
+
+					<span class="noti-area-mob">
+						<i class="svg-icon ico-noti"></i>
+						<span>XX사 대표 홍길동님 11:00 출입 예정 / 차량 번호 123호 1122</span>
+					</span>
+				</div>
+
+				<!-- 콘텐츠 영역 -->
+				<div class="sidebar-body">
+					<!-- tab -->
+					<div class="krds-tab-area layer">
+						<!-- tab list -->
+						<div class="tab full">
+							<ul role="tablist">
+								<li aria-selected="true" aria-controls="sidebar_01" class="active">
+									<button type="button" class="btn-tab">
+										<i class="svg-icon ico-allmenu"></i>
+										<span>전체메뉴</span>
+										<i class="sr-only created"> 선택됨</i>
+									</button>
+								</li>
+								<li aria-selected="false" aria-controls="sidebar_02">
+									<button type="button" class="btn-tab">
+										<i class="svg-icon ico-star-md"></i><span>즐겨찾기</span>
+									</button>
+								</li>
+							</ul>
+						</div>
+						<!-- //tab list -->
+
+						<!-- tab contents -->
+						<div class="tab-conts-wrap">
+							<section id="sidebar_01" class="tab-conts active">
+								<h3 class="sr-only">전체메뉴</h3>
+								<nav class="sidebar-area">
+									<ul class="snb-list">
+										<!-- [개발] 활성화 최하위 메뉴의 li class="active" -->
+										<li class="active">
+											<a href="#;">
+												<i class="svg-icon ico-sidebar01"></i>
+												<span class="text">대시보드</span>
+											</a>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar02"></i>
+												<span class="text">공지사항 관리</span>
+											</a>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar03"></i>
+												<span class="text">블랙리스트 관리</span>
+											</a>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar04"></i>
+												<span class="text">공휴일 등록 관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar05"></i>
+												<span class="text">내 정보관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar06"></i>
+												<span class="text">인원관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar07"></i>
+												<span class="text">차량관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar08"></i>
+												<span class="text">출입기록 정보</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar09"></i>
+												<span class="text">중복검증 정보</span>
+											</a>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar10"></i>
+												<span class="text">휴대물품 신청</span>
+											</a>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar11"></i>
+												<span class="text">통계관리</span>
+											</a>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar12"></i>
+												<span class="text">출입증 현황 관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li class="on">
+											<a href="#;">
+												<i class="svg-icon ico-sidebar13"></i>
+												<span class="text">출입증 발급 관리</span>
+											</a>
+											<ul>
+												<li class="active">
+													<a href="#;"><span class="text">사원증 재발급 신청</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">출입증 신규/재발급 신청</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">차량출입증 발급 신청</span></a>
+													<ul>
+														<li>
+															<a href="#;"><span class="text">임직원 개인용 출입증</span></a>
+														</li>
+														<li class="active">
+															<a href="#;"><span class="text">부서 업무용 출입증</span></a>
+														</li>
+														<li>
+															<a href="#;"><span class="text">협력사 개인용 출입증</span></a>
+														</li>
+														<li>
+															<a href="#;"><span class="text">협력사 업무용 출입증</span></a>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar14"></i>
+												<span class="text">협력사 관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar15"></i>
+												<span class="text">승인 현황</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar16"></i>
+												<span class="text">반출입 관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar17"></i>
+												<span class="text">공사/안전관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar18"></i>
+												<span class="text">시스템 관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar19"></i>
+												<span class="text">방문관리 시스템</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar20"></i>
+												<span class="text">방문카드 관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-sidebar21"></i>
+												<span class="text">식수관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">하위메뉴1</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">하위메뉴2</span></a>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</nav>
+							</section>
+							<section id="sidebar_02" class="tab-conts">
+								<h3 class="sr-only">즐겨찾기</h3>
+								<nav class="favorit-menu">
+									<!-- 데이터 있을 때 -->
+									<!-- [개발] 활성화 메뉴의 li class="active" -->
+									<ul class="favorit-list">
+										<li class="on">
+											<a href="#;">
+												<i class="svg-icon ico-folder"></i>
+												<span class="text">출입증 발급 관리</span>
+											</a>
+											<ul>
+												<li>
+													<a href="#;"><span class="text">사원증 재발급 신청</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">출입증 신규/재발급 신청</span></a>
+												</li>
+												<li>
+													<a href="#;"><span class="text">차량출입증 발급 신청</span></a>
+												</li>
+											</ul>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-folder"></i>
+												<span class="text">부서 업무용 출입증</span>
+											</a>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-folder"></i>
+												<span class="text">승인 현황</span>
+											</a>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-folder"></i>
+												<span class="text">공사/안전관리</span>
+											</a>
+										</li>
+										<li>
+											<a href="#;">
+												<i class="svg-icon ico-folder"></i>
+												<span class="text">승인 현황</span>
+											</a>
+										</li>
+										<li class="active">
+											<a href="#;">
+												<i class="svg-icon ico-folder"></i>
+												<span class="text">방문관리 시스템</span>
+											</a>
+										</li>
+									</ul>
+									<!-- // 데이터 있을 때 -->
+								</nav>
+							</section>
+						</div>
+						<!-- //tab contents -->
+					</div>
+					<!-- //tab -->
+				</div>
+				<div class="user-info-area">
+					<div class="info">
+						<div class="profile">
+							<span class="profile-thumb">
+								<!-- [개발] 프로필 이미지 개인 사용시 img 사용 -->
+								<!-- <img src="../../assets/img/component/icon/ico_admin_user.svg" alt="프로필 이미지" /> -->
+								<i class="svg-icon ico-admin-user"></i>
+							</span>
+
+							<div class="text-wrap">
+								<span class="team">관리 운영팀</span>
+								<strong class="user">관리자</strong>
+							</div>
+						</div>
+						<a
+							href="#layer-setting"
+							class="krds-btn icon xlarge"
+							onclick="openLayer('#layer-setting', this); return false;"
+						>
+							<i class="svg-icon ico-sidebar-setting"></i>
+							<span class="sr-only">화면 설정</span>
+						</a>
+					</div>
+				</div>
+				<!-- layerpopup : 화면 설정 -->
+				<div class="layer-popup setting-popup hide" id="layer-setting">
+					<div class="popup-inner" style="width: 413px">
+						<div class="popup-header">
+							<h2 class="popup-title">설정</h2>
+						</div>
+						<div class="popup-body">
+							<div class="setting-group">
+								<div class="set-item lang-setting">
+									<div class="form-group view-mode-options">
+										<div class="form-tit">
+											<strong class="set-tit">언어 설정</strong>
+										</div>
+										<div class="form-conts">
+											<div class="krds-check-area chk-column">
+												<div class="krds-form-check">
+													<input type="radio" name="lang_setting" id="lang_kr" checked />
+													<label for="lang_kr">한글</label>
+												</div>
+												<div class="krds-form-check view-mode-dark">
+													<input type="radio" name="lang_setting" id="lang_en" />
+													<label for="lang_en">영어</label>
+												</div>
+												<div class="krds-form-check view-mode-dark">
+													<input type="radio" name="lang_setting" id="lang_jp" />
+													<label for="lang_jp">일본</label>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="set-item adjust-display">
+									<div class="form-group view-mode-options">
+										<div class="form-tit">
+											<strong class="set-tit">색상 설정</strong>
+										</div>
+										<div class="form-conts">
+											<div class="krds-check-area chk-column">
+												<div class="krds-form-check view-mode-light">
+													<input type="radio" name="view_mode" id="view_mode_light" value="light" checked />
+													<label for="view_mode_light">
+														<span class="chk-label">
+															<span>라이트 모드(기본)</span>
+															<img src="../../assets/img/_common/img-view-mode-light.png" alt="라이트 모드" />
+														</span>
+													</label>
+												</div>
+												<div class="krds-form-check view-mode-dark">
+													<input type="radio" name="view_mode" id="view_mode_dark" value="high-contrast" />
+													<label for="view_mode_dark">
+														<span class="chk-label">
+															<span>다크 모드</span>
+															<img src="../../assets/img/_common/img-view-mode-dark.png" alt="다크 모드" />
+														</span>
+													</label>
+												</div>
+												<!-- <div class="krds-form-check view-mode-default">
+															<input type="radio" name="view_mode" id="view_mode_default" value="theme" />
+															<label for="view_mode_default">시스템 설정</label>
+														</div> -->
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="btn-group-right">
+								<button type="reset" class="krds-btn medium tertiary close-popup">초기화</button>
+								<button type="button" class="krds-btn medium primary close-popup">설정</button>
+							</div>
+						</div>
+						<button type="button" class="krds-btn close-popup">
+							<span class="sr-only">닫기</span>
+							<i class="svg-icon ico-popup-close"></i>
+						</button>
+					</div>
+				</div>
+				<!-- //layerpopup -->
+			</aside>
+		</div>
+	</body>
+</html>

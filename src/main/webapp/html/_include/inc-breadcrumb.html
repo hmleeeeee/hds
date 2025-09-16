@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>현재화면명 | 메뉴명 | 사이트명</title>
+		<link rel="shortcut icon" href="../../../asset/_common/images/favicon.png" />
+		<link rel="stylesheet" href="../../../asset/sitecode-kr/css/style.css" />
+
+		<!-- JavaScript -->
+		<script src="../../../asset/_common/js/jquery-1.12.4.min.js"></script>
+		<script src="../../assets/js/component/ui-script.js"></script>
+		<script src="../../assets/js/_common/ui-global.js"></script>
+		<script>
+			$(document).ready(function () {
+				favoriteButton(); // 즐겨찾기 버튼
+			});
+		</script>
+	</head>
+
+	<body>
+		<!-- breadcrumb -->
+		<nav class="krds-breadcrumb-wrap" aria-label="현재 경로" id="breadcrumb">
+			<ol class="breadcrumb">
+				<li class="home">
+					<i class="svg-icon ico-bread-home"></i>
+					<a href="#" class="txt sr-only">홈</a>
+				</li>
+				<li><a href="#" class="txt">대메뉴</a></li>
+				<li><a href="#" class="txt">중메뉴</a></li>
+				<li>
+					<a href="#" class="txt">페이지 타이틀</a>
+					<button type="button" class="btn-favorit">
+						<i class="svg-icon ico-star"></i>
+						<span class="sr-only">즐겨찾기 추가</span>
+					</button>
+				</li>
+			</ol>
+		</nav>
+		<!-- breadcrumb -->
+	</body>
+</html>

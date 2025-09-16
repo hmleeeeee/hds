@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>현재화면명 | 메뉴명 | 사이트명</title>
+		<link rel="shortcut icon" href="../../assets/img/_common/favicon.png" />
+
+		<!-- style -->
+		<link rel="stylesheet" href="../../assets/plugins/jqGrid-4.7.0/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="../../assets/plugins/ztree/zTreeStyle.css" />
+		<link rel="stylesheet" href="../../assets/plugins/sweetalert/custom-swal.css" />
+		<link rel="stylesheet" href="../../assets/css/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+		<!-- JavaScript -->
+		<script src="../../assets/js/_common/jquery-1.12.4.min.js"></script>
+		<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+		<!-- jqGrid Plugins -->
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/i18n/grid.locale-kr.js"></script>
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/minified/jquery.jqGrid.min.js"></script>
+
+		<!-- ztree Plugins -->
+		<script src="../../assets/plugins/ztree/jquery.ztree.core.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.excheck.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.exedit.js"></script>
+		<script src="../../assets/plugins/ztree/zTreeCustom.js"></script>
+
+		<!-- Plugins -->
+		<script src="../../assets/plugins/slick/slick.min.js"></script>
+		<script src="../../assets/js/_common/datepicker.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="../../assets/js/component/ui-script.js"></script>
+		<script src="../../assets/js/_common/ui-global.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+		<!-- TODO : 개발시 반드시 삭제, 레이아웃 세팅 JS -->
+		<script src="../../assets/_guide/js/ui-layout-setting.js"></script>
+
+		<!-- 페이지 개별 스크립트 -->
+		<script>
+			$(document).ready(function () {
+				function adjustJqGridHeaderPadding() {
+					// 페이지 내의 모든 jqGrid를 선택
+					var $allGrids = $("[id^='jqGrid']");
+
+					// 각 그리드에 대해 패딩 조정
+					$allGrids.each(function () {
+						var $grid = $(this);
+
+						// 그리드가 보이는 상태인지 확인
+						if ($grid.is(":visible")) {
+							var $bdiv = $grid.closest(".ui-jqgrid").find(".ui-jqgrid-bdiv");
+							var $hdiv = $grid.closest(".ui-jqgrid").find(".ui-jqgrid-hdiv");
+
+							if ($bdiv.length === 0 || $hdiv.length === 0) return;
+
+							var scrollbarWidth = $bdiv[0].offsetWidth - $bdiv[0].clientWidth;
+							scrollbarWidth = Math.round(scrollbarWidth);
+
+							if (scrollbarWidth > 3) {
+								$hdiv[0].style.setProperty("padding-right", scrollbarWidth + -2 + "px", "important");
+							} else {
+								$hdiv.css("padding-right", "0px");
+							}
+						}
+					});
+				}
+
+				// 탭 이벤트 모니터링을 위한 별도 코드
+
+				adjustJqGridHeaderPadding();
+
+				// 탭 클릭 이벤트 모니터링
+				$(document).on("click", ".krds-tab-area.layer .tab > ul > li", function () {
+					// 탭이 활성화된 후 약간의 지연을 두고 패딩 조정
+					setTimeout(adjustJqGridHeaderPadding, 100);
+				});
+
+				// 창 크기 변경 시에도 실행
+				$(window).resize(function () {
+					adjustJqGridHeaderPadding();
+				});
+
+				// MutationObserver를 사용하여 DOM 변경 감지 (탭 패널의 클래스 변경 감지)
+				if (window.MutationObserver) {
+					const tabPanels = document.querySelectorAll(".krds-tab-area.layer .tab-conts");
+
+					if (tabPanels.length > 0) {
+						const observer = new MutationObserver(function (mutations) {
+							mutations.forEach(function (mutation) {
+								if (mutation.type === "attributes" && mutation.attributeName === "class") {
+									// 클래스 변경 감지 시 그리드 패딩 조정
+									if (mutation.target.classList.contains("active")) {
+										setTimeout(adjustJqGridHeaderPadding, 100);
+									}
+								}
+							});
+						});
+
+						// 각 탭 패널에 대해 observer 설정
+						tabPanels.forEach(function (panel) {
+							observer.observe(panel, { attributes: true });
+						});
+					}
+				}
+				jQuery("#jqGrid").jqGrid({
+					datatype: "local",
+					viewrecords: true,
+					autowidth: true,
+					shrinkToFit: false,
+					width: "100%",
+					height: "100%",
+					rowNum: 5,
+					pager: "#jqGridPager",
+					colNames: ["userID", "신청자", "부서명", "기본", "신청일자", "발급 상태", "승인자"],
+					colModel: [
+						{
+							name: "type",
+							index: "type",
+							align: "left",
+							//width: 70,
+							sorttype: "int"
+						},
+						{
+							name: "code",
+							index: "code",
+							align: "left",
+							//width: 130,
+							sorttype: "date"
+						},
+						{
+							name: "subject",
+							index: "subject",
+							align: "left"
+							//width: 130
+						},
+						{
+							name: "amount",
+							index: "amount",
+							align: "left",
+							//width: 130,
+							sorttype: "float"
+						},
+						{
+							name: "from",
+							index: "from",
+							align: "left",
+							width: 170,
+							sorttype: "date"
+						},
+						{
+							name: "to",
+							index: "total",
+							align: "left",
+							// width: 130,
+							sorttype: "date",
+							//동적 클래스 추가
+							formatter: function (cellValue, options, rowObject) {
+								var className =
+									cellValue === "승인완료" ? "krds-badge bg-light-success" : "krds-badge bg-light-warning";
+								return `<span class="${className}">${cellValue}</span>`;
+							}
+						},
+						{
+							name: "confirm",
+							index: "confirm",
+							align: "left",
+							// width: 130,
+							sorttype: "date"
+						}
+					],
+					multiselect: true,
+					multiselectWidth: "45px",
+					pgbuttons: true,
+					pginput: true,
+					viewrecords: true,
+					loadComplete: function () {
+						// 데이터 행 체크박스에 클래스를 추가
+						$("#jqGrid").jqGrid("setColProp", "cb", {
+							classes: "krds-form-check"
+						});
+						$("#jqGrid").find("#jqGrid_cb").addClass("krds-form-check");
+						$("#jqGrid_cb").addClass("krds-form-check");
+					}
+				});
+				var mydata = [
+					{
+						type: "#CM9801",
+						code: "김미영",
+						subject: "운영지원",
+						amount: "출입 요청 장소",
+						from: "2025.01.10 16:30:24",
+						to: "승인완료",
+						confirm: "한수민"
+					},
+					{
+						type: "#CM9801",
+						code: "김미영",
+						subject: "운영지원",
+						amount: "출입 요청 장소",
+						from: "2025.01.10 16:30:24",
+						to: "보류 중",
+						confirm: "한수민"
+					},
+					{
+						type: "#CM9801",
+						code: "김미영",
+						subject: "운영지원",
+						amount: "출입 요청 장소",
+						from: "2025.01.10 16:30:24",
+						to: "승인완료",
+						confirm: "한수민"
+					},
+					{
+						type: "#CM9801",
+						code: "김미영",
+						subject: "운영지원",
+						amount: "출입 요청 장소",
+						from: "2025.01.10 16:30:24",
+						to: "승인완료",
+						confirm: "한수민"
+					},
+					{
+						type: "#CM9801",
+						code: "김미영",
+						subject: "운영지원",
+						amount: "출입 요청 장소",
+						from: "2025.01.10 16:30:24",
+						to: "승인완료",
+						confirm: "한수민"
+					},
+					{
+						type: "#CM9801",
+						code: "김미영",
+						subject: "운영지원",
+						amount: "출입 요청 장소",
+						from: "2025.01.10 16:30:24",
+						to: "승인완료",
+						confirm: "한수민"
+					},
+					{
+						type: "#CM9801",
+						code: "김미영",
+						subject: "운영지원",
+						amount: "출입 요청 장소",
+						from: "2025.01.10 16:30:24",
+						to: "승인완료",
+						confirm: "한수민"
+					},
+					{
+						type: "#CM9801",
+						code: "김미영",
+						subject: "운영지원",
+						amount: "출입 요청 장소",
+						from: "2025.01.10 16:30:24",
+						to: "승인완료",
+						confirm: "한수민"
+					},
+					{
+						type: "#CM9801",
+						code: "김미영",
+						subject: "운영지원",
+						amount: "출입 요청 장소",
+						from: "2025.01.10 16:30:24",
+						to: "승인완료",
+						confirm: "한수민"
+					},
+					{
+						type: "#CM9801",
+						code: "김미영",
+						subject: "운영지원",
+						amount: "출입 요청 장소",
+						from: "2025.01.10 16:30:24",
+						to: "승인완료",
+						confirm: "한수민"
+					}
+				];
+				for (var i = 0; i <= mydata.length; i++) jQuery("#jqGrid").jqGrid("addRowData", i + 1, mydata[i]);
+			});
+
+			$(document).ready(function () {
+				$("#jqGrid02").jqGrid({
+					datatype: "local",
+					viewrecords: false,
+					autowidth: true,
+					shrinkToFit: false,
+					// height: 300,
+					rowNum: 20,
+					pager: "#jqGridPager02",
+					colNames: ["user ID", "기본", "신청일자", "승인자"],
+					colModel: [
+						{ name: "id", index: "id", align: "left", sorttype: "int" },
+						{ name: "location", index: "location", align: "left" },
+						{ name: "date", index: "date", align: "left", sorttype: "date", width: 170 },
+						{ name: "confirm", index: "confirm", align: "left", sorttype: "float" }
+					],
+					multiselect: true,
+					multiselectWidth: "45px",
+					loadComplete: function () {
+						// 데이터 행 체크박스에 클래스를 추가
+						$("#jqGrid02").jqGrid("setColProp", "cb", {
+							classes: "krds-form-check"
+						});
+						$("#jqGrid02").find("#jqGrid_cb").addClass("krds-form-check");
+						$("#jqGrid02_cb").addClass("krds-form-check");
+					}
+				});
+
+				// 3개의 로컬 데이터 추가
+				var mydata = [
+					{ id: "#CM9801", location: "출입 요청 장소", date: "2025.01.10 16:30:24", confirm: "한수민" },
+					{ id: "#CM9802", location: "연구소", date: "2025.01.09 13:45:23", confirm: "한수민" },
+					{ id: "#CM9803", location: "사무동", date: "2025.01.09 09:24:00", confirm: "한수민" }
+				];
+
+				for (var i = 0; i < mydata.length; i++) {
+					$("#jqGrid02").jqGrid("addRowData", i + 1, mydata[i]);
+				}
+			});
+
+			$(document).ready(function () {
+				$("#jqGrid02").jqGrid({
+					datatype: "local",
+					viewrecords: false,
+					autowidth: true,
+					shrinkToFit: false,
+					// height: 300,
+					rowNum: 20,
+					pager: "#jqGridPager02",
+					colNames: ["user ID", "기본", "신청일자", "승인자"],
+					colModel: [
+						{ name: "id", index: "id", align: "left", sorttype: "int" },
+						{ name: "location", index: "location", align: "left" },
+						{ name: "date", index: "date", align: "left", sorttype: "date", width: 170 },
+						{ name: "confirm", index: "confirm", align: "left", sorttype: "float" }
+					],
+					multiselect: true,
+					multiselectWidth: "45px",
+					loadComplete: function () {
+						// 데이터 행 체크박스에 클래스를 추가
+						$("#jqGrid02").jqGrid("setColProp", "cb", {
+							classes: "krds-form-check"
+						});
+						$("#jqGrid02").find("#jqGrid_cb").addClass("krds-form-check");
+						$("#jqGrid02_cb").addClass("krds-form-check");
+					}
+				});
+
+				// 3개의 로컬 데이터 추가
+				var mydata = [
+					{ id: "#CM9801", location: "출입 요청 장소", date: "2025.01.10 16:30:24", confirm: "한수민" },
+					{ id: "#CM9802", location: "연구소", date: "2025.01.09 13:45:23", confirm: "한수민" },
+					{ id: "#CM9803", location: "사무동", date: "2025.01.09 09:24:00", confirm: "한수민" }
+				];
+
+				for (var i = 0; i < mydata.length; i++) {
+					$("#jqGrid02").jqGrid("addRowData", i + 1, mydata[i]);
+				}
+			});
+
+			// jQuery 이벤트 바인딩 예시
+			$(function () {
+				// Alert 확장형 예시
+				$("#btn-alert2").click(function () {
+					alert({
+						icon: "info",
+						title: "Alert Title",
+						message: "확장형 alert<br> 예제입니다.",
+						okText: "닫기" // 버튼 텍스트 변경
+					});
+				});
+
+				// Confirm 기본형 예시
+				$("#btn-confirm1").click(function () {
+					confirm("등록 하시겠습니까?", function (result) {
+						if (result) {
+							console.log("확인 선택");
+						} else {
+							console.log("취소 선택");
+						}
+					});
+				});
+				$("#btn-confirm2").click(function () {
+					confirm("수정 하시겠습니까?", function (result) {
+						if (result) {
+							console.log("확인 선택");
+						} else {
+							console.log("취소 선택");
+						}
+					});
+				});
+				$("#btn-confirm3").click(function () {
+					confirm("삭제 하시겠습니까?", function (result) {
+						if (result) {
+							console.log("확인 선택");
+						} else {
+							console.log("취소 선택");
+						}
+					});
+				});
+			});
+
+			// z-tree : zNodes 추가 옵션
+			// open: true : 기본 view가 오픈상태로 노출
+			// disabled: true : 비활성화 메뉴의 경우
+			// isParent: true : 하위 메뉴가 없는 상태에서 폴더형식의 경우
+
+			// iconskin 변경
+			// ico_docu, ico-page-md : 일반페이지 (기본), 지정되지 않은 종류의 페이지
+			// ico_open, ico_close, ico-folder-md : 폴더 (기본)
+			// ico-site-md : 사용자사이트 페이지
+			// ico-editpage-md :웹콘텐츠 관리 페이지
+			// ico-pagepgm-md : pgm 페이지
+			// ico-pagebbs-md : bbs 페이지
+			// ico-newwindow-md : 새창 (target: "_blank" 속성 추가 필요)
+			// ico-code-md : 코드 페이지
+
+			var zNodes = [
+				{ id: 1, pId: 0, name: "사이트 메뉴명1", open: true },
+				{ id: 11, pId: 1, name: "사이트 메뉴명1", open: true, disabled: true },
+				{ id: 111, pId: 11, name: "사이트 메뉴명1", disabled: true },
+				{ id: 112, pId: 11, name: "사이트 메뉴명1" },
+				{ id: 113, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md" },
+				{ id: 114, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md" },
+				{ id: 115, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md" },
+				{ id: 116, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md" },
+				{ id: 117, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md" },
+				{ id: 118, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md", disabled: true },
+				{ id: 119, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md", disabled: true },
+				{ id: 1110, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md", disabled: true },
+				{ id: 1111, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md", disabled: true },
+				{ id: 1112, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md", disabled: true },
+				{ id: 12, pId: 1, name: "길어질 경우 가로 스크롤이 생성됩니다. 길어질 경우 가로 스크롤이 생성됩니다." },
+				{ id: 121, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 122, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md", disabled: true },
+				{ id: 2, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 21, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 211, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 212, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 22, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 221, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 222, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 23, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 231, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 232, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 3, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 4, pId: 0, name: "사이트 메뉴명1" }
+			];
+
+			// zTree onClick 이벤트
+			window.zTreeOnClick = function (event, treeId, treeNode) {
+				// zTree 노드 클릭시 이벤트 사용자 정의
+				alert(treeNode ? treeNode.tId : "root");
+			};
+
+			window.zTreeBeforeRename = function (treeId, treeNode, newName, isCancel) {
+				// zTree 노드 네이밍 변경 시 기존 네임
+				console.log(treeId, treeNode, newName, isCancel);
+			};
+
+			window.zTreeRename = function (e, treeId, treeNode, isCancel) {
+				// zTree 노드 네이밍 변경 시 사용자 정의
+				console.log(e, treeId, treeNode, isCancel);
+			};
+
+			// [노드 생성시 필수] zTree 노드 생성시 기준 네이밍 변경
+			window.zTreeCreateNewNode = function (zTree, treeNode, isParent) {
+				const nameFunc = function () {
+					return "이름을 입력해주세요.";
+				};
+				return createNewNode(zTree, treeNode, isParent, nameFunc);
+			};
+
+			function removeNodeId(treeNode) {
+				// zTree 삭제된 노드 확인
+				console.log("삭제된 노드 확인: ", treeNode);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div id="container" class="system-page">
+				<aside id="sidebar"></aside>
+				<article id="content">
+					<div class="content-header">
+						<!-- <h2 class="content-title">화면명</h2> -->
+						<header class="content-header"></header>
+					</div>
+					<div class="content-body">
+						<!-- 본문 영역 -->
+						<nav class="krds-breadcrumb-wrap" aria-label="현재 경로" id="breadcrumb"></nav>
+
+						<div class="container">
+							<div class="card-wrap">
+								<div class="card">
+									<div class="card-header line">
+										<h3 class="card-title">그룹목록</h3>
+									</div>
+									<div class="card-body">
+										<div class="box box-search">
+											<div class="fieldset">
+												<div class="grid-layout">
+													<div class="grid-item">
+														<dl class="form-group">
+															<dt class="form-tit">
+																<label for="select_name">시스템구분</label>
+															</dt>
+															<dd class="form-conts">
+																<select
+																	id="select_name"
+																	class="krds-form-select small"
+																	title="선택"
+																	style="width: 160px"
+																>
+																	<option value="">전체</option>
+																	<option value="">항목2</option>
+																	<option value="">항목3</option>
+																	<option value="">항목4</option>
+																</select>
+															</dd>
+														</dl>
+													</div>
+													<div class="grid-item">
+														<dl class="form-group">
+															<dt class="form-tit">
+																<label for="consult_name">권한명</label>
+															</dt>
+															<dd class="form-conts">
+																<input
+																	type="text"
+																	id="consult_name"
+																	class="krds-input small"
+																	placeholder="플레이스홀더"
+																	style="width: 140px"
+																/>
+															</dd>
+														</dl>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="btn-group-center">
+											<button type="button" class="krds-btn fixed small tertiary">
+												<i class="svg-icon ico-reset left"></i>초기화
+											</button>
+											<button type="button" class="krds-btn fixed small">
+												<i class="svg-icon ico-sch white"></i>검색
+											</button>
+										</div>
+										<!-- jq-grid-->
+										<div class="grid-area">
+											<!-- 그리드 영역 -->
+											<table id="jqGrid" class="grid-table"></table>
+											<div id="jqGridPager"></div>
+										</div>
+										<!-- //jq-grid -->
+									</div>
+								</div>
+
+								<div class="card-wrap col">
+									<div class="card">
+										<div class="card-header line">
+											<h3 class="card-title">그룹상세</h3>
+											<div class="card-toolbar">
+												<button type="button" class="krds-btn small"><i class="svg-icon ico-plus"></i>신규</button>
+												<button type="button" class="krds-btn small secondary" id="btn-confirm2">
+													<i class="svg-icon ico-edit left"></i>수정
+												</button>
+												<button type="button" class="krds-btn small tertiary" id="btn-confirm3">
+													<i class="svg-icon ico-trash left"></i>삭제
+												</button>
+												<button type="button" class="krds-btn small" id="btn-confirm1">
+													<i class="svg-icon ico-plus"></i>등록
+												</button>
+											</div>
+										</div>
+										<div class="card-body">
+											<!-- table -->
+											<div class="krds-table-wrap">
+												<table class="tbl row type02 data">
+													<caption>
+														그룹 상세에 대한 표로 그룹코드, 그룹명, 정의명, 등록자, 등록일, 수정자, 수정일 정보 제공
+													</caption>
+													<tbody>
+														<tr>
+															<th scope="row">그룹코드</th>
+															<td>
+																<input
+																	type="text"
+																	id="group_code"
+																	class="krds-input small"
+																	value="SYS006"
+																	style="width: 100%"
+																/>
+															</td>
+															<th scope="row">그룹명</th>
+															<td>
+																<input type="text" id="group_name" class="krds-input small" value="SYS006" />
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">정의명</th>
+															<td colspan="3">
+																<ul class="input-text-list">
+																	<li>
+																		<span>[1]</span>
+																		<input type="text" id="define01" class="krds-input full small" value="정의명" />
+																	</li>
+
+																	<li>
+																		<span>[2]</span>
+																		<input type="text" id="define02" class="krds-input full small" value="" />
+																	</li>
+																	<li>
+																		<span>[3]</span>
+																		<input type="text" id="define03" class="krds-input full small" value="" />
+																	</li>
+																	<li>
+																		<span>[4]</span>
+																		<input type="text" id="define04" class="krds-input full small" value="" />
+																	</li>
+																	<li>
+																		<span>[5]</span>
+																		<input type="text" id="define05" class="krds-input full small" value="" />
+																	</li>
+																</ul>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">등록자</th>
+															<td>관리자</td>
+															<th scope="row">등록일</th>
+															<td>2025-01-01 15:08:24</td>
+														</tr>
+														<tr>
+															<th scope="row">수정자</th>
+															<td>관리자</td>
+															<th scope="row">수정일</th>
+															<td>2025-01-02 12:18:03</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<!-- //table -->
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-header line">
+											<h3 class="card-title">코드목록</h3>
+										</div>
+										<div class="card-body">
+											<!-- jq-grid-->
+											<div class="grid-area">
+												<!-- 그리드 영역 -->
+												<table id="jqGrid02" class="grid-table"></table>
+												<div id="jqGridPager"></div>
+											</div>
+											<!-- //jq-grid -->
+										</div>
+									</div>
+									<div class="card">
+										<div class="card-header line">
+											<h3 class="card-title">코드상세</h3>
+											<div class="card-toolbar">
+												<button type="button" class="krds-btn small"><i class="svg-icon ico-plus"></i>신규</button>
+												<button type="button" class="krds-btn small secondary" id="btn-confirm2">
+													<i class="svg-icon ico-edit left"></i>수정
+												</button>
+												<button type="button" class="krds-btn small tertiary" id="btn-confirm3">
+													<i class="svg-icon ico-trash left"></i>삭제
+												</button>
+												<button type="button" class="krds-btn small" id="btn-confirm1">
+													<i class="svg-icon ico-plus"></i>등록
+												</button>
+											</div>
+										</div>
+										<div class="card-body">
+											<!-- table -->
+											<div class="krds-table-wrap">
+												<table class="tbl row type02 data">
+													<caption>
+														코드 상세에 대한 표로 상세코드, 상세명, 약어명, 정의명, 정렬순서, 사용여부, 등록자, 등록일 ,
+														수정자 ,수정일 정보 제공
+													</caption>
+													<tbody>
+														<tr>
+															<th scope="row">상세코드</th>
+															<td colspan="3">
+																<input
+																	type="text"
+																	id="detail_code02"
+																	class="krds-input small"
+																	value="10"
+																	style="width: 100%"
+																/>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">상세명</th>
+															<td>
+																<input
+																	type="text"
+																	id="detail_name"
+																	class="krds-input small"
+																	value="팀"
+																	style="width: 100%"
+																/>
+															</td>
+															<th scope="row">약어명</th>
+															<td>
+																<input
+																	type="text"
+																	id="acro_name"
+																	class="krds-input small"
+																	value="TEAM"
+																	style="width: 100%"
+																/>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">정의명</th>
+															<td colspan="3">
+																<ul class="input-text-list">
+																	<li>
+																		<span>[1]</span>
+																		<input type="text" id="define06" class="krds-input full small" value="정의명" />
+																	</li>
+
+																	<li>
+																		<span>[2]</span>
+																		<input type="text" id="define07" class="krds-input full small" value="" />
+																	</li>
+																	<li>
+																		<span>[3]</span>
+																		<input type="text" id="define08" class="krds-input full small" value="" />
+																	</li>
+																	<li>
+																		<span>[4]</span>
+																		<input type="text" id="define09" class="krds-input full small" value="" />
+																	</li>
+																	<li>
+																		<span>[5]</span>
+																		<input type="text" id="define10" class="krds-input full small" value="" />
+																	</li>
+																</ul>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">정렬순서</th>
+															<td>
+																<input type="text" id="menu_number01" class="krds-input small" value="1" />
+															</td>
+															<th scope="row">사용여부</th>
+															<td>
+																<select
+																	id="user_status"
+																	class="krds-form-select small completed"
+																	title="사용여부 선택"
+																	style="width: auto"
+																>
+																	<option value="" disabled hidden selected>선택</option>
+																	<option value="">사용</option>
+																	<option value="">미사용</option>
+																</select>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">등록자</th>
+															<td>관리자</td>
+															<th scope="row">등록일</th>
+															<td>2025-01-01 15:08:24</td>
+														</tr>
+														<tr>
+															<th scope="row">수정자</th>
+															<td>관리자</td>
+															<th scope="row">수정일</th>
+															<td>2025-01-02 12:18:03</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<!-- //table -->
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- // 본문 영역 -->
+					</div>
+				</article>
+			</div>
+			<!-- <footer id="footer"></footer> -->
+		</div>
+	</body>
+</html>

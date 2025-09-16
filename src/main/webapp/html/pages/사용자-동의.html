@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>현재화면명 | 메뉴명 | 사이트명</title>
+		<link rel="shortcut icon" href="../../assets/img/_common/favicon.png" />
+
+		<!-- style -->
+		<link rel="stylesheet" href="../../assets/plugins/jqGrid-4.7.0/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="../../assets/plugins/ztree/zTreeStyle.css" />
+		<link rel="stylesheet" href="../../assets/plugins/sweetalert/custom-swal.css" />
+		<link rel="stylesheet" href="../../assets/css/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+		<!-- JavaScript -->
+		<script src="../../assets/js/_common/jquery-1.12.4.min.js"></script>
+		<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+		<!-- jqGrid Plugins -->
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/i18n/grid.locale-kr.js"></script>
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/minified/jquery.jqGrid.min.js"></script>
+
+		<!-- ztree Plugins -->
+		<script src="../../assets/plugins/ztree/jquery.ztree.core.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.excheck.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.exedit.js"></script>
+		<script src="../../assets/plugins/ztree/zTreeCustom.js"></script>
+
+		<!-- Plugins -->
+		<script src="../../assets/plugins/slick/slick.min.js"></script>
+		<script src="../../assets/js/_common/datepicker.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="../../assets/js/component/ui-script.js"></script>
+		<script src="../../assets/js/_common/ui-global.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+		<!-- TODO : 개발시 반드시 삭제, 레이아웃 세팅 JS -->
+		<script src="../../assets/_guide/js/ui-layout-setting.js"></script>
+
+		<!-- 페이지 개별 스크립트 -->
+		<script>
+			$(document).ready(function () {});
+
+			// z-tree : zNodes 추가 옵션
+			// open: true : 기본 view가 오픈상태로 노출
+			// disabled: true : 비활성화 메뉴의 경우
+			// isParent: true : 하위 메뉴가 없는 상태에서 폴더형식의 경우
+
+			// iconskin 변경
+			// ico_docu, ico-page-md : 일반페이지 (기본), 지정되지 않은 종류의 페이지
+			// ico_open, ico_close, ico-folder-md : 폴더 (기본)
+			// ico-site-md : 사용자사이트 페이지
+			// ico-editpage-md :웹콘텐츠 관리 페이지
+			// ico-pagepgm-md : pgm 페이지
+			// ico-pagebbs-md : bbs 페이지
+			// ico-newwindow-md : 새창 (target: "_blank" 속성 추가 필요)
+			// ico-code-md : 코드 페이지
+
+			var zNodes = [
+				{ id: 1, pId: 0, name: "사이트 메뉴명1", open: true },
+				{ id: 11, pId: 1, name: "사이트 메뉴명1", open: true, disabled: true },
+				{ id: 111, pId: 11, name: "사이트 메뉴명1", disabled: true },
+				{ id: 112, pId: 11, name: "사이트 메뉴명1" },
+				{ id: 113, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md" },
+				{ id: 114, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md" },
+				{ id: 115, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md" },
+				{ id: 116, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md" },
+				{ id: 117, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md" },
+				{ id: 118, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md", disabled: true },
+				{ id: 119, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md", disabled: true },
+				{ id: 1110, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md", disabled: true },
+				{ id: 1111, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md", disabled: true },
+				{ id: 1112, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md", disabled: true },
+				{ id: 12, pId: 1, name: "길어질 경우 가로 스크롤이 생성됩니다. 길어질 경우 가로 스크롤이 생성됩니다." },
+				{ id: 121, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 122, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 2, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 21, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 211, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 212, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 22, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 221, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 222, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 23, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 231, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 232, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 3, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 4, pId: 0, name: "사이트 메뉴명1" }
+			];
+
+			// zTree onClick 이벤트
+			window.zTreeOnClick = function (event, treeId, treeNode) {
+				// zTree 노드 클릭시 이벤트 사용자 정의
+				alert(treeNode ? treeNode.tId : "root");
+			};
+
+			window.zTreeBeforeRename = function (treeId, treeNode, newName, isCancel) {
+				// zTree 노드 네이밍 변경 시 기존 네임
+				console.log(treeId, treeNode, newName, isCancel);
+			};
+
+			window.zTreeRename = function (e, treeId, treeNode, isCancel) {
+				// zTree 노드 네이밍 변경 시 사용자 정의
+				console.log(e, treeId, treeNode, isCancel);
+			};
+
+			// [노드 생성시 필수] zTree 노드 생성시 기준 네이밍 변경
+			window.zTreeCreateNewNode = function (zTree, treeNode, isParent) {
+				const nameFunc = function () {
+					return "이름을 입력해주세요.";
+				};
+				return createNewNode(zTree, treeNode, isParent, nameFunc);
+			};
+
+			function removeNodeId(treeNode) {
+				// zTree 삭제된 노드 확인
+				console.log("삭제된 노드 확인: ", treeNode);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div id="container">
+				<aside id="sidebar"></aside>
+				<article id="content">
+					<div class="content-header">
+						<!-- <h2 class="content-title">화면명</h2> -->
+						<header class="content-header"></header>
+					</div>
+					<div class="content-body">
+						<!-- 본문 영역 -->
+						<nav class="krds-breadcrumb-wrap" aria-label="현재 경로" id="breadcrumb"></nav>
+
+						<div class="container">
+							<div class="card">
+								<div class="btn-group-left">
+									<button type="button" class="krds-btn medium open-modal" data-target="modal_sample_01">
+										동의 약관 모달
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<!-- modal -->
+						<!-- modal-drag : 드래그 가능 -->
+						<div
+							id="modal_sample_01"
+							class="krds-modal fade auto-open"
+							role="dialog"
+							aria-labelledby="tit_modal_sample_01"
+						>
+							<!-- modal-size : sm, md, lg, xl -->
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<!-- modal title -->
+									<!-- <div class="modal-header">
+												<h2 id="tit_modal_sample_01" class="modal-title">모달 제목</h2>
+											</div> -->
+									<!-- //modal title -->
+									<!-- modal contents -->
+									<div class="modal-conts">
+										<div class="conts-area">
+											<div class="agree-modal">
+												<h2 class="agree-header">해성DS 방문신청 서비스 <strong>약관에 동의해주세요.</strong></h2>
+												<div class="box">
+													<strong>TIP!</strong>
+													<p>
+														개인정보 제3자 제공에 대해 동의하지 않으면 방문 예약 신청을 정상적으로 진행할 수 없습니다.
+													</p>
+												</div>
+
+												<div class="agree-list">
+													<div class="agree-wrap">
+														<label class="krds-form-check" for="chk_1">
+															<input type="checkbox" name="chk" id="chk_1" />
+															<span class="label">선택</span>
+															<span class="descript">[필수] 만 14세 이상입니다. </span>
+														</label>
+														<span class="sub-descript">만 14세 미만은 방문 예약을 할 수 없습니다. </span>
+													</div>
+													<div class="agree-wrap">
+														<label class="krds-form-check" for="chk_2">
+															<input type="checkbox" name="chk" id="chk_2" />
+															<span class="label">선택</span>
+															<span class="descript">[필수] 방문 서비스 이용약관 </span>
+														</label>
+														<button type="button" class="open-modal btn-agree" data-target="modal_sample_02">
+															<i class="svg-icon ico-arrow-right-agree"></i>
+														</button>
+													</div>
+													<div class="agree-wrap">
+														<label class="krds-form-check" for="chk_3">
+															<input type="checkbox" name="chk" id="chk_3" />
+															<span class="label">선택</span>
+															<span class="descript">[필수] 개인정보 수집 및 이용 동의 </span>
+														</label>
+														<button type="button" class="open-modal btn-agree" data-target="modal_sample_03">
+															<i class="svg-icon ico-arrow-right-agree"></i>
+														</button>
+													</div>
+													<div class="agree-wrap">
+														<label class="krds-form-check" for="chk_4">
+															<input type="checkbox" name="chk" id="chk_4" />
+															<span class="label">선택</span>
+															<span class="descript">[필수] 개인정보 제3자 제공 동의 </span>
+														</label>
+														<button type="button" class="open-modal btn-agree" data-target="modal_sample_04">
+															<i class="svg-icon ico-arrow-right-agree"></i>
+														</button>
+													</div>
+												</div>
+
+												<div class="agree-list last">
+													<div class="agree-wrap">
+														<label class="krds-form-check" for="chk_5">
+															<input type="checkbox" name="chk" id="chk_5" />
+															<span class="label">선택</span>
+															<span class="descript"><strong>모두 동의합니다.</strong></span>
+														</label>
+														<span class="sub-descript">선택항목을 포함하여 모든 항목에 동의함을 의미합니다. </span>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<!-- //modal contents -->
+									<!-- modal btn -->
+									<div class="modal-btn btn-wrap">
+										<button type="button" class="krds-btn medium primary close-modal" disabled>동의</button>
+									</div>
+									<!-- //modal btn -->
+									<!-- close button -->
+									<button type="button" class="krds-btn medium icon btn-close close-modal">
+										<span class="sr-only">닫기</span>
+										<i class="svg-icon ico-popup-close"></i>
+									</button>
+									<!-- //close button -->
+								</div>
+							</div>
+							<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+							<!-- <div class="modal-back"></div> -->
+						</div>
+						<!-- //modal -->
+
+						<!-- modal -->
+						<!-- modal-drag : 드래그 가능 -->
+						<div
+							id="modal_sample_02"
+							class="krds-modal modal-drag fade"
+							role="dialog"
+							aria-labelledby="tit_modal_sample_02"
+						>
+							<!-- modal-size : sm, md, lg, xl -->
+							<div class="modal-dialog modal-md">
+								<div class="modal-content">
+									<!-- modal title -->
+									<div class="modal-header">
+										<h2 id="tit_modal_sample_02" class="modal-title">해성DS 방문신청 서비스</h2>
+										<span class="modal-title-sub">해성DS 방문서비스 이용에 필요한 사항이 규정되어 있습니다. </span>
+									</div>
+									<!-- //modal title -->
+									<!-- modal contents -->
+									<div class="modal-conts">
+										<div class="conts-area">
+											<label for="user_status" class="sr-only">사용자상태</label>
+
+											<select
+												id="user_status"
+												class="krds-form-select small completed"
+												title="사용자상태 선택"
+												style="max-width: 300px"
+											>
+												<option value="" selected>2017-05-15 시행일자기준</option>
+												<option value="">2016-05-15 시행일자기준</option>
+												<option value="">2015-05-15 시행일자기준</option>
+											</select>
+
+											<div class="terms-area">
+												<p>
+													당사는 개인정보보호법 제15조 등 관련법령에 따라 정보주체로부터 개인정보를 수집함에 있어,
+													아래의 내용을 안내하고 있습니다. 정보주체가 되는 이용자께서는 아래 내용을 자세히 읽어 보시고,
+													모든 내용을 이해하신 후에 동의여부를 결정하여 주시기 바랍니다.
+												</p>
+												<ol class="terms-list">
+													<li>
+														<strong>1. 개인정보의 수집 및 이용목적</strong>
+														<ul>
+															<li>관련 법 및 당사 규정에 따라 시행되는 공사, 용역의 수행을 위한 제반 관련서류 확인</li>
+														</ul>
+													</li>
+													<li>
+														<strong>2. 수집하는 개인정보의 항목 </strong>
+														<ul>
+															<li>
+																수집항목
+																<ul>
+																	<li>
+																		개인정보 :이름, 주소, 전화번호(휴대폰 포함), 소속 및 직위, 자동차등록번호,
+																		자동차종합보험 등
+																	</li>
+																	<li>고유식별정보 :주민등록번호, 운전면허번호</li>
+																</ul>
+															</li>
+														</ul>
+													</li>
+													<li>
+														<strong>3. 개인정보 보유 및 이용기간 </strong>
+														<ul>
+															<li>개인정보 제공 후 5년간</li>
+														</ul>
+													</li>
+													<li>
+														<strong>4. 동의를 거부할 권리 및 동의 거부에 따른 안내 </strong>
+														<p>
+															귀하께서는 본 안내에 따른 개인정보 수집에 대하여 거부를 하실 수 있는 권리가 있습니다. 본
+															개인정보 수집에 대하여 거부하시는 경우, 실명확인 등 신원확인이 되지 않음에 따라
+															국가중요시설인 당사의 출입과 공사(용역)관련 업무에 참여 하실 수 없습니다. 상기내용을
+															숙지하시고 이름, 주소, 전화번호(휴대폰 포함), 직장명 등 개인정보 제공에 동의하십니까?
+														</p>
+													</li>
+												</ol>
+											</div>
+										</div>
+									</div>
+									<!-- //modal contents -->
+									<!-- modal btn -->
+									<div class="modal-btn btn-wrap">
+										<button type="button" class="krds-btn medium primary close-modal">확인</button>
+									</div>
+									<!-- //modal btn -->
+									<!-- close button -->
+									<button type="button" class="krds-btn medium icon btn-close close-modal">
+										<span class="sr-only">닫기</span>
+										<i class="svg-icon ico-popup-close"></i>
+									</button>
+									<!-- //close button -->
+								</div>
+							</div>
+							<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+							<!-- <div class="modal-back"></div> -->
+						</div>
+						<!-- //modal -->
+
+						<!-- modal -->
+						<!-- modal-drag : 드래그 가능 -->
+						<div
+							id="modal_sample_03"
+							class="krds-modal modal-drag fade"
+							role="dialog"
+							aria-labelledby="tit_modal_sample_03"
+						>
+							<!-- modal-size : sm, md, lg, xl -->
+							<div class="modal-dialog modal-md">
+								<div class="modal-content">
+									<!-- modal title -->
+									<div class="modal-header">
+										<h2 id="tit_modal_sample_03" class="modal-title">해성DS 방문신청 서비스</h2>
+										<span class="modal-title-sub">해성DS 방문서비스 이용에 필요한 사항이 규정되어 있습니다. </span>
+									</div>
+									<!-- //modal title -->
+									<!-- modal contents -->
+									<div class="modal-conts">
+										<div class="conts-area">
+											<label for="user_status" class="sr-only">사용자상태</label>
+
+											<select
+												id="user_status"
+												class="krds-form-select small completed"
+												title="사용자상태 선택"
+												style="max-width: 300px"
+											>
+												<option value="" selected>2017-05-15 시행일자기준</option>
+												<option value="">2016-05-15 시행일자기준</option>
+												<option value="">2015-05-15 시행일자기준</option>
+											</select>
+
+											<div class="terms-area">
+												<p>
+													당사는 개인정보보호법 제15조 등 관련법령에 따라 정보주체로부터 개인정보를 수집함에 있어,
+													아래의 내용을 안내하고 있습니다. 정보주체가 되는 이용자께서는 아래 내용을 자세히 읽어 보시고,
+													모든 내용을 이해하신 후에 동의여부를 결정하여 주시기 바랍니다.
+												</p>
+												<ol class="terms-list">
+													<li>
+														<strong>1. 개인정보의 수집 및 이용목적</strong>
+														<ul>
+															<li>관련 법 및 당사 규정에 따라 시행되는 공사, 용역의 수행을 위한 제반 관련서류 확인</li>
+														</ul>
+													</li>
+													<li>
+														<strong>2. 수집하는 개인정보의 항목 </strong>
+														<ul>
+															<li>
+																수집항목
+																<ul>
+																	<li>
+																		개인정보 :이름, 주소, 전화번호(휴대폰 포함), 소속 및 직위, 자동차등록번호,
+																		자동차종합보험 등
+																	</li>
+																	<li>고유식별정보 :주민등록번호, 운전면허번호</li>
+																</ul>
+															</li>
+														</ul>
+													</li>
+													<li>
+														<strong>3. 개인정보 보유 및 이용기간 </strong>
+														<ul>
+															<li>개인정보 제공 후 5년간</li>
+														</ul>
+													</li>
+													<li>
+														<strong>4. 동의를 거부할 권리 및 동의 거부에 따른 안내 </strong>
+														<p>
+															귀하께서는 본 안내에 따른 개인정보 수집에 대하여 거부를 하실 수 있는 권리가 있습니다. 본
+															개인정보 수집에 대하여 거부하시는 경우, 실명확인 등 신원확인이 되지 않음에 따라
+															국가중요시설인 당사의 출입과 공사(용역)관련 업무에 참여 하실 수 없습니다. 상기내용을
+															숙지하시고 이름, 주소, 전화번호(휴대폰 포함), 직장명 등 개인정보 제공에 동의하십니까?
+														</p>
+													</li>
+												</ol>
+											</div>
+										</div>
+									</div>
+									<!-- //modal contents -->
+									<!-- modal btn -->
+									<div class="modal-btn btn-wrap">
+										<button type="button" class="krds-btn medium primary close-modal">확인</button>
+									</div>
+									<!-- //modal btn -->
+									<!-- close button -->
+									<button type="button" class="krds-btn medium icon btn-close close-modal">
+										<span class="sr-only">닫기</span>
+										<i class="svg-icon ico-popup-close"></i>
+									</button>
+									<!-- //close button -->
+								</div>
+							</div>
+							<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+							<!-- <div class="modal-back"></div> -->
+						</div>
+						<!-- //modal -->
+
+						<!-- modal -->
+						<!-- modal-drag : 드래그 가능 -->
+						<div
+							id="modal_sample_04"
+							class="krds-modal modal-drag fade"
+							role="dialog"
+							aria-labelledby="tit_modal_sample_4"
+						>
+							<!-- modal-size : sm, md, lg, xl -->
+							<div class="modal-dialog modal-md">
+								<div class="modal-content">
+									<!-- modal title -->
+									<div class="modal-header">
+										<h2 id="tit_modal_sample_04" class="modal-title">해성DS 방문신청 서비스</h2>
+										<span class="modal-title-sub">해성DS 방문서비스 이용에 필요한 사항이 규정되어 있습니다. </span>
+									</div>
+									<!-- //modal title -->
+									<!-- modal contents -->
+									<div class="modal-conts">
+										<div class="conts-area">
+											<label for="user_status" class="sr-only">사용자상태</label>
+
+											<select
+												id="user_status"
+												class="krds-form-select small completed"
+												title="사용자상태 선택"
+												style="max-width: 300px"
+											>
+												<option value="" selected>2017-05-15 시행일자기준</option>
+												<option value="">2016-05-15 시행일자기준</option>
+												<option value="">2015-05-15 시행일자기준</option>
+											</select>
+
+											<div class="terms-area">
+												<p>
+													당사는 개인정보보호법 제15조 등 관련법령에 따라 정보주체로부터 개인정보를 수집함에 있어,
+													아래의 내용을 안내하고 있습니다. 정보주체가 되는 이용자께서는 아래 내용을 자세히 읽어 보시고,
+													모든 내용을 이해하신 후에 동의여부를 결정하여 주시기 바랍니다.
+												</p>
+												<ol class="terms-list">
+													<li>
+														<strong>1. 개인정보의 수집 및 이용목적</strong>
+														<ul>
+															<li>관련 법 및 당사 규정에 따라 시행되는 공사, 용역의 수행을 위한 제반 관련서류 확인</li>
+														</ul>
+													</li>
+													<li>
+														<strong>2. 수집하는 개인정보의 항목 </strong>
+														<ul>
+															<li>
+																수집항목
+																<ul>
+																	<li>
+																		개인정보 :이름, 주소, 전화번호(휴대폰 포함), 소속 및 직위, 자동차등록번호,
+																		자동차종합보험 등
+																	</li>
+																	<li>고유식별정보 :주민등록번호, 운전면허번호</li>
+																</ul>
+															</li>
+														</ul>
+													</li>
+													<li>
+														<strong>3. 개인정보 보유 및 이용기간 </strong>
+														<ul>
+															<li>개인정보 제공 후 5년간</li>
+														</ul>
+													</li>
+													<li>
+														<strong>4. 동의를 거부할 권리 및 동의 거부에 따른 안내 </strong>
+														<p>
+															귀하께서는 본 안내에 따른 개인정보 수집에 대하여 거부를 하실 수 있는 권리가 있습니다. 본
+															개인정보 수집에 대하여 거부하시는 경우, 실명확인 등 신원확인이 되지 않음에 따라
+															국가중요시설인 당사의 출입과 공사(용역)관련 업무에 참여 하실 수 없습니다. 상기내용을
+															숙지하시고 이름, 주소, 전화번호(휴대폰 포함), 직장명 등 개인정보 제공에 동의하십니까?
+														</p>
+													</li>
+												</ol>
+											</div>
+										</div>
+									</div>
+									<!-- //modal contents -->
+									<!-- modal btn -->
+									<div class="modal-btn btn-wrap">
+										<button type="button" class="krds-btn medium primary close-modal">확인</button>
+									</div>
+									<!-- //modal btn -->
+									<!-- close button -->
+									<button type="button" class="krds-btn medium icon btn-close close-modal">
+										<span class="sr-only">닫기</span>
+										<i class="svg-icon ico-popup-close"></i>
+									</button>
+									<!-- //close button -->
+								</div>
+							</div>
+							<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+							<!-- <div class="modal-back"></div> -->
+						</div>
+						<!-- //modal -->
+
+						<!-- // 본문 영역 -->
+					</div>
+				</article>
+			</div>
+			<!-- <footer id="footer"></footer> -->
+		</div>
+	</body>
+</html>

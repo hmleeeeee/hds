@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>현재화면명 | 메뉴명 | 사이트명</title>
+		<link rel="shortcut icon" href="../../assets/img/_common/favicon.png" />
+
+		<!-- style -->
+		<link rel="stylesheet" href="../../assets/plugins/jqGrid-4.7.0/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="../../assets/plugins/ztree/zTreeStyle.css" />
+		<link rel="stylesheet" href="../../assets/plugins/sweetalert/custom-swal.css" />
+		<link rel="stylesheet" href="../../assets/css/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+		<!-- JavaScript -->
+		<script src="../../assets/js/_common/jquery-1.12.4.min.js"></script>
+		<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+		<!-- jqGrid Plugins -->
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/i18n/grid.locale-kr.js"></script>
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/minified/jquery.jqGrid.min.js"></script>
+
+		<!-- ztree Plugins -->
+		<script src="../../assets/plugins/ztree/jquery.ztree.core.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.excheck.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.exedit.js"></script>
+		<script src="../../assets/plugins/ztree/zTreeCustom.js"></script>
+
+		<!-- Plugins -->
+		<script src="../../assets/plugins/slick/slick.min.js"></script>
+		<script src="../../assets/js/_common/datepicker.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="../../assets/js/component/ui-script.js"></script>
+		<script src="../../assets/js/_common/ui-global.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+		<!-- TODO : 개발시 반드시 삭제, 레이아웃 세팅 JS -->
+		<script src="../../assets/_guide/js/ui-layout-setting.js"></script>
+
+		<!-- 페이지 개별 스크립트 -->
+		<script>
+			$(document).ready(function () {
+				$("#jqGrid02").jqGrid({
+					datatype: "local",
+					viewrecords: false,
+					autowidth: true,
+					shrinkToFit: false,
+					// height: 300,
+					rowNum: 20,
+					pager: "#jqGridPager02",
+					colNames: ["user ID", "기본", "신청일자", "승인자"],
+					colModel: [
+						{ name: "id", index: "id", align: "center", sorttype: "int" },
+						{ name: "location", index: "location", align: "center" },
+						{ name: "date", index: "date", align: "center", sorttype: "date", width: 170 },
+						{ name: "confirm", index: "confirm", align: "center", sorttype: "float" }
+					],
+					multiselect: true,
+					multiselectWidth: "45px",
+					loadComplete: function () {
+						// 데이터 행 체크박스에 클래스를 추가
+						$("#jqGrid02").jqGrid("setColProp", "cb", {
+							classes: "krds-form-check"
+						});
+						$("#jqGrid02").find("#jqGrid_cb").addClass("krds-form-check");
+						$("#jqGrid02_cb").addClass("krds-form-check");
+					}
+				});
+
+				// 3개의 로컬 데이터 추가
+				var mydata = [
+					{ id: "#CM9801", location: "출입 요청 장소", date: "2025.01.10 16:30:24", confirm: "한수민" },
+					{ id: "#CM9802", location: "연구소", date: "2025.01.09 13:45:23", confirm: "한수민" },
+					{ id: "#CM9803", location: "사무동", date: "2025.01.09 09:24:00", confirm: "한수민" },
+					{ id: "#CM9803", location: "사무동", date: "2025.01.09 09:24:00", confirm: "한수민" },
+					{ id: "#CM9803", location: "사무동", date: "2025.01.09 09:24:00", confirm: "한수민" },
+					{ id: "#CM9803", location: "사무동", date: "2025.01.09 09:24:00", confirm: "한수민" },
+					{ id: "#CM9803", location: "사무동", date: "2025.01.09 09:24:00", confirm: "한수민" }
+				];
+
+				for (var i = 0; i < mydata.length; i++) {
+					$("#jqGrid02").jqGrid("addRowData", i + 1, mydata[i]);
+				}
+			});
+
+			// z-tree : zNodes 추가 옵션
+			// open: true : 기본 view가 오픈상태로 노출
+			// disabled: true : 비활성화 메뉴의 경우
+			// isParent: true : 하위 메뉴가 없는 상태에서 폴더형식의 경우
+
+			// iconskin 변경
+			// ico_docu, ico-page-md : 일반페이지 (기본), 지정되지 않은 종류의 페이지
+			// ico_open, ico_close, ico-folder-md : 폴더 (기본)
+			// ico-site-md : 사용자사이트 페이지
+			// ico-editpage-md :웹콘텐츠 관리 페이지
+			// ico-pagepgm-md : pgm 페이지
+			// ico-pagebbs-md : bbs 페이지
+			// ico-newwindow-md : 새창 (target: "_blank" 속성 추가 필요)
+			// ico-code-md : 코드 페이지
+
+			var zNodes = [
+				{ id: 1, pId: 0, name: "사이트 메뉴명1", open: true },
+				{ id: 11, pId: 1, name: "사이트 메뉴명1", open: true, disabled: true },
+				{ id: 111, pId: 11, name: "사이트 메뉴명1", disabled: true },
+				{ id: 112, pId: 11, name: "사이트 메뉴명1" },
+				{ id: 113, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md" },
+				{ id: 114, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md" },
+				{ id: 115, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md" },
+				{ id: 116, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md" },
+				{ id: 117, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md" },
+				{ id: 118, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md", disabled: true },
+				{ id: 119, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md", disabled: true },
+				{ id: 1110, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md", disabled: true },
+				{ id: 1111, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md", disabled: true },
+				{ id: 1112, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md", disabled: true },
+				{ id: 12, pId: 1, name: "길어질 경우 가로 스크롤이 생성됩니다. 길어질 경우 가로 스크롤이 생성됩니다." },
+				{ id: 121, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 122, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 2, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 21, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 211, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 212, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 22, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 221, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 222, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 23, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 231, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 232, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 3, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 4, pId: 0, name: "사이트 메뉴명1" }
+			];
+
+			// zTree onClick 이벤트
+			window.zTreeOnClick = function (event, treeId, treeNode) {
+				// zTree 노드 클릭시 이벤트 사용자 정의
+				alert(treeNode ? treeNode.tId : "root");
+			};
+
+			window.zTreeBeforeRename = function (treeId, treeNode, newName, isCancel) {
+				// zTree 노드 네이밍 변경 시 기존 네임
+				console.log(treeId, treeNode, newName, isCancel);
+			};
+
+			window.zTreeRename = function (e, treeId, treeNode, isCancel) {
+				// zTree 노드 네이밍 변경 시 사용자 정의
+				console.log(e, treeId, treeNode, isCancel);
+			};
+
+			// [노드 생성시 필수] zTree 노드 생성시 기준 네이밍 변경
+			window.zTreeCreateNewNode = function (zTree, treeNode, isParent) {
+				const nameFunc = function () {
+					return "이름을 입력해주세요.";
+				};
+				return createNewNode(zTree, treeNode, isParent, nameFunc);
+			};
+
+			function removeNodeId(treeNode) {
+				// zTree 삭제된 노드 확인
+				console.log("삭제된 노드 확인: ", treeNode);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div id="container">
+				<aside id="sidebar"></aside>
+				<article id="content">
+					<div class="content-header">
+						<!-- <h2 class="content-title">화면명</h2> -->
+						<header class="content-header"></header>
+					</div>
+					<div class="content-body">
+						<!-- 본문 영역 -->
+						<nav class="krds-breadcrumb-wrap" aria-label="현재 경로" id="breadcrumb"></nav>
+
+						<div class="container">
+							<div class="card">
+								<div class="btn-group-left">
+									<button type="button" class="krds-btn medium open-modal" data-target="modal_sample_01">
+										직원 등록
+									</button>
+									<button type="button" class="krds-btn medium open-modal" data-target="modal_sample_02">
+										직원 - 일괄등록
+									</button>
+									<button type="button" class="krds-btn medium open-modal" data-target="modal_sample_03">
+										공휴일 등록/수정
+									</button>
+									<button type="button" class="krds-btn medium open-modal" data-target="modal_sample_04">
+										담당자 등록
+									</button>
+									<button type="button" class="krds-btn medium open-modal" data-target="modal_sample_05">
+										jq그리드 팝업
+									</button>
+								</div>
+							</div>
+						</div>
+						<!-- 직원 등록 modal -->
+						<!-- modal-drag : 드래그 가능 -->
+						<div
+							id="modal_sample_01"
+							class="krds-modal modal-drag fade"
+							role="dialog"
+							aria-labelledby="tit_modal_sample_01"
+						>
+							<!-- modal-size : sm, md, lg, xl -->
+							<div class="modal-dialog modal-sm">
+								<div class="modal-content">
+									<!-- modal title -->
+									<div class="modal-header">
+										<h2 id="tit_modal_sample_01" class="modal-title">직원 등록</h2>
+									</div>
+									<!-- //modal title -->
+									<!-- modal contents -->
+									<div class="modal-conts">
+										<div class="conts-area">
+											<!-- table -->
+											<div class="krds-table-wrap">
+												<table class="tbl row type02 data">
+													<tbody>
+														<tr>
+															<th scope="row">성명<i class="req">필수입력</i></th>
+															<td>
+																<input
+																	type="text"
+																	id="text_01"
+																	class="krds-input full small"
+																	placeholder="성명을 입력해주세요"
+																	required
+																/>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">생년월일<i class="req">필수입력</i></th>
+															<td>
+																<input
+																	type="text"
+																	class="krds-input small full form-datepicker"
+																	title="날짜선택"
+																	placeholder="날짜를 선택하세요"
+																/>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">핸드폰번호<i class="req">필수입력</i></th>
+															<td>
+																<input
+																	type="text"
+																	id="text_02"
+																	class="krds-input full small"
+																	placeholder="핸드폰 번호를 입력해주세요"
+																/>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">소속</th>
+															<td>
+																<select
+																	id="select_name"
+																	class="krds-form-select small full completed"
+																	required
+																	title="선택"
+																>
+																	<option value="" selected>소속 부서 선택</option>
+																	<option value="">소속 부서1</option>
+																	<option value="">소속 부서2</option>
+																	<option value="">소속 부서3</option>
+																</select>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">기타</th>
+															<td>
+																<textarea class="krds-textarea full" name="" id="" required></textarea>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<!-- //table -->
+										</div>
+									</div>
+									<!-- //modal contents -->
+									<!-- modal btn -->
+									<div class="modal-btn btn-wrap">
+										<button type="button" class="krds-btn medium tertiary close-modal">닫기</button>
+										<button type="button" class="krds-btn medium primary close-modal">
+											<i class="svg-icon ico-plus"></i>추가
+										</button>
+									</div>
+									<!-- //modal btn -->
+									<!-- close button -->
+									<button type="button" class="krds-btn medium icon btn-close close-modal">
+										<span class="sr-only">닫기</span>
+										<i class="svg-icon ico-popup-close"></i>
+									</button>
+									<!-- //close button -->
+								</div>
+							</div>
+							<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+							<!-- <div class="modal-back"></div> -->
+						</div>
+						<!-- //modal -->
+						<!-- 직원 등록 modal -->
+						<!-- modal-drag : 드래그 가능 -->
+						<div
+							id="modal_sample_02"
+							class="krds-modal modal-drag fade"
+							role="dialog"
+							aria-labelledby="tit_modal_sample_02"
+						>
+							<!-- modal-size : sm, md, lg, xl -->
+							<div class="modal-dialog modal-md">
+								<div class="modal-content">
+									<!-- modal title -->
+									<div class="modal-header">
+										<h2 id="tit_modal_sample_02" class="modal-title">직원 - 일괄등록</h2>
+									</div>
+									<!-- //modal title -->
+									<!-- modal contents -->
+									<div class="modal-conts">
+										<div class="conts-area">
+											<p>
+												직원 일괄등록 양식에 관한 설명 문구입니다.직원 일괄등록 양식에 관한 설명 문구입니다.직원
+												일괄등록 양식에 관한 설명 문구입니다.직원 일괄등록 양식에 관한 설명 문구입니다.직원 일괄등록
+												양식에 관한 설명 문구입니다.직원 일괄등록 양식에 관한 설명 문구입니다.
+											</p>
+											<div class="btn-group-center">
+												<button type="button" class="krds-btn small secondary">양식 다운로드</button>
+											</div>
+											<div class="box box-search">
+												<dl class="form-group">
+													<dt class="form-tit">
+														<label for="select_name02">일괄등록</label>
+													</dt>
+													<dd class="form-conts">
+														<div class="form-search">
+															<input type="text" class="krds-input small" id="search-form" title="검색어입력" />
+															<button type="button" class="krds-btn tertiary small">
+																<i class="svg-icon ico-sch white"></i>찾기
+															</button>
+															<button type="button" class="krds-btn small">
+																<i class="svg-icon ico-plus"></i>등록
+															</button>
+														</div>
+													</dd>
+												</dl>
+											</div>
+										</div>
+									</div>
+									<!-- //modal contents -->
+									<!-- modal btn -->
+									<div class="modal-btn btn-wrap">
+										<button type="button" class="krds-btn medium tertiary close-modal">닫기</button>
+										<button type="button" class="krds-btn medium close-modal">
+											<i class="svg-icon ico-check-save"></i>저장
+										</button>
+									</div>
+									<!-- //modal btn -->
+									<!-- close button -->
+									<button type="button" class="krds-btn medium icon btn-close close-modal">
+										<span class="sr-only">닫기</span>
+										<i class="svg-icon ico-popup-close"></i>
+									</button>
+									<!-- //close button -->
+								</div>
+							</div>
+							<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+							<!-- <div class="modal-back"></div> -->
+						</div>
+						<!-- //modal -->
+						<!-- 직원 등록 modal -->
+						<!-- modal-drag : 드래그 가능 -->
+						<div
+							id="modal_sample_03"
+							class="krds-modal modal-drag fade"
+							role="dialog"
+							aria-labelledby="tit_modal_sample_03"
+						>
+							<!-- modal-size : sm, md, lg, xl -->
+							<div class="modal-dialog modal-md">
+								<div class="modal-content">
+									<!-- modal title -->
+									<div class="modal-header">
+										<h2 id="tit_modal_sample_03" class="modal-title">공휴일 등록/수정</h2>
+									</div>
+									<!-- //modal title -->
+									<!-- modal contents -->
+									<div class="modal-conts">
+										<div class="conts-area">
+											<!-- table -->
+											<div class="krds-table-wrap">
+												<table class="tbl row type02 data">
+													<tbody>
+														<tr>
+															<th scope="row">공휴일 명</th>
+															<td>
+																<select id="select_name" class="krds-form-select small full completed" title="선택">
+																	<option value="" selected>창립기념일</option>
+																	<option value="">공휴일명</option>
+																	<option value="">공휴일명2</option>
+																	<option value="">공휴일명3</option>
+																</select>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">공휴일 날짜</th>
+															<td>
+																<input
+																	type="text"
+																	class="krds-input small full form-datepicker"
+																	title="공휴일 날짜"
+																	value="2024-12-12"
+																/>
+															</td>
+															<th scope="row">사용여부</th>
+															<td>
+																<span class="krds-form-toggle-switch">
+																	<input type="checkbox" id="switch" />
+																	<label for="switch"
+																		><span class="switch-toggle"><i></i></span>
+																		<span class="switch-text">
+																			<span class="text-uncheck">미사용</span>
+																			<span class="text-checked">사용</span>
+																		</span>
+																	</label>
+																</span>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+											<!-- //table -->
+										</div>
+									</div>
+									<!-- //modal contents -->
+									<!-- modal btn -->
+									<div class="modal-btn btn-wrap">
+										<button type="button" class="krds-btn medium tertiary close-modal">닫기</button>
+										<button type="button" class="krds-btn medium close-modal">
+											<i class="svg-icon ico-check-save"></i>저장
+										</button>
+									</div>
+									<!-- //modal btn -->
+									<!-- close button -->
+									<button type="button" class="krds-btn medium icon btn-close close-modal">
+										<span class="sr-only">닫기</span>
+										<i class="svg-icon ico-popup-close"></i>
+									</button>
+									<!-- //close button -->
+								</div>
+							</div>
+							<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+							<!-- <div class="modal-back"></div> -->
+						</div>
+						<!-- //modal -->
+						<!-- 직원 등록 modal -->
+						<!-- modal-drag : 드래그 가능 -->
+						<div
+							id="modal_sample_04"
+							class="krds-modal modal-drag fade"
+							role="dialog"
+							aria-labelledby="tit_modal_sample_04"
+						>
+							<!-- modal-size : sm, md, lg, xl -->
+							<div class="modal-dialog modal-md">
+								<div class="modal-content">
+									<!-- modal title -->
+									<div class="modal-header">
+										<h2 id="tit_modal_sample_04" class="modal-title">담당자 등록</h2>
+									</div>
+									<!-- //modal title -->
+									<!-- modal contents -->
+									<div class="modal-conts">
+										<div class="conts-area">
+											<div class="box box-search">
+												<div class="form-search">
+													<input type="text" class="krds-input small" id="search-form" title="검색어입력" />
+													<button type="button" class="krds-btn tertiary small">
+														<i class="svg-icon ico-sch white"></i>검색
+													</button>
+												</div>
+											</div>
+											<!-- table -->
+											<div class="krds-table-wrap">
+												<div class="scroll-container">
+													<table class="tbl col data">
+														<colgroup>
+															<col style="width: 40px" />
+															<col style="width: 120px" />
+															<col />
+															<col style="width: 140px" />
+														</colgroup>
+														<thead>
+															<tr>
+																<th scope="col">
+																	<label class="krds-form-check" for="chk_all">
+																		<input type="checkbox" name="chk_all" id="chk_all" />
+																		<span class="label">전체선택</span>
+																	</label>
+																</th>
+																<th scope="col">이름</th>
+																<th scope="col">부서</th>
+																<th scope="col">전화번호</th>
+															</tr>
+														</thead>
+														<tbody>
+															<tr>
+																<td>
+																	<label class="krds-form-check" for="chk_1">
+																		<input type="checkbox" name="chk_1" id="chk_1" checked />
+																		<span class="label">선택</span>
+																	</label>
+																</td>
+																<td>김일반</td>
+																<td>AAAAAAAAAA팀</td>
+																<td>010-1111-2222</td>
+															</tr>
+															<tr>
+																<td>
+																	<label class="krds-form-check" for="chk_2">
+																		<input type="checkbox" name="chk_2" id="chk_2" />
+																		<span class="label">선택</span>
+																	</label>
+																</td>
+																<td>홍길동</td>
+																<td>B팀</td>
+																<td>010-1234-1234</td>
+															</tr>
+														</tbody>
+													</table>
+												</div>
+											</div>
+											<!-- //table -->
+
+											<!-- pagination -->
+											<div class="krds-pagination">
+												<a class="page-navi prev disabled" href="#">이전</a>
+												<div class="page-links">
+													<a class="page-link" href="#">1</a>
+													<a class="page-link" href="#">2</a>
+													<a class="page-link" href="#">3</a>
+													<a class="page-link active" href="#"><span class="sr-only">현재페이지 </span>4</a>
+													<a class="page-link" href="#">5</a>
+
+													<span class="page-link link-dot"></span>
+													<a class="page-link" href="#">99</a>
+												</div>
+												<a class="page-navi next" href="#">다음</a>
+											</div>
+											<!-- //pagination -->
+
+											<!-- //no-data -->
+											<div class="nodata-area">
+												<p>검색 결과가 없습니다.</p>
+											</div>
+											<!-- //no-data -->
+										</div>
+									</div>
+									<!-- //modal contents -->
+									<!-- modal btn -->
+									<div class="modal-btn btn-wrap">
+										<button type="button" class="krds-btn medium tertiary close-modal">닫기</button>
+										<button type="button" class="krds-btn medium primary close-modal">
+											<i class="svg-icon ico-plus"></i>추가
+										</button>
+									</div>
+									<!-- //modal btn -->
+									<!-- close button -->
+									<button type="button" class="krds-btn medium icon btn-close close-modal">
+										<span class="sr-only">닫기</span>
+										<i class="svg-icon ico-popup-close"></i>
+									</button>
+									<!-- //close button -->
+								</div>
+							</div>
+							<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+							<!-- <div class="modal-back"></div> -->
+						</div>
+						<!-- //modal -->
+
+						<!-- //modal -->
+						<!-- jq그리드 modal -->
+						<!-- modal-drag : 드래그 가능 -->
+						<div
+							id="modal_sample_05"
+							class="krds-modal modal-drag fade"
+							role="dialog"
+							aria-labelledby="tit_modal_sample_05"
+						>
+							<!-- modal-size : sm, md, lg, xl -->
+							<div class="modal-dialog modal-md">
+								<div class="modal-content">
+									<!-- modal title -->
+									<div class="modal-header">
+										<h2 id="tit_modal_sample_05" class="modal-title">담당자 등록</h2>
+									</div>
+									<!-- //modal title -->
+									<!-- modal contents -->
+									<div class="modal-conts">
+										<div class="conts-area">
+											<div class="box box-search">
+												<div class="form-search">
+													<input type="text" class="krds-input small" id="search-form" title="검색어입력" />
+													<button type="button" class="krds-btn tertiary small">
+														<i class="svg-icon ico-sch white"></i>검색
+													</button>
+												</div>
+											</div>
+											<div class="grid-area">
+												<!-- 그리드 영역 -->
+												<table id="jqGrid02" class="grid-table"></table>
+												<div id="jqGridPager02"></div>
+											</div>
+										</div>
+									</div>
+									<!-- //modal contents -->
+									<!-- modal btn -->
+									<div class="modal-btn btn-wrap">
+										<button type="button" class="krds-btn medium tertiary close-modal">닫기</button>
+										<button type="button" class="krds-btn medium primary close-modal">
+											<i class="svg-icon ico-plus"></i>추가
+										</button>
+									</div>
+									<!-- //modal btn -->
+									<!-- close button -->
+									<button type="button" class="krds-btn medium icon btn-close close-modal">
+										<span class="sr-only">닫기</span>
+										<i class="svg-icon ico-popup-close"></i>
+									</button>
+									<!-- //close button -->
+								</div>
+							</div>
+							<!-- modal 배경 필요 없을 경우 modal-back 삭제 -->
+							<!-- <div class="modal-back"></div> -->
+						</div>
+						<!-- //modal -->
+						<!-- // 본문 영역 -->
+					</div>
+				</article>
+			</div>
+			<!-- <footer id="footer"></footer> -->
+		</div>
+	</body>
+</html>

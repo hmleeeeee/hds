@@ -1,0 +1,54 @@
+/* 버튼 그룹 변수 */
+
+/* 기본 버튼 그룹 믹스인 */
+@mixin btn-group-base {
+	@include flex-layout(flex, center, center, row);
+	gap: 0.8rem;
+	margin-top: 1.2rem;
+}
+
+.btn-group {
+	/* 중앙 정렬 버튼 그룹 */
+	&-center {
+		@include btn-group-base;
+	}
+
+	/* 양쪽 정렬 버튼 그룹 */
+	&-between {
+		@include btn-group-base;
+		justify-content: space-between;
+
+		/* 좌우 영역 공통 스타일 */
+		.left,
+		.right {
+			@include btn-group-base;
+			justify-content: flex-end;
+		}
+
+		/* 우측 영역만 있을 때 */
+		.right:only-child {
+			flex: 1 1 auto;
+			justify-content: flex-end;
+		}
+	}
+
+	&-left {
+		@include btn-group-base;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+	&-right {
+		@include btn-group-base;
+		justify-content: flex-end;
+		flex-wrap: wrap;
+	}
+	@include media-breakpoint-down(md) {
+		&-center {
+			margin-top: 1.2rem;
+		}
+
+		// &-between {
+		// 	justify-content: space-between;
+		// }
+	}
+}

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>현재화면명 | 메뉴명 | 사이트명</title>
+		<link rel="shortcut icon" href="../../assets/img/_common/favicon.png" />
+
+		<!-- style -->
+		<link rel="stylesheet" href="../../assets/plugins/jqGrid-4.7.0/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="../../assets/plugins/ztree/zTreeStyle.css" />
+		<link rel="stylesheet" href="../../assets/plugins/sweetalert/custom-swal.css" />
+		<link rel="stylesheet" href="../../assets/css/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+		<!-- JavaScript -->
+		<script src="../../assets/js/_common/jquery-1.12.4.min.js"></script>
+		<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+		<!-- jqGrid Plugins -->
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/i18n/grid.locale-kr.js"></script>
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/minified/jquery.jqGrid.min.js"></script>
+
+		<!-- ztree Plugins -->
+		<script src="../../assets/plugins/ztree/jquery.ztree.core.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.excheck.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.exedit.js"></script>
+		<script src="../../assets/plugins/ztree/zTreeCustom.js"></script>
+
+		<!-- Plugins -->
+		<script src="../../assets/plugins/slick/slick.min.js"></script>
+		<script src="../../assets/js/_common/datepicker.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="../../assets/js/component/ui-script.js"></script>
+		<script src="../../assets/js/_common/ui-global.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+		<!-- TODO : 개발시 반드시 삭제, 레이아웃 세팅 JS -->
+		<script src="../../assets/_guide/js/ui-layout-setting.js"></script>
+
+		<!-- 페이지 개별 스크립트 -->
+		<script>
+			$(document).ready(function () {});
+
+			// z-tree : zNodes 추가 옵션
+			// open: true : 기본 view가 오픈상태로 노출
+			// disabled: true : 비활성화 메뉴의 경우
+			// isParent: true : 하위 메뉴가 없는 상태에서 폴더형식의 경우
+
+			// iconskin 변경
+			// ico_docu, ico-page-md : 일반페이지 (기본), 지정되지 않은 종류의 페이지
+			// ico_open, ico_close, ico-folder-md : 폴더 (기본)
+			// ico-site-md : 사용자사이트 페이지
+			// ico-editpage-md :웹콘텐츠 관리 페이지
+			// ico-pagepgm-md : pgm 페이지
+			// ico-pagebbs-md : bbs 페이지
+			// ico-newwindow-md : 새창 (target: "_blank" 속성 추가 필요)
+			// ico-code-md : 코드 페이지
+
+			var zNodes = [
+				{ id: 1, pId: 0, name: "사이트 메뉴명1", open: true },
+				{ id: 11, pId: 1, name: "사이트 메뉴명1", open: true, disabled: true },
+				{ id: 111, pId: 11, name: "사이트 메뉴명1", disabled: true },
+				{ id: 112, pId: 11, name: "사이트 메뉴명1" },
+				{ id: 113, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md" },
+				{ id: 114, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md" },
+				{ id: 115, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md" },
+				{ id: 116, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md" },
+				{ id: 117, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md" },
+				{ id: 118, pId: 11, name: "사이트 메뉴명1", target: "_blank", iconSkin: "ico-newwindow-md", disabled: true },
+				{ id: 119, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-editpage-md", disabled: true },
+				{ id: 1110, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagepgm-md", disabled: true },
+				{ id: 1111, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-pagebbs-md", disabled: true },
+				{ id: 1112, pId: 11, name: "사이트 메뉴명1", iconSkin: "ico-code-md", disabled: true },
+				{ id: 12, pId: 1, name: "길어질 경우 가로 스크롤이 생성됩니다. 길어질 경우 가로 스크롤이 생성됩니다." },
+				{ id: 121, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 122, pId: 12, name: "사이트 메뉴명1" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md" },
+				{ id: 13, pId: 1, name: "사이트 메뉴명1", iconSkin: "ico-site-md", disabled: true },
+				{ id: 2, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 21, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 211, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 212, pId: 21, name: "사이트 메뉴명1" },
+				{ id: 22, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 221, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 222, pId: 22, name: "사이트 메뉴명1" },
+				{ id: 23, pId: 2, name: "사이트 메뉴명1" },
+				{ id: 231, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 232, pId: 23, name: "사이트 메뉴명1" },
+				{ id: 3, pId: 0, name: "사이트 메뉴명1" },
+				{ id: 4, pId: 0, name: "사이트 메뉴명1" }
+			];
+
+			// zTree onClick 이벤트
+			window.zTreeOnClick = function (event, treeId, treeNode) {
+				// zTree 노드 클릭시 이벤트 사용자 정의
+				alert(treeNode ? treeNode.tId : "root");
+			};
+
+			window.zTreeBeforeRename = function (treeId, treeNode, newName, isCancel) {
+				// zTree 노드 네이밍 변경 시 기존 네임
+				console.log(treeId, treeNode, newName, isCancel);
+			};
+
+			window.zTreeRename = function (e, treeId, treeNode, isCancel) {
+				// zTree 노드 네이밍 변경 시 사용자 정의
+				console.log(e, treeId, treeNode, isCancel);
+			};
+
+			// [노드 생성시 필수] zTree 노드 생성시 기준 네이밍 변경
+			window.zTreeCreateNewNode = function (zTree, treeNode, isParent) {
+				const nameFunc = function () {
+					return "이름을 입력해주세요.";
+				};
+				return createNewNode(zTree, treeNode, isParent, nameFunc);
+			};
+
+			function removeNodeId(treeNode) {
+				// zTree 삭제된 노드 확인
+				console.log("삭제된 노드 확인: ", treeNode);
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="loading-overlay">
+			<div class="loading-spin"></div>
+			<p>Loading...</p>
+		</div>
+		<div id="loading-overlay">
+			<div class="loading-spin"></div>
+			<p>Loading...</p>
+		</div>
+		<div class="wrapper">
+			<div id="container" class="system-page">
+				<aside id="sidebar"></aside>
+				<article id="content">
+					<div class="content-header">
+						<!-- <h2 class="content-title">화면명</h2> -->
+						<header class="content-header"></header>
+					</div>
+					<div class="content-body">
+						<!-- 본문 영역 -->
+
+						<nav class="krds-breadcrumb-wrap" aria-label="현재 경로" id="breadcrumb"></nav>
+
+						<div class="container">
+							<div class="card">
+								<div class="card-header line">
+									<h3 class="card-title">결재작성</h3>
+									<div class="card-toolbar">
+										<button type="button" class="krds-btn medium fixed primary">
+											<i class="svg-icon ico-sign"></i>상신
+										</button>
+									</div>
+								</div>
+								<div class="card-body">
+									<!-- table -->
+									<div class="krds-table-wrap form">
+										<table class="tbl row type02 data">
+											<caption></caption>
+											<tbody>
+												<tr>
+													<th scope="row">제목</th>
+													<td>
+														<input type="text" id="number01" class="krds-input small full" value="" />
+													</td>
+												</tr>
+
+												<tr>
+													<th scope="row">결재자</th>
+													<td>
+														<div class="cell-cont-wrap">
+															<div class="cell-cont-top">
+																<div class="form-search">
+																	<input
+																		type="text"
+																		class="krds-input full small"
+																		id="search-form"
+																		title="검색어입력"
+																		placeholder="검색어를 입력해주세요"
+																	/>
+																	<button type="button" class="krds-btn fixed small secondary">
+																		<i class="svg-icon ico-sch white"></i>검색
+																	</button>
+																</div>
+																<button type="button" class="krds-btn small tertiary">
+																	<i class="svg-icon ico-plus left"></i>결재자 추가
+																</button>
+															</div>
+															<div class="cell-cont-mid">
+																<ul class="function-list">
+																	<li>
+																		<ul class="function-detail-list">
+																			<li>
+																				<input type="checkbox" id="meeting-checkbox" class="check-btn" checked />
+																				<label for="meeting-checkbox" class="krds-btn xsmall gray">결재</label>
+																			</li>
+																			<li>
+																				<input type="checkbox" id="meeting-checkbox1" class="check-btn" />
+																				<label for="meeting-checkbox1" class="krds-btn xsmall gray">합의</label>
+																			</li>
+																			<li>
+																				<input type="checkbox" id="meeting-checkbox2" class="check-btn" />
+																				<label for="meeting-checkbox2" class="krds-btn xsmall gray">통보</label>
+																			</li>
+																		</ul>
+																	</li>
+																	<li>
+																		<ul class="function-detail-list">
+																			<li>
+																				<input type="checkbox" id="meeting-checkbox3" class="check-btn" disabled />
+																				<label for="meeting-checkbox3" class="krds-btn xsmall gray">후결</label>
+																			</li>
+																		</ul>
+																	</li>
+																	<li>
+																		<ul class="function-detail-list">
+																			<li>
+																				<input type="checkbox" id="meeting-checkbox4" class="check-btn" disabled />
+																				<label for="meeting-checkbox4" class="krds-btn xsmall gray">병렬</label>
+																			</li>
+																			<li>
+																				<input type="checkbox" id="meeting-checkbox5" class="check-btn" disabled />
+																				<label for="meeting-checkbox5" class="krds-btn xsmall gray">해제</label>
+																			</li>
+																		</ul>
+																	</li>
+																	<li>
+																		<ul class="function-detail-list">
+																			<li>
+																				<button type="button" class="krds-btn xsmall tertiary">
+																					<i class="svg-icon ico-arrow-up-end"></i>
+																				</button>
+																			</li>
+																			<li>
+																				<button type="button" class="krds-btn xsmall tertiary">
+																					<i class="svg-icon ico-arrow-up"></i>
+																				</button>
+																			</li>
+																			<li>
+																				<button type="button" class="krds-btn xsmall tertiary">
+																					<i class="svg-icon ico-arrow-down"></i>
+																				</button>
+																			</li>
+																			<li>
+																				<button type="button" class="krds-btn xsmall tertiary">
+																					<i class="svg-icon ico-arrow-down-end"></i>
+																				</button>
+																			</li>
+																		</ul>
+																	</li>
+																	<li>
+																		<ul class="function-detail-list">
+																			<li>
+																				<span>총 <span>0</span></span>
+																			</li>
+																		</ul>
+																	</li>
+																</ul>
+															</div>
+															<div class="cell-cont-bot">
+																<ul class="draft-list">
+																	<li>
+																		<label class="krds-form-check" for="chk_all">
+																			<input type="checkbox" name="chk_all" id="chk_all" />
+																			<span class="label">전체선택</span>
+																		</label>
+																	</li>
+																	<li>
+																		<button type="button" class="krds-btn xsmall secondary fixed" disabled>기안</button>
+																	</li>
+																	<li>
+																		<ul>
+																			<li>
+																				<span>홍길동</span>
+																			</li>
+																			<li>
+																				<span>과장</span>
+																			</li>
+																			<li>
+																				<span>케미칼</span>
+																			</li>
+																			<li>
+																				<span>해성디에스</span>
+																			</li>
+																			<li>
+																				<span>adbmie@haesungds.net</span>
+																			</li>
+																		</ul>
+																	</li>
+																</ul>
+															</div>
+														</div>
+													</td>
+												</tr>
+
+												<tr>
+													<th scope="row">연관결재</th>
+													<td>
+														<ul class="function-list">
+															<li>
+																<button type="button" class="krds-btn xsmall">
+																	<i class="svg-icon ico-plus"></i>추가
+																</button>
+															</li>
+															<li>
+																<span>총 <span>0</span></span>
+															</li>
+															<li>
+																<span>연관된 결제가 없습니다.</span>
+															</li>
+														</ul>
+													</td>
+												</tr>
+
+												<tr>
+													<th scope="row">첨부파일</th>
+													<td>
+														<div class="file-list">
+															<button type="button" class="krds-btn xsmall primary">PC</button>
+															<ul class="file-detail-list">
+																<li>
+																	<span>업로드</span>
+																	<strong>일반 50mb</strong>
+																</li>
+															</ul>
+														</div>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+									<!-- //table -->
+
+									<div class="editer-area">
+										<textarea name="" id="" style="width: 100%" rows="14">에디터 영역</textarea>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<!-- // 본문 영역 -->
+					</div>
+				</article>
+			</div>
+			<!-- <footer id="footer"></footer> -->
+		</div>
+	</body>
+</html>

@@ -1,0 +1,3158 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="format-detection" content="telephone=no">
+	<title>마크업 가이드 | ${프로젝트명}</title>
+	<link rel="shortcut icon" href="../../asset/_common/images/favicon.png">
+	<link rel="stylesheet" href="../../asset/_guide/css/style.css">
+
+	<!-- TODO : 개발시 반드시 삭제 source highlighter -->
+	<link rel="stylesheet" href="../../asset/plugins/syntaxhighlighter/shCoreDefault.css">
+
+	<!-- JavaScript -->
+	<script src="../../asset/_common/js/jquery-1.12.4.min.js"></script>
+
+	<!-- Plugins -->
+	<script src="../../asset/plugins/slick/slick.min.js"></script>
+	<script src="../../asset/plugins/rwdImageMaps/jquery.rwdImageMaps.min.js"></script>
+	<script src="../../asset/plugins/easypiechart/jquery.easypiechart.min.js"></script>
+	<script src="../../asset/plugins/chart/chart-2.9.3.min.js"></script>
+
+	<!-- I.N.UIX Components -->
+	<script src="../../asset/_common/js/datepicker.js"></script>
+	<script src="../../asset/_common/js/ui-global.js"></script>
+
+	<!-- TODO : SyntaxHighlighter - 개발시 반드시 삭제 -->
+	<script src="../../asset/plugins/syntaxhighlighter/shCore.js"></script>
+	<script src="../../asset/plugins/syntaxhighlighter/shBrushXml.js"></script>
+	<script src="../../asset/plugins/syntaxhighlighter/shBrushCss.js"></script>
+	<script src="../../asset/plugins/syntaxhighlighter/shBrushJScript.js"></script>
+
+	<!-- 사이트 개별 스크립트 -->
+	<script src="../../asset/_guide/js/ui-html-guide.js"></script>
+</head>
+
+<body>
+	<div class="wrapper wrapper-html-guide">
+		<aside id="guide-nav">
+			<h1 class="sidebar-title text-title">
+				<a href="#content">${프로젝트명} UI</a>
+				<a href="#;" class="btn btn-collaspe d-down-md">
+					<span class="open">
+						<i class="ico ico-xs-menu">열기</i>
+					</span>
+					<span class="close">
+						<i class="ico ico-times-white">닫기</i>
+					</span>
+				</a>
+			</h1>
+			<h2 class="nav-title">컴포넌트</h2>
+			<nav class="component-list"></nav>
+			<div>
+				<ul class="etc-link">
+					<li class="d-up-lg">레이아웃
+						<ul>
+							<li>
+								<a href="_template/layout-sub-default.html" target="_blank">
+									<span>서브: 기본</span>
+									<i class="ico ico-external-link"></i>
+								</a>
+							</li>
+							<li>
+								<a href="_template/layout-sub-wide.html" target="_blank">
+									<span>서브: 와이드</span>
+									<i class="ico ico-external-link"></i>
+								</a>
+							</li>
+							<li>
+								<a href="_template/layout-sub-widget.html" target="_blank">
+									<span>서브: 위젯</span>
+									<i class="ico ico-external-link"></i>
+								</a>
+							</li>
+							<li>
+								<a href="_template/layout-sub-floating.html" target="_blank">
+									<span>서브: 플로팅</span>
+									<i class="ico ico-external-link"></i>
+								</a>
+							</li>
+							<li>
+								<a href="_template/layout-main.html" target="_blank">
+									<span>메인형</span>
+									<i class="ico ico-external-link"></i>
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="plugins.html">
+							<span>플러그 인</span>
+							<i class="ico ico-chevron-right-sm-gray"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#project-link-connect;" target="_blank" title="새창">
+							<span>공통 템플릿</span>
+							<i class="ico ico-external-link"></i>
+						</a>
+					</li>
+					<li>
+						<a href="#project-link-connect;" target="_blank" title="새창">
+							<span>산출물 목록</span>
+							<i class="ico ico-external-link"></i>
+						</a>
+					</li>
+					<li class="d-up-lg">
+						<!-- #project-link-connect; : UI 개발환경 가이드 PDF or DOCS LINK -->
+						<a href="#project-link-connect;" target="_blank">
+							<span>개발환경 설정</span>
+							<i class="ico ico-external-link"></i>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</aside>
+		<article id="content">
+			<div class="content-header">
+				<h3 class="content-title">${프로젝트명} UI</h3>
+			</div>
+			<div class="content-body">
+				<div class="container">
+					<div class="guide-section">
+						<h3 class="title-guide" id="typo">
+							타이포 <small>.text-*</small>
+							<i class="badge"></i>
+						</h3>
+						<div class="box-html-guide mb-3">
+							<ul class="list list2">
+								<li>스타일 미지정시 .text-md와 동일 : 사이즈 15px, 행간 1.4, 자간 0</li>
+								<li>행간(line-height), 자간(letter-spacing)은 가급적 공통단 정의된 그대로 상속 활용, 별도 스타일링하지 않음 (메인 등 특수화면 제외)</li>
+							</ul>
+						</div>
+						<div>
+							<h4 class="title1 mt-lg">본문용 글꼴 Preset</h4>
+							<p class="text-xl">
+								<strong class="text-primary">.text-xl</strong>
+								<span>1D .title1 / 에스코어 드림 18px Medium </span>
+							</p>
+							<p class="text-lg">
+								<strong class="text-primary">.text-lg</strong>
+								<span>2D .title2 / 노토 산스 16px Normal</span>
+							</p>
+							<p class="text-md">
+								<strong class="text-primary">.text-md</strong>
+								<span>3D .list1 / 노토 산스 15px Normal</span>
+								<strong class="text-invalid">(스타일 미지정시 기본)</strong>
+							</p>
+							<p class="text-sm">
+								<strong class="text-primary">.text-sm</strong>
+								<span>4D .list2 / 노토 산스 14px Normal</span>
+							</p>
+							<p class="mt-sm">
+								한 문장 내에 <strong class="text-lg">폰트 사이즈</strong>
+								<span class="text-xl">혼용</span> <span class="text-sm">사용</span> 가능
+							</p>
+
+							<pre class="brush:html" title="HTML">
+								&lt;span class="text-md"&gt;&lt;/span&gt;
+								&lt;strong class="text-lg"&gt;&lt;/strong&gt;
+								&lt;p class="text-xl"&gt;&lt;/p&gt;</pre>
+						</div>
+
+						<h4 class="title1 mt-lg">글꼴 두께</h4>
+						<div class="content-row">
+							<div class="inner">
+								<div class="col-item">
+									<p class="text-normal">
+										<span class="text-primary">.text-normal</span>
+										<span>font-weight: normal</span>
+										<strong class="text-invalid">(스타일 미지정시 기본)</strong>
+									</p>
+									<pre class="brush:html" title="HTML">
+											<span class="text-normal"></span></pre>
+								</div>
+								<div class="col-item">
+									<p class="text-medium">
+										<span class="text-primary">.text-medium</span>
+										<span>font-weight: 500</span>
+									</p>
+									<pre class="brush:html" title="HTML">
+										<span class="text-medium"></span></pre>
+								</div>
+								<div class="col-item">
+									<p class="text-bold">
+										<span class="text-primary">.text-bold</span>
+										<span>font-weight: bold</span>
+									</p>
+									<pre class="brush:html" title="HTML">
+										<strong></strong>
+										<span class="text-bold"></span></pre>
+								</div>
+							</div>
+						</div>
+
+						<h4 class="title1 mt-lg">글꼴 색상</h4>
+						<div class="text-xxl">
+							<div class="mt-sm">
+								<span class="text-default">.text-default</span>
+								<small class="text-lightgray text-sm">(스타일 미지정시 기본)</small>
+							</div>
+							<div class="mt-sm">
+								<span class="text-gray">.text-gray</span>
+								<span class="text-lightgray">.text-lightgray</span>
+								<span class="text-primary">.text-primary</span>
+								<span class="text-darkprimary">.text-darkprimary</span>
+								<span class="text-secondary">.text-secondary</span>
+								<span class="text-invalid">.text-invalid</span>
+								<span class="text-valid">.text-valid</span>
+							</div>
+						</div>
+						<pre class="brush:html" title="HTML">
+							<span class="text-default">.text-default (미지정시 기본)</span>
+							<span class="text-gray">.text-gray</span>
+							<span class="text-lightgray">.text-lightgray</span>
+
+							<span class="text-primary">.text-primary (주 컬러)</span>
+							<span class="text-darkprimary">.text-darkprimary</span>
+							<span class="text-secondary">.text-secondary</span>
+
+							<span class="text-invalid">.text-invalid (경고 및 주의)</span>
+							<span class="text-valid">.text-valid (성공, 안전)</span></pre>
+
+						<h4 class="title1 mt-lg">하이라이트</h4>
+						<div>
+							<p>텍스트에 <mark>형광펜처럼 마크를 넣고 싶으면</mark> mark 태그로 감싸줍니다.</p>
+							<p>텍스트에 <mark class="text-bold">두껍게 표현하고 싶으면</mark> .text-bold 클래스를 추가합니다.</p>
+
+							<pre class="brush:html" title="HTML">
+							<mark>text</mark>
+							<mark class="text-bold">text</mark></pre>
+						</div>
+
+						<h4 class="title1 mt-lg">기타</h4>
+						<div class="content-row">
+							<div class="inner">
+								<div class="col-item">
+									ir기법 적용시 <span class="text-primary">.sr-only</span>
+									<pre class="brush:html" title="HTML"><span class="sr-only">.sr-only</span></pre>
+								</div>
+								<div class="col-item">
+									<s class="text-primary">취소선</s> 사용시 s 태그
+									<pre class="brush:html" title="HTML"><s>취소선</s></pre>
+								</div>
+								<div class="col-item">
+									강조의 의미로 <u class="text-primary">밑줄</u> 사용시 u 태그
+									<pre class="brush:html" title="HTML"><u>밑줄</u></pre>
+								</div>
+								<div class="col-item">
+									링크 사용시 <span class="link">.link</span>
+									<pre class="brush:html" title="HTML"><span class="link">.link</span></pre>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="bullet">
+							불릿 시스템
+							<small>(제목2종 + 목록3종)</small>
+							<i class="badge"></i>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list2">
+								<li>콘텐츠 영역 내 헤딩 요소는 맥락에 맞추어 h3 ~ h6 로 마크업하며, class는 디자인에 맞추어 매칭</li>
+								<li class="text-red">콘텐츠 영역 내 요소에는 스타일 가이드에 기반한 자체 간격이 설정되어 있으므로 반드시 마크업 가이드 준수</li>
+								<li>테이블 및 박스 등은 들여쓰지 아니함 .indent-none</li>
+							</ul>
+						</div>
+
+						<pre class="brush:html" title="HTML">
+						&lt;!-- 헤딩 요소는 .indent 외부에 위치 --&gt;
+						&lt;h3 class="title1 mt-lg"&gt;.title1&lt;/h3&gt;
+						&lt;h4 class="title2"&gt;.title2&lt;/h4&gt;
+
+						&lt;!-- .list 요소는 하나의 .indent 내부에 위치 --&gt;
+						&lt;div class="indent"&gt;
+							&lt;ul class="list list1"&gt;
+								&lt;li&gt;text
+									&lt;ul class="list list2"&gt;
+										&lt;li&gt;text&lt;/li&gt;
+										&lt;li&gt;text
+											&lt;ul class="list list3"&gt;
+												&lt;li&gt;text&lt;/li&gt;
+											&lt;/ul&gt;
+										&lt;/li&gt;
+										&lt;li&gt;text
+											&lt;!-- .indent 내부의 표 영역 들여쓰기 제거 --&gt;
+											&lt;div class="indent-none"&gt;
+												table
+											&lt;/div&gt;
+										&lt;/li&gt;
+									&lt;/ul&gt;
+								&lt;/li&gt;
+							&lt;/ul&gt;
+						&lt;/div&gt;</pre>
+
+						<div>
+							<h3 class="title1 mt-lg">.title1 : 상단 간격 .mt-lg 조합 활용</h3>
+							<h4 class="title2">.title2 : 기본 설정된 간격 그대로 사용</h4>
+							<div class="indent">
+								<ul class="list list1">
+									<li><strong class="text-primary">.list.list1</strong> 거리 디자인 주제 및 컨셉
+										<ul class="list list2">
+											<li><strong class="text-primary">.list.list2</strong> 거리 디자인 주제 및 컨셉
+												<ul class="list list3">
+													<li><strong class="text-primary">.list.list3</strong> 거리 디자인 주제 및 컨셉</li>
+													<li>일반글 텍스트 문단입니다.</li>
+													<li>
+														일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다.
+														일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다.
+														일반글 텍스트 문단입니다
+														<!-- .indent 내부의 표 영역 들여쓰기 제거 -->
+														<div class="indent-none">
+															<div class="bg-default text-center p-2">.indent-none 박스 또는 테이블 영역 : 들여쓰기 없음</div>
+														</div>
+													</li>
+												</ul>
+											</li>
+											<li>
+												일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다.<br>
+												일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글
+												텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트
+												문단입니다
+												<div class="indent-none">
+													<div class="bg-default text-center p-2">.indent 내 박스 또는 테이블 영역 : 들여쓰기 없음 .indent-none</div>
+												</div>
+											</li>
+										</ul>
+									</li>
+									<li>
+										일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다.<br>
+										일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다.
+									</li>
+									<li>
+										일반글 텍스트 문단입니다.<br>
+										일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다.<br>
+										일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다.
+									</li>
+								</ul>
+							</div>
+
+							<h3 class="title1 mt-lg">프로젝트 소개</h3>
+
+							<h4 class="title2">서울시 종로구</h4>
+							<div class="indent">
+								<ul class="list list1">
+									<li>팔판동삼거리~삼청공원</li>
+									<li>거리 디자인 주제 및 컨셉</li>
+								</ul>
+								<p class="mt-sm">일반 문장은 p 태그로 마크업 합니다. 문단 간 간격은 .mt-sm 을 씁니다.</p>
+							</div>
+
+							<h4 class="title2">서울시 종로구</h4>
+							<div class="indent">
+								<p>삼청동의 매력은 길과 집과 간판의 하모니다.</p>
+								<ul class="list list1 mt-sm">
+									<li>팔판동삼거리~삼청공원</li>
+									<li>거리 디자인 주제 및 컨셉
+										<div class="indent-none">
+											<div class="bg-default text-center p-2">.indent-none 박스 또는 테이블 영역 : 들여쓰기 없음</div>
+										</div>
+										<ul class="list list2">
+											<li>삼청동의 매력은 길과 집과 간판의 하모니다.
+												<div class="indent-none">
+													<div class="bg-default text-center p-2">.indent-none 박스 또는 테이블 영역 : 들여쓰기 없음</div>
+												</div>
+												<ul class="list list3">
+													<li>.list.list3</li>
+													<li>일반글 텍스트 문단입니다.</li>
+													<li>
+														일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다.
+														일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다.
+														일반글 텍스트 문단입니다
+														<!-- .indent 내부의 표 영역 들여쓰기 제거 -->
+														<div class="indent-none">
+															<div class="bg-default text-center p-2">.indent-none 박스 또는 테이블 영역 : 들여쓰기 없음</div>
+														</div>
+													</li>
+												</ul>
+											</li>
+											<li>
+												일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글
+												텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트 문단입니다. 일반글 텍스트
+												문단입니다
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<h4 class="title1 mt-lg">특수유형 : 체크 불릿</h4>
+						<h5 class="title-check mt-sm">.title-check</h5>
+						<h5 class="title-check mt-sm">강화된 방역 대응을 위해 <mark>일주일 간(7.8~14) 거리두기 개편을 유예</mark> 하고, 종전의 2단계 조치 연장</h5>
+						<div class="box mt-md">
+							<ul class="list list-check">
+								<li class="text-sm"><strong class="text-primary">.list.list-check</strong> 거리 디자인 주제 및 컨셉</li>
+								<li><strong class="text-primary">.list.list-check</strong> 거리 디자인 주제 및 컨셉</li>
+								<li class="text-lg"><strong class=" text-primary">.list.list-check</strong> 거리 디자인 주제 및 컨셉</li>
+								<li class="text-xl"><strong class="text-primary">.list.list-check</strong> 거리 디자인 주제 및 컨셉</li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="spacing">간격 <small>.m* .p*</small></h3>
+						<div class="box-html-guide">
+							<ul class="list list2">
+								<li>주요 컴포넌트는 기본적으로 고유 간격을 포함하고 있으므로 기본 간격 그대로 사용함을 원칙으로 함</li>
+								<li>기본 포함된 간격이 없거나, 특수 레이아웃일 경우 멀티클래스로 마진셋 활용</li>
+								<li>주요 마진셋 위주로 조합하며, 이를 벗어나는 특수한 경우에 5px 단위의 간격 Preset 활용</li>
+							</ul>
+						</div>
+
+						<h4 class="title1 mt-lg">주요 Margin Set</h4>
+						<div class="content-row">
+							<div class="inner">
+								<div class="col-item box">
+									<p class="text-lg text-bold mb-sm">
+										<span class="text-primary">.m*-lg</span> 큰 간격 : 콘텐츠 섹션 사이(55px)
+									</p>
+									<p>
+										.title1 상단 간격에 주로 활용<br>
+										<strong class="text-medium">.mt-lg .mb-lg</strong>
+									</p>
+								</div>
+								<div class="col-item box">
+									<p class="text-lg text-bold mb-sm">
+										<span class="text-primary">.m*-md</span> 중간 간격 : 콘텐츠 블록 사이(30px)
+									</p>
+									<p>
+										박스 사이 간격에 주로 활용<br>
+										<strong class="text-medium">.mt-md .mb-md .ml-md .mr-md</strong>
+									</p>
+								</div>
+								<div class="col-item box">
+									<p class="text-lg text-bold mb-sm">
+										<span class="text-primary">.m*-sm</span> 좁은 간격 : 문단 사이(10px)
+									</p>
+									<p>
+										p, ul 사이 좁은 간격에 활용<br>
+										<strong class="text-medium">.mt-sm .mb-sm .ml-sm .mr-sm</strong>
+									</p>
+								</div>
+							</div>
+
+							<h4 class="title1 mt-lg">간격 Preset</h4>
+							<p class="mb-sm">숫자 1 증가시 5px씩 증가하며 최대 50px 까지 class로 설정 가능</p>
+							<div class="content-row">
+								<div class="inner">
+									<div class="col-item">
+										<div class="box">
+											<h5 class="text-lg text-bold mb-sm">Margin</h5>
+											<ul class="list list2">
+												<li>
+													<strong>공통</strong>
+													.m-0 ~ 10 / .mt-0 ~ 10 / .ml-0 ~ 10 / .mr-0 ~ 10 / .mb-0 ~ 10
+												</li>
+												<li>
+													<strong>Desktop</strong>
+													.m-lg-0 ~ 10 / .mt-lg-0 ~ 10 / .ml-lg-0 ~ 10 / .mr-lg-0 ~ 10 / .mb-lg-0 ~ 10
+												</li>
+												<li>
+													<strong>Tablet &amp; Mobile</strong>
+													.m-md-0 ~ 10 / .mt-md-0 ~ 10 / .ml-md-0 ~ 10 / .mr-md-0 ~ 10 / .mb-md-0 ~ 10
+												</li>
+											</ul>
+										</div>
+									</div>
+									<div class="col-item">
+										<div class="box">
+											<h5 class="text-lg text-bold mb-sm">Padding</h5>
+											<ul class="list list2">
+												<li>
+													<strong>공통</strong>
+													.p-0 ~ 10 / .pt-0 ~ 10 / .pl-0 ~ 10 / .pr-0 ~ 10 / .pb-0 ~ 10
+												</li>
+												<li>
+													<strong>Desktop</strong>
+													.p-lg-0 ~ 10 / .pt-lg-0 ~ 10 / .pl-lg-0 ~ 10 / .pr-lg-0 ~ 10 / .pb-lg-0 ~ 10
+												</li>
+												<li>
+													<strong>Tablet &amp; Mobile</strong>
+													.p-md-0 ~ 10 / .pt-md-0 ~ 10 / .pl-md-0 ~ 10 / .pr-md-0 ~ 10 / .pb-md-0 ~ 10
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+							<h4 class="title1 mt-lg">활용 예시</h4>
+							<div class="p-lg-6 p-md-4 bg-primary">
+								반응형 간격 사용 예) Desktop에서 패딩 30px, Mobile에서 20px일 때 : .p-lg-6.p-md-4
+							</div>
+							<pre class="brush:html" title="HTML">&lt;div class="p-lg-6 p-md-4"&gt;&lt;/div&gt;</pre>
+
+							<div class="mt-lg-6 mt-md-4 bg-primary">
+								사용 예) Desktop에서는 상단 마진 30px, Mobile에서 20px일 때 : .mt-lg-6.mt-md-4
+							</div>
+							<pre class="brush:html" title="HTML">&lt;div class="mt-lg-6 mt-md-4"&gt;&lt;/div&gt;</pre>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="util">유틸리티</h3>
+						<div>
+							<h4 class="title1 mt-lg">정렬</h4>
+							<div class="content-row">
+								<div class="inner">
+									<div class="col-item">
+										<div class="box">
+											<p class="text-left">.text-left</p>
+											<p class="text-center">.text-center</p>
+											<p class="text-right">.text-right</p>
+										</div>
+									</div>
+									<div class="col-item">
+										<div class="box">
+											<p class="text-lg-left">.text-lg-left</p>
+											<p class="text-lg-center">.text-lg-center</p>
+											<p class="text-lg-right">.text-lg-right</p>
+										</div>
+									</div>
+									<div class="col-item">
+										<div class="box">
+											<p class="text-md-left">.text-md-left</p>
+											<p class="text-md-center">.text-md-center</p>
+											<p class="text-md-right">.text-md-right</p>
+										</div>
+									</div>
+									<div class="col-item">
+										<div class="box">
+											<p class="text-sm-left">.text-sm-left</p>
+											<p class="text-sm-center">.text-sm-center</p>
+											<p class="text-sm-right">.text-sm-right</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<pre class="brush:html" title="HTML">
+								&lt;p class="text-left"&gt;.text-left&lt;/p&gt;
+								&lt;p class="text-center"&gt;.text-center&lt;/p&gt;
+								&lt;p class="text-right"&gt;.text-right&lt;/p&gt;
+								&lt;p class="text-lg-right text-md-center"&gt;.text-left&lt;/p&gt;</pre>
+
+							<h4 class="title1 mt-lg">배치</h4>
+							<div class="content-row">
+								<div class="inner">
+									<div class="col-item">
+										<h5 class="text-bold text-lg mb-sm">float</h5>
+										<div class="box">
+											<p class="text-bold">컨테이너 .clearfix</p>
+											<div class="clearfix">
+												<p class="float-left">.float-left</p>
+												<p class="float-right">.float-right</p>
+											</div>
+										</div>
+									</div>
+									<div class="col-item">
+										<h5 class="text-bold text-lg mb-sm">flex</h5>
+										<div class="box">
+											<div class="flex-container flex-justify-center flex-align-center">
+												<div class="flex-item">
+													.flex-container<br>
+													.flex-item
+												</div>
+												<div class="flex-item">
+													.flex-justify-center<br>
+													.flex-item<br>
+													.flex-item
+												</div>
+												<div class="flex-item-fit">
+													.flex-align-center<br>
+													.flex-item-fit
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<h4 class="title1 mt-lg">반응형 디스플레이</h4>
+							<p class="mb-2">브라우저 너비별로 확인해 보세요.</p>
+							<ul class="list list1">
+								<li>Desktop 이상에서만 노출 <span class="d-up-lg bg-invalid">.d-up-lg</span></li>
+								<li>태블릿 + Desktop에서만 노출 <span class="d-up-md bg-invalid">.d-up-md</span></li>
+								<li>태블릿 + Mobile에서만 노출 <span class="d-down-md bg-invalid">.d-down-md</span></li>
+								<li>작은 Mobile에서만 노출 <span class="d-down-sm bg-invalid">.d-down-sm</span></li>
+							</ul>
+							<pre class="brush:html" title="HTML">
+								<span class="d-up-lg">Desktop 이상에서만 노출</span>
+								<span class="d-up-md">태블릿 + Desktop에서만 노출</span>
+								<span class="d-down-md">태블릿 + Mobile에서만 노출</span>
+								<span class="d-down-sm">작은 Mobile에서만 노출</span></pre>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="content-row">
+							콘텐츠 컬럼
+							<small>.content-row</small>
+						</h3>
+						<div class="box-html-guide mb-3">
+							<ul class="list list2">
+								<li>Desktop, Tablet N등분 / Mobile 열드롭</li>
+							</ul>
+						</div>
+
+						<h4 class="title1">일반형</h4>
+						<pre class="brush:html" title="HTML">
+							&lt;div class="content-row"&gt;
+								&lt;div class="inner"&gt;
+									&lt;div class="col-item"&gt;내용&lt;/div&gt;
+									&lt;div class="col-item"&gt;내용&lt;/div&gt;
+									&lt;!-- 콘텐츠 너비에 맞게 조정됨 .col-item-fit --&gt;
+									&lt;div class="col-item-fit"&gt;내용&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;</pre>
+
+						<div class="content-row mt-md text-center">
+							<div class="inner">
+								<div class="col-item">
+									<p class="box bg-primary">.col-item<br> 균등분할</p>
+								</div>
+								<div class="col-item">
+									<p class="box bg-default">.col-item<br> 균등분할</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="content-row mt-md text-center">
+							<div class="inner">
+								<div class="col-item">
+									<p class="box bg-primary">.col-item<br> 균등분할</p>
+								</div>
+								<div class="col-item">
+									<p class="box bg-default">.col-item<br> 균등분할</p>
+								</div>
+								<div class="col-item">
+									<p class="box bg-primary">.col-item<br> 균등분할</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="content-row mt-md text-center">
+							<div class="inner">
+								<div class="col-item-fit">
+									<p class="box bg-default">.col-item-fit<br> 콘텐츠 너비에 맞게 조정됨</p>
+								</div>
+								<div class="col-item">
+									<p class="box bg-primary">.col-item<br> 균등분할</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="content-row mt-lg">
+							<div class="inner">
+								<div class="col-item">
+									<h3 class="title1">.title1</h3>
+									<div class="indent">
+										<div class="indent-none box">
+											<ul class="list list1 m-0">
+												<li>검진 당일은 공복상태로 오셔야 하며 검사는 3시간 정도의 시간을 요합니다.</li>
+												<li>검진은 해당일 아침 07:40분부터 실시되며, 가능한 오전 09:30분 이전까지 내원 하셔야 불편함 없이 검진이 가능합니다.</li>
+												<li>예약하시면 자세한 검진 절차를 설명해 드립니다.</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-item">
+									<h3 class="title1">.title1</h3>
+									<div class="indent">
+										<div class="indent-none box">
+											<ul class="list list1 m-0">
+												<li>예약은 직접 방문하시거나 전화로 하실 수 있습니다.</li>
+												<li>예약하시면 자세한 검진 절차를 설명해 드립니다.</li>
+												<li>검진 결과는 일주일 후 전문의사와 상담시 받게 되며 전화 상담도 가능합니다.</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<h4 class="title1 mt-lg">이미지 + 콘텐츠 혼합형</h4>
+						<p>Mobile 모드에서 이미지 원본 크기대로 노출됨</p>
+						<pre class="brush:html" title="HTML">
+							&lt;div class="content-row"&gt;
+								&lt;div class="inner"&gt;
+								&lt;div class="col-item-fit"&gt;
+									&lt;!-- 이미지 클래스 .image-sm .image-md .image-lg (클래스 제거시 이미지 원본 크기 그대로 노출 가능) --&gt;
+									&lt;img src="../../asset/_common/images/_sample.jpg" class="image-md" alt=""&gt;
+								&lt;/div&gt;
+									&lt;div class="col-item"&gt;내용&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;</pre>
+
+						<div class="content-row mt-lg">
+							<div class="inner">
+								<div class="col-item-fit">
+									<img src="../../asset/_common/images/_sample.jpg" class="image-sm" alt="">
+								</div>
+								<div class="col-item">
+									<h3 class="title1">.image-sm</h3>
+									<div class="indent">
+										<ul class="list list1">
+											<li>내용</li>
+											<li>내용</li>
+											<li>내용</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="content-row mt-lg">
+							<div class="inner">
+								<div class="col-item-fit">
+									<img src="../../asset/_common/images/_sample.jpg" class="image-md" alt="">
+								</div>
+								<div class="col-item">
+									<h3 class="title1">.image-md</h3>
+									<div class="indent">
+										<ul class="list list1">
+											<li>내용</li>
+											<li>내용</li>
+											<li>내용</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="content-row mt-lg">
+							<div class="inner">
+								<div class="col-item-fit">
+									<img src="../../asset/_common/images/_sample.jpg" class="image-lg" alt="">
+								</div>
+								<div class="col-item">
+									<h3 class="title1">.image-lg</h3>
+									<div class="indent">
+										<ul class="list list1">
+											<li>내용</li>
+											<li>내용</li>
+											<li>내용</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<h4 class="title1 mt-lg">이미지 나열형 .content-images</h4>
+						<pre class="brush:html" title="HTML">
+							&lt;!-- 크기가 각기 다른 이미지 나열 .content-images 추가, 가로 너비 넘치면 자동 개행 처리됨 --&gt;
+							&lt;!-- .col 미지정시 기본 3열 기준 열드롭, .col2, .col4 추가시 각 2열, 4열 표시 --&gt;
+							&lt;div class="content-row content-images col2"&gt;
+								&lt;div class="inner"&gt;
+									&lt;div class="col-item"&gt;
+										&lt;figure class="infographic"&gt;
+											&lt;div class="image"&gt;
+												&lt;img src="../../asset/_common/images/_sample.jpg" alt=""&gt;
+											&lt;/div&gt;
+											&lt;figcaption class="text-sm text-center"&gt;text&lt;/figcaption&gt;
+										&lt;/figure&gt;
+									&lt;/div&gt;
+									&lt;!-- 마지막 행의 열은 균등분할 처리되며 가로 너비가 너무 길면 .col-item-fit 사용 --&gt;
+									&lt;div class="col-item-fit"&gt;
+										&lt;figure class="infographic"&gt;
+											&lt;div class="image"&gt;
+												&lt;!-- 세로로 긴 이미지는 .vertical 추가 --&gt;
+												&lt;img src="../../asset/_common/images/_sample.jpg" alt="" class="vertical"&gt;
+											&lt;/div&gt;
+											&lt;figcaption class="text-sm text-center"&gt;text&lt;/figcaption&gt;
+										&lt;/figure&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;</pre>
+
+						<h5 class="title2">예시1</h5>
+						<div class="content-row content-images">
+							<div class="inner">
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">기본 3열</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">기본형</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image image-">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">기본형</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image image-">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">기본형</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image image-">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">기본형</figcaption>
+									</figure>
+								</div>
+							</div>
+						</div>
+
+						<h5 class="title2">예시2</h5>
+						<div class="content-row content-images col2">
+							<div class="inner">
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">.col2</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">.col2</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">text</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">text</figcaption>
+									</figure>
+								</div>
+							</div>
+						</div>
+
+						<h5 class="title2">예시3</h5>
+						<div class="content-row content-images col4">
+							<div class="inner">
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">text</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">text</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">text</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">text</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">text</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">text</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm text-center">text</figcaption>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="tabmenu">
+							탭메뉴
+							<small>.tab-menu</small>
+							<i class="badge"></i>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list1">
+								<li>
+									<strong class="text-invalid">(웹접근성)</strong> 탭메뉴 하단에 해당 탭 제목 필수 제공 :
+									시각적으로 노출되는 타이틀 미존재시 헤딩요소 추가 후 <strong>.sr-only</strong> 처리
+								</li>
+								<li>개발자도구 소스코드 복사 사용 금지 : 스크립트에 DOM 조작이 있어 불필요한 코드까지 복사됨</li>
+								<li>탭 하단 간격 기본 탑재되어있으며 기본 간격 그대로 활용</li>
+								<li>항목 개수에 따라 반응형 자동 처리됨
+									<ul class="list list2">
+										<li>Width 768 이상 : 6항목 초과시 자동 열드롭, 미만시 균등분할</li>
+										<li>Width 768 미만 : 3항목 초과시 자동 열드롭, 미만시 균등분할 / 항목 초과시 자동 드롭다운 처리</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+						<div>
+							<pre class="brush:html" title="HTML">
+								&lt;!-- 탭 목록만 제공시 : 디자인 타입 변경시 멀티클래스 .tab-menu1만 변경 --&gt;
+								&lt;!-- 9항목 초과시 모바일 드롭다운 자동처리되나 9건 미만시에도 모바일 드롭다운 노출을 원할시 멀티클래스 .tab-dropdown-sm 추가 --&gt;
+								&lt;nav class="tab-menu tab-menu1"&gt;
+									&lt;ul class="tab-list"&gt;
+										&lt;li class="on"&gt;&lt;a href="#"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+										&lt;li&gt;&lt;a href="#"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+										&lt;li&gt;&lt;a href="#"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+									&lt;/ul&gt;
+								&lt;/nav&gt;
+
+								&lt;!-- 탭과 콘텐츠 매칭시 : 탭메뉴 목록의 href 값과 .tab-content 컨테이너의 id 매칭 --&gt;
+								&lt;nav class="tab-menu tab-menu1"&gt;
+									&lt;ul class="tab-list"&gt;
+										&lt;li class="on"&gt;&lt;a href="#tab-content1"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+										&lt;li&gt;&lt;a href="#tab-content2"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+										&lt;li&gt;&lt;a href="#tab-content3"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+									&lt;/ul&gt;
+								&lt;/nav&gt;
+								&lt;div class="tab-content" id="tab-content1"&gt;
+									&lt;h3 class="sr-only"&gt;탭제목&lt;/h3&gt;
+									&lt;p&gt;Contents&lt;/p&gt;
+								&lt;/div&gt;
+								&lt;div class="tab-content" id="tab-content2"&gt;
+									&lt;h3 class="sr-only"&gt;탭제목&lt;/h3&gt;
+									&lt;p&gt;Contents&lt;/p&gt;
+								&lt;/div&gt;
+								&lt;div class="tab-content" id="tab-content3"&gt;
+									&lt;h3 class="sr-only"&gt;탭제목&lt;/h3&gt;
+									&lt;p&gt;Contents&lt;/p&gt;
+								&lt;/div&gt;</pre>
+
+							<h4 class="title1 mt-lg">1차 탭 <span class="text-primary">.tab-menu1</span></h4>
+							<nav class="tab-menu tab-menu1">
+								<ul class="tab-list">
+									<li class="on"><a href="#"><span>탭메뉴명1</span></a></li>
+									<li>
+										<a href="#porject-link-connect;" target="_blank" title="새창">
+											<span>${프로젝트명}</span>
+										</a>
+									</li>
+									<li><a href="#"><span>텍스트가 길어서<br> 두 줄로 노출시</span></a></li>
+								</ul>
+							</nav>
+
+							<nav class="tab-menu tab-menu1">
+								<ul class="tab-list">
+									<li class="on"><a href="#"><span>탭메뉴명1</span></a></li>
+									<li><a href="#"><span>탭메뉴명2</span></a></li>
+									<li><a href="#"><span>탭메뉴명3</span></a></li>
+									<li><a href="#"><span>탭메뉴명4</span></a></li>
+									<li><a href="#"><span>탭메뉴명5</span></a></li>
+									<li><a href="#"><span>탭메뉴명6</span></a></li>
+									<li><a href="#"><span>탭메뉴명7</span></a></li>
+									<li><a href="#"><span>탭메뉴명8</span></a></li>
+									<li><a href="#"><span>탭메뉴명9</span></a></li>
+								</ul>
+							</nav>
+
+							<h4 class="title1 mt-lg">2차 탭 <span class="text-primary">.tab-menu2</span></h4>
+							<nav class="tab-menu tab-menu2">
+								<ul class="tab-list">
+									<li><a href="#"><span>탭메뉴명1</span></a></li>
+									<li class="on"><a href="#"><span>탭메뉴명2</span></a></li>
+								</ul>
+							</nav>
+
+							<h4 class="title1">1차 탭 + 2차 탭 + 콘텐츠 매칭 활용 예시</h4>
+							<nav class="tab-menu tab-menu1">
+								<ul class="tab-list">
+									<li class="on"><a href="#tab-content1"><span>상위 탭1</span></a></li>
+									<li><a href="#tab-content2"><span>상위 탭2</span></a></li>
+									<li><a href="#tab-content3"><span>상위 탭3</span></a></li>
+									<li><a href="#tab-content4"><span>상위 탭4</span></a></li>
+									<li><a href="#tab-content5"><span>상위 탭5</span></a></li>
+									<li><a href="#tab-content6"><span>상위 탭6</span></a></li>
+									<li><a href="#tab-content7"><span>상위 탭7</span></a></li>
+									<li><a href="#tab-content8"><span>상위 탭8</span></a></li>
+									<li><a href="#tab-content9"><span>상위 탭9</span></a></li>
+									<li><a href="#tab-content10"><span>상위 탭9</span></a></li>
+								</ul>
+							</nav>
+							<div class="tab-content" id="tab-content1">
+								<h3 class="sr-only">탭제목</h3>
+								<nav class="tab-menu tab-menu2">
+									<ul class="tab-list">
+										<li class="on"><a href="#"><span>하위 탭1</span></a></li>
+										<li><a href="#"><span>하위 탭2</span></a></li>
+										<li><a href="#"><span>하위 탭3</span></a></li>
+										<li><a href="#"><span>하위 탭4</span></a></li>
+									</ul>
+								</nav>
+								<p class="mb-1">탭 콘텐츠 노출 영역</p>
+							</div>
+							<div class="tab-content" id="tab-content2">
+								<h3 class="sr-only">탭제목</h3>
+								<p>탭2</p>
+								<p>탭2</p>
+							</div>
+							<div class="tab-content" id="tab-content3">
+								<h3 class="sr-only">탭제목</h3>
+								<p>탭3</p>
+								<p>탭3</p>
+								<p>탭3</p>
+							</div>
+							<div class="tab-content" id="tab-content4">
+								<h3 class="sr-only">탭제목</h3>
+								<p>탭4</p>
+								<p>탭4</p>
+								<p>탭4</p>
+								<p>탭4</p>
+							</div>
+							<div class="tab-content" id="tab-content5">
+								<h3 class="sr-only">탭제목</h3>
+								<p>탭5</p>
+								<p>탭5</p>
+								<p>탭5</p>
+								<p>탭5</p>
+								<p>탭5</p>
+							</div>
+							<div class="tab-content" id="tab-content6">
+								<h3 class="sr-only">탭제목</h3>
+								<p>탭666</p>
+							</div>
+							<div class="tab-content" id="tab-content7">
+								<h3 class="sr-only">탭제목</h3>
+								<p>탭777</p>
+							</div>
+							<div class="tab-content" id="tab-content8">
+								<h3 class="sr-only">탭제목</h3>
+								<p>탭888</p>
+							</div>
+							<div class="tab-content" id="tab-content9">
+								<h3 class="sr-only">탭제목</h3>
+								<p>탭999</p>
+							</div>
+							<div class="tab-content" id="tab-content10">
+								<h3 class="sr-only">탭제목</h3>
+								<p>탭999</p>
+							</div>
+
+							<h4 class="title1 mt-lg">특수유형 : 탭메뉴 + 박스</h4>
+							<nav class="tab-menu tab-menu1 tab-menu-box">
+								<ul class="tab-list">
+									<li><a href="#"><span>.tab-menu-box</span></a></li>
+									<li class="on"><a href="#"><span>tab-menu-box2</span></a></li>
+								</ul>
+							</nav>
+							<div class="box box-tab">
+								<ul class="list list1">
+									<li>탭메뉴 바로 하단 박스 위치 .box.box-tab</li>
+								</ul>
+							</div>
+							<pre class="brush:html" title="HTML">
+								&lt;!-- 기존 탭에 멀티클래스 .tab-menu-box 추가 --&gt;
+								&lt;nav class="tab-menu tab-menu1 tab-menu-box"&gt;
+									&lt;ul class="tab-list"&gt;
+										&lt;li class="on"&gt;&lt;a href="#"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+										&lt;li&gt;&lt;a href="#"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+									&lt;/ul&gt;
+								&lt;/nav&gt;
+
+								&lt;!-- 탭 바로 하단에 오는 박스는 기본 박스에 멀티클래스 .box-tab 추가 (라운딩 없이 상단 라인 제거) --&gt;
+								&lt;div class="box box-tab"> ... &lt;/div&gt;</pre>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="tabmenu-jumpto">
+							점프 투 탭메뉴
+							<small>.tab-menu-jumpto</small>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list2">
+								<li>
+									앵커 이동 탭메뉴 (책갈피)
+									<a href="_template/jumpto.html" target="_blank" title="새창" class="btn btn-xs btn-primary ml-1">
+										점프 투 템플릿 보기
+									</a>
+								</li>
+								<li>점프 투 영역간 간격이 기본 설정되어 있으므로 추가 간격 설정 불필요</li>
+								<li>컨텐츠 컨테이너(.tab-content-jumpto) 내부에 메뉴 이동 버튼 자동 생성됨</li>
+							</ul>
+						</div>
+						<pre class="brush:html" title="HTML">
+							&lt;!-- 마크업 구조는 원페이지 탭 형태와 동일하며, 메뉴 최상단 컨테이너에 .tab-menu-jumpto 멀티클래스 추가 --&gt;
+							&lt;nav class="tab-menu tab-menu1 tab-menu-jumpto"&gt;
+								&lt;ul class="tab-list"&gt;
+									&lt;li class="on"&gt;&lt;a href="#tab-content1"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+									&lt;li&gt;&lt;a href="#tab-content2"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+									&lt;li&gt;&lt;a href="#tab-content3"&gt;&lt;span&gt;&lt;/span&gt;&lt;/a&gt;&lt;/li&gt;
+								&lt;/ul&gt;
+							&lt;/nav&gt;
+							&lt;!-- 각 콘텐츠 영역 컨테이너에 기본 클래스 .tab-content-jumpto --&gt;
+							&lt;!-- 키보드 포커싱 처리되므로 헤딩 요소 생략 가능 --&gt;
+							&lt;div class="tab-content-jumpto" id="tab-content1"&gt;
+								&lt;p&gt;Contents&lt;/p&gt;
+							&lt;/div&gt;
+							&lt;div class="tab-content-jumpto" id="tab-content2"&gt;
+								&lt;p&gt;Contents&lt;/p&gt;
+							&lt;/div&gt;
+							&lt;div class="tab-content-jumpto" id="tab-content3"&gt;
+								&lt;p&gt;Contents&lt;/p&gt;
+							&lt;/div&gt;</pre>
+						<div>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="box">
+							박스 <small>.box-*</small>
+						</h3>
+
+						<h4 class="title1 mt-lg">일반박스 3종</h4>
+						<p class="mb-sm">박스 상하단 간격 .m*-* 멀티클래스 활용</p>
+						<div class="content-row">
+							<div class="inner">
+								<div class="col-item">
+									<div class="box">
+										<strong>기본형 .box</strong><br>
+										동해물과 백두산이 마르고 닳도록<br>
+										하느님이 보우하사 우리나라 만세 <span class="text-primary">무궁화 삼천리 화려강산</span><br>
+										<span class="text-primary">대한사람 대한</span>으로 <span class="text-primary">길이</span> 보전하세
+									</div>
+								</div>
+								<div class="col-item">
+									<dl class="box-point">
+										<dt>
+											<i class="ico ico-notice-primary mr-1"></i>
+											<span>강조형 .box-point</span>
+										</dt>
+										<dd>
+											화면 최상단 주목도 높은 박스에 활용<br>
+											하느님이 보우하사 우리나라 만세 <span class="text-primary">무궁화 삼천리 화려강산</span><br>
+											<span class="text-primary">대한사람 대한</span>으로 <span class="text-primary">길이</span> 보전하세
+										</dd>
+									</dl>
+								</div>
+								<div class="col-item">
+									<div class="box-info">
+										<p class="text-lg text-bold mb-sm">부가정보형 .box-info</p>
+										<p>
+											동해물과 백두산이 마르고 닳도록<br>
+											하느님이 보우하사 우리나라 만세 <span class="text-primary">무궁화 삼천리 화려강산</span><br>
+											<span class="text-primary">대한사람 대한</span>으로 <span class="text-primary">길이</span> 보전하세
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<pre class="brush:html" title="HTML">
+							&lt;!-- 박스 클래스 .box .box-info .box-point 중 선택 사용 --&gt;
+							&lt;div class="box"&gt;
+								&lt;ul class="list list2"&gt;
+									&lt;li&gt;&lt;/li&gt;
+								&lt;/ul&gt;
+							&lt;/div&gt;
+
+							&lt;!-- 왼쪽 이미지 추가시 멀티클래스 .box-image 추가 --&gt;
+							&lt;div class="box box-image"&gt;
+								&lt;!-- 모바일모드에서 미노출시 .d-up-md 추가 (제거시 열드롭) --&gt;
+								&lt;div class="image d-up-md"&gt;
+									&lt;img src="" alt=""&gt;
+								&lt;/div&gt;
+								&lt;div class="content"&gt;
+									...
+								&lt;/div&gt;
+							&lt;/div&gt;
+
+							&lt;!-- 불릿 없는 일반 문장은 p 태그로 마크업 --&gt;
+							&lt;div class="box"&gt;
+								&lt;p&gt;&lt;/p&gt;
+							&lt;/div&gt;
+
+							&lt;!-- 제목과 내용이 함께 노출되는 박스는 dl dt dd 로 마크업 --&gt;
+							&lt;dl class="box"&gt;
+								&lt;dt&gt;text&lt;/dt&gt;
+								&lt;dd&gt;text&lt;/dd&gt;
+							&lt;/dl&gt;</pre>
+
+						<h4 class="title1 mt-lg">이미지 박스 .box.box-image</h4>
+						<div class="box-point box-image">
+							<div class="image d-up-md">
+								<img src="../../asset/_common/images/_sample.jpg" class="image-md" alt="이미지 대체텍스트 입력">
+							</div>
+							<div class="content">
+								<dl>
+									<dt class="text-xl">프로젝트 이미지 박스 제목</dt>
+									<dd>
+										프로젝트 이미지 박스 본문<br class="d-up-md">
+										프로젝트 이미지 박스 본문 프로젝트 이미지 박스 본문<br class="d-up-md">
+										프로젝트 이미지 박스 본문
+									</dd>
+								</dl>
+							</div>
+						</div>
+
+						<div class="box-point box-image mt-md">
+							<div class="image">
+								<img src="../../asset/_common/images/_sample.jpg" class="image-md" alt="이미지 대체텍스트 입력">
+							</div>
+							<div class="content">
+								<dl>
+									<dt class="text-xl">프로젝트 이미지 박스 제목</dt>
+									<dd>
+										프로젝트 이미지 박스 본문<br class="d-up-lg">
+										프로젝트 이미지 박스 본문 프로젝트 이미지 박스 본문<br class="d-up-lg">
+										프로젝트 이미지 박스 본문
+									</dd>
+								</dl>
+							</div>
+						</div>
+
+						<h4 class="title1 mt-lg">토글 박스 .box-toggle</h4>
+						<h5 class="title2">게시판 상단 공지문구 안내 등 박스로 활용시 (기본 펼침)</h5>
+						<dl class="box-toggle">
+							<dt class="toggle-title on">
+								<span class="title">
+									<i class="ico ico-notice-primary mr-1"></i>
+									<span>공지사항</span>
+								</span>
+								<button type="button" class="btn">
+									<i class="ico ico-chevron-down-lg"></i>
+									<span class="sr-only">여닫기</span>
+								</button>
+							</dt>
+							<dd class="toggle-content">
+								<p>게시판 이용안내입니다.</p>
+								<p>게시판 이용안내입니다.</p>
+								<p>게시판 이용안내입니다.</p>
+							</dd>
+						</dl>
+						<pre class="brush:html" title="HTML">
+						&lt;dl class="box-toggle"&gt;
+							&lt;dt class="toggle-title on"&gt;&lt;!-- // .toggle-title 에 class="on" 추가시 펼쳐침 --&gt;
+								&lt;span class="title"&gt;타이틀 노출 영역&lt;/span&gt;
+								&lt;button type="button" class="btn"&gt;
+									&lt;i class="ico ico-chevron-down-lg"&gt;&lt;/i&gt;
+									&lt;span class="sr-only"&gt;여닫기&lt;/span&gt;
+								&lt;/button&gt;
+							&lt;/dt&gt;
+							&lt;dd class="toggle-content"&gt;
+								...
+							&lt;/dd&gt;
+						&lt;/dl&gt;</pre>
+
+						<h5 class="title2">콘텐츠 블록에서 토글 목록으로 활용 예시</h5>
+						<div class="box-toggle">
+							<div class="toggle-title">
+								<h3 class="title">타이틀 헤딩 요소로 마크업</h3>
+								<button type="button" class="btn">
+									<i class="ico ico-chevron-down-lg"></i>
+									<span class="sr-only">여닫기</span>
+								</button>
+							</div>
+							<div class="toggle-content">
+								본문 노출 영역
+							</div>
+						</div>
+						<div class="box-toggle">
+							<div class="toggle-title">
+								<h3 class="title">타이틀 헤딩 요소로 마크업</h3>
+								<button type="button" class="btn">
+									<i class="ico ico-chevron-down-lg"></i>
+									<span class="sr-only">여닫기</span>
+								</button>
+							</div>
+							<div class="toggle-content">
+								본문 노출 영역
+							</div>
+						</div>
+						<pre class="brush:html" title="HTML">
+							&lt;div class="box-toggle"&gt;
+								&lt;div class="toggle-title on"&gt;&lt;!-- // .toggle-title 에 class="on" 추가시 펼쳐짐 --&gt;
+									&lt;h3 class="title"&gt;타이틀 헤딩 요소로 마크업&lt;/h3&gt;
+									&lt;button type="button" class="btn"&gt;
+										&lt;i class="ico ico-chevron-down-lg"&gt;&lt;/i&gt;
+										&lt;span class="sr-only"&gt;여닫기&lt;/span&gt;
+									&lt;/button&gt;
+								&lt;/div&gt;
+								&lt;div class="toggle-content"&gt;
+									...
+								&lt;/div&gt;
+							&lt;/div&gt;</pre>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="step">
+							절차도 <small>.step</small>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list1">
+								<li>순서 정보가 포함되었을 때 : ol로 마크업</li>
+								<li>반응형 노출 방식
+									<ul class="list list2">
+										<li>Width 768 이상 : 멀티클래스에 따라 한 줄 또는 열드롭 표현됨</li>
+										<li>Width 768 미만 : 열드롭 처리 통일</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+
+						<pre class="brush:html" title="HTML">
+							&lt;!-- 멀티클래스 조합 사용 : 열드롭형 .step-drop / 상세형 .step-detail / 모바일모드 2열형 .step-sm-col2 --&gt;
+							&lt;div class="step"&gt;
+								&lt;ol&gt;
+									&lt;li&gt;
+										&lt;div class="inner"&gt;
+											&lt;!-- 기본형 마크업 구조 --&gt;
+											&lt;span class="number"&gt;01&lt;/span&gt;
+											&lt;div class="content"&gt;text&lt;/div&gt;
+										&lt;/div&gt;
+									&lt;/li&gt;
+									&lt;li&gt;
+										&lt;div class="inner"&gt;
+											&lt;!-- 상세형 마크업 구조 --&gt;
+											&lt;strong class="title"&gt;
+												&lt;span class="number"&gt;01&lt;/span&gt;
+												title
+											&lt;/strong&gt;
+											&lt;div class="content"&gt;text&lt;/div&gt;
+										&lt;/div&gt;
+									&lt;/li&gt;
+								&lt;/ol&gt;
+							&lt;/div&gt;</pre>
+
+						<pre class="brush:html" title="HTML">
+							&lt;!-- 화살표에 텍스트 들어간 유형 .step-gap 추가 --&gt;
+							&lt;div class="step step-gap"&gt;
+								&lt;ol&gt;
+									&lt;li&gt;
+										&lt;div class="inner"&gt;
+											&lt;span class="number"&gt;01&lt;/span&gt;
+											&lt;div class="content"&gt;text&lt;/div&gt;
+										&lt;/div&gt;
+										&lt;!-- 화살표에 들어갈 텍스트 --&gt;
+										&lt;div class="gap-content"&gt;text&lt;/div&gt;
+									&lt;/li&gt;
+								&lt;/ol&gt;
+							&lt;/div&gt;</pre>
+
+						<h4 class="title1 mt-lg">기본 균등분할 (한 줄)</h4>
+						<h5 class="title2">기본형 .step</h5>
+						<p class="indent mb-md">모바일 기본 1열 / 모바일 .step-sm-col2 추가시 2열</p>
+
+						<div class="step step-sm-col2">
+							<ol>
+								<li>
+									<div class="inner">
+										<span class="number">01</span>
+										<div class="content">
+											step 01 내용
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">02</span>
+										<div class="content">
+											step 02 내용<br>step 02 내용
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">03</span>
+										<div class="content">
+											step 03 내용
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">04</span>
+										<div class="content">
+											step 04 내용
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">05</span>
+										<div class="content">
+											step 05 내용
+										</div>
+									</div>
+								</li>
+							</ol>
+						</div>
+
+						<br>
+
+						<div class="step step-gap">
+							<ol>
+								<li>
+									<div class="inner">
+										<span class="number">01</span>
+										<div class="content">
+											step 01 내용
+										</div>
+									</div>
+									<div class="gap-content">step 중간 내용</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">02</span>
+										<div class="content">
+											step 02 내용/<br>step 02 내용
+										</div>
+									</div>
+									<div class="gap-content">step 중간 내용</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">03</span>
+										<div class="content">
+											step 03 내용
+										</div>
+									</div>
+								</li>
+							</ol>
+						</div>
+
+						<h5 class="title2">상세형 .step.step-detail</h5>
+						<div class="step step-detail">
+							<ol>
+								<li>
+									<div class="inner">
+										<strong class="title"><span class="number">01</span> step 01 제목</strong>
+										<div class="content">
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<strong class="title"><span class="number">02</span> step 02 제목</strong>
+										<div class="content">
+											step 02 본문step 02 본문step 02 본문step 02 본문step 02 본문
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<div class="content">
+											<ul class="list list2">
+												<li>제목이 없는 박스</li>
+												<li>step 리스트step 리스트step 리스트</li>
+												<li>step 리스트</li>
+												<li>step 리스트step 리스트step 리스트step 리스트</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ol>
+						</div>
+
+						<br>
+
+						<div class="step step-detail step-gap">
+							<ol>
+								<li>
+									<div class="inner">
+										<strong class="title"><span class="number">01</span> step 01 제목</strong>
+										<div class="content">
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+										</div>
+									</div>
+									<div class="gap-content">step 중간 내용</div>
+								</li>
+								<li>
+									<div class="inner">
+										<strong class="title"><span class="number">02</span> step 02 제목</strong>
+										<div class="content">
+											step 02 본문step 02 본문step 02 본문step 02 본문step 02 본문
+										</div>
+									</div>
+									<div class="gap-content">step 중간 내용</div>
+								</li>
+								<li>
+									<div class="inner">
+										<div class="content">
+											<ul class="list list2">
+												<li>제목이 없는 박스</li>
+												<li>step 리스트step 리스트step 리스트</li>
+												<li>step 리스트</li>
+												<li>step 리스트step 리스트step 리스트step 리스트</li>
+											</ul>
+										</div>
+									</div>
+								</li>
+							</ol>
+						</div>
+
+						<h4 class="title1 mt-lg">열드롭 .step-drop</h4>
+						<h5 class="title2">기본형 + 4열 고정 열드롭 .step.step-drop</h5>
+						<div class="step step-drop">
+							<ol>
+								<li>
+									<div class="inner">
+										<span class="number">01</span>
+										<div class="content">
+											step 01 내용
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">02</span>
+										<div class="content">
+											step 02 내용<br>step 02 내용
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">03</span>
+										<div class="content">
+											step 03 내용
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">04</span>
+										<div class="content">
+											step 04 내용
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">05</span>
+										<div class="content">
+											step 05 내용<br>
+											step 05 내용
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">06</span>
+										<div class="content">
+											step 06 내용<br>
+											step 06 내용
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">07</span>
+										<div class="content">
+											step 07 내용<br>
+											step 07 내용
+										</div>
+									</div>
+								</li>
+							</ol>
+						</div>
+
+						<br>
+
+						<div class="step step-drop step-gap">
+							<ol>
+								<li>
+									<div class="inner">
+										<span class="number">01</span>
+										<div class="content">
+											step 01 내용
+										</div>
+									</div>
+									<div class="gap-content">step 중간 내용</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">02</span>
+										<div class="content">
+											step 02 내용<br>step 02 내용
+										</div>
+									</div>
+									<div class="gap-content">step 중간 내용</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">03</span>
+										<div class="content">
+											step 03 내용
+										</div>
+									</div>
+									<div class="gap-content">step 중간 내용</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">04</span>
+										<div class="content">
+											step 04 내용
+										</div>
+									</div>
+									<div class="gap-content">step 중간 내용</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">05</span>
+										<div class="content">
+											step 05 내용<br>
+											step 05 내용
+										</div>
+									</div>
+									<div class="gap-content">step 중간 내용</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">06</span>
+										<div class="content">
+											step 06 내용<br>
+											step 06 내용
+										</div>
+									</div>
+									<div class="gap-content">step 중간 내용</div>
+								</li>
+								<li>
+									<div class="inner">
+										<span class="number">07</span>
+										<div class="content">
+											step 07 내용<br>
+											step 07 내용
+										</div>
+									</div>
+								</li>
+							</ol>
+						</div>
+
+						<h5 class="title2">상세형 + 2열 고정 열드롭 .step.step-detail.step-drop</h5>
+						<div class="step step-detail step-drop">
+							<ol>
+								<li>
+									<div class="inner">
+										<strong class="title"><span class="number">01</span> step 01 제목</strong>
+										<div class="content">
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<strong class="title"><span class="number">02</span> step 02 제목</strong>
+										<div class="content">
+											step 02 본문step 02 본문step 02 본문step 02 본문step 02 본문
+										</div>
+									</div>
+								</li>
+								<li>
+									<div class="inner">
+										<strong class="title"><span class="number">03</span> step 03 제목</strong>
+										<div class="content">
+											step 03 본문step 03 본문step 03 본문step 03 본문step 03 본문
+										</div>
+									</div>
+								</li>
+							</ol>
+						</div>
+
+						<br>
+
+						<div class="step step-detail step-drop step-gap">
+							<ol>
+								<li>
+									<div class="inner">
+										<strong class="title"><span class="number">01</span> step 01 제목</strong>
+										<div class="content">
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+											step 01 본문step 01 본문step 01 본문step 01 본문step 01 본문
+										</div>
+									</div>
+									<div class="gap-content">적합</div>
+								</li>
+								<li>
+									<div class="inner">
+										<strong class="title"><span class="number">02</span> step 02 제목</strong>
+										<div class="content">
+											step 02 본문step 02 본문step 02 본문step 02 본문step 02 본문
+										</div>
+									</div>
+									<div class="gap-content">적합</div>
+								</li>
+								<li>
+									<div class="inner">
+										<strong class="title"><span class="number">03</span> step 03 제목</strong>
+										<div class="content">
+											step 03 본문step 03 본문step 03 본문step 03 본문step 03 본문
+										</div>
+									</div>
+								</li>
+							</ol>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="bgcolor">백그라운드 <small>.bg-*</small></h3>
+						<p class="mb-md">면 컬러 Preset으로 .box-info 와 조합하거나 table 특정 셀 강조시 활용</p>
+						<div class="bg-setting">
+							<span class="bg-whiteblue">.bg-whiteblue</span>
+							<span class="bg-grayblue">.bg-grayblue</span>
+							<span class="bg-lightprimary">.bg-lightprimary</span>
+							<span class="bg-primary">.bg-primary</span>
+							<span class="bg-darkprimary">.bg-darkprimary</span>
+						</div>
+						<div class="bg-setting">
+							<span class="bg-lightgray">.bg-lightgray</span>
+							<span class="bg-gray">.bg-gray</span>
+							<span class="bg-darkgray">.bg-darkgray</span>
+						</div>
+						<pre class="brush:html" title="HTML">
+							<!-- 블루 계열 -->
+							&lt;div class="bg-whiteblue"&gt;&lt;/div&gt;
+							&lt;div class="bg-grayblue"&gt;&lt;/div&gt;
+							&lt;div class="bg-lightprimary"&gt;&lt;/div&gt;
+							&lt;div class="bg-primary"&gt;&lt;/div&gt;
+							&lt;div class="bg-darkprimary"&gt;&lt;/div&gt;
+							&lt;div class="bg-secondary"&gt;&lt;/div&gt;
+
+							<!-- 그레이 계열 -->
+							&lt;div class="bg-lightgray"&gt;&lt;/div&gt;
+							&lt;div class="bg-gray"&gt;&lt;/div&gt;
+							&lt;div class="bg-darkgray"&gt;&lt;/div&gt;</pre>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="image-content">
+							인포그래픽 <small>.infographic-*</small>
+						</h3>
+						<pre class="brush:html" title="HTML">
+						&lt;figure class="infographic"&gt;
+							&lt;div class="image"&gt;
+								&lt;img src="" alt=""&gt;
+							&lt;/div&gt;
+							&lt;figcaption class="text-sm"&gt; ... &lt;/figcaption&gt;
+						&lt;/figure&gt;</pre>
+
+						<div class="content-row mt-lg">
+							<div class="inner">
+								<div class="col-item">
+									<h3 class="title1">일반형 figure.infographic</h3>
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm">
+											figcaption.text-sm
+											위사진에 대한 설명 글이 들어가는 경우입니다.
+										</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<h3 class="title1">아름다운 간판</h3>
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm">
+											위사진에 대한 설명 글이 들어가는 경우입니다.위사진에 대한 설명 글이 들어가는 경우입니다.위사진에 대한 설명 글이 들어가는 경우입니다.
+										</figcaption>
+									</figure>
+								</div>
+								<div class="col-item">
+									<h3 class="title1">시범거리 소개</h3>
+									<figure class="infographic">
+										<div class="image">
+											<img src="../../asset/_common/images/_sample.jpg" alt="">
+										</div>
+										<figcaption class="text-sm">
+											위사진에 대한 설명 글이 들어가는 경우입니다.위사진에 대한 설명 글이 들어가는 경우입니다.
+										</figcaption>
+									</figure>
+								</div>
+							</div>
+						</div>
+
+						<h3 class="title1 mt-lg">큰 이미지 콘텐츠 figure.infographic-lg</h3>
+						<p class="mb-sm">행을 단독으로 사용하는 큰 인포그래픽 또는 사진에 사용. Mobile 모드에서 border 및 padding 사라짐</p>
+						<pre class="brush:html" title="HTML">
+							&lt;!-- 테두리 너비를 이미지 너비에 맞게 표현시 .fit 클래스 추가 --&gt;
+							&lt;!-- &lt;figure class="infographic-lg fit"&gt; --&gt;
+							&lt;figure class="infographic-lg"&gt;
+								&lt;div class="image"&gt;
+									&lt;img src="" alt="${이미지 설명}"&gt;
+								&lt;/div&gt;
+								&lt;!-- 이미지 설명이 alt 값만으로 부족할 시 figcaption 추가 --&gt;
+								&lt;figcaption class="sr-only"&gt;${이미지 설명}&lt;/figcaption&gt;
+							&lt;/figure&gt;</pre>
+
+						<figure class="infographic-lg">
+							<div class="image">
+								<img src="../../asset/_common/images/_sample.jpg" alt="">
+							</div>
+							<!-- 이미지 설명이 alt 값만으로 부족할 시 figcaption 추가 -->
+							<figcaption class="sr-only">${이미지 설명}</figcaption>
+						</figure>
+
+						<br>
+
+						<figure class="infographic-lg fit">
+							<div class="image">
+								<img src="../../asset/_common/images/_sample.jpg" alt="">
+							</div>
+							<!-- 이미지 설명이 alt 값만으로 부족할 시 figcaption 추가 -->
+							<figcaption class="sr-only">${이미지 설명}</figcaption>
+						</figure>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="toggle-content">
+							콘텐츠 토글 <small>data-toggle-*</small>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list1">
+								<li>콘텐츠 영역은 기본적으로 닫혀있으며 버튼 클릭시 노출됨</li>
+							</ul>
+						</div>
+						<pre class="brush:html" title="HTML">
+							&lt;!-- 버튼에 data-toggle-btn 애트리뷰트 추가 후 값 지정 --&gt;
+							&lt;button type="button" class="btn btn-default btn-xs ml-2" data-toggle-btn="sample"&gt;더보기 +&lt;/button&gt;
+
+							&lt;!-- 버튼으로 제어할 콘텐츠를 감싸는 컨테이너에 data-toggle-content 애트리뷰트 추가 및 값 매칭 --&gt;
+							&lt;div data-toggle-content="sample"&gt;
+								...
+							&lt;/div&gt;</pre>
+
+						<h3 class="title1 mt-lg">
+							사용예시1
+							<button type="button" class="btn btn-default btn-xs ml-2" data-toggle-btn="content1">더보기 +</button>
+						</h3>
+						<div class="indent" data-toggle-content="content1">
+							<p>content1</p>
+						</div>
+
+						<h4 class="title2">
+							사용예시2
+							<button type="button" class="btn btn-default btn-xs ml-2" data-toggle-btn="content2">더보기 +</button>
+						</h4>
+						<div class="indent" data-toggle-content="content2">
+							<p>content2</p>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="table">
+							테이블 <small>.table</small>
+							<i class="badge"></i>
+						</h3>
+						<h3 class="title1 mt-lg">기본 열(col)형 .table</h3>
+						<pre class="brush:html" title="HTML">
+							&lt;p class="text-unit"&gt;(단위 : 개, 천원)&lt;/p&gt;
+							&lt;!-- 용도에 따라 멀티클래스 추가 예) 포인트 컬러형 .table-point / 셀 패딩 좁히기 .table-narrow --&gt;
+							&lt;div class="table"&gt;
+								&lt;table&gt;
+									&lt;caption class="sr-only"&gt;${표제목 노출 영역}&lt;/caption&gt;
+									&lt;colgroup&gt;
+										&lt;col style="width: 25%;"&gt;
+										&lt;col&gt;
+										&lt;col&gt;
+										&lt;col&gt;
+									&lt;/colgroup&gt;
+									&lt;thead&gt;
+										&lt;tr&gt;
+											&lt;th scope="col"&gt;&lt;/th&gt;
+											<!-- 셀 강조효과 클래스 .cell-accent-red 또는 .cell-accent-blue -->
+											&lt;th scope="col" class="cell-accent-red"&gt;&lt;/th&gt;
+											&lt;th scope="col"&gt;&lt;/th&gt;
+											&lt;th scope="col" class="cell-accent-blue"&gt;&lt;/th&gt;
+										&lt;/tr&gt;
+									&lt;/thead&gt;
+									&lt;tbody&gt;
+										&lt;tr&gt;
+											&lt;td&gt;&lt;/td&gt;
+											&lt;td class="cell-accent-red"&gt;&lt;/td&gt;
+											&lt;td&gt;&lt;/td&gt;
+											&lt;td class="cell-accent-blue"&gt;&lt;/td&gt;
+										&lt;/tr&gt;
+									&lt;/tbody&gt;
+								&lt;/table&gt;
+							&lt;/div&gt;</pre>
+						<p class="text-unit">(단위 : 개, 천원)</p>
+						<div class="table">
+							<table>
+								<caption class="sr-only">${표제목}</caption>
+								<colgroup>
+									<col style="width: 25%;">
+									<col>
+									<col>
+									<col>
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">동해물과</th>
+										<th scope="col" class="cell-accent-red">백두산이</th>
+										<th scope="col">마르고</th>
+										<th scope="col" class="cell-accent-blue">닳도록</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>.vertical-middle<br> (미지정시 기본)</td>
+										<td class="vertical-top cell-accent-red">.vertical-top</td>
+										<td>내용</td>
+										<td class="vertical-bottom cell-accent-blue">.vertical-bottom</td>
+									</tr>
+									<tr>
+										<td class="text-center">.text-center<br> (미지정시 기본)</td>
+										<td class="text-left cell-accent-red">.text-left</td>
+										<td>내용</td>
+										<td class="text-right cell-accent-blue">.text-right</td>
+									</tr>
+									<tr>
+										<td>내용</td>
+										<td class="cell-accent-red">내용</td>
+										<td>내용</td>
+										<td class="cell-accent-blue">내용</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="mt-sm">
+							<a href="_template/tables.html" target="_blank" class="link text-primary">테이블 셀 강조 적용 예제 더보기</a>
+						</div>
+						<h3 class="title1 mt-lg">.table.table-point</h3>
+						<div class="table table-point">
+							<table>
+								<caption class="sr-only">${표제목}</caption>
+								<colgroup>
+									<col style="width: 25%;">
+									<col>
+									<col>
+								</colgroup>
+								<thead>
+									<tr>
+										<th scope="col">동해물과</th>
+										<th scope="col">백두산이</th>
+										<th scope="col">마르고 닳도록</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>.vertical-middle<br> (미지정시 기본)</td>
+										<td class="vertical-top">.vertical-top</td>
+										<td class="vertical-bottom">.vertical-bottom</td>
+									</tr>
+									<tr>
+										<td class="text-center">.text-center<br> (미지정시 기본)</td>
+										<td class="text-left">.text-left</td>
+										<td class="text-right">.text-right</td>
+									</tr>
+									<tr>
+										<td>내용</td>
+										<td>내용</td>
+										<td>내용</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<h3 class="title1 mt-lg">기본 행(row) 형 .table.table-row</h3>
+						<pre class="brush:html" title="HTML">
+							&lt;div class="table table-row"&gt;
+								&lt;table&gt;
+									&lt;caption class="sr-only"&gt;${표제목}&lt;/caption&gt;
+									&lt;colgroup&gt;
+										<!-- 너비 지정시 Mobile에만 적용, Desktop는 th width:200px로 기본 노출되며 예외처리시 고유클래스 추가하여 처리 -->
+										&lt;col style="width: 80px;"&gt;
+										&lt;col&gt;
+									&lt;/colgroup&gt;
+									&lt;tbody&gt;
+										&lt;tr&gt;
+											&lt;th scope="row"&gt;&lt;/th&gt;
+											&lt;td&gt;&lt;/td&gt;
+										&lt;/tr&gt;
+										&lt;tr&gt;
+											&lt;th scope="row"&gt;&lt;/th&gt;
+											&lt;td&gt;&lt;/td&gt;
+										&lt;/tr&gt;
+									&lt;/tbody&gt;
+								&lt;/table&gt;
+							&lt;/div&gt;</pre>
+
+						<div class="table table-row">
+							<table>
+								<caption class="sr-only">${표제목 노출 영역}</caption>
+								<colgroup>
+									<!-- th 너비 지정시 Mobile에 적용되며 Desktop는 th width:180px로 기본 노출됨. 예외처리시 고유클래스 추가하여 처리 -->
+									<col style="width: 80px">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr>
+										<th scope="row">내용</th>
+										<td>내용</td>
+									</tr>
+									<tr>
+										<th scope="row">내용</th>
+										<td>내용</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<h3 class="title1 mt-lg">반응형 스크롤 .table.table-scroll</h3>
+						<p class="mb-sm">Mobile 모드에서 가로스크롤 필요시 컨테이너 내부에 트랙 추가</p>
+						<pre class="brush:html" title="HTML">
+							&lt;div class="table table-scroll"&gt;
+								&lt;div class="scroll-container"&gt;
+									<!-- Mobile모드에서 적절히 보이도록 min-width 값 수정 -->
+									&lt;table style="min-width: 800px;"&gt;
+										...
+									&lt;/table&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;</pre>
+
+						<div class="table table-scroll">
+							<div class="scroll-container">
+								<table style="min-width: 800px;">
+									<caption class="sr-only">${표제목}</caption>
+									<colgroup>
+										<col style="width: 10%;">
+										<col>
+										<col style="width: 15%;">
+										<col style="width: 15%;">
+									</colgroup>
+									<thead>
+										<tr>
+											<th scope="col">항목</th>
+											<th scope="colgroup" colspan="2">항목</th>
+											<th scope="col">항목</th>
+										</tr>
+										<tr>
+											<th scope="col">항목</th>
+											<th scope="col">항목</th>
+											<th scope="col">항목</th>
+											<th scope="col">항목</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th scope="row">항목</th>
+											<td>내용</td>
+											<td>내용</td>
+											<td>내용</td>
+										</tr>
+										<tr>
+											<th scope="row" rowspan="2">항목</th>
+											<td>내용</td>
+											<td>내용</td>
+											<td>내용</td>
+										</tr>
+										<tr>
+											<td>내용</td>
+											<td>내용</td>
+											<td>내용</td>
+										</tr>
+									</tbody>
+									<tfoot>
+										<tr>
+											<th scope="row">합계</th>
+											<td>내용<br>내용</td>
+											<td>내용</td>
+											<td>내용</td>
+										</tr>
+									</tfoot>
+								</table>
+							</div>
+						</div>
+
+						<h3 class="title1 mt-lg">입력폼 테이블 .table-form</h3>
+						<p class="mb-sm">
+							Mobile 모드에서 열드롭 처리됨
+							<a href="_template/write.html" class="link text-primary">입력폼 템플릿 바로가기</a>
+						</p>
+						<pre class="brush:html" title="HTML">
+							&lt;div class="table table-form"&gt;
+								&lt;table&gt;
+									...
+								&lt;/table&gt;
+							&lt;/div&gt;</pre>
+						<div class="table table-form">
+							<table>
+								<caption class="sr-only">${표제목}</caption>
+								<colgroup>
+									<col style="width: 180px;">
+									<col>
+								</colgroup>
+								<tbody>
+									<tr>
+										<th scope="row">항목</th>
+										<td>내용</td>
+									</tr>
+									<tr>
+										<th scope="row">항목</th>
+										<td>
+											<input type="text" class="form-control" style="width: 100%;">
+										</td>
+									</tr>
+									<tr>
+										<th scope="row">항목</th>
+										<td>
+											<div class="input-group" style="max-width: 500px;">
+												<input type="text" class="form-control" placeholder="placeholder">
+												<span class="input-addon">
+													<button type="button" class="btn btn-md btn-default">버튼</button>
+												</span>
+												<span class="input-addon">
+													<a href="#;" target="_blank" title="새창" class="btn btn-md btn-primary">.btn-md</a>
+												</span>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="icon">
+							아이콘 <small>.ico.ico-*</small>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list2">
+								<li>아이콘 전역 공통 사용, 이미지 파일 저장 위치 : /asset/_common/images/</li>
+								<li>
+									<strong>ico-규격-키워드-크기(형태)-방향-컬러@2x.png</strong><br>
+									규격 아이콘 예) ico-<span class="text-primary">sm</span>-search-white@2x.png (규격 사이즈 키워드를 앞쪽에 붙임)<br>
+									비규격 아이콘 예) ico-search-<span class="text-primary">sm</span>-white@2x.png (상대적 사이즈 키워드를 뒤쪽에 붙임)
+								</li>
+								<li>
+									Desktop와 Mobile <strong class="text-primary">같은 이미지 공통 사용</strong>을 원칙으로 하며,
+									이를 위해 Desktop 디자인에서 2배수 사이즈로 이미지 추출 (벡터 기반 디자인 필수)
+								</li>
+								<li>투명배경으로 PNG24 저장, 가로/세로 사이즈가 정해진 규격이 없는 아이콘은 여백없이 fit 되게 슬라이싱</li>
+								<li>이미지 크기는 2배수 이므로 가로/세로 사이즈는 반드시 짝수여야 함</li>
+							</ul>
+						</div>
+
+						<div class="content-row mt-md mb-md">
+							<div class="inner">
+								<div class="col-item bg-lightgray">
+									<ul class="icon-list">
+										<li>
+											<i class="ico ico-external-link"></i>
+											<p class="text-sm">external-link</p>
+										</li>
+										<li>
+											<i class="ico ico-popup"></i>
+											<p class="text-sm">popup</p>
+										</li>
+										<li>
+											<i class="ico ico-download"></i>
+											<p class="text-sm">download</p>
+										</li>
+										<li>
+											<i class="ico ico-download-primary"></i>
+											<p class="text-sm">download-primary</p>
+										</li>
+										<li>
+											<i class="ico ico-chevron-down"></i>
+											<p class="text-sm">chevron-down</p>
+										</li>
+										<li>
+											<i class="ico ico-chevron-down-lg"></i>
+											<p class="text-sm">chevron-down-lg</p>
+										</li>
+										<li>
+											<i class="ico ico-"></i>
+											<p class="text-sm"></p>
+										</li>
+										<li>
+											<i class="ico ico-notice-primary"></i>
+											<p class="text-sm">notice-primary</p>
+										</li>
+										<li>
+											<i class="ico ico-datepicker-primary"></i>
+											<p class="text-sm">datepicker-primary</p>
+										</li>
+										<li>
+											<i class="ico ico-file-gif"></i>
+											<p class="text-sm">file-gif</p>
+										</li>
+										<li>
+											<i class="ico ico-file-hwp"></i>
+											<p class="text-sm">file-hwp</p>
+										</li>
+										<li>
+											<i class="ico ico-file-jpg"></i>
+											<p class="text-sm">file-jpg</p>
+										</li>
+										<li>
+											<i class="ico ico-file-pdf"></i>
+											<p class="text-sm">file-pdf</p>
+										</li>
+										<li>
+											<i class="ico ico-file-png"></i>
+											<p class="text-sm">file-png</p>
+										</li>
+										<li>
+											<i class="ico ico-file-word"></i>
+											<p class="text-sm">file-word</p>
+										</li>
+										<li>
+											<i class="ico ico-file-xls"></i>
+											<p class="text-sm">file-xls</p>
+										</li>
+									</ul>
+								</div>
+								<div class="col-item-fit bg-primary">
+									<ul class="icon-list">
+										<li>
+											<i class="ico ico-times-white"></i>
+											<p class="text-sm">times-white</p>
+										</li>
+										<li>
+											<i class="ico ico-search-white"></i>
+											<p class="text-sm">search-white</p>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+						<pre class="brush:html" title="HTML">
+							<!-- [웹접근성] 특정 의미를 지닌 아이콘 단독 활용시 .sr-only 대체텍스트 병렬 마크업 -->
+							<i class="ico ico-times-white"></i>
+							<span class="sr-only">레이어 닫기</span></pre>
+
+						<pre class="brush:css" title="/asset/_common/scss/components/_icons.scss">
+							/* mixin @include ico(); 활용하여 스타일링 */
+							/* @include ico2x('class-name', width, height); */
+							
+							/* 1:1 사이즈 아이콘 : Desktop 전용 */
+							@include ico('chevron-down', 17px, 9px);
+							@include ico('external-link', 14px, 14px);
+							
+							/* Desktop Mobile 겸용 아이콘 : 이미지 2배수 저장 @2x */
+							@include ico2x('chevron-down', 17px, 9px);</pre>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="button">
+							버튼 <small>.btn.btn-*</small>
+							<i class="badge"></i>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list2">
+								<li>a, button 태그만 사용 (input 지양)</li>
+								<li class="text-invalid">[웹접근성] 새창 제공 링크에 <code class="code">target="_blank" title="새창"</code> 필수</li>
+							</ul>
+						</div>
+						<div class="mb-md">
+							<p class="mt-md mb-sm">.btn-xs : 텍스트 중간 또는 끝</p>
+							<div class="btn-group text-left mt-0">
+								<a href="#" class="btn btn-xs btn-primary">.btn-primary</a>
+								<a href="#" class="btn btn-xs btn-default">.btn-default</a>
+								<button type="button" class="btn btn-xs btn-outline-primary">.btn-outline-primary</button>
+								<button type="button" class="btn btn-xs btn-outline-default">.btn-outline-default</button>
+							</div>
+
+							<p class="mt-md mb-sm">.btn-sm : 콘텐츠 내 문단 위 아래</p>
+							<div class="btn-group text-left mt-0">
+								<a href="#" class="btn btn-sm btn-primary">.btn-primary</a>
+								<a href="#" class="btn btn-sm btn-default">.btn-default</a>
+								<button type="button" class="btn btn-sm btn-outline-primary">.btn-outline-primary</button>
+								<button type="button" class="btn btn-sm btn-outline-default">
+									<i class="ico ico-external-link mr-1"></i>
+									.btn-outline-default
+								</button>
+							</div>
+
+							<p class="mt-md mb-sm">.btn-md : 테이블, 입력폼 및 팝업 내부</p>
+							<div class="btn-group text-left mt-0">
+								<a href="#" class="btn btn-md btn-primary">.btn-primary</a>
+								<a href="#" class="btn btn-md btn-default">.btn-default</a>
+								<button type="button" class="btn btn-md btn-outline-primary">.btn-outline-primary</button>
+								<button type="button" class="btn btn-md btn-outline-default">
+									.btn-outline-default
+									<i class="ico ico-external-link ml-1"></i>
+								</button>
+							</div>
+
+							<p class="mt-md mb-sm">.btn-lg : 게시판 하단 등 페이지 내 주요 액션</p>
+							<div class="btn-group text-left mt-0">
+								<a href="#" class="btn btn-lg btn-primary">.btn-primary</a>
+								<a href="#" class="btn btn-lg btn-default">.btn-default</a>
+								<button type="button" class="btn btn-lg btn-outline-primary">.btn-outline-primary</button>
+								<button type="button" class="btn btn-lg btn-outline-default">
+									.btn-outline-default
+									<i class="ico ico-external-link ml-1"></i>
+								</button>
+							</div>
+
+							<!-- <p>.btn-block</p>
+							<div class="mb-3">
+								<button type="button" class="btn btn-lg btn-block btn-primary">.btn-block</button>
+							</div> -->
+						</div>
+
+						<pre class="brush:html" title="HTML">
+							<!-- .btn-sm .btn-md .btn-lg -->
+							&lt;a href="#" class="btn btn-sm btn-primary"&gt;&lt;/a&gt;
+							&lt;a href="#" class="btn btn-sm btn-default"&gt;&lt;/a&gt;
+							&lt;button type="button" class="btn btn-sm btn-outline-primary"&gt;&lt;/button&gt;
+							&lt;button type="button" class="btn btn-sm btn-outline-default"&gt;
+								text
+								&lt;!-- 버튼 내 아이콘 추가시 간격 마진셋 조합 사용 --&gt;
+								&lt;i class="ico ico-external-link ml-1"&gt;&lt;/i&gt;
+							&lt;/button&gt;
+						</pre>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="buttonGroup">버튼 그룹 <small>.btn-group</small></h3>
+						<div class="box-html-guide">
+							<ul class="list list2">
+								<li>한 row(행)에 버튼만 오는 주요 액션 버튼 그루핑</li>
+								<li>버튼간 간격, 버튼 그룹 상단 간격, 정렬에 대한 스타일이 포함되어 있으므로 버튼이 1개만 있어도 사용</li>
+							</ul>
+						</div>
+						<div class="content-row mt-md">
+							<div class="inner">
+								<div class="col-item box">
+									<h4 class="title1">기본 (콘텐츠 하단)</h4>
+									<p class="mb-sm">
+										<span class="text-primary">.btn-group</span><br>
+										버튼간 간격 + 가운데 정렬 + 그룹 상단 간격 lg
+									</p>
+									<div class="btn-group">
+										<a href="#;" class="btn btn-lg btn-default">버튼</a>
+										<button type="button" class="btn btn-lg btn-primary">버튼</button>
+									</div>
+								</div>
+								<div class="col-item box">
+									<h4 class="title1">입력폼 하단</h4>
+									<p class="mb-sm">
+										<span class="text-primary">.btn-group.btn-group-form</span><br>
+										버튼간 간격 + 가운데 정렬 + 그룹 상단 간격 md
+									</p>
+									<div class="btn-group btn-group-form">
+										<a href="#;" class="btn btn-lg btn-default">버튼</a>
+										<button type="button" class="btn btn-lg btn-primary">버튼</button>
+									</div>
+								</div>
+								<div class="col-item box">
+									<h4 class="title1">게시판 상세 하단</h4>
+									<p class="mb-sm">
+										<span class="text-primary">.btn-group.btn-group-view</span><br>
+										버튼간 간격 + 우측 정렬 + 그룹 상단 간격 md
+									</p>
+									<div class="btn-group btn-group-view">
+										<a href="#;" class="btn btn-lg btn-default">버튼</a>
+										<button type="button" class="btn btn-lg btn-primary">버튼</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="paging">페이징 <small>.pagination</small></h3>
+						<div class="pagination">
+							<a href="#" class="direction first"><span class="sr-only">처음</span></a>
+							<a href="#" class="direction prev"><span class="sr-only">이전</span></a>
+							<strong>1</strong>
+							<a href="#">2</a>
+							<a href="#">3</a>
+							<a href="#" class="direction next"><span class="sr-only">다음</span></a>
+							<a href="#" class="direction last"><span class="sr-only">끝</span></a>
+						</div>
+						<pre class="brush:html" title="HTML">
+						&lt;div class="pagination"&gt;
+							&lt;a href="#" class="direction first"&gt;&lt;span class="sr-only"&gt;처음&lt;/span&gt;&lt;/a&gt;
+							&lt;a href="#" class="direction prev"&gt;&lt;span class="sr-only"&gt;이전&lt;/span&gt;&lt;/a&gt;
+							&lt;strong&gt;1&lt;/strong&gt;
+							&lt;a href="#"&gt;2&lt;/a&gt;
+							&lt;a href="#"&gt;3&lt;/a&gt;
+							&lt;a href="#" class="direction next"&gt;&lt;span class="sr-only"&gt;다음&lt;/span&gt;&lt;/a&gt;
+							&lt;a href="#" class="direction last"&gt;&lt;span class="sr-only"&gt;끝&lt;/span&gt;&lt;/a&gt;
+						&lt;/div&gt;</pre>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="form">
+							입력폼
+							<small>.form-control</small>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list2">
+								<li class="text-invalid">[웹접근성] id와 label 매칭 필수</li>
+								<li>입력폼 너비는 style="max-width: 100%"와 같이 inline style로 지정하거나 별도의 고유클래스 지정하여 스타일링</li>
+							</ul>
+						</div>
+						<h4 class="title1 mt-lg">기본 입력 필드</h4>
+						<div>
+							<input type="text" class="form-control" placeholder="placeholder">
+							<input type="text" class="form-control" placeholder="placeholder" style="width: 100%; max-width: 300px;">
+							<input type="text" class="form-control" placeholder="placeholder" value="input text value">
+						</div>
+						<div class="mt-2">
+							<input type="text" class="form-control" placeholder="placeholder" value=":disabled" disabled>
+							<input type="text" class="form-control" placeholder="placeholder" value=":readonly" readonly>
+						</div>
+						<div class="mt-2">
+							<textarea class="form-control" rows="2" placeholder="placeholder"></textarea>
+							<textarea class="form-control" rows="2" placeholder="placeholder">textarea value</textarea>
+							<textarea class="form-control" rows="2" placeholder="placeholder" disabled>:disabled</textarea>
+							<textarea class="form-control" rows="2" placeholder="placeholder" readonly>:readonly</textarea>
+						</div>
+						<div class="mt-2">
+							<select class="form-control" style="width: 150px;">
+								<option selected>selectbox</option>
+								<option>항목1</option>
+								<option>항목2</option>
+							</select>
+							<select class="form-control" style="width: 150px;" disabled>
+								<option selected>:disabled</option>
+								<option>항목1</option>
+								<option>항목2</option>
+							</select>
+							<select class="form-control readonly" style="width: 150px;">
+								<option selected>.readonly</option>
+							</select>
+						</div>
+
+						<pre class="brush:html" title="HTML">
+							<!-- input full size -->
+							&lt;input type="text" class="form-control" id="" placeholder="" style="width: 100%;"&gt;
+
+							<!-- texarea full size -->
+							&lt;textarea class="form-control" id="" rows="" placeholder="" style="width: 100%;"&gt;&lt;/textarea&gt;
+
+							<!-- selectbox : 고정 사이즈 -->
+							&lt;select class="form-control" id="" style="width: 150px;"&gt;
+								&lt;option&gt;선택&lt;/option&gt;
+								&lt;option&gt;항목1&lt;/option&gt;
+								&lt;option&gt;항목2&lt;/option&gt;
+							&lt;/select&gt;
+
+							<!-- width 지정 필요시 Mobile 반응형 고려해 max-width 활용 권장 -->
+							&lt;input type="text" class="form-control" id="" placeholder="" style="width: 100%; max-width: 300px;"&gt;
+							
+							<!-- 기본 가이드 외 디자인 발생시 커스텀 클래스 .form-control-* 적용 후 별도 스타일링 -->
+							&lt;input type="text" class="form-control form-control-classname" id="" placeholder=""&gt;</pre>
+
+						<h4 class="title1 mt-lg">버튼과 함께 사용 .input-group</h4>
+						<div>
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="placeholder">
+								<span class="input-addon">
+									<button type="button" class="btn btn-md btn-primary">
+										<i class="ico ico-search-white"></i>
+										<span class="text">검색</span>
+									</button>
+								</span>
+							</div>
+							<div class="input-group mt-2">
+								<input type="text" class="form-control" placeholder="placeholder">
+								<span class="input-addon">
+									<button type="button" class="btn btn-md btn-default">버튼</button>
+								</span>
+								<span class="input-addon">
+									<a href="#;" target="_blank" title="새창" class="btn btn-md btn-primary">.btn-md</a>
+								</span>
+							</div>
+							<div class="input-group mt-2" style="max-width: 400px;">
+								<select class="form-control">
+									<option selected>선택</option>
+									<option>항목1</option>
+									<option>항목2</option>
+								</select>
+								<span class="input-addon">
+									<button type="button" class="btn btn-md btn-primary">확인</button>
+								</span>
+							</div>
+						</div>
+						<pre class="brush:html" title="HTML">
+							&lt;!-- 기본형 (width full) --&gt;
+							&lt;div class="input-group"&gt;
+								&lt;input type="text" class="form-control" id="" placeholder=""&gt;
+								&lt;span class="input-addon"&gt;
+									&lt;button type="button" class="btn btn-md btn-primary"&gt;&lt;/button&gt;
+								&lt;/span&gt;
+							&lt;/div&gt;
+
+							&lt;!-- 너비 지정시 .input-group에 inline style로 width 또는 max-width 정의 --&gt;
+							&lt;div class="input-group" style="max-width: 500px;"&gt;
+								&lt;input type="text" class="form-control" id="" placeholder=""&gt;
+								&lt;span class="input-addon"&gt;
+									&lt;a href="#;" class="btn btn-md btn-primary"&gt;&lt;/a&gt;
+								&lt;/span&gt;
+								&lt;span class="input-addon"&gt;
+									&lt;button type="button" class="btn btn-md btn-primary"&gt;&lt;/button&gt;
+								&lt;/span&gt;
+							&lt;/div&gt;</pre>
+
+						<h4 class="title1 mt-lg">checkbox, radio</h4>
+						<div class="content-row">
+							<div class="inner">
+								<div class="col-item">
+									<div class="box">
+										<h5 class="text-lg mb-sm">기본형 .ckeck-item</h5>
+										<div>
+											<span class="ckeck-item">
+												<input type="checkbox" id="inputCheck1_1">
+												<label for="inputCheck1_1">체크박스</label>
+											</span>
+											<span class="ckeck-item">
+												<input type="checkbox" id="inputCheck1_2" checked>
+												<label for="inputCheck1_2">:checked</label>
+											</span>
+											<span class="ckeck-item">
+												<input type="checkbox" id="inputCheck1_3">
+												<label for="inputCheck1_3"><span class="sr-only">체크박스</span></label>
+											</span>
+										</div>
+										<div class="mt-1">
+											<span class="ckeck-item">
+												<input type="checkbox" id="inputCheck2_1" disabled>
+												<label for="inputCheck2_1">:disabled</label>
+											</span>
+											<span class="ckeck-item">
+												<input type="checkbox" id="inputCheck2_2" checked disabled>
+												<label for="inputCheck2_2">:checked:disabled</label>
+											</span>
+										</div>
+										<div class="mt-2">
+											<span class="ckeck-item">
+												<input type="radio" name="inputRadio1" id="inputRadio1_1">
+												<label for="inputRadio1_1">라디오버튼</label>
+											</span>
+											<span class="ckeck-item">
+												<input type="radio" name="inputRadio1" id="inputRadio1_2" checked>
+												<label for="inputRadio1_2">:checked</label>
+											</span>
+											<span class="ckeck-item">
+												<input type="radio" name="inputRadio1" id="inputRadio1_3">
+												<label for="inputRadio1_3"><span class="sr-only">라디오버튼</span></label>
+											</span>
+										</div>
+										<div class="mt-1">
+											<span class="ckeck-item">
+												<input type="radio" name="inputRadio2" id="inputRadio2_1" disabled>
+												<label for="inputRadio2_1">:disabled</label>
+											</span>
+											<span class="ckeck-item">
+												<input type="radio" name="inputRadio2" id="inputRadio2_2" checked disabled>
+												<label for="inputRadio2_2">:checked:disabled</label>
+											</span>
+										</div>
+										<div class="mt-2">
+											<ul>
+												<li>
+													<span class="ckeck-item">
+														<input type="radio" name="inputRadio4" id="inputRadio4_1">
+														<label for="inputRadio4_1">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 동해물과 백두산이 마르고 닳도록 하느님이
+															보우하사</label>
+													</span>
+												</li>
+												<li>
+													<span class="ckeck-item">
+														<input type="radio" name="inputRadio4" id="inputRadio4_2">
+														<label for="inputRadio4_2">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</label>
+													</span>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+								<div class="col-item">
+									<div class="box">
+										<h5 class="text-lg mb-sm">디자인형 .ckeck-item-custom</h5>
+										<div>
+											<span class="ckeck-item-custom">
+												<input type="checkbox" id="inputCheck5_1">
+												<label for="inputCheck5_1">체크박스</label>
+											</span>
+											<span class="ckeck-item-custom">
+												<input type="checkbox" id="inputCheck5_2" checked>
+												<label for="inputCheck5_2">:checked</label>
+											</span>
+											<span class="ckeck-item-custom">
+												<input type="checkbox" id="inputCheck5_3">
+												<label for="inputCheck5_3"><span class="sr-only">체크박스</span></label>
+											</span>
+										</div>
+										<div class="mt-1">
+											<span class="ckeck-item-custom">
+												<input type="checkbox" id="inputCheck6_1" disabled>
+												<label for="inputCheck6_1">:disabled</label>
+											</span>
+											<span class="ckeck-item-custom">
+												<input type="checkbox" id="inputCheck6_2" checked disabled>
+												<label for="inputCheck6_2">:checked:disabled</label>
+											</span>
+										</div>
+										<div class="mt-2">
+											<span class="ckeck-item-custom">
+												<input type="radio" name="inputRadio7" id="inputRadio7_1">
+												<label for="inputRadio7_1">라디오버튼</label>
+											</span>
+											<span class="ckeck-item-custom">
+												<input type="radio" name="inputRadio7" id="inputRadio7_2" checked>
+												<label for="inputRadio7_2">:checked</label>
+											</span>
+											<span class="ckeck-item-custom">
+												<input type="radio" name="inputRadio7" id="inputRadio7_3">
+												<label for="inputRadio7_3"><span class="sr-only">라디오버튼</span></label>
+											</span>
+										</div>
+										<div class="mt-1">
+											<span class="ckeck-item-custom">
+												<input type="radio" name="inputRadio8" id="inputRadio8_1" disabled>
+												<label for="inputRadio8_1">:disabled</label>
+											</span>
+											<span class="ckeck-item-custom">
+												<input type="radio" name="inputRadio8" id="inputRadio8_2" checked disabled>
+												<label for="inputRadio8_2">:checked:disabled</label>
+											</span>
+										</div>
+										<div class="mt-2">
+											<ul>
+												<li>
+													<span class="ckeck-item-custom">
+														<input type="radio" name="inputRadio9" id="inputRadio9_1">
+														<label for="inputRadio9_1">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세 동해물과 백두산이 마르고 닳도록 하느님이
+															보우하사</label>
+													</span>
+												</li>
+												<li>
+													<span class="ckeck-item-custom">
+														<input type="radio" name="inputRadio9" id="inputRadio9_2">
+														<label for="inputRadio9_2">동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라 만세</label>
+													</span>
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<pre class="brush:html" title="HTML">
+							<!-- 기본형 -->
+							<span class="ckeck-item">
+								<input type="checkbox" id="inputId1">
+								<label for="inputId1"></label>
+							</span>
+
+							<!-- 텍스트 미노출시 -->
+							<span class="ckeck-item">
+								<input type="checkbox" id="inputId3">
+								<label for="inputId3"><span class="sr-only">label text</span></label>
+							</span>
+
+							<!-- 디자인형 : 클래스 교체 -->
+							<span class="ckeck-item-custom">
+								<input type="checkbox" id="inputId2">
+								<label for="inputId2"></label>
+							</span></pre>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="datepicker">
+							데이트피커 <small>.form-datepicker</small>
+						</h3>
+						<input type="text" class="form-control form-datepicker" style="width: 200px;">
+						<pre class="brush:html" title="HTML">
+							&lt;input type="text" class="form-control form-datepicker" style="width: 200px;"&gt;</pre>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="form-move">
+							포커싱 인터랙션 <small>.form-move</small>
+						</h3>
+						<pre class="brush:html" title="HTML">
+							<label class="form-move">
+								<span class="placeholder">text</span>
+								<input type="text" class="form-control">
+							</label></pre>
+						<div>
+							<label class="form-move mt-sm" for="inputId">
+								<span class="placeholder">아이디</span>
+								<input type="text" class="form-control" id="inputId" autocomplete="off">
+							</label>
+							<label class="form-move mt-sm" for="inputPw">
+								<span class="placeholder">비밀번호</span>
+								<input type="password" class="form-control" id="inputPw" autocomplete="off">
+							</label>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="layer">
+							레이어 팝업
+							<small>.modal-popup</small>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list2">
+								<li>Desktop : 레이어 위치는 클릭 지점에서 열림</li>
+								<li>Mobile : 화면 중앙에 고정 노출</li>
+							</ul>
+						</div>
+						<div class="btn-group text-left mt-sm">
+							<a href="#layer-popup" class="btn btn-md btn-default"
+								onclick="openLayer('#layer-popup1', this); return false;">layer-popup1</a>
+							<a href="#layer-popup" class="btn btn-md btn-default"
+								onclick="openLayer('#layer-popup2', this); return false;">layer-popup2</a>
+						</div>
+
+						<div class="layer-popup hide" id="layer-popup1">
+							<div class="popup-inner">
+								<div class="popup-header">
+									<h2 class="popup-title">타이틀</h2>
+								</div>
+								<div class="popup-body">
+									<p>내용</p>
+									<p>내용</p>
+									<p>내용</p>
+									<p>내용</p>
+									<div class="btn-group">
+										<button type="button" onclick="closeModal('#layer-popup1');" class="btn btn-md btn-primary">
+											함수로 레이어 닫기
+										</button>
+									</div>
+								</div>
+								<button type="button" class="btn btn-close-popup">닫기</button>
+							</div>
+						</div>
+
+						<div class="layer-popup hide" id="layer-popup2">
+							<div class="popup-inner">
+								<div class="popup-header">
+									<h2 class="popup-title">타이틀</h2>
+								</div>
+								<div class="popup-body">
+									<p>내용</p>
+									<p>내용</p>
+									<p>내용</p>
+									<p>내용</p>
+									<div class="btn-group">
+										<button type="button" onclick="closeModal('#layer-popup2');" class="btn btn-md btn-primary">
+											함수로 레이어 닫기
+										</button>
+									</div>
+								</div>
+								<button type="button" class="btn btn-close-popup">닫기</button>
+							</div>
+						</div>
+
+						<div class="d-up-lg">
+							<pre class="brush:html" title="HTML : 레이어 팝업 마크업">
+							&lt;!-- 레이어 오픈상태로 보여줄 경우 클래스 hide / show 교체 사용 --&gt;
+							&lt;div class="layer-popup hide" id="layer-popup"&gt;
+								&lt;!-- 레이어 크기 변경 원할시 .popup-inner 에 인라인 스타일로 지정 --&gt;
+								&lt;!-- &lt;div class="popup-inner" style="width: 500px;"&gt; --&gt;
+								&lt;div class="popup-inner"&gt;
+									&lt;div class="popup-header"&gt;
+										&lt;h2 class="popup-title"&gt;타이틀&lt;/h2&gt;
+									&lt;/div&gt;
+									&lt;div class="popup-body"&gt;
+										&lt;p&gt;내용&lt;/p&gt;
+									&lt;/div&gt;
+									&lt;button type="button" class="btn btn-close-popup"&gt;닫기&lt;/button&gt;
+								&lt;/div&gt;
+							&lt;/div&gt;</pre>
+
+							<h4 class="title1 mt-lg">레이어 열기 및 닫기</h4>
+							<div>
+								<pre class="brush:html" title="HTML : 호출 및 닫기 버튼">
+									<!-- 버튼 클릭 이벤트로 열기 : 웹접근성 포커싱 이슈로 this 구문 필수 -->
+									<a href="#;" onclick="openLayer('#layer-popup', this); return false;"></a>
+
+									<!-- 버튼 클릭 이벤트로 닫기 : closeModal('#레이어팝업 셀렉터') -->
+									<button type="button" onclick="closeLayer('#layer-popup');"></button>
+
+									<!-- 일반 함수로 열기 : closeModal('#레이어팝업 셀렉터') -->
+									openLayer('#layer-popup');
+
+									<!-- 일반 함수로 닫기시 포커싱 처리 : closeModal('#레이어팝업 셀렉터', '#닫은 후 포커스 받을 버튼 아이디') -->
+									closeLayer('#layer-popup', '#btn-for-focus-popup');</pre>
+							</div>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="modal-popup">
+							모달 팝업
+							<small>.modal-popup</small>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list2">
+								<li>[웹 접근성] 키보드 포커싱을 위해 호출 및 닫기 버튼은 아래 가이드 사용 필수</li>
+							</ul>
+						</div>
+						<div class="mt-3">
+							<p class="mb-sm">
+								<strong>Desktop</strong> 너비 sm 360, md 500, lg 920, xl 콘텐츠 너비, full 전체 화면 /
+								<strong>Mobile</strong> md 이상 Full Size
+							</p>
+							<div class="btn-group text-left mt-0">
+								<a href="#layer-sample-sm" class="btn btn-md btn-default"
+									onclick="openModal('#layer-sample-sm', this);">.modal-sm</a>
+								<a href="#layer-sample-md" class="btn btn-md btn-primary"
+									onclick="openModal('#layer-sample-md', this);">.modal-md</a>
+								<a href="#layer-sample-lg" class="btn btn-md btn-outline-primary"
+									onclick="openModal('#layer-sample-lg', this);">.modal-lg</a>
+								<a href="#layer-sample-xl" class="btn btn-md btn-outline-default"
+									onclick="openModal('#layer-sample-xl', this);">.modal-xl</a>
+								<a href="#layer-sample-full" class="btn btn-md btn-outline-default"
+									onclick="openModal('#layer-sample-full', this);">.modal-full</a>
+							</div>
+							<div class="d-up-lg">
+								<pre class="brush:html" title="HTML : 모달 팝업 마크업">
+								&lt;!-- 모달 크기에 따른 class 지정 .modal-sm, .modal-md, .modal-lg, .modal-xl, .modal-full --&gt;
+								&lt;!-- 모달 오픈상태로 보여줄 경우 클래스 hide / show 교체 사용 --&gt;
+								&lt;div class="modal-popup modal-md hide" id="layer-sample"&gt;
+									&lt;div class="dimed"&gt;&lt;/div&gt;
+									&lt;div class="popup-inner"&gt;
+										&lt;!-- 헤더 미사용시 .popup-header 만 제거, 하단 .btn-close-popup 버튼은 남겨둠 --&gt;
+										&lt;div class="popup-header"&gt;
+											&lt;h2 class="popup-title"&gt;팝업 타이틀&lt;/h2&gt;
+										&lt;/div&gt;
+										&lt;div class="popup-body"&gt;
+											&lt;div class="scroll-inner"&gt;
+												&lt;p&gt;Contents&lt;/p&gt;
+											&lt;/div&gt;
+										&lt;/div&gt;
+
+										&lt;!-- 하단 고정 푸터 (고정을 원하지 않을시 .popup-body 내부에 마크업 ) --&gt;
+										&lt;div class="popup-footer"&gt;
+											&lt;div class="btn-group"&gt;
+												&lt;button type="button" class="btn btn-md btn-primary"&gt;버튼&lt;/button&gt;
+												&lt;button type="button" class="btn btn-md btn-default" onclick="closeModal('#layer-sample');"&gt;닫기&lt;/button&gt;
+											&lt;/div&gt;
+										&lt;/div&gt;
+										&lt;button type="button" class="btn btn-close-popup"&gt;닫기&lt;/button&gt;
+									&lt;/div&gt;
+								&lt;/div&gt;</pre>
+
+								<h4 class="title1 mt-lg">모달 열기 및 닫기</h4>
+								<div>
+									<pre class="brush:html" title="HTML : 호출 및 닫기 버튼">
+										<!-- 버튼 클릭 이벤트로 열기 : 웹접근성 포커싱 이슈로 this 구문 필수 -->
+										<a href="#;" onclick="openModal('#layer-sample', this);"></a>
+
+										<!-- 버튼 클릭 이벤트로 닫기 : closeModal('#레이어팝업 셀렉터') -->
+										<button type="button" onclick="closeModal('#layer-sample');"></button>
+
+										<!-- 일반 함수로 열기 : closeModal('#레이어팝업 셀렉터') -->
+										openModal('#layer-sample');
+
+										<!-- 일반 함수로 닫기시 포커싱 처리 : closeModal('#레이어팝업 셀렉터', '#닫은 후 포커스 받을 버튼 아이디') -->
+										closeModal('#layer-sample', '#btn-for-focus-popup');</pre>
+								</div>
+							</div>
+						</div>
+
+						<!-- Modal Popup : .modal-sm -->
+						<div class="modal-popup modal-sm hide" id="layer-sample-sm">
+							<div class="dimed"></div>
+							<div class="popup-inner">
+								<div class="popup-header">
+									<h2 class="popup-title">팝업 타이틀</h2>
+								</div>
+								<div class="popup-body">
+									<div class="scroll-inner">
+										<p class="text-center">안내 문구 노출 영역입니다.<br> 텍스트를 입력해 주세요.</p>
+									</div>
+								</div>
+								<div class="popup-footer">
+									<div class="btn-group">
+										<button type="button" class="btn btn-md btn-primary"
+											onclick="closeModal('#layer-sample-sm');">확인</button>
+									</div>
+								</div>
+								<button type="button" class="btn btn-close-popup">닫기</button>
+							</div>
+						</div>
+
+						<!-- Modal Popup : .modal-md -->
+						<div class="modal-popup modal-md hide" id="layer-sample-md">
+							<div class="dimed"></div>
+							<div class="popup-inner">
+								<div class="popup-header">
+									<h2 class="popup-title">팝업 타이틀</h2>
+								</div>
+								<div class="popup-body">
+									<div class="scroll-inner">
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>
+											레이어팝업 본문 영역 레이어팝업 본문 영역 레이어 팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역
+											레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역
+										</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+									</div>
+								</div>
+								<div class="popup-footer not-open-today">
+									<span class="ckeck-item">
+										<input type="checkbox" id="inputNotOpenToday">
+										<label for="inputNotOpenToday">오늘 하루 열지 않음</label>
+									</span>
+									<button type="button" class="btn btn-md btn-default"
+										onclick="closeModal('#layer-sample-md');">닫기</button>
+								</div>
+								<!-- <div class="popup-footer">
+									<div class="btn-group">
+										<button type="button" class="btn btn-md btn-primary">확인</button>
+										<button type="button" class="btn btn-md btn-default"
+											onclick="closeModal('#layer-sample-md');">닫기</button>
+									</div>
+								</div> -->
+								<button type="button" class="btn btn-close-popup">닫기</button>
+							</div>
+						</div>
+
+						<!-- Modal Popup : .modal-lg -->
+						<div class="modal-popup modal-lg hide" id="layer-sample-lg">
+							<div class="dimed"></div>
+							<div class="popup-inner">
+								<div class="popup-header">
+									<h2 class="popup-title">팝업 타이틀</h2>
+								</div>
+								<div class="popup-body">
+									<div class="scroll-inner">
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역 레이어 팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문
+											영역
+											레이어팝업 본문
+											영역
+											레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+										<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+									</div>
+								</div>
+								<div class="popup-footer">
+									<div class="btn-group">
+										<button type="button" class="btn btn-md btn-primary">확인</button>
+										<button type="button" class="btn btn-md btn-default"
+											onclick="closeModal('#layer-sample-lg');">닫기</button>
+									</div>
+								</div>
+								<button type="button" class="btn btn-close-popup">닫기</button>
+							</div>
+						</div>
+
+						<!-- Modal Popup : .modal-xl -->
+						<div class="modal-popup modal-xl hide" id="layer-sample-xl">
+							<div class="dimed"></div>
+							<div class="popup-inner">
+								<div class="popup-header">
+									<h2 class="popup-title">팝업 타이틀</h2>
+								</div>
+								<div class="popup-body">
+									<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+									<p>레이어팝업 본문 영역 레이어팝업 본문 영역 레이어 팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문
+										영역
+										레이어팝업 본문
+										영역
+										레이어팝업 본문 영역</p>
+									<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+									<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+								</div>
+								<div class="popup-footer">
+									<div class="btn-group">
+										<button type="button" class="btn btn-md btn-primary">확인</button>
+										<button type="button" class="btn btn-md btn-default"
+											onclick="closeModal('#layer-sample-xl');">닫기</button>
+									</div>
+								</div>
+								<button type="button" class="btn btn-close-popup">닫기</button>
+							</div>
+						</div>
+
+						<!-- Modal Popup : .modal-full -->
+						<div class="modal-popup modal-full hide" id="layer-sample-full">
+							<div class="dimed"></div>
+							<div class="popup-inner">
+								<div class="popup-header">
+									<h2 class="popup-title">팝업 타이틀</h2>
+								</div>
+								<div class="popup-body">
+									<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+									<p>레이어팝업 본문 영역 레이어팝업 본문 영역 레이어 팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문 영역 레이어팝업 본문
+										영역
+										레이어팝업 본문
+										영역
+										레이어팝업 본문 영역</p>
+									<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+									<p>레이어팝업 본문 영역 레이어팝업 본문 영역</p>
+								</div>
+								<div class="popup-footer">
+									<div class="btn-group">
+										<button type="button" class="btn btn-md btn-primary">확인</button>
+										<button type="button" class="btn btn-md btn-default"
+											onclick="closeModal('#layer-sample-full');">닫기</button>
+									</div>
+								</div>
+								<button type="button" class="btn btn-close-popup">닫기</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="guide-section">
+						<h3 class="title-guide" id="window-popup">
+							윈도우 팝업
+							<small>.popup</small>
+						</h3>
+						<div class="box-html-guide">
+							<ul class="list list2">
+								<li>웹 접근성 지침에 따라 사용자에게 새창 공지 및 키보드 포커싱 관련 처리를 위해 아래 가이드를 활용합니다.</li>
+								<li>앵커태그(a) 사용을 권장하며 버튼에 <strong class="text-invalid">target="_blank" title="새창"</strong> 속성 필수</li>
+								<li>
+									윈도우 팝업 템플릿 :
+									<a href="_template/popup.html" target="_blank" title="새창" class="text-primary">
+										_template/popup.html
+									</a>
+									파일 복사 사용
+								</li>
+							</ul>
+						</div>
+						<div class="mt-3">
+							<a href="_template/popup.html" target="_blank" title="새창" class="btn btn-md btn-primary"
+								onclick="openWindow(this, 'popName', '900', '800'); return false;">윈도우 팝업 호출</a>
+							<pre class="brush:html" title="HTML : 호출 및 닫기 버튼">
+									<!-- 링크로 호출 : href에 팝업 URI를 입력하고, openWindow(this, '팝업창이름', '팝업너비', '팝업높이'); return false; 함수 사용 -->
+									<a href="_template/popup.html" target="_blank" title="새창" onclick="openWindow(this, 'popName', '900', '800'); return false;">버튼</a>
+
+									<!-- 함수로 호출 : openWindow('팝업URI', '팝업창이름', '팝업너비', '팝업높이', '팝업창 닫은 뒤 포커스 받을 버튼 id (버튼 미존재시 생략가능)'); -->
+									openWindow('popup.html', 'popName', '850', '600', '#btn-for-focus-popup');
+
+									<!-- 윈도우 닫기 : 웹 접근성 키보드 포커싱 처리되어 있음 -->
+									&lt;button type="button" onclick="closeWindow();"&gt;&lt;/button&gt;</pre>
+						</div>
+					</div>
+				</div>
+			</div>
+		</article>
+	</div>
+</body>
+
+</html>

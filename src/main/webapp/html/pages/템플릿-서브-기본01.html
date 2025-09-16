@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>현재화면명 | 메뉴명 | 사이트명</title>
+		<link rel="shortcut icon" href="../../assets/img/_common/favicon.png" />
+
+		<!-- style -->
+		<link rel="stylesheet" href="../../assets/plugins/jqGrid-4.7.0/css/ui.jqgrid.css" />
+		<link rel="stylesheet" href="../../assets/plugins/ztree/zTreeStyle.css" />
+		<link rel="stylesheet" href="../../assets/plugins/sweetalert/custom-swal.css" />
+		<link rel="stylesheet" href="../../assets/css/style.css" />
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" />
+
+		<!-- JavaScript -->
+		<script src="../../assets/js/_common/jquery-1.12.4.min.js"></script>
+		<script src="../../assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+
+		<!-- jqGrid Plugins -->
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/i18n/grid.locale-kr.js"></script>
+		<script src="../../assets/plugins/jqGrid-4.7.0/js/minified/jquery.jqGrid.min.js"></script>
+
+		<!-- ztree Plugins -->
+		<script src="../../assets/plugins/ztree/jquery.ztree.core.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.excheck.js"></script>
+		<script src="../../assets/plugins/ztree/jquery.ztree.exedit.js"></script>
+		<script src="../../assets/plugins/ztree/zTreeCustom.js"></script>
+
+		<!-- Plugins -->
+		<script src="../../assets/plugins/slick/slick.min.js"></script>
+		<script src="../../assets/js/_common/datepicker.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+		<script src="../../assets/js/component/ui-script.js"></script>
+		<script src="../../assets/js/_common/ui-global.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+		<!-- TODO : 개발시 반드시 삭제, 레이아웃 세팅 JS -->
+		<script src="../../assets/_guide/js/ui-layout-setting.js"></script>
+
+		<!-- 페이지 개별 스크립트 -->
+		<script>
+			$(document).ready(function () {});
+
+			// jQuery 이벤트 바인딩 예시
+			$(function () {
+				// Alert 확장형 예시
+				$("#btn-alert2").click(function () {
+					alert({
+						icon: "info",
+						title: "Alert Title",
+						message: "확장형 alert<br> 예제입니다.",
+						okText: "닫기" // 버튼 텍스트 변경
+					});
+				});
+
+				// Confirm 기본형 예시
+				$("#btn-confirm1").click(function () {
+					confirm("confirm 예시", function (result) {
+						if (result) {
+							console.log("확인 선택");
+						} else {
+							console.log("취소 선택");
+						}
+					});
+				});
+
+				// Confirm 확장형 예시
+				$("#btn-confirm2").click(function () {
+					confirm(
+						{
+							icon: "success",
+							title: "Confirm Title",
+							message: "확장형 confirm 예제입니다.",
+							okText: "저장", // 확인 버튼 텍스트 변경
+							cancelText: "취소하기" // 취소 버튼 텍스트 변경
+						},
+						function (result) {
+							if (result) {
+								console.log("저장 버튼 클릭");
+							} else {
+								console.log("취소하기 버튼 클릭");
+							}
+						}
+					);
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div id="container">
+				<aside id="sidebar"></aside>
+				<article id="content">
+					<div class="content-header">
+						<!-- <h2 class="content-title">화면명</h2> -->
+						<header class="content-header"></header>
+					</div>
+					<div class="content-body">
+						<!-- 본문 영역 -->
+						<nav class="krds-breadcrumb-wrap" aria-label="현재 경로" id="breadcrumb"></nav>
+
+						<div class="container">
+							<!-- card -->
+							<div class="card">
+								<div class="card-body">
+									<div class="box box-search">
+										<div class="fieldset">
+											<div class="grid-layout">
+												<div class="grid-item">
+													<dl class="form-group">
+														<dt class="form-tit">
+															<label for="select_name">레이블<i class="req">필수입력</i></label>
+														</dt>
+														<dd class="form-conts">
+															<select id="select_name" class="krds-form-select small fixed" title="선택">
+																<option value="">전체</option>
+																<option value="">항목2</option>
+																<option value="">항목3</option>
+																<option value="">항목4</option>
+															</select>
+														</dd>
+													</dl>
+												</div>
+												<div class="grid-item">
+													<dl class="form-group">
+														<dt class="form-tit">
+															<label for="consult_name2">레이블<i class="req">필수입력</i></label>
+														</dt>
+														<dd class="form-conts">
+															<input
+																type="text"
+																id="consult_name2"
+																class="krds-input small"
+																placeholder="입력해주세요"
+																style="width: 332px"
+															/>
+														</dd>
+													</dl>
+												</div>
+												<div class="grid-item">
+													<dl class="form-group">
+														<dt class="form-tit">
+															<label for="select_name">레이블<i class="req">필수입력</i></label>
+														</dt>
+														<dd class="form-conts">
+															<select class="krds-form-select small" title="선택">
+																<option value="">전체</option>
+																<option value="">항목2</option>
+																<option value="">항목3</option>
+																<option value="">항목4</option>
+															</select>
+														</dd>
+													</dl>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="btn-group-center">
+										<button type="button" class="krds-btn fixed small tertiary">
+											<i class="svg-icon ico-reset left"></i>초기화
+										</button>
+										<button type="button" class="krds-btn fixed small">
+											<i class="svg-icon ico-sch white"></i>검색
+										</button>
+									</div>
+
+									<div class="list-control">
+										<div class="left">
+											<span class="list-tit"><i class="svg-icon ico-document-fill"></i><span>사업목록</span></span>
+											<p class="total">총 <strong class="text-primary">10</strong>건</p>
+										</div>
+										<div class="right">
+											<button type="button" class="krds-btn xsmall secondary">버튼1</button>
+											<button type="button" class="krds-btn xsmall tertiary">버튼2</button>
+										</div>
+									</div>
+
+									<!-- table -->
+									<div class="krds-table-wrap scroll">
+										<div class="scroll-container">
+											<table class="tbl col data">
+												<caption>
+													000에 대한 표로 제목1,제목2에 대한 내용으로 구성되어 있으며 제목1은
+													제목1-1,제목1-2,제목1-3으로 구성되어있다.
+												</caption>
+												<colgroup>
+													<col style="width: 44px" />
+													<col style="width: 100px" />
+													<col style="width: 140px" />
+													<col style="width: 140px" />
+													<col style="width: 320px" />
+													<col style="width: 240px" />
+													<col style="width: 140px" />
+													<col style="width: 140px" />
+												</colgroup>
+												<thead>
+													<tr>
+														<th scope="col">
+															<label class="krds-form-check" for="chk_all">
+																<input type="checkbox" name="chk_all" id="chk_all" />
+																<span class="label">전체선택</span>
+															</label>
+														</th>
+														<th scope="col">User ID</th>
+														<th scope="col">신청자</th>
+														<th scope="col">부서명</th>
+														<th scope="col">기본</th>
+														<th scope="col">신청일자</th>
+														<th scope="col" class="ac">발급상태</th>
+														<th scope="col">승인자</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr>
+														<td>
+															<label class="krds-form-check" for="chk_1">
+																<input type="checkbox" name="chk_1" id="chk_1" />
+																<span class="label">선택</span>
+															</label>
+														</td>
+														<td>#CM9801</td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-profile"></i><span>김미영</span></span>
+														</td>
+														<td>운영지원</td>
+														<td>출입 요청 장소</td>
+														<td>2025.01.10 16:30:24</td>
+														<td class="ac"><span class="krds-badge bg-light-success">승인 완료</span></td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-manager"></i><span>한수민</span></span>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label class="krds-form-check" for="chk_2">
+																<input type="checkbox" name="chk_2" id="chk_2" />
+																<span class="label">선택</span>
+															</label>
+														</td>
+														<td>#CM9801</td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-profile"></i><span>김미영</span></span>
+														</td>
+														<td>운영지원</td>
+														<td>출입 요청 장소</td>
+														<td>2025.01.10 16:30:24</td>
+														<td class="ac"><span class="krds-badge bg-light-success">승인 완료</span></td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-manager"></i><span>한수민</span></span>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label class="krds-form-check" for="chk_3">
+																<input type="checkbox" name="chk_3" id="chk_3" checked />
+																<span class="label">선택</span>
+															</label>
+														</td>
+														<td>#CM9801</td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-profile"></i><span>김미영</span></span>
+														</td>
+														<td>운영지원</td>
+														<td>출입 요청 장소</td>
+														<td>2025.01.10 16:30:24</td>
+														<td class="ac"><span class="krds-badge bg-light-warning">보류 중</span></td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-manager"></i><span>한수민</span></span>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label class="krds-form-check" for="chk_4">
+																<input type="checkbox" name="chk_4" id="chk_4" />
+																<span class="label">선택</span>
+															</label>
+														</td>
+														<td>#CM9801</td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-profile"></i><span>김미영</span></span>
+														</td>
+														<td>운영지원</td>
+														<td>출입 요청 장소</td>
+														<td>2025.01.10 16:30:24</td>
+														<td class="ac"><span class="krds-badge bg-light-success">승인 완료</span></td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-manager"></i><span>한수민</span></span>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label class="krds-form-check" for="chk_5">
+																<input type="checkbox" name="chk_5" id="chk_5" />
+																<span class="label">선택</span>
+															</label>
+														</td>
+														<td>#CM9801</td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-profile"></i><span>김미영</span></span>
+														</td>
+														<td>운영지원</td>
+														<td>출입 요청 장소</td>
+														<td>2025.01.10 16:30:24</td>
+														<td class="ac"><span class="krds-badge bg-light-success">승인 완료</span></td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-manager"></i><span>한수민</span></span>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label class="krds-form-check" for="chk_6">
+																<input type="checkbox" name="chk_6" id="chk_6" />
+																<span class="label">선택</span>
+															</label>
+														</td>
+														<td>#CM9801</td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-profile"></i><span>김미영</span></span>
+														</td>
+														<td>운영지원</td>
+														<td>출입 요청 장소</td>
+														<td>2025.01.10 16:30:24</td>
+														<td class="ac"><span class="krds-badge bg-light-success">승인 완료</span></td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-manager"></i><span>한수민</span></span>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label class="krds-form-check" for="chk_7">
+																<input type="checkbox" name="chk_7" id="chk_7" />
+																<span class="label">선택</span>
+															</label>
+														</td>
+														<td>#CM9801</td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-profile"></i><span>김미영</span></span>
+														</td>
+														<td>운영지원</td>
+														<td>출입 요청 장소</td>
+														<td>2025.01.10 16:30:24</td>
+														<td class="ac"><span class="krds-badge bg-light-success">승인 완료</span></td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-manager"></i><span>한수민</span></span>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label class="krds-form-check" for="chk_8">
+																<input type="checkbox" name="chk_8" id="chk_8" />
+																<span class="label">선택</span>
+															</label>
+														</td>
+														<td>#CM9801</td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-profile"></i><span>김미영</span></span>
+														</td>
+														<td>운영지원</td>
+														<td>출입 요청 장소</td>
+														<td>2025.01.10 16:30:24</td>
+														<td class="ac"><span class="krds-badge bg-light-success">승인 완료</span></td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-manager"></i><span>한수민</span></span>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label class="krds-form-check" for="chk_9">
+																<input type="checkbox" name="chk_9" id="chk_9" />
+																<span class="label">선택</span>
+															</label>
+														</td>
+														<td>#CM9801</td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-profile"></i><span>김미영</span></span>
+														</td>
+														<td>운영지원</td>
+														<td>출입 요청 장소</td>
+														<td>2025.01.10 16:30:24</td>
+														<td class="ac"><span class="krds-badge bg-light-success">승인 완료</span></td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-manager"></i><span>한수민</span></span>
+														</td>
+													</tr>
+													<tr>
+														<td>
+															<label class="krds-form-check" for="chk_10">
+																<input type="checkbox" name="chk_10" id="chk_10" />
+																<span class="label">선택</span>
+															</label>
+														</td>
+														<td>#CM9801</td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-profile"></i><span>김미영</span></span>
+														</td>
+														<td>운영지원</td>
+														<td>출입 요청 장소</td>
+														<td>2025.01.10 16:30:24</td>
+														<td class="ac"><span class="krds-badge bg-light-success">승인 완료</span></td>
+														<td>
+															<span class="icon-cell"><i class="svg-icon ico-manager"></i><span>한수민</span></span>
+														</td>
+													</tr>
+												</tbody>
+											</table>
+										</div>
+									</div>
+									<!-- //table -->
+
+									<!-- pagination -->
+									<div class="krds-pagination">
+										<a class="page-navi prev disabled" href="#">이전</a>
+										<div class="page-links">
+											<a class="page-link" href="#">1</a>
+											<a class="page-link" href="#">2</a>
+											<a class="page-link" href="#">3</a>
+											<a class="page-link active" href="#"><span class="sr-only">현재페이지 </span>4</a>
+											<a class="page-link" href="#">5</a>
+											<a class="page-link" href="#">6</a>
+											<a class="page-link" href="#">7</a>
+											<a class="page-link" href="#">8</a>
+											<span class="page-link link-dot"></span>
+											<a class="page-link" href="#">99</a>
+										</div>
+										<a class="page-navi next" href="#">다음</a>
+									</div>
+									<!-- //pagination -->
+								</div>
+							</div>
+							<!-- // card -->
+						</div>
+
+						<!-- // 본문 영역 -->
+					</div>
+				</article>
+			</div>
+			<!-- <footer id="footer"></footer> -->
+		</div>
+	</body>
+</html>

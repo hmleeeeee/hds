@@ -1,0 +1,15 @@
+//공통
+
+@import "path";
+@import "../../../assets/css/token/krds_tokens.css"; //디자인 토큰
+@import "group_mixins";
+
+@import "root"; // 전역 기본 값 및 모드 스타일
+@import "icon"; // 아이콘
+
+@import "dropdown";
+
+@import "webfonts"; // 웹폰트
+@import "reset";
+
+@import "grid-layout";

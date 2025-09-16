@@ -1,0 +1,50 @@
+<button type="button" class="krds-btn medium primary" onclick="alert('기본 얼럿을 띄웠습니다.');">Alert 기본형</button>
+<button type="button" class="krds-btn medium" id="btn-alert2">Alert 확장형</button>
+<button type="button" class="krds-btn medium" id="btn-confirm1">Confirm 기본형</button>
+<button type="button" class="krds-btn medium" id="btn-confirm2">Confirm 확장형</button>
+
+<!-- 알럿 사용  -->
+<!-- 알럿 사용 활용예제 _temlate.html 참고  -->
+<!--
+// 1. 기본 알럿 사용
+alert("기본 알럿 메시지입니다.");
+
+// 2. 커스텀 알럿 사용
+alert({
+  icon: "info",  // 아이콘 변경
+  message: "커스텀 알럿 메시지입니다."
+});
+
+// 3. 타이틀이 있는 알럿
+alert({
+  title: "알림",
+  icon: "info",
+  message: "타이틀이 있는 알럿 메시지입니다."
+});
+
+// 4. 타이틀이 없는 알럿 (기본 알럿과 동일)
+alert("타이틀이 없는 알럿 메시지입니다.");
+
+// 5. 기본 컨펌 팝업
+confirm("삭제하시겠습니까?", (result) => {
+  if (result) {
+    console.log("확인 버튼 클릭");
+  } else {
+    console.log("취소 버튼 클릭");
+  }
+});
+
+// 6. 커스텀 컨펌 팝업 (텍스트 변경)
+confirm({
+  title: "데이터 삭제",
+  icon: "warning",
+  message: "정말 삭제하시겠습니까?\n삭제된 데이터는 복구할 수 없습니다.",
+}, (result) => {
+  if (result) {
+    console.log("삭제 진행");
+  } else {
+    console.log("삭제 취소");
+  }
+});
+
+-->

@@ -1,0 +1,26 @@
+@charset "utf-8";
+
+//
+// 공통 컴포넌트
+//
+// I.N.UIX Framework v1.0.0
+// Copyright (c) 2021 INSEQUENCE Co., Ltd.
+// http://inseq.co.kr / help@inseq.co.kr
+//
+
+// global
+@import "common/common";
+
+// utilities
+@import "utilities/colors";
+
+// plugins
+@import "plugins/jqGridCustom";
+@import "plugins/ztreeCustom";
+// @import "plugins/sweetAlertCustom";
+
+// components
+@import "component/component";
+
+// templates
+// @import "templates/bbsSkinPages";

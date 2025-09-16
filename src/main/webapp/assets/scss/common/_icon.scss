@@ -1,0 +1,602 @@
+// [퍼블] svg-icon 사용법 (_icons.scss mixin 참고)
+// 1. html : <i class="svg-icon ico-document-fill"></i>
+// 2. scss : // @include icon-set(ico-document-fill);
+// 3. scss 사이즈, 모드, 이펙트 사용 : @include svg-icon(var(--krds-icon--size-small), $mode: #{$mode-setting}, $effect: pure);
+// 사이즈(px 로 커스텀 시에 정사각형만 정상 작동) : @include svg-icon(48px);
+// 모드(각 scss 페이지에 따라 설정) : $mode-setting, light, high-contrast, #{$mode}
+// 이펙트 : pure(svg 그대로 색상 사용), null(background-color 사용)
+
+.svg-icon {
+	&.ico-angle {
+		//꺽쇠모양
+		@include icon-set(ico_angle);
+		//disabled (for selectbox)
+		&.disabled {
+			@include icon-set(ico_angle_disabled, $effect: pure);
+		}
+		//default: down
+		&.up {
+			transform: rotate(180deg);
+		}
+		&.left {
+			transform: rotate(90deg);
+		}
+		&.right {
+			transform: rotate(-90deg);
+		}
+	}
+	&.ico-sch {
+		@include icon-set(ico_sch);
+	}
+
+	&.ico-upload {
+		@include icon-set(ico_upload);
+	}
+	&.ico-call {
+		@include icon-set(ico_call);
+	}
+	&.ico-faq {
+		@include icon-set(ico_faq);
+	}
+	&.ico-like {
+		@include icon-set(ico_like);
+	}
+	&.ico-share {
+		@include icon-set(ico_share);
+	}
+	&.ico-more {
+		@include icon-set(ico_more);
+	}
+	&.ico-sch-plus {
+		@include icon-set(ico_sch_plus);
+	}
+
+	&.ico-go {
+		@include icon-set(ico_go);
+	}
+	&.ico-down {
+		@include icon-set(ico_download);
+	}
+	&.ico-filter {
+		@include icon-set(ico_filter);
+	}
+
+	&.ico-reset {
+		@include icon-set(ico_reset);
+		&.left {
+			transform: scaleX(-1) rotate(20deg);
+		}
+	}
+	&.ico-log {
+		@include icon-set(ico_login);
+	}
+	&.ico-func {
+		@include icon-set(ico_expand);
+		//default:right
+		&.up {
+			transform: rotate(-90deg);
+		}
+
+		& {
+			gap: var(--krds-gap-3);
+		}
+	}
+	&.ico-logout {
+		@include icon-set(ico_logout);
+		& {
+			gap: var(--krds-gap-3);
+		}
+	}
+	&.ico-email {
+		@include icon-set(ico_email);
+		& {
+			gap: var(--krds-gap-3);
+		}
+	}
+	&.ico-print {
+		@include icon-set(ico_print);
+		& {
+			gap: var(--krds-gap-3);
+		}
+	}
+	&.ico-scrap {
+		@include icon-set(ico_scrap);
+		& {
+			gap: var(--krds-gap-3);
+		}
+	}
+	&.ico-del {
+		@include icon-set(ico_delete);
+		& {
+			gap: var(--krds-gap-3);
+		}
+	}
+	&.ico-popup-close {
+		@include icon-set(ico_close);
+	}
+	&.ico-delete-fill {
+		@include icon-set(ico_delete_fill, pure);
+	}
+	&.ico-plus {
+		@include icon-set(ico_plus);
+		& {
+			gap: var(--krds-gap-3);
+		}
+	}
+	&.ico-setting {
+		@include icon-set(ico_setting);
+		& {
+			gap: var(--krds-gap-3);
+		}
+	}
+
+	&.ico-link {
+		@include icon-set(ico_go);
+		& {
+			gap: var(--krds-gap-3);
+		}
+	}
+
+	&.ico-refresh {
+		@include icon-set(ico_reset);
+	}
+
+	&.ico-toggle {
+		@include icon-set(ico_angle);
+	}
+	&.ico-pw-visible {
+		@include icon-set(ico_pw_visible_off);
+	}
+	&.ico-pw-visible-on {
+		@include icon-set(ico_pw_visible_on);
+	}
+
+	&.ico-help {
+		@include icon-set(ico_help, pure);
+	}
+
+	&.ico-page-next {
+		@include icon-set(ico_angle);
+		transform: rotate(-90deg);
+	}
+
+	&.ico-bread-home {
+		@include icon-set(ico_bread_home);
+	}
+
+	&.ico-cal-move {
+		@include icon-set(ico_arrow_dropdown);
+	}
+
+	&.ico-calendar {
+		@include icon-set(ico_calendar);
+	}
+	&.ico-datepicker {
+		@include icon-set(ico_calendar);
+	}
+
+	&.ico-success-fill {
+		@include icon-set(ico_success_fill, pure);
+	}
+	&.ico-information-fill {
+		@include icon-set(ico_information_fill, pure);
+	}
+	&.ico-error-fill {
+		@include icon-set(ico_error_fill, pure);
+	}
+	&.ico-error-fill-xl {
+		@include icon-set(ico_error_fill, pure);
+		@include svg-icon(32px);
+	}
+	&.ico-complete-fill {
+		@include icon-set(ico_complete_fill, pure);
+	}
+
+	&.ico-modal-close {
+		@include icon-set(ico_close);
+	}
+
+	&.ico-fold {
+		@include icon-set(ico_foldable);
+
+		&.right {
+			transform: rotate(-180deg);
+		}
+	}
+
+	&.ico-ellipsis {
+		@include icon-set(ico_ellipsis);
+	}
+
+	&.ico-swiper-play {
+		@include icon-set(ico_swiper_play);
+	}
+
+	&.ico-swiper-stop {
+		@include icon-set(ico_swiper_stop);
+	}
+
+	&.ico-tooltip {
+		@include icon-set(ico_tooltip);
+	}
+
+	&.ico-urgent-danger {
+		@include icon-set(ico_urgent_badge_danger);
+	}
+
+	&.ico-blog {
+		@include icon-set(ico_blog);
+	}
+
+	&.ico-facebook {
+		@include icon-set(ico_facebook);
+	}
+
+	&.ico-instagram {
+		@include icon-set(ico_instagram);
+	}
+
+	&.ico-sns-x {
+		@include icon-set(ico_sns_x);
+	}
+
+	&.ico-youtube {
+		@include icon-set(ico_youtube);
+	}
+
+	&.ico-all {
+		@include icon-set(ico_all);
+	}
+
+	&.ico-join {
+		@include icon-set(ico_join);
+	}
+	&.ico-my {
+		@include icon-set(ico_my);
+	}
+
+	&.ico-login-go {
+		@include icon-set(ico_login_certify_go);
+	}
+
+	&.ico-global {
+		@include icon-set(ico_global);
+	}
+
+	&.ico-view-mode {
+		@include icon-set(ico_view_mode);
+	}
+
+	&.ico-go-top {
+		@include icon-set(ico_go_top);
+	}
+
+	&.ico-login-type01 {
+		@include icon-set(ico_login_certify_type_01);
+	}
+
+	&.ico-login-type02 {
+		@include icon-set(ico_login_certify_type_02);
+	}
+
+	&.ico-login-type03 {
+		@include icon-set(ico_login_certify_type_03);
+	}
+
+	&.ico-login-type04 {
+		@include icon-set(ico_login_certify_type_04);
+	}
+
+	&.ico-login-type05 {
+		@include icon-set(ico_login_certify_type_05);
+	}
+
+	&.ico-login-type06 {
+		@include icon-set(ico_login_certify_type_06);
+	}
+
+	&.ico-login-common {
+		@include icon-set(ico_login_common);
+	}
+
+	&.ico-login-safe {
+		@include icon-set(ico_login_safe);
+	}
+
+	&.ico-login-signin {
+		@include icon-set(ico_login_signin);
+		background-color: var(-krds-color-high-contrast-gray-20);
+	}
+
+	&.ico-login-manual {
+		@include icon-set(ico_login_manual);
+		background-color: var(-krds-color-high-contrast-gray-20);
+	}
+
+	&.ico-flag {
+		@include icon-set(ico_flag, $effect: pure);
+	}
+
+	&.ico-file {
+		@include icon-set(ico_file);
+	}
+
+	&.ico-checkbox {
+		@include icon-set(ico_checkbox_checked);
+	}
+	&.ico-document-fill {
+		@include icon-set(ico_document_fill);
+	}
+	&.ico-star {
+		@include icon-set(ico_star);
+	}
+	&.ico-star-md {
+		@include icon-set(ico_star_md);
+	}
+	&.ico-clock {
+		@include icon-set(ico_clock, pure);
+	}
+	&.ico-clock-sidebar {
+		@include icon-set(ico_clock_sidebar, pure);
+	}
+	&.ico-allmenu {
+		@include icon-set(ico_allmenu, pure);
+	}
+	&.ico-arrow-left {
+		@include icon-set(ico_arrow_left);
+	}
+	&.ico-arrow-right {
+		@include icon-set(ico_arrow_right);
+	}
+	&.ico-arrow-right-sm {
+		@include icon-set(ico_arrow_right);
+		@include svg-icon(16px);
+		background-color: var(--krds-light-color-icon-gray-fill);
+	}
+	&.ico-sub-close {
+		@include icon-set(ico_sub_close);
+	}
+	&.ico-subtab-close {
+		@include icon-set(ico_subtab_close);
+	}
+
+	&.ico-profile {
+		@include icon-set(ico_profile, pure);
+	}
+
+	&.ico-manager {
+		@include icon-set(ico_manager, pure);
+	}
+
+	&.ico-admin-user {
+		@include icon-set(ico_admin_user, pure);
+	}
+
+	&.ico-sidebar-setting {
+		@include icon-set(ico_sidebar_setting);
+	}
+	&.ico-arrow-down {
+		@include icon-set(ico_arrow_downng);
+	}
+	&.ico-folder {
+		@include icon-set(ico_folder);
+	}
+
+	&.ico-trash {
+		@include icon-set(ico_trash);
+	}
+
+	&.ico-edit {
+		@include icon-set(ico_edit);
+	}
+
+	&.ico-check-save {
+		@include icon-set(ico_check_save);
+	}
+
+	@for $i from 1 through 23 {
+		$number: if($i < 10, "0#{$i}", "#{$i}");
+
+		&.ico-sidebar#{$number} {
+			@include icon-set(ico_sidebar#{$number});
+		}
+	}
+	&.ico-minus {
+		@include icon-set(ico_minus);
+		& {
+			gap: var(--krds-gap-3);
+		}
+	}
+	&.ico-arrow-first {
+		@include icon-set(ico_arrow-first, pure);
+	}
+	&.ico-arrow-end {
+		@include icon-set(ico_arrow-end, pure);
+	}
+	&.ico-arrow-arrow-double-right {
+		@include icon-set(ico_arrow-double-right, pure);
+	}
+	&.ico-arrow-arrow-double-left {
+		@include icon-set(ico_arrow-double-left, pure);
+	}
+	&.ico-chevrondouble-left {
+		@include icon-set(ico_chevrondouble_left);
+	}
+
+	&.ico-map {
+		@include icon-set(ico_map);
+		background-color: var(--krds-color-high-contrast-gray-0);
+	}
+
+	&.ico-human {
+		@include icon-set(ico_human);
+		@include svg-icon(18px);
+		background-color: var(--krds-color-high-contrast-gray-0);
+	}
+
+	&.ico-alarm {
+		@include icon-set(ico_alarm);
+		@include svg-icon(18px);
+		background-color: var(--krds-color-high-contrast-gray-0);
+	}
+
+	&.ico-box-arrow-right {
+		@include icon-set(ico_arrow_right);
+		@include svg-icon(16px);
+		background-color: var(--krds-color-high-contrast-gray-0);
+	}
+
+	&.ico-arrow-right-danger {
+		@include icon-set(ico_arrow_right);
+		background-color: var(--krds-color-high-contrast-danger-50);
+	}
+
+	&.ico-box-sch {
+		@include icon-set(ico_sch);
+		@include svg-icon(20px);
+		background-color: var(--krds-color-light-gray-70);
+	}
+
+	&.ico-danger {
+		@include icon-set(ico_danger, pure);
+		@include svg-icon(14px);
+	}
+
+	&.ico-notice-square {
+		@include icon-set(ico_notice_square, pure);
+		@include svg-icon(18px);
+	}
+
+	&.ico-location {
+		@include icon-set(ico_location);
+		@include svg-icon(14px);
+		background-color: var(--krds-color-high-contrast-gray-0);
+	}
+
+	&.ico-user-sm {
+		@include icon-set(ico_user_sm);
+		@include svg-icon(14px);
+		background-color: var(--krds-color-high-contrast-gray-0);
+	}
+
+	&.ico-noti {
+		@include icon-set(ico_noti);
+		@include svg-icon(14px);
+		background-color: var(--krds-color-high-contrast-primary-50);
+	}
+
+	&.ico-arrow-right-agree {
+		@include icon-set(ico_arrow_right);
+		@include svg-icon(18px);
+		background-color: var(--krds-color-high-contrast-primary-50);
+	}
+
+	&.ico-temp {
+		@include icon-set(ico_temp);
+	}
+
+	&.ico-sign {
+		@include icon-set(ico_sign);
+	}
+
+	&.ico-test {
+		@include icon-set(ico_test);
+	}
+
+	&.ico-enter {
+		@include icon-set(ico_enter);
+	}
+
+	&.ico-all-check {
+		@include icon-set(ico_all_check);
+	}
+
+	&.ico-car {
+		@include icon-set(ico_car);
+	}
+
+	&.ico-user-group {
+		@include icon-set(ico_user_group, pure);
+	}
+
+	&.ico-plus-group {
+		@include icon-set(ico_user_group);
+	}
+
+	&.ico-user-lg {
+		@include icon-set(ico_user_lg, pure);
+		@include svg-icon(40px);
+	}
+}
+
+.krds-btn {
+	&.xsmall,
+	&.small {
+		.svg-icon {
+			&.ico-arrow-up-end {
+				@include icon-set(ico_fill_end);
+				@include svg-icon(12px);
+				background-color: var(--krds-color-high-contrast-gray-60);
+				transform: rotate(270deg);
+			}
+
+			&.ico-arrow-up {
+				@include icon-set(ico_fill_next);
+				@include svg-icon(12px);
+				background-color: var(--krds-color-high-contrast-gray-60);
+				transform: rotate(270deg);
+			}
+
+			&.ico-arrow-down-end {
+				@include icon-set(ico_fill_end);
+				@include svg-icon(12px);
+				background-color: var(--krds-color-high-contrast-gray-60);
+				transform: rotate(90deg);
+			}
+
+			&.ico-arrow-down {
+				@include icon-set(ico_fill_next);
+				@include svg-icon(12px);
+				background-color: var(--krds-color-high-contrast-gray-60);
+				transform: rotate(90deg);
+			}
+		}
+	}
+}
+
+//고대비모드
+@include color-mode($mode: high-contrast) {
+	.svg-icon {
+		&.ico-help {
+			background-image: url(#{$url}/img/component/icon/ico_help_fill.svg);
+		}
+
+		&.ico-profile {
+			@include icon-set(ico_profile_dark, pure);
+		}
+
+		&.ico-manager {
+			@include icon-set(ico_manager_dark, pure);
+		}
+
+		&.ico-sch {
+			background-color: var(--krds-color-high-contrast-gray-90);
+		}
+
+		&.ico-edit {
+			background-color: var(--krds-color-high-contrast-gray-0);
+		}
+
+		&.ico-noti {
+			background-color: var(--krds-color-high-contrast-gray-0);
+		}
+	}
+}
+
+// PNG/JPG 이미지 기반 (모드별 변경 되는 Icon의 경우 미사용)
+.ico {
+	@include ir;
+}
+
+/* 범용 비규격 아이콘  */
+// @include ico2x("times-white", 18px, 18px);

@@ -1,0 +1,501 @@
+/* jqGrid Custom */
+
+// 작업 주의사항
+// 1. _table.scss 참고하여 코딩 진행
+// 2. 코딩 컨벤션 : 순서를 지켜서 작성 _table.scss 참고
+
+// /* 컴포넌트명 */
+// //사이즈 정의 : @mixin ${component}-size-variable()
+// //컬러 정의 :  @mixin ${component}-color-variable($mode: light)
+// //모드 설정 : $mode-setting: light;
+// //고대비모드 : @include color-mode($mode: high-contrast) //모드 설정 //   $mode-setting: high-contrast;
+// //반응형 :  @include media-breakpoint-down(md)
+
+//사이즈 정의
+@mixin table-size-variable() {
+	--krds-table--data-thead-th-padding: 0.4rem;
+	--krds-table--data-thead-th-padding-sides: 0.8rem;
+	--krds-table--data-thead-pc-font-size: 1.4rem;
+	--krds-table--data-thead-mobile-font-size: var(--krds-mobile-font-size-heading-xxsmall);
+	--krds-table--data-tbody-pc-font-size: 1.4rem;
+	--krds-table--data-tbody-mobile-font-size: var(--krds-mobile-font-size-label-medium);
+	--krds-table--data-tbody-padding: 0.4rem;
+	--krds-table--data-tbody-padding-sides: 0.8rem;
+	--krds-radius-small3: var(--krds-number-3);
+	--krds-size-height-6: var(--krds-number-14);
+	--krds-light-border-width-variable-regular: 0.1rem;
+	--krds-pagination-gap: var(--krds-gap-3);
+	--krds-pagination--size-height: var(--krds-size-height-6);
+	--krds-pagination--prev-btn-padding-left: var(--krds-padding-2);
+	--krds-pagination--prev-btn-padding-right: var(--krds-padding-3);
+	--krds-pagination--size-height: var(--krds-size-height-6);
+	--krds-pagination--radius: var(--krds-radius-medium1);
+	--krds-size-height-4: var(--krds-number-10);
+}
+
+//컬러 설정
+@mixin table-color-variable($mode: light) {
+	--krds-table--data-border-width: var(--krds-#{$mode}-border-width-variable-regular);
+	--krds-table--data-thead-border: var(--krds-#{$mode}-color-border-secondary-light);
+	--krds-table--data-thead-surface: var(--krds-#{$mode}-color-surface-secondary-subtler);
+	--krds-table--data-thead-color-text: var(--krds-#{$mode}-color-text-bolder);
+	--krds-table--data-tbody-color-surface: var(--krds-#{$mode}-color-surface-white-subtle);
+	--krds-table--data-tbody-color-divider: var(--krds-#{$mode}-color-divider-gray-light);
+	--krds-table--data-tbody-color-text: var(--krds-#{$mode}-color-text-subtle);
+	--krds-input--color-surface: var(--krds-#{$mode}-color-input-surface);
+	--krds-input--color-border: var(--krds-#{$mode}-color-input-border);
+	--krds-input--color-border-active: var(--krds-#{$mode}-color-input-border-active);
+	--krds-input--color-text: var(--krds-#{$mode}-color-text-subtle);
+	--krds-pagination--color-text-disabled: var(--krds-#{$mode}-color-text-disabled);
+	--krds-pagination--color-text: var(--krds-#{$mode}-color-text-subtle);
+	--krds-pagination--color-text-active: var(--krds-#{$mode}-color-text-basic);
+	--krds-pagination--color-text-disabled: var(--krds-#{$mode}-color-text-disabled);
+	--krds-pagination--color-action: var(--krds-#{$mode}-color-action-secondary);
+	--krds-pagination--color-action-hover: var(--krds-#{$mode}-color-action-secondary-hover);
+	--krds-pagination--color-action-pressed: var(--krds-#{$mode}-color-action-secondary-pressed);
+	--krds-pagination--color-action-active: var(--krds-#{$mode}-color-background-gray-subtler);
+	--krds-icon--data--color-icon-secondary: var(--krds-#{$mode}-color-icon-secondary);
+	--krds-icon--data--color-surface-gray: var(--krds-#{$mode}-color-surface-gray-subtler);
+	--krds-icon--data--color-surface-primary: var(--krds-#{$mode}-color-surface-primary-subtler);
+}
+
+//모드 설정
+$mode-setting: light;
+.grid-area {
+	// background-color: rgb(88, 0, 0);
+	@include table-size-variable();
+	@include table-color-variable(#{$mode-setting});
+
+	@include media-breakpoint-down(md) {
+		.d-up-lg {
+			display: none;
+		}
+	}
+
+	//그리드 너비 조절
+	.ui-jqgrid {
+		min-width: 100%;
+
+		.ui-jqgrid-hdiv {
+			border: var(--krds-table--data-border-width) solid var(--krds-table--data-tbody-color-divider);
+			background-color: var(--krds-table--data-thead-surface);
+			padding-right: 0px !important;
+		}
+		.ui-jqgrid-hbox {
+			min-width: 100%;
+			padding-right: 0;
+		}
+	}
+
+	.ui-jqgrid-htable {
+		// [퍼블임시]
+		--krds-typo-font-weight-medium: 500;
+		min-width: 100%;
+		.ui-jqgrid-labels {
+		}
+		th.ui-th-column {
+			padding: var(--krds-table--data-thead-th-padding) var(--krds-table--data-thead-th-padding-sides);
+			font-weight: var(--krds-typo-font-weight-medium);
+			font-size: var(--krds-table--data-thead-pc-font-size);
+			color: var(--krds-table--data-thead-color-text);
+			// text-align: left;
+			height: 36px;
+			background-color: var(--krds-table--data-thead-surface);
+			text-align: center;
+
+			+ th.ui-th-column {
+				border-left: 1px solid #e3e3e3;
+			}
+			@include media-breakpoint-down(md) {
+				font-size: var(--krds-table--data-thead-mobile-font-size);
+			}
+
+			div {
+				height: auto;
+			}
+		}
+	}
+
+	.ui-jqgrid-btable {
+		border-collapse: separate !important;
+		border-spacing: 0;
+	}
+
+	.ui-jqgrid-bdiv {
+		border-left: var(--krds-table--data-border-width) solid var(--krds-table--data-thead-border);
+		border-right: var(--krds-table--data-border-width) solid var(--krds-table--data-thead-border);
+		border-bottom: 0.05rem solid var(--krds-color-light-gray-10);
+		.ui-row-ltr {
+			td {
+				padding: var(--krds-table--data-tbody-padding) var(--krds-table--data-tbody-padding-sides);
+				font-size: 1.4rem;
+				color: var(--krds-table--data-tbody-color-text);
+				border: 1px solid var(--krds-table--data-tbody-color-divider);
+				border-style: none none solid none;
+				+ td {
+					border-left: 1px solid #e3e3e3;
+				}
+			}
+		}
+	}
+
+	//sort 아이콘 커스텀
+	.s-ico {
+		.ui-grid-ico-sort {
+			padding: 0 var(--krds-pagination--prev-btn-padding-right);
+			// @include icon-set(ico_angle);
+			// background-color: var(--krds-pagination--color-text);
+			@include pseudo();
+
+			&.ui-icon-asc {
+				margin: 0px 0;
+			}
+
+			&.ui-icon-desc {
+				margin: 6px 0;
+			}
+			&.ui-state-disabled {
+				opacity: 0.3;
+			}
+		}
+	}
+	.ui-icon,
+	.ui-widget-content .ui-icon {
+		background-image: url("../../../assets/plugins/jqGrid-4.7.0/css/images/ui-icons_777777_256x240.png");
+	}
+	.ui-icon-triangle-1-n {
+		background-position: 0 -16px;
+	}
+	.ui-icon-triangle-1-s {
+		background-position: -65px -16px;
+	}
+
+	//이미지 추가
+	.img-wrap {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	//체크박스 커스텀
+	.krds-form-check {
+		min-width: 42px;
+	}
+
+	th {
+		input {
+			appearance: none;
+			position: relative;
+			position: static !important;
+			margin: 0 !important;
+			width: var(--krds-form-check--button-size-medium) !important;
+			height: var(--krds-form-check--button-size-medium) !important;
+			border: var(--krds-form-check--button-color-border) solid 1px !important;
+			background-color: var(--krds-form-check--button-color-element);
+			border-radius: var(--krds-form-check--checkbox-button-radius-medium);
+			vertical-align: middle;
+			// transform: translateX(4px);
+
+			&:checked {
+				width: var(--krds-form-check--button-size-medium);
+				height: var(--krds-form-check--button-size-medium);
+				border: var(--krds-form-check--button-color-border) solid 1px;
+				top: var(--krds-table--data-tbody-padding);
+				left: var(--krds-table--data-tbody-padding-sides);
+				border: var(--krds-form-check--checkbox-button-color-element-checked) solid 1px;
+				background-color: var(--krds-form-check--checkbox-button-color-element-checked);
+			}
+
+			&::before {
+				content: "";
+				position: absolute;
+				background-color: var(--krds-form-check--checkbox-check-color-element-checked);
+				width: var(--krds-form-check--checkbox-check-size-medium);
+				height: var(--krds-form-check--checkbox-check-size-medium);
+				@include icon-set(ico_checkbox_checked);
+				z-index: 4;
+				top: calc(50% - 5px);
+				left: calc(50% - 6px);
+			}
+		}
+	}
+
+	td:has(input[type="checkbox"]) {
+		position: relative;
+		height: 36px;
+		max-width: 0;
+
+		&::before {
+			content: "";
+			position: absolute;
+			background-color: var(--krds-form-check--checkbox-check-color-element-checked);
+			width: var(--krds-form-check--checkbox-check-size-medium);
+			height: var(--krds-form-check--checkbox-check-size-medium);
+			@include icon-set(ico_checkbox_checked);
+			z-index: 4;
+			top: calc(50% - 5px);
+			left: calc(50% - 6px);
+			opacity: 0;
+
+			@include media-breakpoint-down(md) {
+				opacity: 1;
+			}
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			width: var(--krds-form-check--button-size-medium);
+			height: var(--krds-form-check--button-size-medium);
+			border: var(--krds-form-check--button-color-border) solid 1px;
+			background-color: var(--krds-form-check--button-color-element);
+			border-radius: var(--krds-form-check--checkbox-button-radius-medium);
+			top: calc(50% - 9px);
+			left: calc(50% - 10px);
+			opacity: 0;
+			@include media-breakpoint-down(md) {
+				opacity: 1;
+			}
+		}
+	}
+	td:has(input[type="checkbox"]:checked) {
+		&::before {
+			opacity: 1;
+		}
+		&::after {
+			content: "";
+			width: var(--krds-form-check--button-size-medium);
+			height: var(--krds-form-check--button-size-medium);
+			border: var(--krds-form-check--checkbox-button-color-element-checked) solid 1px;
+			background-color: var(--krds-form-check--checkbox-button-color-element-checked);
+			@include pseudo();
+			transition: 0.4s cubic-bezier(0.4, 0, 0.23, 1);
+			opacity: 1;
+		}
+	}
+
+	//hover
+	tr.ui-state-hover {
+		td {
+			background-color: var(--krds-light-color-surface-primary-subtler);
+		}
+		td:has(input[type="checkbox"]) {
+			&::before {
+				opacity: 1;
+			}
+			&::after {
+				opacity: 1;
+			}
+		}
+	}
+
+	//페이징 커스텀
+	.ui-jqgrid {
+		.ui-jqgrid-pager {
+			height: fit-content;
+			margin: auto;
+			padding: 4px 16px;
+			border: var(--krds-table--data-border-width) solid var(--krds-table--data-thead-border);
+			border-style: none solid solid solid;
+			background: var(--krds-table--data-thead-surface);
+			font-weight: normal;
+			color: #454545;
+
+			.ui-pager-control > .ui-pg-table > tbody > tr > td {
+				width: calc(100% / 3);
+			}
+		}
+		.ui-pg-table {
+			width: auto !important;
+
+			td {
+				td:has(input[type="text"]) {
+					padding: 0;
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					color: var(--krds-pagination--color-text-disabled);
+					font-size: var(--krds-table--data-tbody-pc-font-size);
+					gap: var(--krds-pagination-gap);
+				}
+			}
+			.ui-pg-input {
+				width: 56px;
+				height: 26px;
+				background-color: var(--krds-input--color-surface);
+				border-radius: var(--krds-radius-small3);
+				border-width: var(--krds-light-border-width-variable-regular);
+				border: 0.1rem solid var(--krds-input--color-border);
+				color: var(--krds-input--color-text);
+				font-size: var(--krds-table--data-tbody-pc-font-size);
+				padding: 0 var(--krds-padding-4);
+				font-family: inherit;
+				outline: none;
+
+				&:focus {
+					border-color: var(--krds-input--color-border-active);
+				}
+			}
+
+			.ui-icon {
+				width: var(--krds-icon--size-medium);
+				height: var(--krds-icon--size-medium);
+				order: 1;
+				padding: 0 var(--krds-pagination--prev-btn-padding-right) 0 var(--krds-pagination--prev-btn-padding-left);
+				@include icon-set(ico_angle);
+				background-color: var(--krds-pagination--color-text);
+				@include pseudo();
+
+				&.ui-icon-seek-next {
+					@include icon-set(ico_arrow-double-right);
+				}
+				&.ui-icon-seek-prev {
+					@include icon-set(ico_arrow-double-left);
+				}
+
+				&.ui-icon-seek-end {
+					@include icon-set(ico_arrow-end);
+				}
+				&.ui-icon-seek-first {
+					@include icon-set(ico_arrow-first);
+				}
+			}
+
+			.ui-separator {
+				display: none;
+			}
+		}
+
+		.ui-pg-button {
+			padding: 0 4px;
+
+			// &:hover {
+			// 	background-color: var(--krds-color-light-secondary-10);
+			// 	border-radius: var(--krds-pagination--radius);
+			// }
+
+			&.ui-state-hover {
+				padding: 0 4px;
+			}
+			&.ui-state-disabled {
+				opacity: 0.3;
+
+				&:hover {
+					padding: 0 4px;
+					background-color: transparent;
+				}
+			}
+		}
+
+		.ui-paging-info {
+			margin: 0;
+			font-size: 14px;
+			display: block;
+			@include media-breakpoint-down(md) {
+				display: none;
+			}
+		}
+	}
+	.ui-jqgrid,
+	.ui-jqgrid-view,
+	.ui-jqgrid-hdiv,
+	.ui-jqgrid-bdiv,
+	.ui-jqgrid-pager {
+		width: auto !important;
+	}
+}
+//고대비모드
+@include color-mode($mode: high-contrast) {
+	//모드 설정
+	$mode-setting: high-contrast;
+	.grid-area {
+		@include table-color-variable(#{$mode-setting});
+		// .ui-jqgrid-hbox {
+		// 	border: 1px solid var(--krds-high-contrast-color-divider-gray-light);
+		// }
+
+		.ui-jqgrid {
+			.ui-jqgrid-hdiv {
+				background-color: var(--krds-high-contrast-color-surface-gray-subtler);
+			}
+		}
+		.ui-jqgrid-htable {
+			min-width: 100%;
+			th.ui-th-column {
+				background: var(--krds-high-contrast-color-surface-gray-subtler);
+				color: var(--krds-high-contrast-color-text-basic);
+
+				+ th.ui-th-column {
+					border-color: var(--krds-table--data-tbody-color-divider);
+				}
+			}
+		}
+
+		tr.ui-state-hover {
+			td {
+				background-color: rgba(255, 255, 255, 0.05);
+			}
+		}
+
+		th {
+			input {
+				&::before {
+					background-color: unset;
+				}
+
+				&:checked {
+					background-color: var(--krds-light-color-element-inverse-static);
+
+					&::before {
+						background-color: var(--krds-color-high-contrast-gray-95);
+					}
+				}
+			}
+		}
+		td:has(input[type="checkbox"]) {
+			&::before {
+				background-color: unset;
+			}
+		}
+
+		td:has(input[type="checkbox"]:checked) {
+			&::before {
+				background-color: var(--krds-color-high-contrast-gray-95);
+				@include pseudo();
+				transition: 0.4s cubic-bezier(0.4, 0, 0.23, 1);
+			}
+
+			&::after {
+				background-color: var(--krds-light-color-element-inverse-static);
+			}
+		}
+
+		.ui-jqgrid-pager {
+			background: var(--krds-high-contrast-color-surface-gray-subtler);
+			border: 1px solid var(--krds-high-contrast-color-divider-gray-light);
+		}
+
+		.ui-jqgrid {
+			.ui-jqgrid-hdiv {
+				border-top: 1px solid var(--krds-high-contrast-color-divider-gray-light);
+			}
+			.ui-jqgrid-bdiv {
+				border-color: var(--krds-high-contrast-color-divider-gray-light);
+
+				.ui-row-ltr {
+					td {
+						+ td {
+							border-color: var(--krds-table--data-tbody-color-divider);
+						}
+					}
+				}
+			}
+		}
+
+		// .ui-pg-button {
+		// 	&:hover {
+		// 		background-color: var(--krds-pagination--color-action-hover);
+		// 	}
+		// }
+	}
+}

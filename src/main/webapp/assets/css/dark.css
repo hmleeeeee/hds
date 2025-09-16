@@ -1,0 +1,415 @@
+@import "../../../assets/css/token/krds_tokens.css";
+@import "../../../assets/css/token/krds_tokens.css";
+/* box */
+.box {
+  background-color: var(--krds-high-contrast-color-background-hs-searchfilterbg-gray-subtle);
+  color: var(--krds-high-contrast-color-text-subtle);
+}
+
+.box-search + .btn-group-center .krds-btn.tertiary {
+  background: var(--krds-mode-color-high-contrast-gray-70);
+  border-color: var(--krds-color-high-contrast-gray-60);
+  color: var(--krds-high-contrast-color-icon-inverse-static);
+}
+.box-search + .btn-group-center .krds-btn.tertiary:hover {
+  background: var(--krds-mode-color-high-contrast-gray-80);
+}
+.box-search + .btn-group-center .krds-btn.tertiary:active, .box-search + .btn-group-center .krds-btn.tertiary:focus {
+  background: var(--krds-mode-color-high-contrast-gray95);
+}
+@media (max-width: 1023.98px) {
+  .box-search {
+    background: transparent;
+  }
+}
+
+/* badge */
+[data-krds-mode=high-contrast] .krds-badge {
+  --krds-badge--color-primary-element: var(--krds-high-contrast-color-element-primary);
+  --krds-badge--color-primary-element-lighter: var(--krds-high-contrast-color-element-primary-lighter);
+  --krds-badge--color-primary-border-light: var(--krds-high-contrast-color-border-primary-light);
+  --krds-badge--color-primary-text: var(--krds-high-contrast-color-text-primary);
+  --krds-badge--color-secondary-element: var(--krds-high-contrast-color-element-secondary);
+  --krds-badge--color-secondary-element-lighter: var(--krds-high-contrast-color-element-secondary-lighter);
+  --krds-badge--color-secondary-border-light: var(--krds-high-contrast-color-border-secondary-light);
+  --krds-badge--color-secondary-text: var(--krds-high-contrast-color-text-secondary);
+  --krds-badge--color-gray-element: var(--krds-high-contrast-color-element-gray);
+  --krds-badge--color-gray-element-lighter: var(--krds-high-contrast-color-element-gray-light);
+  --krds-badge--color-gray-border-light: var(--krds-high-contrast-color-border-gray-light);
+  --krds-badge--color-gray-text: var(--krds-high-contrast-color-text-subtle);
+  --krds-badge--color-point-element: var(--krds-high-contrast-color-element-point);
+  --krds-badge--color-point-element-lighter: var(--krds-high-contrast-color-element-point-lighter);
+  --krds-badge--color-point-border-light: var(--krds-high-contrast-color-border-point-light);
+  --krds-badge--color-point-text: var(--krds-high-contrast-color-text-point);
+  --krds-badge--color-danger-element: var(--krds-high-contrast-color-element-danger);
+  --krds-badge--color-danger-element-lighter: var(--krds-high-contrast-color-element-danger-lighter);
+  --krds-badge--color-danger-border-light: var(--krds-high-contrast-color-border-danger-light);
+  --krds-badge--color-danger-text: var(--krds-high-contrast-color-text-danger);
+  --krds-badge--color-warning-element: var(--krds-high-contrast-color-element-warning);
+  --krds-badge--color-warning-element-lighter: var(--krds-high-contrast-color-element-warning-lighter);
+  --krds-badge--color-warning-border-light: var(--krds-high-contrast-color-border-warning-light);
+  --krds-badge--color-warning-text: var(--krds-high-contrast-color-text-warning);
+  --krds-badge--color-success-element: var(--krds-high-contrast-color-element-success);
+  --krds-badge--color-success-element-lighter: var(--krds-high-contrast-color-element-success-lighter);
+  --krds-badge--color-success-border-light: var(--krds-high-contrast-color-border-success-light);
+  --krds-badge--color-success-text: var(--krds-high-contrast-color-text-success);
+  --krds-badge--color-information-element: var(--krds-high-contrast-color-element-information);
+  --krds-badge--color-information-element-lighter: var(--krds-high-contrast-color-element-information-lighter);
+  --krds-badge--color-information-border-light: var(--krds-high-contrast-color-border-information-light);
+  --krds-badge--color-information-text: var(--krds-high-contrast-color-text-information);
+  --krds-badge--color-disabled-element: var(--krds-high-contrast-color-element-disabled-dark);
+  --krds-badge--color-disabled-element-lighter: var(--krds-high-contrast-color-element-disabled-light);
+  --krds-badge--color-disabled-border-light: var(--krds-high-contrast-color-border-disabled-light);
+  --krds-badge--color-disabled-text: var(--krds-high-contrast-color-text-disabled-on);
+  --krds-badge--color-background-basic: var(--krds-high-contrast-color-background-white);
+  --krds-badge--color-text-basic: var(--krds-high-contrast-color-text-inverse-static);
+}
+[data-krds-mode=high-contrast] .krds-badge.outline-primary {
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--color-primary-element);
+  color: var(--krds-badge--color-primary-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-primary {
+  background-color: var(--krds-badge--color-primary-element);
+  color: var(--krds-badge--color-text-basic);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-light-primary {
+  background-color: var(--krds-badge--color-primary-element-lighter);
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--color-primary-border-light);
+  color: var(--krds-badge--color-primary-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.outline-secondary {
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--high-contrast-color-secondary-element);
+  color: var(--krds-badge--color-secondary-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-secondary {
+  background-color: var(--krds-badge--color-secondary-element);
+  color: var(--krds-badge--color-text-basic);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-light-secondary {
+  background-color: var(--krds-badge--color-secondary-element-lighter);
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--color-secondary-border-light);
+  color: var(--krds-badge--color-secondary-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.outline-gray {
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--high-contrast-color-gray-element);
+  color: var(--krds-badge--color-gray-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-gray {
+  background-color: var(--krds-badge--color-gray-element);
+  color: var(--krds-badge--color-text-basic);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-light-gray {
+  background-color: var(--krds-badge--color-gray-element-lighter);
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--color-gray-border-light);
+  color: var(--krds-badge--color-gray-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.outline-point {
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--high-contrast-color-point-element);
+  color: var(--krds-badge--color-point-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-point {
+  background-color: var(--krds-badge--color-point-element);
+  color: var(--krds-badge--color-text-basic);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-light-point {
+  background-color: var(--krds-badge--color-point-element-lighter);
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--color-point-border-light);
+  color: var(--krds-badge--color-point-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.outline-danger {
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--high-contrast-color-danger-element);
+  color: var(--krds-badge--color-danger-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-danger {
+  background-color: var(--krds-badge--color-danger-element);
+  color: var(--krds-badge--color-text-basic);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-light-danger {
+  background-color: var(--krds-badge--color-danger-element-lighter);
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--color-danger-border-light);
+  color: var(--krds-badge--color-danger-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.outline-warning {
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--high-contrast-color-warning-element);
+  color: var(--krds-badge--color-warning-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-warning {
+  background-color: var(--krds-badge--color-warning-element);
+  color: var(--krds-badge--color-text-basic);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-light-warning {
+  background-color: var(--krds-badge--color-warning-element-lighter);
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--color-warning-border-light);
+  color: var(--krds-badge--color-warning-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.outline-success {
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--high-contrast-color-success-element);
+  color: var(--krds-badge--color-success-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-success {
+  background-color: var(--krds-badge--color-success-element);
+  color: var(--krds-badge--color-text-basic);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-light-success {
+  background-color: var(--krds-badge--color-success-element-lighter);
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--color-success-border-light);
+  color: var(--krds-badge--color-success-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.outline-information {
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--high-contrast-color-information-element);
+  color: var(--krds-badge--color-information-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-information {
+  background-color: var(--krds-badge--color-information-element);
+  color: var(--krds-badge--color-text-basic);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-light-information {
+  background-color: var(--krds-badge--color-information-element-lighter);
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--color-information-border-light);
+  color: var(--krds-badge--color-information-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.outline-disabled {
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--high-contrast-color-disabled-element);
+  color: var(--krds-badge--color-disabled-text);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-disabled {
+  background-color: var(--krds-badge--color-disabled-element);
+  color: var(--krds-badge--color-text-basic);
+}
+[data-krds-mode=high-contrast] .krds-badge.bg-light-disabled {
+  background-color: var(--krds-badge--color-disabled-element-lighter);
+  border-width: var(--krds-high-contrast-border-width-variable-regular);
+  border-style: solid;
+  border-color: var(--krds-badge--color-disabled-border-light);
+  color: var(--krds-badge--color-disabled-text);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-krds-mode=theme] .krds-badge {
+    --krds-badge--color-primary-element: var(--krds-high-contrast-color-element-primary);
+    --krds-badge--color-primary-element-lighter: var(--krds-high-contrast-color-element-primary-lighter);
+    --krds-badge--color-primary-border-light: var(--krds-high-contrast-color-border-primary-light);
+    --krds-badge--color-primary-text: var(--krds-high-contrast-color-text-primary);
+    --krds-badge--color-secondary-element: var(--krds-high-contrast-color-element-secondary);
+    --krds-badge--color-secondary-element-lighter: var(--krds-high-contrast-color-element-secondary-lighter);
+    --krds-badge--color-secondary-border-light: var(--krds-high-contrast-color-border-secondary-light);
+    --krds-badge--color-secondary-text: var(--krds-high-contrast-color-text-secondary);
+    --krds-badge--color-gray-element: var(--krds-high-contrast-color-element-gray);
+    --krds-badge--color-gray-element-lighter: var(--krds-high-contrast-color-element-gray-light);
+    --krds-badge--color-gray-border-light: var(--krds-high-contrast-color-border-gray-light);
+    --krds-badge--color-gray-text: var(--krds-high-contrast-color-text-subtle);
+    --krds-badge--color-point-element: var(--krds-high-contrast-color-element-point);
+    --krds-badge--color-point-element-lighter: var(--krds-high-contrast-color-element-point-lighter);
+    --krds-badge--color-point-border-light: var(--krds-high-contrast-color-border-point-light);
+    --krds-badge--color-point-text: var(--krds-high-contrast-color-text-point);
+    --krds-badge--color-danger-element: var(--krds-high-contrast-color-element-danger);
+    --krds-badge--color-danger-element-lighter: var(--krds-high-contrast-color-element-danger-lighter);
+    --krds-badge--color-danger-border-light: var(--krds-high-contrast-color-border-danger-light);
+    --krds-badge--color-danger-text: var(--krds-high-contrast-color-text-danger);
+    --krds-badge--color-warning-element: var(--krds-high-contrast-color-element-warning);
+    --krds-badge--color-warning-element-lighter: var(--krds-high-contrast-color-element-warning-lighter);
+    --krds-badge--color-warning-border-light: var(--krds-high-contrast-color-border-warning-light);
+    --krds-badge--color-warning-text: var(--krds-high-contrast-color-text-warning);
+    --krds-badge--color-success-element: var(--krds-high-contrast-color-element-success);
+    --krds-badge--color-success-element-lighter: var(--krds-high-contrast-color-element-success-lighter);
+    --krds-badge--color-success-border-light: var(--krds-high-contrast-color-border-success-light);
+    --krds-badge--color-success-text: var(--krds-high-contrast-color-text-success);
+    --krds-badge--color-information-element: var(--krds-high-contrast-color-element-information);
+    --krds-badge--color-information-element-lighter: var(--krds-high-contrast-color-element-information-lighter);
+    --krds-badge--color-information-border-light: var(--krds-high-contrast-color-border-information-light);
+    --krds-badge--color-information-text: var(--krds-high-contrast-color-text-information);
+    --krds-badge--color-disabled-element: var(--krds-high-contrast-color-element-disabled-dark);
+    --krds-badge--color-disabled-element-lighter: var(--krds-high-contrast-color-element-disabled-light);
+    --krds-badge--color-disabled-border-light: var(--krds-high-contrast-color-border-disabled-light);
+    --krds-badge--color-disabled-text: var(--krds-high-contrast-color-text-disabled-on);
+    --krds-badge--color-background-basic: var(--krds-high-contrast-color-background-white);
+    --krds-badge--color-text-basic: var(--krds-high-contrast-color-text-inverse-static);
+  }
+  [data-krds-mode=theme] .krds-badge.outline-primary {
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--color-primary-element);
+    color: var(--krds-badge--color-primary-text);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-primary {
+    background-color: var(--krds-badge--color-primary-element);
+    color: var(--krds-badge--color-text-basic);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-light-primary {
+    background-color: var(--krds-badge--color-primary-element-lighter);
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--color-primary-border-light);
+    color: var(--krds-badge--color-primary-text);
+  }
+  [data-krds-mode=theme] .krds-badge.outline-secondary {
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--high-contrast-color-secondary-element);
+    color: var(--krds-badge--color-secondary-text);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-secondary {
+    background-color: var(--krds-badge--color-secondary-element);
+    color: var(--krds-badge--color-text-basic);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-light-secondary {
+    background-color: var(--krds-badge--color-secondary-element-lighter);
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--color-secondary-border-light);
+    color: var(--krds-badge--color-secondary-text);
+  }
+  [data-krds-mode=theme] .krds-badge.outline-gray {
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--high-contrast-color-gray-element);
+    color: var(--krds-badge--color-gray-text);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-gray {
+    background-color: var(--krds-badge--color-gray-element);
+    color: var(--krds-badge--color-text-basic);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-light-gray {
+    background-color: var(--krds-badge--color-gray-element-lighter);
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--color-gray-border-light);
+    color: var(--krds-badge--color-gray-text);
+  }
+  [data-krds-mode=theme] .krds-badge.outline-point {
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--high-contrast-color-point-element);
+    color: var(--krds-badge--color-point-text);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-point {
+    background-color: var(--krds-badge--color-point-element);
+    color: var(--krds-badge--color-text-basic);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-light-point {
+    background-color: var(--krds-badge--color-point-element-lighter);
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--color-point-border-light);
+    color: var(--krds-badge--color-point-text);
+  }
+  [data-krds-mode=theme] .krds-badge.outline-danger {
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--high-contrast-color-danger-element);
+    color: var(--krds-badge--color-danger-text);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-danger {
+    background-color: var(--krds-badge--color-danger-element);
+    color: var(--krds-badge--color-text-basic);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-light-danger {
+    background-color: var(--krds-badge--color-danger-element-lighter);
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--color-danger-border-light);
+    color: var(--krds-badge--color-danger-text);
+  }
+  [data-krds-mode=theme] .krds-badge.outline-warning {
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--high-contrast-color-warning-element);
+    color: var(--krds-badge--color-warning-text);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-warning {
+    background-color: var(--krds-badge--color-warning-element);
+    color: var(--krds-badge--color-text-basic);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-light-warning {
+    background-color: var(--krds-badge--color-warning-element-lighter);
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--color-warning-border-light);
+    color: var(--krds-badge--color-warning-text);
+  }
+  [data-krds-mode=theme] .krds-badge.outline-success {
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--high-contrast-color-success-element);
+    color: var(--krds-badge--color-success-text);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-success {
+    background-color: var(--krds-badge--color-success-element);
+    color: var(--krds-badge--color-text-basic);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-light-success {
+    background-color: var(--krds-badge--color-success-element-lighter);
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--color-success-border-light);
+    color: var(--krds-badge--color-success-text);
+  }
+  [data-krds-mode=theme] .krds-badge.outline-information {
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--high-contrast-color-information-element);
+    color: var(--krds-badge--color-information-text);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-information {
+    background-color: var(--krds-badge--color-information-element);
+    color: var(--krds-badge--color-text-basic);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-light-information {
+    background-color: var(--krds-badge--color-information-element-lighter);
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--color-information-border-light);
+    color: var(--krds-badge--color-information-text);
+  }
+  [data-krds-mode=theme] .krds-badge.outline-disabled {
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--high-contrast-color-disabled-element);
+    color: var(--krds-badge--color-disabled-text);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-disabled {
+    background-color: var(--krds-badge--color-disabled-element);
+    color: var(--krds-badge--color-text-basic);
+  }
+  [data-krds-mode=theme] .krds-badge.bg-light-disabled {
+    background-color: var(--krds-badge--color-disabled-element-lighter);
+    border-width: var(--krds-high-contrast-border-width-variable-regular);
+    border-style: solid;
+    border-color: var(--krds-badge--color-disabled-border-light);
+    color: var(--krds-badge--color-disabled-text);
+  }
+}/*# sourceMappingURL=dark.css.map */
